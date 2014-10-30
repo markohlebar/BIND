@@ -13,6 +13,12 @@ static NSString *const BNDBindingArrowLeft = @"<-";
 static NSString *const BNDBindingArrowNone = @"<>";
 static NSString *const BNDBindingTransformerSeparator = @"|";
 
+@interface BNDBinding()
+@property (nonatomic, copy) NSString *keyPath;
+@property (nonatomic, copy) NSString *otherKeyPath;
+@property (nonatomic) BNDBindingInitialAssignment initialAssignment;
+@end
+
 @implementation BNDBinding {
     BOOL _locked;
 }
@@ -53,25 +59,25 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
                       transformer:(NSValueTransformer *)transformer
                 initialAssignment:(BNDBindingInitialAssignment)initialAssignment {
     return [[BNDBinding alloc] initWithObject:object
-                                     property:keyPath
+                                      keyPath:keyPath
                                    withObject:otherObject
-                                     property:otherKeyPath
+                                      keyPath:otherKeyPath
                                   transformer:transformer
                             initialAssignment:initialAssignment];
 }
 
 - (instancetype)initWithObject:(id)object
-                      property:(NSString *)property
+                       keyPath:(NSString *)keyPath
                     withObject:(id)otherObject
-                      property:(NSString *)otherProperty
+                       keyPath:(NSString *)otherKeyPath
                    transformer:(NSValueTransformer *)transformer
              initialAssignment:(BNDBindingInitialAssignment)initialAssignment {
     self = [super init];
     if (self) {
         _object = object;
-        _keyPath = property;
+        _keyPath = keyPath.copy;
         _otherObject = otherObject;
-        _otherKeyPath = otherProperty;
+        _otherKeyPath = otherKeyPath.copy;
         _valueTransformer = transformer;
         _initialAssignment = initialAssignment;
 
@@ -89,50 +95,55 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
                                              withString:@""];
     _BIND = [_BIND stringByReplacingOccurrencesOfString:@"\n"
                                              withString:@""];
+    [self parseKeyPaths:_BIND];
     
+    if (self.object && self.otherObject) {
+        [self setInitialValues];
+        [self setupObservers];
+    }
+}
+
+- (void)parseKeyPaths:(NSString *)bind {
     NSString *separator = nil;
-    if ([_BIND rangeOfString:BNDBindingArrowRight].location != NSNotFound) {
+    if ([bind rangeOfString:BNDBindingArrowRight].location != NSNotFound) {
         separator = BNDBindingArrowRight;
-        _initialAssignment = BNDBindingInitialAssignmentRight;
+        self.initialAssignment = BNDBindingInitialAssignmentRight;
     }
-    else if ([_BIND rangeOfString:BNDBindingArrowLeft].location != NSNotFound) {
+    else if ([bind rangeOfString:BNDBindingArrowLeft].location != NSNotFound) {
         separator = BNDBindingArrowLeft;
-        _initialAssignment = BNDBindingInitialAssignmentLeft;
+        self.initialAssignment = BNDBindingInitialAssignmentLeft;
     }
-    else if ([_BIND rangeOfString:BNDBindingArrowNone].location != NSNotFound) {
+    else if ([bind rangeOfString:BNDBindingArrowNone].location != NSNotFound) {
         separator = BNDBindingArrowNone;
-        _initialAssignment = BNDBindingInitialAssignmentNone;
+        self.initialAssignment = BNDBindingInitialAssignmentNone;
     }
     else {
         NSAssert(NO, @"Couldn't find initial assignment direction. Check the BIND syntax manual for more info.");
     }
     
     NSArray *keyPaths = [_BIND componentsSeparatedByString:separator];
-    NSArray *transformerAndKeyPath = [keyPaths[0] componentsSeparatedByString:BNDBindingTransformerSeparator];
+    NSAssert(keyPaths.count == 2, @"Couldn't find keyPaths. Check the BIND syntax manual for more info.");
     
-    NSString *keyPath = nil;
-    NSString *transformerClassName = nil;
-    if (transformerAndKeyPath.count == 2) {
-        transformerClassName = transformerAndKeyPath[0];
-        keyPath = transformerAndKeyPath[1];
-    }
-    else {
-        keyPath = transformerAndKeyPath[0];
-    }
-    NSString *otherKeyPath = keyPaths[1];
+    NSArray *keyPathAndTransformer = [keyPaths[1] componentsSeparatedByString:BNDBindingTransformerSeparator];
+    self.keyPath = keyPaths[0];
+    self.otherKeyPath = keyPathAndTransformer[0];
     
-    _keyPath = keyPath;
-    _otherObject = otherKeyPath;
-    
-    NSValueTransformer *transformer = nil;
-    if (transformerClassName) {
+    NSAssert(self.keyPath.length > 0, @"Provide a valid keyPath. Check the BIND syntax manual for more info.");
+    NSAssert(self.otherKeyPath.length > 0, @"Provide a valid otherKeyPath. Check the BIND syntax manual for more info.");
+
+    [self parseTransformer:keyPathAndTransformer];
+}
+
+- (void)parseTransformer:(NSArray *)keyPathAndTransformer {
+    if (keyPathAndTransformer.count == 2) {
+        NSString *transformerClassName = keyPathAndTransformer[1];
         Class transformerClass = NSClassFromString(transformerClassName);
         NSString *assert = [NSString stringWithFormat:@"Non existing transformer class %@", transformerClassName];
         NSAssert(transformerClass != nil, assert);
-        transformer = [transformerClass new];
+        self.valueTransformer = [transformerClass new];
     }
     else {
-        transformer = [NSValueTransformer new];
+        self.valueTransformer = [NSValueTransformer new];
     }
 }
 
@@ -165,6 +176,10 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
 }
 
 - (void)setupObservers {
+    if (self.keyPath == nil || self.otherKeyPath == nil) {
+        return;
+    }
+    
     [self.object addObserver:self
                   forKeyPath:self.keyPath
                      options:NSKeyValueObservingOptionNew
@@ -185,7 +200,6 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    
     if (self.isLocked) {
         return;
     }

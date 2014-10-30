@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381A81A02C56C00D1C608 /* BNDBindingTest.m */; };
+		967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381AB1A02C61800D1C608 /* BNDTestObjects.m */; };
 		9680C90F19FEBBB500DFE38A /* BIND.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C90E19FEBBB500DFE38A /* BIND.h */; };
 		9680C91719FEBBB500DFE38A /* libBIND.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9680C90B19FEBBB500DFE38A /* libBIND.a */; };
 		9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
@@ -45,6 +47,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		967381A81A02C56C00D1C608 /* BNDBindingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingTest.m; sourceTree = "<group>"; };
+		967381AA1A02C61800D1C608 /* BNDTestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDTestObjects.h; sourceTree = "<group>"; };
+		967381AB1A02C61800D1C608 /* BNDTestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDTestObjects.m; sourceTree = "<group>"; };
 		9680C90B19FEBBB500DFE38A /* libBIND.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBIND.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9680C90E19FEBBB500DFE38A /* BIND.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIND.h; sourceTree = "<group>"; };
 		9680C91619FEBBB500DFE38A /* BINDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +113,10 @@
 		9680C91A19FEBBB500DFE38A /* BINDTests */ = {
 			isa = PBXGroup;
 			children = (
+				967381AA1A02C61800D1C608 /* BNDTestObjects.h */,
+				967381AB1A02C61800D1C608 /* BNDTestObjects.m */,
 				9680C91B19FEBBB500DFE38A /* Supporting Files */,
+				967381A81A02C56C00D1C608 /* BNDBindingTest.m */,
 			);
 			path = BINDTests;
 			sourceTree = "<group>";
@@ -245,6 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */,
+				967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

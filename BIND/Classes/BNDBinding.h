@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, BNDBindingInitialAssignment) {
 /**
  *  BIND is a special syntax to bind values at keyPath for an object
  *  to another object's value at keyPath.
- *  The syntax is MHFloatToStringTransformer|objectKeyPath->otherObjectKeyPath,object2KeyPath->otherObject2KeyPath
+ *  The syntax is objectKeyPath->otherObjectKeyPath|MHFloatToStringTransformer
  *  where MHFloatToStringTransformer is the optional NSValueTransformer subclass you want to use,
  *  objectKeyPath is the keyPath of bound object, otherObjectKeyPath is the key path of other bound object.
  */
@@ -52,7 +52,10 @@ typedef NS_ENUM(NSInteger, BNDBindingInitialAssignment) {
 @property (nonatomic, copy, readonly) NSString *otherKeyPath;
 
 /**
- *  Value transfromer for transforming values coming from object to another object.
+ *  Value transfromer for transforming values coming from object to other object and reverse.
+ *  Transforms are executed as follows;
+ *  When object assigns value to otherObject, transformValue: is called.
+ *  When otherObject assigns value to object, reverseTransformValue: is called.
  */
 @property (nonatomic, strong) NSValueTransformer *valueTransformer;
 
