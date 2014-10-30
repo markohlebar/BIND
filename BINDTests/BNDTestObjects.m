@@ -18,10 +18,6 @@
 
 @implementation RPMToSpeedTransformer
 
-+ (BOOL) allowsReverseTransformation {
-    return YES;
-}
-
 - (id)transformedValue:(id)speed {
     float rpm = [speed floatValue] * 100;
     return @(rpm);
