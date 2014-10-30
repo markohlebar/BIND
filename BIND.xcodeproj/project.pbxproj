@@ -8,8 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9680C90F19FEBBB500DFE38A /* BIND.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C90E19FEBBB500DFE38A /* BIND.h */; };
-		9680C91119FEBBB500DFE38A /* BIND.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C91019FEBBB500DFE38A /* BIND.m */; };
 		9680C91719FEBBB500DFE38A /* libBIND.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9680C90B19FEBBB500DFE38A /* libBIND.a */; };
+		9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
+		9680C92D19FEBC7000DFE38A /* BNDBinding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C92819FEBC2800DFE38A /* BNDBinding.h */; };
+		9680C93D19FEC9F500DFE38A /* BNDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDTableViewCell.m */; };
+		9680C93E19FECAB700DFE38A /* BNDTableViewCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93B19FEC9F500DFE38A /* BNDTableViewCell.h */; };
+		9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93919FEC8B000DFE38A /* BNDView.h */; };
+		9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93819FEC88500DFE38A /* BNDViewModel.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +35,10 @@
 			dstSubfolderSpec = 16;
 			files = (
 				9680C90F19FEBBB500DFE38A /* BIND.h in CopyFiles */,
+				9680C92D19FEBC7000DFE38A /* BNDBinding.h in CopyFiles */,
+				9680C93E19FECAB700DFE38A /* BNDTableViewCell.h in CopyFiles */,
+				9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */,
+				9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,9 +47,14 @@
 /* Begin PBXFileReference section */
 		9680C90B19FEBBB500DFE38A /* libBIND.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBIND.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9680C90E19FEBBB500DFE38A /* BIND.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIND.h; sourceTree = "<group>"; };
-		9680C91019FEBBB500DFE38A /* BIND.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BIND.m; sourceTree = "<group>"; };
 		9680C91619FEBBB500DFE38A /* BINDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9680C91C19FEBBB500DFE38A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9680C92819FEBC2800DFE38A /* BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDBinding.h; sourceTree = "<group>"; };
+		9680C92919FEBC2800DFE38A /* BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBinding.m; sourceTree = "<group>"; };
+		9680C93819FEC88500DFE38A /* BNDViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDViewModel.h; path = Protocols/BNDViewModel.h; sourceTree = "<group>"; };
+		9680C93919FEC8B000DFE38A /* BNDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDView.h; path = Protocols/BNDView.h; sourceTree = "<group>"; };
+		9680C93B19FEC9F500DFE38A /* BNDTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDTableViewCell.h; path = Abstractions/BNDTableViewCell.h; sourceTree = "<group>"; };
+		9680C93C19FEC9F500DFE38A /* BNDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDTableViewCell.m; path = Abstractions/BNDTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +97,10 @@
 		9680C90D19FEBBB500DFE38A /* BIND */ = {
 			isa = PBXGroup;
 			children = (
+				9680C93A19FEC9C500DFE38A /* Abstractions */,
+				9680C93719FEC85500DFE38A /* Protocols */,
+				9680C92519FEBC2800DFE38A /* Classes */,
 				9680C90E19FEBBB500DFE38A /* BIND.h */,
-				9680C91019FEBBB500DFE38A /* BIND.m */,
 			);
 			path = BIND;
 			sourceTree = "<group>";
@@ -103,6 +119,33 @@
 				9680C91C19FEBBB500DFE38A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9680C92519FEBC2800DFE38A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9680C92819FEBC2800DFE38A /* BNDBinding.h */,
+				9680C92919FEBC2800DFE38A /* BNDBinding.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9680C93719FEC85500DFE38A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9680C93919FEC8B000DFE38A /* BNDView.h */,
+				9680C93819FEC88500DFE38A /* BNDViewModel.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		9680C93A19FEC9C500DFE38A /* Abstractions */ = {
+			isa = PBXGroup;
+			children = (
+				9680C93B19FEC9F500DFE38A /* BNDTableViewCell.h */,
+				9680C93C19FEC9F500DFE38A /* BNDTableViewCell.m */,
+			);
+			name = Abstractions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,7 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9680C91119FEBBB500DFE38A /* BIND.m in Sources */,
+				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
+				9680C93D19FEC9F500DFE38A /* BNDTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +400,7 @@
 				9680C92119FEBBB500DFE38A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9680C92219FEBBB500DFE38A /* Build configuration list for PBXNativeTarget "BINDTests" */ = {
 			isa = XCConfigurationList;
@@ -364,6 +409,7 @@
 				9680C92419FEBBB500DFE38A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface BIND : NSObject
-
-@end
+#import "BNDBinding.h"
+#import "BNDTableViewCell.h"
+#import "BNDView.h"
+#import "BNDViewModel.h"
