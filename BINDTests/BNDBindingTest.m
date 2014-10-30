@@ -199,7 +199,7 @@
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
-        binding.BIND = @"keyPath1->keyPath2|NSValueTransformer";
+        binding.BIND = @"keyPath1->keyPath2|RPMToSpeedTransformer";
     }];
 }
 
