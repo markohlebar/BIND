@@ -15,10 +15,10 @@ with a couple of major feature advantages.
 
 ## Features ##
 
-- data binding from XIBs or code by using a custom BIND DSL
-- data transforms by using subclasses of NSValueTransformers
-- protocols and abstract classes to make your MVVM-ing easier
-- lightweight (200ish lines of code)
+- **data binding** from **XIBs** or **code** by using a custom **BIND DSL**
+- **data transforms** by using subclasses of `NSValueTransformer`
+- **protocols** and **abstract classes** to make your **MVVM**-ing easier
+- **lightweight** (200ish lines of code)
 
 ## BIND DSL ##
 
@@ -52,7 +52,7 @@ What you need to do is bind the cell's `textLabel.text` key path with the `name`
 
 #### Initial value assignment ####
 Observe the symbol `<-` in the expression `textLabel.text <- name`. 
-BIND syntax lets you configure the way that the initial assignment of the value at key path is executed.
+**BIND** syntax lets you configure the way that the initial assignment of the value at key path is executed.
 Supported symbols are
 
 ```
@@ -62,7 +62,7 @@ Supported symbols are
 ```
 
 #### Transformers ####
-BIND also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
+**BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
 to other object and reverse. Let's take the previous example, and assume that there is a requirement that the names should be displayed capitalized in the cells. You could then build your subclass of `NSValueTransformer` and easily assign it to the binding.
 
 ```
