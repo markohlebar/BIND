@@ -3,7 +3,7 @@ BIND
 
  [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
-Lightweight MVVM framework for iOS
+Data binding and MVVM for iOS
 
 ## History ##
 
@@ -41,27 +41,33 @@ What you need to do is bind the cell's `textLabel.text` key path with the `name`
 - (instancetype)init {
     ...
     _binding = [BNDBinding new];
-    _binding.BIND = @"textLabel.text <- name";
+    _binding.BIND = @"name -> textLabel.text";
     ...
 }
 
 - (void)updateWithViewModel:(id)viewModel {
-    [_binding bindObject:self otherObject:viewModel];
+    [_binding bindLeft:viewModel withRight:self];
 }
     
 @end
 ``` 
 
-#### Initial value assignment ####
-Observe the symbol `<-` in the expression `textLabel.text <- name`. 
-**BIND** syntax lets you configure the way that the initial assignment of the value at key path is executed.
-Supported symbols are
+#### Binding Direction ####
+Observe the symbol `->` in the expression `name -> textLabel.text`. 
+**BIND** syntax lets you configure the way that the binding is reflected on the bound objects values. 
+It offers three different direction configurations:
+```
+  name -> textLabel.text /// changes on name reflect on textLabel.text, but not the other way around
+  name <- textLabel.text /// changes on textLabel.text reflect on name, but not the other way around
+  name <> textLabel.text /// changes on name reflect on textLabel.text and vice versa. 
+```
 
-```
-  textLabel.text <- name /// name is initally assigned to textLabel.text
-  textLabel.text -> name /// textLabel.text is initally assigned to name
-  textLabel.text <> name /// no values are initially assigned
-```
+#### Initial Value Assignment ####
+Initial values are assigned by default. The direction of assignment is from left to right object 
+in cases the binding directions are either `->` or `<>`,
+and from right to left object when binding direction is `<-`.
+You can disable initial value assignment by using `bindLeft:withRight:setInitialValues:` method. 
+
 
 #### Transformers ####
 **BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
@@ -75,12 +81,12 @@ to other object and reverse. Let's take the previous example, and assume that th
 
 ///transformValue: is called when assigning from object to otherObject
 - (NSString *)transformValue:(NSString *)string {
-    return string;
+    return string.capitalizedString; 
 }
 
 ///reverseTransformValue: is called when assigning from otherObject to object
 - (NSString *)reverseTransformValue:(NSString *)string {
-    return string.capitalizedString; 
+    return string;
 }
 
 @end 
@@ -89,21 +95,16 @@ to other object and reverse. Let's take the previous example, and assume that th
 - (instancetype)init {
     ...
     _binding = [BNDBinding new];
-    _binding.BIND = @"textLabel.text <- name | CapitalizeStringTransformer";
+    _binding.BIND = @"name -> textLabel.text | CapitalizeStringTransformer";
     ...
 }
 ...
 
 ```
-Observe that `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
+Observe `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
+You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `name -> textLabel.text | !CapitalizeStringTransformer`.
 
 ## TBC ##
 - XIBS EXAMPLES (look at https://github.com/markohlebar/iOSArchitectures for now)
-- Transformer direction is somewhat confusing, perhaps introduce something like this 
-```
-@"textLabel.text <- name | CapitalizeStringTransformer" ///transformValue: is called coming from otherObject to object
-@"CapitalizeStringTransformer | textLabel.text <- name" ///transformValue: is called coming from object to otherObject
-```
 - more abstract classes like viewcontrollers, views etc. 
-
-
+- universal library and CocoaPods
