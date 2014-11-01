@@ -52,7 +52,7 @@ What you need to do is bind the cell's `textLabel.text` key path with the `name`
 @end
 ``` 
 
-#### Initial value assignment ####
+#### Binding Direction ####
 Observe the symbol `->` in the expression `name -> textLabel.text`. 
 **BIND** syntax lets you configure the way that the binding is reflected on the bound objects values. 
 It offers three different direction configurations:
@@ -61,6 +61,13 @@ It offers three different direction configurations:
   name <- textLabel.text /// changes on textLabel.text reflect on name, but not the other way around
   name <> textLabel.text /// changes on name reflect on textLabel.text and vice versa. 
 ```
+
+#### Initial Value Assignment ####
+Initial values are assigned by default. The direction of assignment is from left to right object 
+in cases the binding directions are either `->` or `<>`,
+and from right to left object when binding direction is `<-`.
+You can disable initial value assignemnt by using `bindLeft:withRight:setInitialValues:` method. 
+
 
 #### Transformers ####
 **BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
