@@ -107,3 +107,4 @@ You can reverse the transformation direction if you need to by adding a `!` modi
 ## TBC ##
 - XIBS EXAMPLES (look at https://github.com/markohlebar/iOSArchitectures for now)
 - more abstract classes like viewcontrollers, views etc. 
+- universal library and CocoaPods
