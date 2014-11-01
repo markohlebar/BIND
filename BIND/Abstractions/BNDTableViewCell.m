@@ -13,7 +13,7 @@
 
 - (void)updateWithViewModel:(id <BNDViewModel> )viewModel {
     for (BNDBinding *binding in self.bindings) {
-        [binding bindLeft:self withRight:viewModel];
+        [binding bindLeft:viewModel withRight:self];
     }
 }
 
