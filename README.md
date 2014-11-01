@@ -66,7 +66,7 @@ It offers three different direction configurations:
 Initial values are assigned by default. The direction of assignment is from left to right object 
 in cases the binding directions are either `->` or `<>`,
 and from right to left object when binding direction is `<-`.
-You can disable initial value assignemnt by using `bindLeft:withRight:setInitialValues:` method. 
+You can disable initial value assignment by using `bindLeft:withRight:setInitialValues:` method. 
 
 
 #### Transformers ####
