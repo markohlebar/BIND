@@ -18,14 +18,14 @@
 
 @implementation RPMToSpeedTransformer
 
-- (id)transformedValue:(id)speed {
-    float rpm = [speed floatValue] * 100;
-    return @(rpm);
-}
-
-- (id)reverseTransformedValue:(id)rpm {
+- (id)transformedValue:(id)rpm {
     float speed = [rpm floatValue] / 100;
     return @(speed);
+}
+
+- (id)reverseTransformedValue:(id)speed {
+    float rpm = [speed floatValue] * 100;
+    return @(rpm);
 }
 
 @end

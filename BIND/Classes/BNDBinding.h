@@ -9,9 +9,32 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, BNDBindingInitialAssignment) {
-    BNDBindingInitialAssignmentNone = 0,
-    BNDBindingInitialAssignmentLeft = 1,
-    BNDBindingInitialAssignmentRight = 2
+    /**
+     *  -> initial value is assigned from object to otherObject
+     */
+    BNDBindingInitialAssignmentLeftToRight = 0,
+    
+    /**
+     *  <- initial value is assigned from otherObject to object
+     */
+    BNDBindingInitialAssignmentRightToLeft = 1,
+    
+    /**
+     *  <> initial value is not assigned
+     */
+    BNDBindingInitialAssignmentNone = 2,
+};
+
+typedef NS_ENUM(NSInteger, BNDBindingTransformDirection) {
+    /**
+     *  Transform direction is executed from object to otherObject.
+     */
+    BNDBindingTransformDirectionLeftToRight = 0,
+    
+    /**
+     *  Transform direction is executed from otherObject to object.
+     */
+    BNDBindingTransformDirectionRightToLeft = 1,
 };
 
 @interface BNDBinding : NSObject
@@ -23,33 +46,47 @@ typedef NS_ENUM(NSInteger, BNDBindingInitialAssignment) {
  *  where MHFloatToStringTransformer is the optional NSValueTransformer subclass you want to use,
  *  objectKeyPath is the keyPath of bound object, otherObjectKeyPath is the key path of other bound object.
  */
-@property (nonatomic, strong) NSString *BIND;
+@property (nonatomic, copy) NSString *BIND;
 
 /**
- *  This property determines which value is assigned as initial value.
- *  Default: BNDBindingInitialAssignmentLeft (otherKeyPath assigns value to keyPath)
+ *  Initial assignment determines which value is assigned as initial value.
+ *  You can set the initial assignment value by using BIND initial assignment modifiers:
+ *  -> initial value is assigned from object to otherObject
+ *  <- initial value is assigned from otherObject to object
+ *  <> initial value is not assigned
+ *
  */
 @property (nonatomic, readonly) BNDBindingInitialAssignment initialAssignment;
 
 /**
+ *  Transform direction determines in which way the transform is executed.
+ *  You can change the direction of the transform using the BIND syntax ! modifier before declaring
+ *  the Transformer class i.e. 
+ *  keyPath <- otherKeyPath | !Transformer
+ *  
+ *  @default BNDBindingTransformDirectionLeftToRight
+ */
+@property (nonatomic, readonly) BNDBindingTransformDirection transformDirection;
+
+/**
  *  A bound object.
  */
-@property (nonatomic, readonly) id object;
+@property (nonatomic, weak, readonly) id leftObject;
 
 /**
  *  An object's keyPath.
  */
-@property (nonatomic, copy, readonly) NSString *keyPath;
+@property (nonatomic, readonly) NSString *leftKeyPath;
 
 /**
  *  Other bound object.
  */
-@property (nonatomic, readonly) id otherObject;
+@property (nonatomic, weak, readonly) id rightObject;
 
 /**
  *  An other bound object's keyPath.
  */
-@property (nonatomic, copy, readonly) NSString *otherKeyPath;
+@property (nonatomic, readonly) NSString *rightKeyPath;
 
 /**
  *  Value transfromer for transforming values coming from object to other object and reverse.
@@ -57,77 +94,32 @@ typedef NS_ENUM(NSInteger, BNDBindingInitialAssignment) {
  *  When object assigns value to otherObject, transformValue: is called.
  *  When otherObject assigns value to object, reverseTransformValue: is called.
  */
-@property (nonatomic, strong) NSValueTransformer *valueTransformer;
+@property (nonatomic, readonly) NSValueTransformer *valueTransformer;
 
 /**
- *  Binds an object's value at keyPath to anotherObjects value at keyPath.
- *  The system will assign otherObject's value as object's value on initialization.
+ *  Builds a binding using BIND syntax.
  *
- *  @param object       object
- *  @param keyPath      a keyPath to object's property
- *  @param otherObject  other object
- *  @param otherKeyPath a keyPath to other object's property
+ *  @param BIND a BIND expression
  *
- *  @return a data binding object.
+ *  @return a binding.
  */
-+ (BNDBinding *)bindingWithObject:(id)object
-                          keyPath:(NSString *)keyPath
-                       withObject:(id)otherObject
-                          keyPath:(NSString *)otherKeyPath;
++ (BNDBinding *)bindingWithBIND:(NSString *)BIND;
 
 /**
- *  Binds an object's value at keyPath to anotherObjects value at keyPath.
- *  The system will assign otherObject's value as object's value on initialization.
- *
- *  @param object       object
- *  @param keyPath      a keyPath to object's property
- *  @param otherObject  other object
- *  @param otherKeyPath a keyPath to other object's property
- *  @param transformer  a custom transformer object
- *
- *  @return a data binding object.
- */
-+ (BNDBinding *)bindingWithObject:(id)object
-                          keyPath:(NSString *)keyPath
-                       withObject:(id)otherObject
-                          keyPath:(NSString *)otherKeyPath
-                      transformer:(NSValueTransformer *)transformer;
-
-/**
- *  Binds an object's value at keyPath to anotherObjects value at keyPath.
- *  The system will assign otherObject's value as object's value on initialization.
- *
- *  @param object             object
- *  @param keyPath            a keyPath to object's property
- *  @param otherObject        other object
- *  @param otherKeyPath       a keyPath to other object's property
- *  @param transformer        a custom transformer object
- *  @param initialAssignment  initial value assignment direction
- *
- *  @return a data binding object.
- */
-+ (BNDBinding *)bindingWithObject:(id)object
-                          keyPath:(NSString *)keyPath
-                       withObject:(id)otherObject
-                          keyPath:(NSString *)otherKeyPath
-                      transformer:(NSValueTransformer *)transformer
-                initialAssignment:(BNDBindingInitialAssignment)initialAssignment;
-
-/**
- *  Builds the bindings reusing previously set keyPaths.
+ *  Binds the left object in BIND expression with the right object.
  *  This removes all previous bindings on previously set objects,
  *  and builds bindings for keyPaths with new objects.
  *  This is useful in situations where you want to reuse the binding,
  *  and just update the objects being bound i.e. on UITableViewCell reuse.
  *
- *  @param object      object
- *  @param otherObject other object
+ *  @param leftObject  left object in the bind expression
+ *  @param rightObject right object in the bind expression
  */
-- (void)bindObject:(id)object
-       otherObject:(id)otherObject;
+- (void)bindLeft:(id)leftObject
+       withRight:(id)rightObject;
 
 /**
- *  Removes all bindings.
+ *  Removes all bindings and references to leftObject and rightObject.
  */
 - (void)unbind;
 

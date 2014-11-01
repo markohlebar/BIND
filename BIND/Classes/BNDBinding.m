@@ -12,12 +12,21 @@ static NSString *const BNDBindingArrowRight = @"->";
 static NSString *const BNDBindingArrowLeft = @"<-";
 static NSString *const BNDBindingArrowNone = @"<>";
 static NSString *const BNDBindingTransformerSeparator = @"|";
+static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 
 @interface BNDBinding()
-@property (nonatomic, copy) NSString *keyPath;
-@property (nonatomic, copy) NSString *otherKeyPath;
+@property (nonatomic, weak) id leftObject;
+@property (nonatomic, weak) id rightObject;
+
+@property (nonatomic, strong) NSString *leftKeyPath;
+@property (nonatomic, strong) NSString *rightKeyPath;
 @property (nonatomic) BNDBindingInitialAssignment initialAssignment;
+@property (nonatomic) BNDBindingTransformDirection transformDirection;
+@property (nonatomic, strong) NSValueTransformer *valueTransformer;
 @end
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 @implementation BNDBinding {
     BOOL _locked;
@@ -27,66 +36,10 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
     [self removeObservers];
 }
 
-+ (BNDBinding *)bindingWithObject:(id)object
-                          keyPath:(NSString *)keyPath
-                       withObject:(id)otherObject
-                          keyPath:(NSString *)otherKeyPath {
-    return [self bindingWithObject:object
-                           keyPath:keyPath
-                        withObject:otherObject
-                           keyPath:otherKeyPath
-                       transformer:[NSValueTransformer new]
-                 initialAssignment:BNDBindingInitialAssignmentLeft];
-}
-
-+ (BNDBinding *)bindingWithObject:(id)object
-                          keyPath:(NSString *)keyPath
-                       withObject:(id)otherObject
-                          keyPath:(NSString *)otherKeyPath
-                      transformer:(NSValueTransformer *)transformer {
-    return [self bindingWithObject:object
-                           keyPath:keyPath
-                        withObject:otherObject
-                           keyPath:otherKeyPath
-                       transformer:transformer
-                 initialAssignment:BNDBindingInitialAssignmentLeft];
-}
-
-+ (BNDBinding *)bindingWithObject:(id)object
-                          keyPath:(NSString *)keyPath
-                       withObject:(id)otherObject
-                          keyPath:(NSString *)otherKeyPath
-                      transformer:(NSValueTransformer *)transformer
-                initialAssignment:(BNDBindingInitialAssignment)initialAssignment {
-    return [[BNDBinding alloc] initWithObject:object
-                                      keyPath:keyPath
-                                   withObject:otherObject
-                                      keyPath:otherKeyPath
-                                  transformer:transformer
-                            initialAssignment:initialAssignment];
-}
-
-- (instancetype)initWithObject:(id)object
-                       keyPath:(NSString *)keyPath
-                    withObject:(id)otherObject
-                       keyPath:(NSString *)otherKeyPath
-                   transformer:(NSValueTransformer *)transformer
-             initialAssignment:(BNDBindingInitialAssignment)initialAssignment {
-    self = [super init];
-    if (self) {
-        _object = object;
-        _keyPath = keyPath.copy;
-        _otherObject = otherObject;
-        _otherKeyPath = otherKeyPath.copy;
-        _valueTransformer = transformer;
-        _initialAssignment = initialAssignment;
-
-        _locked = NO;
-        
-        [self setInitialValues];
-        [self setupObservers];
-    }
-    return self;
++ (BNDBinding *)bindingWithBIND:(NSString *)BIND {
+    BNDBinding *binding = [BNDBinding new];
+    binding.BIND = BIND;
+    return binding;
 }
 
 - (void)setBIND:(NSString *)BIND {
@@ -97,7 +50,7 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
                                              withString:@""];
     [self parseKeyPaths:_BIND];
     
-    if (self.object && self.otherObject) {
+    if (self.leftObject && self.rightObject) {
         [self setInitialValues];
         [self setupObservers];
     }
@@ -107,11 +60,11 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
     NSString *separator = nil;
     if ([bind rangeOfString:BNDBindingArrowRight].location != NSNotFound) {
         separator = BNDBindingArrowRight;
-        self.initialAssignment = BNDBindingInitialAssignmentRight;
+        self.initialAssignment = BNDBindingInitialAssignmentLeftToRight;
     }
     else if ([bind rangeOfString:BNDBindingArrowLeft].location != NSNotFound) {
         separator = BNDBindingArrowLeft;
-        self.initialAssignment = BNDBindingInitialAssignmentLeft;
+        self.initialAssignment = BNDBindingInitialAssignmentRightToLeft;
     }
     else if ([bind rangeOfString:BNDBindingArrowNone].location != NSNotFound) {
         separator = BNDBindingArrowNone;
@@ -125,21 +78,33 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
     NSAssert(keyPaths.count == 2, @"Couldn't find keyPaths. Check the BIND syntax manual for more info.");
     
     NSArray *keyPathAndTransformer = [keyPaths[1] componentsSeparatedByString:BNDBindingTransformerSeparator];
-    self.keyPath = keyPaths[0];
-    self.otherKeyPath = keyPathAndTransformer[0];
+    self.leftKeyPath = keyPaths[0];
+    self.rightKeyPath = keyPathAndTransformer[0];
     
-    NSAssert(self.keyPath.length > 0, @"Provide a valid keyPath. Check the BIND syntax manual for more info.");
-    NSAssert(self.otherKeyPath.length > 0, @"Provide a valid otherKeyPath. Check the BIND syntax manual for more info.");
+    NSAssert(self.leftKeyPath.length > 0, @"Provide a valid keyPath. Check the BIND syntax manual for more info.");
+    NSAssert(self.rightKeyPath.length > 0, @"Provide a valid otherKeyPath. Check the BIND syntax manual for more info.");
 
     [self parseTransformer:keyPathAndTransformer];
 }
 
 - (void)parseTransformer:(NSArray *)keyPathAndTransformer {
     if (keyPathAndTransformer.count == 2) {
-        NSString *transformerClassName = keyPathAndTransformer[1];
+        NSString *modifierAndTransformer = keyPathAndTransformer[1];
+        NSString *transformerClassName = nil;
+        NSRange modifierRange = [modifierAndTransformer rangeOfString:BNDBindingTransformerDirectionModifier];
+        if (modifierRange.location != NSNotFound) {
+            transformerClassName = [modifierAndTransformer stringByReplacingCharactersInRange:modifierRange
+                                                                                   withString:@""];
+            self.transformDirection = BNDBindingTransformDirectionRightToLeft;
+        }
+        else {
+            transformerClassName = modifierAndTransformer;
+        }
+        
         Class transformerClass = NSClassFromString(transformerClassName);
         NSString *assert = [NSString stringWithFormat:@"Non existing transformer class %@", transformerClassName];
         NSAssert(transformerClass != nil, assert);
+        
         self.valueTransformer = [transformerClass new];
     }
     else {
@@ -147,12 +112,12 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
     }
 }
 
-- (void)bindObject:(id)object
-       otherObject:(id)otherObject; {
-    [self removeObservers];
+- (void)bindLeft:(id)object
+       withRight:(id)otherObject; {
+    [self unbind];
     
-    _object = object;
-    _otherObject = otherObject;
+    self.leftObject = object;
+    self.rightObject = otherObject;
     
     [self setInitialValues];
     [self setupObservers];
@@ -160,41 +125,72 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
 
 - (void)unbind {
     [self removeObservers];
+    
+    self.leftObject = nil;
+    self.rightObject = nil;
 }
 
 - (void)setInitialValues {
-    if (self.initialAssignment == BNDBindingInitialAssignmentLeft) {
-        id value = [self.otherObject valueForKeyPath:self.otherKeyPath];
-        value = [_valueTransformer reverseTransformedValue:value];
-        [self.object setValue:value forKeyPath:self.keyPath];
-    }
-    else if (self.initialAssignment == BNDBindingInitialAssignmentRight) {
-        id value = [self.object valueForKeyPath:self.keyPath];
-        value = [_valueTransformer transformedValue:value];
-        [self.otherObject setValue:value forKeyPath:self.otherKeyPath];
-    }
-}
-
-- (void)setupObservers {
-    if (self.keyPath == nil || self.otherKeyPath == nil) {
+    if (![self areKeypathsSet]) {
         return;
     }
     
-    [self.object addObserver:self
-                  forKeyPath:self.keyPath
+    if (self.initialAssignment == BNDBindingInitialAssignmentRightToLeft) {
+        id value = [self.rightObject valueForKeyPath:self.rightKeyPath];
+        value = [_valueTransformer performSelector:[self reverseTransformSelector]
+                                        withObject:value];
+        
+        [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
+    }
+    else if (self.initialAssignment == BNDBindingInitialAssignmentLeftToRight) {
+        id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
+        value = [_valueTransformer performSelector:[self transformSelector]
+                                        withObject:value];
+        [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
+    }
+}
+
+- (SEL)transformSelector {
+    return self.transformDirection == BNDBindingTransformDirectionLeftToRight ?
+    @selector(transformedValue:) :
+    @selector(reverseTransformedValue:);
+}
+
+- (SEL)reverseTransformSelector {
+    return self.transformDirection == BNDBindingTransformDirectionLeftToRight ?
+    @selector(reverseTransformedValue:) :
+    @selector(transformedValue:);
+}
+
+- (void)setupObservers {
+    if (![self areKeypathsSet]) {
+        return;
+    }
+    
+    [self.leftObject addObserver:self
+                  forKeyPath:self.leftKeyPath
                      options:NSKeyValueObservingOptionNew
                      context:NULL];
     
-    [self.otherObject addObserver:self
-                       forKeyPath:self.otherKeyPath
+    [self.rightObject addObserver:self
+                       forKeyPath:self.rightKeyPath
                           options:NSKeyValueObservingOptionNew
                           context:NULL];
 }
 
 - (void)removeObservers {
-    [self.object removeObserver:self forKeyPath:self.keyPath];
-    [self.otherObject removeObserver:self forKeyPath:self.otherKeyPath];
+    if (![self areKeypathsSet]) {
+        return;
+    }
+    
+    [self.leftObject removeObserver:self forKeyPath:self.leftKeyPath];
+    [self.rightObject removeObserver:self forKeyPath:self.rightKeyPath];
 }
+
+- (BOOL)areKeypathsSet {
+    return self.leftKeyPath != nil && self.rightKeyPath != nil;
+}
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -207,15 +203,17 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
     [self lock];
     
     id newObject = change[NSKeyValueChangeNewKey];
-    if ([object isEqual:self.object]) {
-        id transformedObject = [self.valueTransformer transformedValue:newObject];
-        [self.otherObject setValue:transformedObject
-                        forKeyPath:self.otherKeyPath];
+    if ([object isEqual:self.leftObject]) {
+        id transformedObject = [self.valueTransformer performSelector:[self transformSelector]
+                                                           withObject:newObject];
+        [self.rightObject setValue:transformedObject
+                        forKeyPath:self.rightKeyPath];
     }
-    else if ([object isEqual:self.otherObject]) {
-        id transformedObject = [self.valueTransformer reverseTransformedValue:newObject];
-        [self.object setValue:transformedObject
-                   forKeyPath:self.keyPath];
+    else if ([object isEqual:self.rightObject]) {
+        id transformedObject = [self.valueTransformer performSelector:[self reverseTransformSelector]
+                                                           withObject:newObject];
+        [self.leftObject setValue:transformedObject
+                   forKeyPath:self.leftKeyPath];
     }
     
     [self unlock];
@@ -234,3 +232,5 @@ static NSString *const BNDBindingTransformerSeparator = @"|";
 }
 
 @end
+
+#pragma clang diagnostic pop
