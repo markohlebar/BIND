@@ -42,27 +42,27 @@
     _binding.BIND = @"keyPath1->keyPath2";
     XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.initialAssignment == BNDBindingInitialAssignmentLeftToRight, @"assignment should be right");
+    XCTAssertTrue(_binding.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     
     _binding.BIND = @"keyPath1 -> keyPath2";
     XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.initialAssignment == BNDBindingInitialAssignmentLeftToRight, @"assignment should be right");
+    XCTAssertTrue(_binding.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     
     _binding.BIND = @"keyPath1     ->     keyPath2";
     XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.initialAssignment == BNDBindingInitialAssignmentLeftToRight, @"assignment should be right");
+    XCTAssertTrue(_binding.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     
     _binding.BIND = @"keyPath1<-keyPath2";
     XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.initialAssignment == BNDBindingInitialAssignmentRightToLeft, @"assignment should be left");
+    XCTAssertTrue(_binding.direction == BNDBindingDirectionRightToLeft, @"assignment should be left");
     
     _binding.BIND = @"keyPath1<>keyPath2";
     XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.initialAssignment == BNDBindingInitialAssignmentNone, @"assignment should be none");
+    XCTAssertTrue(_binding.direction == BNDBindingDirectionBoth, @"assignment should be none");
 }
 
 - (void)testBINDTransformers {
@@ -78,7 +78,7 @@
     XCTAssertThrows([_binding setBIND:@"keyPath->keyPath2|FooBar"], @"should assert for invalid transformer");
 }
 
-- (void)testBINDInitialValueLeftAssignment {
+- (void)testBINDInitialValueLeftToRightAssignment {
     _car.speed = 0;
     _engine.rpm = 10000;
     
@@ -86,17 +86,27 @@
     [_binding bindLeft:_engine
             withRight:_car];
     
-    XCTAssertTrue(_car.speed == 100, @"speed of the _car should be rpm / 100");
+    XCTAssertTrue(_car.speed == 100, @"speed of the car should be rpm / 100");
 }
 
-- (void)testBINDInitialValueRightAssignment {
+- (void)testBINDInitialValueRightToLeftAssignment {
     _car.speed = 100;
     _engine.rpm = 0;
     _binding.BIND = @"rpm <- speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
             withRight:_car];
     
-    XCTAssertTrue(_engine.rpm == 10000, @"rpm of the _engine should be speed * 100");
+    XCTAssertTrue(_engine.rpm == 10000, @"rpm of the engine should be speed * 100");
+}
+
+- (void)testBINDInitialValueBidirectionalAssignment {
+    _car.speed = 0;
+    _engine.rpm = 10000;
+    _binding.BIND = @"rpm <> speed | RPMToSpeedTransformer";
+    [_binding bindLeft:_engine
+             withRight:_car];
+    
+    XCTAssertTrue(_car.speed == 100, @"speed of the car should be 100");
 }
 
 - (void)testBINDInitialValueNoAssignment {
@@ -104,32 +114,53 @@
     _engine.rpm = 999;
     _binding.BIND = @"speed <> rpm | RPMToSpeedTransformer";
     [_binding bindLeft:_car
-            withRight:_engine];
+             withRight:_engine
+      setInitialValues:NO];
     
-    XCTAssertTrue(_car.speed == 100, @"speed of the _car should remain 100");
-    XCTAssertTrue(_engine.rpm == 999, @"rpm of the _engine should remain 999");
+    XCTAssertTrue(_car.speed == 100, @"speed of the car should remain 100");
+    XCTAssertTrue(_engine.rpm == 999, @"rpm of the engine should remain 999");
 }
 
-- (void)testBINDOtherObjectUpdatesReflectOnObject {
+- (void)testBINDLeftToRightBindingUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
     _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
-            withRight:_car];
+             withRight:_car];
     
     _engine.rpm = 20000;
-    XCTAssertTrue(_car.speed == 200, @"speed of the _car should be 200");
+    XCTAssertTrue(_car.speed == 200, @"speed of the car should be 200");
+    
+    _car.speed = 300;
+    XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should remain 20000");
 }
 
-- (void)testBINDObjectUpdatesReflectOnOtherObject {
+- (void)testBINDRightToLeftBindingUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
-    _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+    _binding.BIND = @"rpm <- speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
-            withRight:_car];
+             withRight:_car];
     
     _car.speed = 200;
-    XCTAssertTrue(_engine.rpm == 20000, @"_engine rpm should be 20000");
+    XCTAssertTrue(_engine.rpm == 20000, @"rpm of the engine should be 20000");
+    
+    _engine.rpm = 10000;
+    XCTAssertTrue(_car.speed == 200, @"car speed should remain 200");
+}
+
+- (void)testBINDBiDirectionalUpdates {
+    _car.speed = 100;
+    _engine.rpm = 10000;
+    _binding.BIND = @"rpm <> speed | RPMToSpeedTransformer";
+    [_binding bindLeft:_engine
+             withRight:_car];
+    
+    _car.speed = 200;
+    XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should be 20000");
+    
+    _engine.rpm = 5000;
+    XCTAssertTrue(_car.speed == 50, @"car speed should be 50");
 }
 
 - (void)testBINDBindingObjectsBeforeBINDingAssignsValues {

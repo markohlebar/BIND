@@ -8,21 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, BNDBindingInitialAssignment) {
+typedef NS_ENUM(NSInteger, BNDBindingDirection) {
     /**
-     *  -> initial value is assigned from object to otherObject
+     *  -> left object passes values to right object.
      */
-    BNDBindingInitialAssignmentLeftToRight = 0,
+    BNDBindingDirectionLeftToRight = 0,
     
     /**
-     *  <- initial value is assigned from otherObject to object
+     *  <- right object passes values to left object.
      */
-    BNDBindingInitialAssignmentRightToLeft = 1,
+    BNDBindingDirectionRightToLeft = 1,
     
     /**
-     *  <> initial value is not assigned
+     *  <> binding is bidirectional.
      */
-    BNDBindingInitialAssignmentNone = 2,
+    BNDBindingDirectionBoth = 2,
 };
 
 typedef NS_ENUM(NSInteger, BNDBindingTransformDirection) {
@@ -51,12 +51,12 @@ typedef NS_ENUM(NSInteger, BNDBindingTransformDirection) {
 /**
  *  Initial assignment determines which value is assigned as initial value.
  *  You can set the initial assignment value by using BIND initial assignment modifiers:
- *  -> initial value is assigned from object to otherObject
- *  <- initial value is assigned from otherObject to object
- *  <> initial value is not assigned
+ *  -> left object passes values to right object.
+ *  <- right object passes values to left object.
+ *  <> binding is bidirectional.
  *
  */
-@property (nonatomic, readonly) BNDBindingInitialAssignment initialAssignment;
+@property (nonatomic, readonly) BNDBindingDirection direction;
 
 /**
  *  Transform direction determines in which way the transform is executed.
@@ -106,17 +106,36 @@ typedef NS_ENUM(NSInteger, BNDBindingTransformDirection) {
 + (BNDBinding *)bindingWithBIND:(NSString *)BIND;
 
 /**
- *  Binds the left object in BIND expression with the right object.
+ *  Binds the left object in BIND expression with the right object and sets the initial values.
  *  This removes all previous bindings on previously set objects,
  *  and builds bindings for keyPaths with new objects.
  *  This is useful in situations where you want to reuse the binding,
  *  and just update the objects being bound i.e. on UITableViewCell reuse.
+ *
  *
  *  @param leftObject  left object in the bind expression
  *  @param rightObject right object in the bind expression
  */
 - (void)bindLeft:(id)leftObject
        withRight:(id)rightObject;
+
+/**
+ *  Binds the left object in BIND expression with the right object.
+ *  This removes all previous bindings on previously set objects,
+ *  and builds bindings for keyPaths with new objects.
+ *  This is useful in situations where you want to reuse the binding,
+ *  and just update the objects being bound i.e. on UITableViewCell reuse.
+ *  Setting the initial values is performed from left object to right object
+ *  for BNDBindingDirectionLeftToRight or BNDBindingDirectionBoth, and 
+ *  from right object to left object for BNDBindingDirectionRightToLeft.
+ *
+ *  @param leftObject       left object in the bind expression
+ *  @param rightObject      right object in the bind expression
+ *  @param setInitialValues should the initial values be set
+ */
+- (void)bindLeft:(id)leftObject
+       withRight:(id)rightObject
+setInitialValues:(BOOL)setInitialValues;
 
 /**
  *  Removes all bindings and references to leftObject and rightObject.
