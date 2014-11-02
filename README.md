@@ -22,6 +22,11 @@ with a couple of major feature advantages.
 - **protocols** and **abstract classes** to make your **MVVM**-ing easier
 - **lightweight** (200ish lines of code)
 
+## Integration ##
+#### CocoaPods ####
+- pod 'BIND'
+- `#import "BIND.h"`
+
 ## BIND DSL ##
 
 Bind offers a special [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) to build your bindings. 
@@ -104,7 +109,9 @@ to other object and reverse. Let's take the previous example, and assume that th
 Observe `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
 You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `name -> textLabel.text | !CapitalizeStringTransformer`.
 
+### Sample Project ###
+
+Check [iOSArchitectures project](https://github.com/markohlebar/iOSArchitectures).
+
 ## TBC ##
-- XIBS EXAMPLES (look at https://github.com/markohlebar/iOSArchitectures for now)
 - more abstract classes like viewcontrollers, views etc. 
-- universal library and CocoaPods
