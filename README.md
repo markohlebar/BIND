@@ -50,7 +50,8 @@ What you need to do is bind the cell's `textLabel.text` key path with the `name`
     ...
 }
 
-- (void)updateWithViewModel:(id)viewModel {
+- (void)setViewModel:(id)viewModel {
+    _viewModel = viewModel;
     [_binding bindLeft:viewModel withRight:self];
 }
     
