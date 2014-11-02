@@ -18,6 +18,7 @@
  *  @return a view model instance.
  */
 + (instancetype)viewModelWithModel:(id)model;
+
 @required
 
 /**
@@ -28,14 +29,21 @@
  *  @return an identifier.
  */
 - (NSString *)identifier;
+
 @end
 
 @protocol BNDTableViewModel <BNDViewModel>
+
 @required
+
 - (CGFloat)cellHeight;
+
 @end
 
 @protocol BNDCollectionViewModel <BNDViewModel>
+
 @required
+
 - (CGSize)cellSize;
+
 @end

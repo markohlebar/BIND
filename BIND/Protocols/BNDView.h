@@ -12,10 +12,8 @@
 @protocol BNDView <NSObject>
 
 /**
- *  Update the view with fresh view model.
- *
- *  @param viewModel a view model.
+ *  View keeps a strong reference to the view model.
  */
-- (void)updateWithViewModel:(id <BNDViewModel> )viewModel;
+@property (nonatomic, strong) id <BNDViewModel> viewModel;
 
 @end

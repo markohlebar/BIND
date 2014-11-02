@@ -19,5 +19,6 @@
  */
 @class BNDBinding;
 @interface BNDTableViewCell : UITableViewCell <BNDView>
+@property (nonatomic, strong) id <BNDViewModel> viewModel;
 @property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
 @end

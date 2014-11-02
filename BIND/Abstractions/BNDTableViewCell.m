@@ -11,9 +11,11 @@
 
 @implementation BNDTableViewCell
 
-- (void)updateWithViewModel:(id <BNDViewModel> )viewModel {
+- (void)setViewModel:(id <BNDViewModel> )viewModel {
+    _viewModel = viewModel;
+    
     for (BNDBinding *binding in self.bindings) {
-        [binding bindLeft:viewModel withRight:self];
+        [binding bindLeft:_viewModel withRight:self];
     }
 }
 

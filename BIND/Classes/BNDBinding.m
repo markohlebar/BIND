@@ -33,7 +33,7 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 }
 
 - (void)dealloc {
-    [self removeObservers];
+    [self unbind];
 }
 
 + (BNDBinding *)bindingWithBIND:(NSString *)BIND {
@@ -102,7 +102,7 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
         }
         
         Class transformerClass = NSClassFromString(transformerClassName);
-        NSString *assert = [NSString stringWithFormat:@"Non existing transformer class %@", transformerClassName];
+        NSString *assert __attribute__((unused)) = [NSString stringWithFormat:@"Non existing transformer class %@", transformerClassName];
         NSAssert(transformerClass != nil, assert);
         
         self.valueTransformer = [transformerClass new];
