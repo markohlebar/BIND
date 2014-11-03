@@ -178,20 +178,23 @@
     _engine.rpm = 10000;
     _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
-            withRight:_car];
+             withRight:_car];
     
-    _car = Car.new;
-    _car.speed = 0;
+    Car *car2 = Car.new;
+    car2.speed = 0;
     
-    _engine = Engine.new;
-    _engine.rpm = 20000;
+    Engine *engine2 = Engine.new;
+    engine2.rpm = 20000;
     
-    [_binding bindLeft:_engine
-            withRight:_car];
+    [_binding bindLeft:engine2
+            withRight:car2];
     
-    XCTAssertTrue(_car.speed == 200, @"_car speed should be 200");
-    XCTAssertEqual(_engine, _binding.leftObject, @"_car should be new object");
-    XCTAssertEqual(_car, _binding.rightObject, @"_engine should be new other object");
+    XCTAssertTrue(car2.speed == 200, @"_car speed should be 200");
+    XCTAssertEqual(engine2, _binding.leftObject, @"engine 2 should be the new left object");
+    XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
+    
+    //we need to unbind here because the references to car2 and engine2 are lost and we have a crash if we don't.
+    _binding = nil;
 }
 
 - (void)testBINDTransformDirectionModifierIsAssigned {

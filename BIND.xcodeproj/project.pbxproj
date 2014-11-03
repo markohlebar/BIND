@@ -113,9 +113,9 @@
 		9680C91A19FEBBB500DFE38A /* BINDTests */ = {
 			isa = PBXGroup;
 			children = (
+				9680C91B19FEBBB500DFE38A /* Supporting Files */,
 				967381AA1A02C61800D1C608 /* BNDTestObjects.h */,
 				967381AB1A02C61800D1C608 /* BNDTestObjects.m */,
-				9680C91B19FEBBB500DFE38A /* Supporting Files */,
 				967381A81A02C56C00D1C608 /* BNDBindingTest.m */,
 			);
 			path = BINDTests;
