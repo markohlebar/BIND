@@ -1,3 +1,4 @@
 language: objective-c
 xcode_project: BIND.xcodeproj
 xcode_scheme: BINDTests
+xcode_sdk: iphonesimulator7.0
