@@ -140,7 +140,24 @@ to other object and reverse. Let's take the previous example, and assume that th
 Observe `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
 You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `name -> textLabel.text | !CapitalizeStringTransformer`.
 
-#### Sample Project ####
+## Memory Management ##
+
+**BIND** is built on `KVO`, so the rules for observing an object apply here as well. Each `BNDBinding` object holds weak references to 2 assigned objects, namely `leftObject` and `rightObject`. If any of those objects gets deallocated before you `unbind` the binding, an exception will occur `"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.` Therefore, keep that in mind while managing the objects you bind. Best practice would be to destroy the binding before bound objects get destroyed. You can also call `unbind` to destroy the references to bound objects. 
+
+```
+//Exception 
+BNDBinding *binding = [BNDBinding new];
+NSObject *leftObject = [NSObject new];
+[binding bindLeft:leftObject withRight:...];
+leftObject = nil; ///This will throw an exception. 
+
+//All good
+[binding bindLeft:leftObject withRight:...];
+binding = nil;    ///OR [binding unbind];
+leftObject = nil; ///Cool
+```
+
+## Sample Project ##
 
 Check [iOSArchitectures project](https://github.com/markohlebar/iOSArchitectures).
 
