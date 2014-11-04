@@ -1,4 +1,8 @@
+before_install:
+  - brew update
+  - brew upgrade xctool
+
 language: objective-c
 xcode_project: BIND.xcodeproj
-xcode_scheme: BINDTests
+xcode_scheme: BIND
 xcode_sdk: iphonesimulator
