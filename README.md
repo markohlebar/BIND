@@ -24,7 +24,7 @@ with a couple of major feature advantages.
 
 ## Why Use This? ##
 
-Because your view implementation code will literally start looking like this (provided you BIND from XIB):
+Because your `View` implementation code will literally start looking like this:
 ```
 @implementation MyTableViewCell
 @end
