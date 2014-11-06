@@ -22,7 +22,6 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
     
     _car = Car.new;
     _engine = Engine.new;
@@ -30,7 +29,6 @@
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
     
     _binding = nil;
@@ -68,7 +66,7 @@
 - (void)testBINDTransformers {
     _binding.BIND = @"keyPath1->keyPath2|RPMToSpeedTransformer";
     XCTAssertNotNil(_binding.valueTransformer, @"value transformer should not be nil");
-    XCTAssertTrue([_binding.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be FloatTransformer");
+    XCTAssertTrue([_binding.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be RPMToSpeedTransformer");
 }
 
 - (void)testBINDErroneousInput {
@@ -86,7 +84,7 @@
     [_binding bindLeft:_engine
             withRight:_car];
     
-    XCTAssertTrue(_car.speed == 100, @"speed of the car should be rpm / 100");
+    XCTAssertTrue(_car.speed == 100, @"speed of the car should be 100");
 }
 
 - (void)testBINDInitialValueRightToLeftAssignment {
@@ -96,7 +94,7 @@
     [_binding bindLeft:_engine
             withRight:_car];
     
-    XCTAssertTrue(_engine.rpm == 10000, @"rpm of the engine should be speed * 100");
+    XCTAssertTrue(_engine.rpm == 10000, @"rpm of the engine should be 10000");
 }
 
 - (void)testBINDInitialValueBidirectionalAssignment {
@@ -170,7 +168,7 @@
             withRight:_car];
     _binding.BIND = @"rpm -> speed| RPMToSpeedTransformer";
 
-    XCTAssertTrue(_car.speed == 100, @"_car speed should be 100");
+    XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
 }
 
 - (void)testBINDBindingNewObjectsAssignsValues {
@@ -189,7 +187,7 @@
     [_binding bindLeft:engine2
             withRight:car2];
     
-    XCTAssertTrue(car2.speed == 200, @"_car speed should be 200");
+    XCTAssertTrue(car2.speed == 200, @"car2 speed should be 200");
     XCTAssertEqual(engine2, _binding.leftObject, @"engine 2 should be the new left object");
     XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
     
@@ -212,7 +210,7 @@
     [_binding bindLeft:_car
              withRight:_engine];
     
-    XCTAssertTrue(_car.speed == 100, @"_car speed should be 100");
+    XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
 }
 
 - (void)testUnbindRemovesReferences {
