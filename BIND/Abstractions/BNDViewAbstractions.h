@@ -1,5 +1,5 @@
 //
-//  BNDTableViewCell.h
+//  BNDViewAbstractions.h
 //  BIND
 //
 //  Created by Marko Hlebar on 27/10/2014.
@@ -19,6 +19,17 @@
  */
 @class BNDBinding;
 @interface BNDTableViewCell : UITableViewCell <BNDView>
-@property (nonatomic, strong) id <BNDViewModel> viewModel;
+@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
+@end
+
+@interface BNDCollectionViewCell : UICollectionViewCell <BNDView>
+@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
+@end
+
+@interface BNDView : UIView <BNDView>
+@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
+@end
+
+@interface BNDViewController : UIViewController <BNDView>
 @property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
 @end

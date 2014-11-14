@@ -240,10 +240,13 @@
 }
 
 - (void)testBINDPerformance {
-    // This is an example of a performance test case.
+    __block Engine *engine = [Engine new];
+    __block Car *car = [Car new];
     [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-        _binding.BIND = @"keyPath1->keyPath2|RPMToSpeedTransformer";
+        _binding.BIND = @"rpm->speed|RPMToSpeedTransformer";
+        [_binding bindLeft:engine
+                 withRight:car];
+        [_binding unbind];
     }];
 }
 
