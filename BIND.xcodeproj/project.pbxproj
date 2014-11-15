@@ -13,8 +13,8 @@
 		9680C91719FEBBB500DFE38A /* libBIND.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9680C90B19FEBBB500DFE38A /* libBIND.a */; };
 		9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
 		9680C92D19FEBC7000DFE38A /* BNDBinding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C92819FEBC2800DFE38A /* BNDBinding.h */; };
-		9680C93D19FEC9F500DFE38A /* BNDViewAbstractions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDViewAbstractions.m */; };
-		9680C93E19FECAB700DFE38A /* BNDViewAbstractions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93B19FEC9F500DFE38A /* BNDViewAbstractions.h */; };
+		9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */; };
+		9680C93E19FECAB700DFE38A /* BNDConcreteView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */; };
 		9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93919FEC8B000DFE38A /* BNDView.h */; };
 		9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93819FEC88500DFE38A /* BNDViewModel.h */; };
 /* End PBXBuildFile section */
@@ -38,7 +38,7 @@
 			files = (
 				9680C90F19FEBBB500DFE38A /* BIND.h in CopyFiles */,
 				9680C92D19FEBC7000DFE38A /* BNDBinding.h in CopyFiles */,
-				9680C93E19FECAB700DFE38A /* BNDViewAbstractions.h in CopyFiles */,
+				9680C93E19FECAB700DFE38A /* BNDConcreteView.h in CopyFiles */,
 				9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */,
 				9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */,
 			);
@@ -58,8 +58,8 @@
 		9680C92919FEBC2800DFE38A /* BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBinding.m; sourceTree = "<group>"; };
 		9680C93819FEC88500DFE38A /* BNDViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDViewModel.h; path = Protocols/BNDViewModel.h; sourceTree = "<group>"; };
 		9680C93919FEC8B000DFE38A /* BNDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDView.h; path = Protocols/BNDView.h; sourceTree = "<group>"; };
-		9680C93B19FEC9F500DFE38A /* BNDViewAbstractions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDViewAbstractions.h; path = Abstractions/BNDViewAbstractions.h; sourceTree = "<group>"; };
-		9680C93C19FEC9F500DFE38A /* BNDViewAbstractions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDViewAbstractions.m; path = Abstractions/BNDViewAbstractions.m; sourceTree = "<group>"; };
+		9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDConcreteView.h; path = Abstractions/BNDConcreteView.h; sourceTree = "<group>"; };
+		9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDConcreteView.m; path = Abstractions/BNDConcreteView.m; sourceTree = "<group>"; };
 		96F74BD91A166C970099110A /* BNDDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDDataController.h; path = Protocols/BNDDataController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,8 +152,8 @@
 		9680C93A19FEC9C500DFE38A /* Abstractions */ = {
 			isa = PBXGroup;
 			children = (
-				9680C93B19FEC9F500DFE38A /* BNDViewAbstractions.h */,
-				9680C93C19FEC9F500DFE38A /* BNDViewAbstractions.m */,
+				9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */,
+				9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */,
 			);
 			name = Abstractions;
 			sourceTree = "<group>";
@@ -265,7 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
-				9680C93D19FEC9F500DFE38A /* BNDViewAbstractions.m in Sources */,
+				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

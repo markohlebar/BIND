@@ -14,10 +14,10 @@ typedef void(^BNDViewModelsBlock)(NSArray *viewModels, NSError *error);
 
 /**
  *  The data controller should be responsible for transforming the model to view model,
- *  and returning it back to the view
+ *  and returning it back to the view.
  *
- *  @param context           a context
- *  @param viewModelsHandler view models handler block
+ *  @param context           a context.
+ *  @param viewModelsHandler view models handler block.
  */
 - (void)updateWithContext:(id)context
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler;

@@ -1,12 +1,12 @@
 //
-//  BNDViewAbstractions.m
+//  BNDConcreteView.m
 //  BIND
 //
 //  Created by Marko Hlebar on 27/10/2014.
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import "BNDViewAbstractions.h"
+#import "BNDConcreteView.h"
 #import "BNDBinding.h"
 
 #define BND_VIEW_IMPLEMENTATION(__CLASS_NAME__) \

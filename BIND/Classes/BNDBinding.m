@@ -17,7 +17,6 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 @interface BNDBinding()
 @property (nonatomic, weak) id leftObject;
 @property (nonatomic, weak) id rightObject;
-
 @property (nonatomic, strong) NSString *leftKeyPath;
 @property (nonatomic, strong) NSString *rightKeyPath;
 @property (nonatomic) BNDBindingDirection direction;

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @protocol BNDViewModel <NSObject>
 
@@ -18,8 +19,6 @@
  *  @return a view model instance.
  */
 + (instancetype)viewModelWithModel:(id)model;
-
-@required
 
 /**
  *  A unique identifier for this view model. 
@@ -34,16 +33,41 @@
 
 @protocol BNDTableViewModel <BNDViewModel>
 
-@required
-
+/**
+ *  Cell height when used in table view.
+ *
+ *  @return cell height.
+ */
 - (CGFloat)cellHeight;
+
+@end
+
+@protocol BNDTableSectionViewModel <BNDTableViewModel>
+
+/**
+ *  A collection of row view models.
+ */
+@property (nonatomic, strong, readonly) NSArray *rowViewModels;
+
+/**
+ *  A section title.
+ */
+@property (nonatomic, copy, readonly) NSString *title;
+
+/**
+ *  Class of the view to be represented as the section header in a table view.
+ */
+@protocol (nonatomic, copy, readonly) Class *viewClass;
 
 @end
 
 @protocol BNDCollectionViewModel <BNDViewModel>
 
-@required
-
+/**
+ *  Cell size when used in collection view
+ *
+ *  @return cell size.
+ */
 - (CGSize)cellSize;
 
 @end
