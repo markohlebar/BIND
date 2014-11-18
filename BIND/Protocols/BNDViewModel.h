@@ -57,7 +57,7 @@
 /**
  *  Class of the view to be represented as the section header in a table view.
  */
-@protocol (nonatomic, copy, readonly) Class *viewClass;
+@property (nonatomic, copy, readonly) Class viewClass;
 
 @end
 
