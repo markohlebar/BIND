@@ -7,6 +7,7 @@
 //
 
 #import "BNDBinding.h"
-#import "BNDTableViewCell.h"
+#import "BNDConcreteView.h"
+#import "BNDDataController.h"
 #import "BNDView.h"
 #import "BNDViewModel.h"
