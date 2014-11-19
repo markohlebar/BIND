@@ -15,6 +15,7 @@
  *  BNDTableViewCell is concrete table view cell subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the 
  *  cell gets updated. 
+ *  It also synthesizes your viewModel property.
  *  The user of this cell should call setViewModel:
  *  in UITableViewDelegate's tableView:cellForRowAtIndexPath: method
  *  so that the bindings get updated.
@@ -27,8 +28,9 @@
  *  BNDCollectionViewCell is a concrete collection view cell subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the
  *  cell gets updated.
+ *  It also synthesizes your viewModel property.
  *  The user of this cell should call setViewModel:
- *  in UITableViewDelegate's tableView:cellForRowAtIndexPath: method
+ *  in UICollectionViewDelegate's collectionView:cellForItemAtIndexPath: method
  *  so that the bindings get updated.
  */
 @interface BNDCollectionViewCell : UICollectionViewCell <BNDView>
@@ -39,8 +41,8 @@
  *  BNDView is an concrete view subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the
  *  cell gets updated.
- *  The user of this cell should call setViewModel:
- *  in UITableViewDelegate's tableView:cellForRowAtIndexPath: method
+ *  It also synthesizes your viewModel property.
+ *  The user of this view should call setViewModel:
  *  so that the bindings get updated.
  */
 @interface BNDView : UIView <BNDView>
@@ -51,10 +53,11 @@
  *  BNDViewController is a concrete view controller subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the
  *  cell gets updated.
- *  The user of this cell should call setViewModel:
- *  in UITableViewDelegate's tableView:cellForRowAtIndexPath: method
+ *  It also synthesizes your viewModel property.
+ *  The user of this view controller should call setViewModel:
  *  so that the bindings get updated.
  */
-@interface BNDViewController : UIViewController <BNDView>
+@interface BNDViewController : UIViewController <BNDViewController>
 @property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
+@property (nonatomic, strong) IBOutlet id <BNDDataController> dataController;
 @end
