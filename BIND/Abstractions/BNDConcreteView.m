@@ -13,10 +13,10 @@
 @implementation __CLASS_NAME__ \
 @synthesize viewModel = _viewModel; \
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
-    _viewModel = viewModel; \
     for (BNDBinding *binding in self.bindings) { \
         [binding bindLeft:_viewModel withRight:self]; \
     } \
+    _viewModel = viewModel; \
     [self viewDidUpdateViewModel:viewModel]; \
 } \
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
