@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		960193AB1A1E697600059F90 /* UIButton+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 960193AA1A1E697600059F90 /* UIButton+BNDBinding.m */; };
 		967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381A81A02C56C00D1C608 /* BNDBindingTest.m */; };
 		967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381AB1A02C61800D1C608 /* BNDTestObjects.m */; };
 		9680C90F19FEBBB500DFE38A /* BIND.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C90E19FEBBB500DFE38A /* BIND.h */; };
@@ -47,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		960193A91A1E697600059F90 /* UIButton+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+BNDBinding.h"; path = "Categories/UIButton+BNDBinding.h"; sourceTree = "<group>"; };
+		960193AA1A1E697600059F90 /* UIButton+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+BNDBinding.m"; path = "Categories/UIButton+BNDBinding.m"; sourceTree = "<group>"; };
 		967381A81A02C56C00D1C608 /* BNDBindingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingTest.m; sourceTree = "<group>"; };
 		967381AA1A02C61800D1C608 /* BNDTestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDTestObjects.h; sourceTree = "<group>"; };
 		967381AB1A02C61800D1C608 /* BNDTestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDTestObjects.m; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		960193A81A1E692500059F90 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				960193A91A1E697600059F90 /* UIButton+BNDBinding.h */,
+				960193AA1A1E697600059F90 /* UIButton+BNDBinding.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		9680C90219FEBBB500DFE38A = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +115,7 @@
 		9680C90D19FEBBB500DFE38A /* BIND */ = {
 			isa = PBXGroup;
 			children = (
+				960193A81A1E692500059F90 /* Categories */,
 				9680C93A19FEC9C500DFE38A /* Abstractions */,
 				9680C93719FEC85500DFE38A /* Protocols */,
 				9680C92519FEBC2800DFE38A /* Classes */,
@@ -265,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
+				960193AB1A1E697600059F90 /* UIButton+BNDBinding.m in Sources */,
 				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
