@@ -1,3 +1,4 @@
 language: objective-c
 xcode_workspace: BIND.xcworkspace
 xcode_scheme: BIND
+xcode_sdk: iphonesimulator
