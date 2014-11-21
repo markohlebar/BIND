@@ -10,6 +10,20 @@
 #import <XCTest/XCTest.h>
 #import "BNDBinding.h"
 #import "BNDTestObjects.h"
+#import "BNDBindingTypes.h"
+
+@interface BNDBinding (Testing)
+
+@property (nonatomic, weak) id leftObject;
+@property (nonatomic, weak) id rightObject;
+@property (nonatomic, strong) NSString *leftKeyPath;
+@property (nonatomic, strong) NSString *rightKeyPath;
+@property (nonatomic) BNDBindingDirection direction;
+@property (nonatomic) BNDBindingTransformDirection transformDirection;
+@property (nonatomic, strong) NSValueTransformer *valueTransformer;
+@property (nonatomic) BOOL shouldSetInitialValues;
+
+@end
 
 @interface BNDBindingTest : XCTestCase {
     Car *_car;
@@ -107,16 +121,36 @@
     XCTAssertTrue(_car.speed == 100, @"speed of the car should be 100");
 }
 
-- (void)testBINDInitialValueNoAssignment {
+- (void)testBINDInitialValueLeftToRightNoAssignment {
+    _car.speed = 0;
+    _engine.rpm = 10000;
+    
+    _binding.BIND = @"rpm !-> speed | RPMToSpeedTransformer";
+    [_binding bindLeft:_engine
+             withRight:_car];
+    
+    XCTAssertTrue(_car.speed == 0, @"speed of the car should remain 0");
+}
+
+- (void)testBINDInitialValueRightToLeftNoAssignment {
     _car.speed = 100;
-    _engine.rpm = 999;
-    _binding.BIND = @"speed <> rpm | RPMToSpeedTransformer";
+    _engine.rpm = 0;
+    _binding.BIND = @"rpm <-! speed | RPMToSpeedTransformer";
+    [_binding bindLeft:_engine
+             withRight:_car];
+    
+    XCTAssertTrue(_engine.rpm == 0, @"rpm of the engine should remain 0");
+}
+
+- (void)testBINDInitialValueBidirectionalNoAssignment {
+    _car.speed = 100;
+    _engine.rpm = 700;
+    _binding.BIND = @"speed <!> rpm | RPMToSpeedTransformer";
     [_binding bindLeft:_car
-             withRight:_engine
-      setInitialValues:NO];
+             withRight:_engine];
     
     XCTAssertTrue(_car.speed == 100, @"speed of the car should remain 100");
-    XCTAssertTrue(_engine.rpm == 999, @"rpm of the engine should remain 999");
+    XCTAssertTrue(_engine.rpm == 700, @"rpm of the engine should remain 999");
 }
 
 - (void)testBINDLeftToRightBindingUpdates {
@@ -192,7 +226,7 @@
     XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
     
     //we need to unbind here because the references to car2 and engine2 are lost and we have a crash if we don't.
-    _binding = nil;
+    [_binding unbind];
 }
 
 - (void)testBINDTransformDirectionModifierIsAssigned {

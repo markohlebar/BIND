@@ -7,14 +7,21 @@
 //
 
 #import "BNDBinding.h"
+#import "BNDBindingSpecialKeyPathsHandler.h"
+#import "BNDBindingTypes.h"
 
 static NSString *const BNDBindingArrowRight = @"->";
 static NSString *const BNDBindingArrowLeft = @"<-";
 static NSString *const BNDBindingArrowNone = @"<>";
+
+static NSString *const BNDBindingArrowRightNoIntialisation = @"!->";
+static NSString *const BNDBindingArrowLeftNoIntialisation = @"<-!";
+static NSString *const BNDBindingArrowNoneNoIntialisation = @"<!>";
+
 static NSString *const BNDBindingTransformerSeparator = @"|";
 static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 
-@interface BNDBinding()
+@interface BNDBinding ()
 @property (nonatomic, weak) id leftObject;
 @property (nonatomic, weak) id rightObject;
 @property (nonatomic, strong) NSString *leftKeyPath;
@@ -22,6 +29,7 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 @property (nonatomic) BNDBindingDirection direction;
 @property (nonatomic) BNDBindingTransformDirection transformDirection;
 @property (nonatomic, strong) NSValueTransformer *valueTransformer;
+@property (nonatomic) BOOL shouldSetInitialValues;
 @end
 
 #pragma clang diagnostic push
@@ -41,6 +49,14 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
     return binding;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.shouldSetInitialValues = YES;
+    }
+    return self;
+}
+
 - (void)setBIND:(NSString *)BIND {
     _BIND = BIND;
     _BIND = [_BIND stringByReplacingOccurrencesOfString:@" "
@@ -50,23 +66,93 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
     [self parseKeyPaths:_BIND];
     
     if (self.leftObject && self.rightObject) {
-        [self setInitialValues];
-        [self setupObservers];
+        [self bind];
+    }
+}
+
+- (void)bindLeft:(id)leftObject
+       withRight:(id)rightObject; {
+    [self unbind];
+    
+    self.leftObject = leftObject;
+    self.rightObject = rightObject;
+    
+    [self bind];
+}
+
+- (void)bind {
+    [self setInitialValues];
+    [self setupObservers];
+    [BNDBindingSpecialKeyPathsHandler handleSpecialKeyPathsForBinding:self];
+}
+
+- (void)unbind {
+    [self removeObservers];
+    
+    self.leftObject = nil;
+    self.rightObject = nil;
+}
+
+- (void)setInitialValues {
+    if (!self.shouldSetInitialValues) {
+        return;
+    }
+    
+    if (![self areKeypathsSet]) {
+        return;
+    }
+    
+    if (!self.leftObject || !self.rightObject) {
+        return;
+    }
+    
+    if (self.direction == BNDBindingDirectionLeftToRight ||
+        self.direction == BNDBindingDirectionBoth) {
+        id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
+        value = [_valueTransformer performSelector:[self transformSelector]
+                                        withObject:value];
+        [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
+    }
+    else if (self.direction == BNDBindingDirectionRightToLeft) {
+        id value = [self.rightObject valueForKeyPath:self.rightKeyPath];
+        value = [_valueTransformer performSelector:[self reverseTransformSelector]
+                                        withObject:value];
+        
+        [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
     }
 }
 
 - (void)parseKeyPaths:(NSString *)bind {
     NSString *separator = nil;
-    if ([bind rangeOfString:BNDBindingArrowRight].location != NSNotFound) {
+    
+    if ([bind rangeOfString:BNDBindingArrowRightNoIntialisation].location != NSNotFound) {
+        separator = BNDBindingArrowRightNoIntialisation;
+        self.shouldSetInitialValues = NO;
+        self.direction = BNDBindingDirectionRightToLeft;
+    }
+    else if ([bind rangeOfString:BNDBindingArrowLeftNoIntialisation].location != NSNotFound) {
+        separator = BNDBindingArrowLeftNoIntialisation;
+        self.shouldSetInitialValues = NO;
+        self.direction = BNDBindingDirectionRightToLeft;
+    }
+    else if ([bind rangeOfString:BNDBindingArrowNoneNoIntialisation].location != NSNotFound) {
+        separator = BNDBindingArrowNoneNoIntialisation;
+        self.shouldSetInitialValues = NO;
+        self.direction = BNDBindingDirectionBoth;
+    }
+    else if ([bind rangeOfString:BNDBindingArrowRight].location != NSNotFound) {
         separator = BNDBindingArrowRight;
+        self.shouldSetInitialValues = YES;
         self.direction = BNDBindingDirectionLeftToRight;
     }
     else if ([bind rangeOfString:BNDBindingArrowLeft].location != NSNotFound) {
         separator = BNDBindingArrowLeft;
+        self.shouldSetInitialValues = YES;
         self.direction = BNDBindingDirectionRightToLeft;
     }
     else if ([bind rangeOfString:BNDBindingArrowNone].location != NSNotFound) {
         separator = BNDBindingArrowNone;
+        self.shouldSetInitialValues = YES;
         self.direction = BNDBindingDirectionBoth;
     }
     else {
@@ -82,7 +168,7 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
     
     NSAssert(self.leftKeyPath.length > 0, @"Provide a valid keyPath. Check the BIND syntax manual for more info.");
     NSAssert(self.rightKeyPath.length > 0, @"Provide a valid otherKeyPath. Check the BIND syntax manual for more info.");
-
+    
     [self parseTransformer:keyPathAndTransformer];
 }
 
@@ -108,53 +194,6 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
     }
     else {
         self.valueTransformer = [NSValueTransformer new];
-    }
-}
-
-- (void)bindLeft:(id)leftObject
-       withRight:(id)rightObject; {
-    [self bindLeft:leftObject withRight:rightObject setInitialValues:YES];
-}
-
-- (void)bindLeft:(id)leftObject
-       withRight:(id)rightObject
-setInitialValues:(BOOL)setInitialValues {
-    [self unbind];
-    
-    self.leftObject = leftObject;
-    self.rightObject = rightObject;
-    
-    if(setInitialValues) {
-        [self setInitialValues];
-    }
-    [self setupObservers];
-}
-
-- (void)unbind {
-    [self removeObservers];
-    
-    self.leftObject = nil;
-    self.rightObject = nil;
-}
-
-- (void)setInitialValues {
-    if (![self areKeypathsSet]) {
-        return;
-    }
-    
-    if (self.direction == BNDBindingDirectionLeftToRight ||
-        self.direction == BNDBindingDirectionBoth) {
-        id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
-        value = [_valueTransformer performSelector:[self transformSelector]
-                                        withObject:value];
-        [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
-    }
-    else if (self.direction == BNDBindingDirectionRightToLeft) {
-        id value = [self.rightObject valueForKeyPath:self.rightKeyPath];
-        value = [_valueTransformer performSelector:[self reverseTransformSelector]
-                                        withObject:value];
-        
-        [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
     }
 }
 
