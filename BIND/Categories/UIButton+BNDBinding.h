@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BNDSpecialKeyPathHandling.h"
 
-@interface UIButton (BNDBinding)
+extern NSString *const UIButtonTouchUpInsideKeyPath;
+
+@interface UIButton (BNDBinding) <BNDSpecialKeyPathHandling>
+
+- (UIButton *)onTouchUpInside;
 
 @end
