@@ -18,10 +18,12 @@
 		960193E31A1E6F1F00059F90 /* BNDPinEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 960193E11A1E6F1F00059F90 /* BNDPinEntryViewController.m */; };
 		960193E41A1E6F1F00059F90 /* BNDPinEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 960193E21A1E6F1F00059F90 /* BNDPinEntryViewController.xib */; };
 		960193F21A1EB9D200059F90 /* UIButton+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960193F11A1EB9D200059F90 /* UIButton+BNDBindingSpec.m */; };
-		960193F51A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 960193F41A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.m */; };
 		960193F71A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960193F61A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m */; };
 		960193FF1A1ECA2800059F90 /* BNDPinEntryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 960193FE1A1ECA2800059F90 /* BNDPinEntryViewModel.m */; };
 		960194001A1ECCCA00059F90 /* libBIND.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9680C90B19FEBBB500DFE38A /* libBIND.a */; };
+		960194081A2045CE00059F90 /* BNDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960194071A2045CE00059F90 /* BNDParser.m */; };
+		9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */; };
+		9601940D1A204C4C00059F90 /* BNDParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9601940C1A204C4C00059F90 /* BNDParserTest.m */; };
 		967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381A81A02C56C00D1C608 /* BNDBindingTest.m */; };
 		967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381AB1A02C61800D1C608 /* BNDTestObjects.m */; };
 		9680C90F19FEBBB500DFE38A /* BIND.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C90E19FEBBB500DFE38A /* BIND.h */; };
@@ -103,13 +105,16 @@
 		960193E11A1E6F1F00059F90 /* BNDPinEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDPinEntryViewController.m; sourceTree = "<group>"; };
 		960193E21A1E6F1F00059F90 /* BNDPinEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNDPinEntryViewController.xib; sourceTree = "<group>"; };
 		960193F11A1EB9D200059F90 /* UIButton+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BNDBindingSpec.m"; sourceTree = "<group>"; };
-		960193F31A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDBindingSpecialKeyPathsHandler.h; sourceTree = "<group>"; };
-		960193F41A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingSpecialKeyPathsHandler.m; sourceTree = "<group>"; };
 		960193F61A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingSpecialKeyPathsHandlerSpec.m; sourceTree = "<group>"; };
 		960193F81A1EC38300059F90 /* BNDSpecialKeyPathHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDSpecialKeyPathHandling.h; path = Protocols/BNDSpecialKeyPathHandling.h; sourceTree = "<group>"; };
 		960193FD1A1ECA2800059F90 /* BNDPinEntryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDPinEntryViewModel.h; path = Classes/ViewModel/BNDPinEntryViewModel.h; sourceTree = "<group>"; };
 		960193FE1A1ECA2800059F90 /* BNDPinEntryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDPinEntryViewModel.m; path = Classes/ViewModel/BNDPinEntryViewModel.m; sourceTree = "<group>"; };
 		960194041A1FCC5E00059F90 /* BNDBindingTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDBindingTypes.h; path = Types/BNDBindingTypes.h; sourceTree = "<group>"; };
+		960194061A2045CE00059F90 /* BNDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDParser.h; path = Private/BNDParser.h; sourceTree = "<group>"; };
+		960194071A2045CE00059F90 /* BNDParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDParser.m; path = Private/BNDParser.m; sourceTree = "<group>"; };
+		960194091A2045E900059F90 /* BNDSpecialKeyPathHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDSpecialKeyPathHandler.h; path = Private/BNDSpecialKeyPathHandler.h; sourceTree = "<group>"; };
+		9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDSpecialKeyPathHandler.m; path = Private/BNDSpecialKeyPathHandler.m; sourceTree = "<group>"; };
+		9601940C1A204C4C00059F90 /* BNDParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDParserTest.m; sourceTree = "<group>"; };
 		967381A81A02C56C00D1C608 /* BNDBindingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingTest.m; sourceTree = "<group>"; };
 		967381AA1A02C61800D1C608 /* BNDTestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDTestObjects.h; sourceTree = "<group>"; };
 		967381AB1A02C61800D1C608 /* BNDTestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDTestObjects.m; sourceTree = "<group>"; };
@@ -267,6 +272,17 @@
 			name = Types;
 			sourceTree = "<group>";
 		};
+		960194051A20459900059F90 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				960194091A2045E900059F90 /* BNDSpecialKeyPathHandler.h */,
+				9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */,
+				960194061A2045CE00059F90 /* BNDParser.h */,
+				960194071A2045CE00059F90 /* BNDParser.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		9680C90219FEBBB500DFE38A = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +310,7 @@
 		9680C90D19FEBBB500DFE38A /* BIND */ = {
 			isa = PBXGroup;
 			children = (
+				960194051A20459900059F90 /* Private */,
 				960194031A1FCC3800059F90 /* Types */,
 				960193A81A1E692500059F90 /* Categories */,
 				9680C93A19FEC9C500DFE38A /* Abstractions */,
@@ -311,6 +328,7 @@
 				967381AA1A02C61800D1C608 /* BNDTestObjects.h */,
 				967381AB1A02C61800D1C608 /* BNDTestObjects.m */,
 				967381A81A02C56C00D1C608 /* BNDBindingTest.m */,
+				9601940C1A204C4C00059F90 /* BNDParserTest.m */,
 				960193F11A1EB9D200059F90 /* UIButton+BNDBindingSpec.m */,
 				960193F61A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m */,
 			);
@@ -328,8 +346,6 @@
 		9680C92519FEBC2800DFE38A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				960193F31A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.h */,
-				960193F41A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.m */,
 				9680C92819FEBC2800DFE38A /* BNDBinding.h */,
 				9680C92919FEBC2800DFE38A /* BNDBinding.m */,
 			);
@@ -621,8 +637,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				960193F51A1EBE1900059F90 /* BNDBindingSpecialKeyPathsHandler.m in Sources */,
+				960194081A2045CE00059F90 /* BNDParser.m in Sources */,
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
+				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
 				960193AB1A1E697600059F90 /* UIButton+BNDBinding.m in Sources */,
 				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
 			);
@@ -635,6 +652,7 @@
 				960193F21A1EB9D200059F90 /* UIButton+BNDBindingSpec.m in Sources */,
 				967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */,
 				967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */,
+				9601940D1A204C4C00059F90 /* BNDParserTest.m in Sources */,
 				960193F71A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,12 @@
 
 #import <Kiwi/Kiwi.h>
 #import <UIKit/UIKit.h>
-#import "BNDBindingSpecialKeyPathsHandler.h"
+#import "BNDSpecialKeyPathHandler.h"
 #import "BNDBinding.h"
 #import "BNDSpecialKeyPathHandling.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
 
 @interface TestViewController : UIViewController
 @property (nonatomic) UIButton *button;
@@ -62,9 +65,11 @@ describe(@"BNDBindingSpecialKeyPathsHandler", ^{
             [[viewController.button2 should] receive:@selector(handleSpecialKeyPath:)
                                        withArguments:UIButtonTouchUpInsideKeyPath, nil];
             
-            [BNDBindingSpecialKeyPathsHandler handleSpecialKeyPathsForBinding:binding];
+            [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:binding];
         });
     });
 });
 
 SPEC_END
+
+#pragma clang diagnostic pop

@@ -16,6 +16,10 @@
 
 @end
 
+@implementation ParkingTicket
+
+@end
+
 @implementation RPMToSpeedTransformer
 
 - (id)transformedValue:(id)rpm {

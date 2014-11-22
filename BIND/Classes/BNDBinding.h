@@ -31,6 +31,16 @@
 @property (nonatomic, copy) NSString *BIND;
 
 /**
+ *  Left bound object following the BIND syntax.
+ */
+@property (nonatomic, weak, readonly) id leftObject;
+
+/**
+ *  Right bound object following the BIND syntax.
+ */
+@property (nonatomic, weak, readonly) id rightObject;
+
+/**
  *  Builds a binding using BIND syntax.
  *
  *  @param BIND a BIND expression
