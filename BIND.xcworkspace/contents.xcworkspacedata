@@ -5,6 +5,9 @@
       location = "group:BIND.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:BINDPlugin/BINDPlugin.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

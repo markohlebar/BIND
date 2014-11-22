@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9271A20A60A005A06CB /* AppKit.framework */; };
+		9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9291A20A60A005A06CB /* Foundation.framework */; };
+		9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */; };
+		9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9311A20A60A005A06CB /* BINDPlugin.m */; };
+		9699D9411A20A631005A06CB /* BINDPluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9401A20A631005A06CB /* BINDPluginTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		9699D92D1A20A60A005A06CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BINDPlugin.xcscheme; path = BINDPlugin.xcodeproj/xcshareddata/xcschemes/BINDPlugin.xcscheme; sourceTree = SOURCE_ROOT; };
+		9699D9301A20A60A005A06CB /* BINDPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BINDPlugin.h; sourceTree = "<group>"; };
+		9699D9311A20A60A005A06CB /* BINDPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BINDPlugin.m; sourceTree = "<group>"; };
+		9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9699D93F1A20A631005A06CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9699D9401A20A631005A06CB /* BINDPluginTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BINDPluginTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9699D9221A20A60A005A06CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */,
+				9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9699D9391A20A631005A06CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9699D91B1A20A60A005A06CB = {
+			isa = PBXGroup;
+			children = (
+				9699D92B1A20A60A005A06CB /* BINDPlugin */,
+				9699D93D1A20A631005A06CB /* BINDPluginTests */,
+				9699D9261A20A60A005A06CB /* Frameworks */,
+				9699D9251A20A60A005A06CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9699D9251A20A60A005A06CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */,
+				9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9699D9261A20A60A005A06CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9271A20A60A005A06CB /* AppKit.framework */,
+				9699D9291A20A60A005A06CB /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9699D92B1A20A60A005A06CB /* BINDPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9301A20A60A005A06CB /* BINDPlugin.h */,
+				9699D9311A20A60A005A06CB /* BINDPlugin.m */,
+				9699D92C1A20A60A005A06CB /* Supporting Files */,
+			);
+			path = BINDPlugin;
+			sourceTree = "<group>";
+		};
+		9699D92C1A20A60A005A06CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9699D92D1A20A60A005A06CB /* Info.plist */,
+				9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9699D93D1A20A631005A06CB /* BINDPluginTests */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9401A20A631005A06CB /* BINDPluginTests.m */,
+				9699D93E1A20A631005A06CB /* Supporting Files */,
+			);
+			path = BINDPluginTests;
+			sourceTree = "<group>";
+		};
+		9699D93E1A20A631005A06CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9699D93F1A20A631005A06CB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9699D9231A20A60A005A06CB /* BINDPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9699D9351A20A60A005A06CB /* Build configuration list for PBXNativeTarget "BINDPlugin" */;
+			buildPhases = (
+				9699D9201A20A60A005A06CB /* Sources */,
+				9699D9211A20A60A005A06CB /* Resources */,
+				9699D9221A20A60A005A06CB /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BINDPlugin;
+			productName = BINDPlugin;
+			productReference = 9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		9699D93B1A20A631005A06CB /* BINDPluginTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9699D9421A20A631005A06CB /* Build configuration list for PBXNativeTarget "BINDPluginTests" */;
+			buildPhases = (
+				9699D9381A20A631005A06CB /* Sources */,
+				9699D9391A20A631005A06CB /* Frameworks */,
+				9699D93A1A20A631005A06CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BINDPluginTests;
+			productName = BINDPluginTests;
+			productReference = 9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9699D91C1A20A60A005A06CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Marko Hlebar";
+				TargetAttributes = {
+					9699D9231A20A60A005A06CB = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					9699D93B1A20A631005A06CB = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 9699D91F1A20A60A005A06CB /* Build configuration list for PBXProject "BINDPlugin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9699D91B1A20A60A005A06CB;
+			productRefGroup = 9699D9251A20A60A005A06CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9699D9231A20A60A005A06CB /* BINDPlugin */,
+				9699D93B1A20A631005A06CB /* BINDPluginTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9699D9211A20A60A005A06CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9699D93A1A20A631005A06CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9699D9201A20A60A005A06CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9699D9381A20A631005A06CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9699D9411A20A631005A06CB /* BINDPluginTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9699D9331A20A60A005A06CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		9699D9341A20A60A005A06CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		9699D9361A20A60A005A06CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = BINDPlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		9699D9371A20A60A005A06CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = BINDPlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+		9699D9431A20A631005A06CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BINDPluginTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9699D9441A20A631005A06CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BINDPluginTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9699D91F1A20A60A005A06CB /* Build configuration list for PBXProject "BINDPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9699D9331A20A60A005A06CB /* Debug */,
+				9699D9341A20A60A005A06CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9699D9351A20A60A005A06CB /* Build configuration list for PBXNativeTarget "BINDPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9699D9361A20A60A005A06CB /* Debug */,
+				9699D9371A20A60A005A06CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9699D9421A20A631005A06CB /* Build configuration list for PBXNativeTarget "BINDPluginTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9699D9431A20A631005A06CB /* Debug */,
+				9699D9441A20A631005A06CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9699D91C1A20A60A005A06CB /* Project object */;
+}
