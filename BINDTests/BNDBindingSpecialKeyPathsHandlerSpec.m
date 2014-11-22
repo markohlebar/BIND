@@ -1,5 +1,5 @@
 //
-//  BNDBindingSpecialKeyPathsHandlerSpec.m
+//  BNDSpecialKeyPathHandlerSpec.m
 //  BIND
 //
 //  Created by Marko Hlebar on 21/11/2014.
@@ -38,9 +38,9 @@
 
 @end
 
-SPEC_BEGIN(BNDBindingSpecialKeyPathsHandlerSpec)
+SPEC_BEGIN(BNDSpecialKeyPathHandlerSpec)
 
-describe(@"BNDBindingSpecialKeyPathsHandler", ^{
+describe(@"BNDSpecialKeyPathHandler", ^{
     
     __block BNDBinding *binding = nil;
     

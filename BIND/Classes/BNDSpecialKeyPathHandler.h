@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @class BNDBinding;
-@interface BNDBindingSpecialKeyPathsHandler : NSObject
+@interface BNDSpecialKeyPathHandler : NSObject
 + (void)handleSpecialKeyPathsForBinding:(BNDBinding *)binding;
 @end

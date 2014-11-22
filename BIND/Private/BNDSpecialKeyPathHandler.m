@@ -1,5 +1,5 @@
 //
-//  BNDBindingSpecialKeyPathsHandler.m
+//  BNDSpecialKeyPathHandler.m
 //  BIND
 //
 //  Created by Marko Hlebar on 21/11/2014.

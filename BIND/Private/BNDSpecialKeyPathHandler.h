@@ -1,5 +1,5 @@
 //
-//  BNDBindingSpecialKeyPathsHandler.h
+//  BNDSpecialKeyPathHandler.h
 //  BIND
 //
 //  Created by Marko Hlebar on 21/11/2014.
