@@ -14,7 +14,7 @@
 @synthesize viewModel = _viewModel; \
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
     for (BNDBinding *binding in self.bindings) { \
-        [binding bindLeft:_viewModel withRight:self]; \
+        [binding bindLeft:viewModel withRight:self]; \
     } \
     _viewModel = viewModel; \
     [self viewDidUpdateViewModel:viewModel]; \
