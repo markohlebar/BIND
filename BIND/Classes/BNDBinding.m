@@ -7,19 +7,9 @@
 //
 
 #import "BNDBinding.h"
-#import "BNDBindingSpecialKeyPathsHandler.h"
+#import "BNDSpecialKeyPathHandler.h"
 #import "BNDBindingTypes.h"
-
-static NSString *const BNDBindingArrowRight = @"->";
-static NSString *const BNDBindingArrowLeft = @"<-";
-static NSString *const BNDBindingArrowNone = @"<>";
-
-static NSString *const BNDBindingArrowRightNoIntialisation = @"!->";
-static NSString *const BNDBindingArrowLeftNoIntialisation = @"<-!";
-static NSString *const BNDBindingArrowNoneNoIntialisation = @"<!>";
-
-static NSString *const BNDBindingTransformerSeparator = @"|";
-static NSString *const BNDBindingTransformerDirectionModifier = @"!";
+#import "BNDParser.h"
 
 @interface BNDBinding ()
 @property (nonatomic, weak) id leftObject;
@@ -59,15 +49,22 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 
 - (void)setBIND:(NSString *)BIND {
     _BIND = BIND;
-    _BIND = [_BIND stringByReplacingOccurrencesOfString:@" "
-                                             withString:@""];
-    _BIND = [_BIND stringByReplacingOccurrencesOfString:@"\n"
-                                             withString:@""];
-    [self parseKeyPaths:_BIND];
+
+    BNDBindingDefinition *definition = [BNDParser parseBIND:_BIND];
+    [self setDefinition:definition];
     
     if (self.leftObject && self.rightObject) {
         [self bind];
     }
+}
+
+- (void)setDefinition:(BNDBindingDefinition *)definition {
+    self.leftKeyPath = definition.leftKeyPath;
+    self.rightKeyPath = definition.rightKeyPath;
+    self.direction = definition.direction;
+    self.transformDirection = definition.transformDirection;
+    self.valueTransformer = definition.valueTransformer;
+    self.shouldSetInitialValues = definition.shouldSetInitialValues;
 }
 
 - (void)bindLeft:(id)leftObject
@@ -83,7 +80,7 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 - (void)bind {
     [self setInitialValues];
     [self setupObservers];
-    [BNDBindingSpecialKeyPathsHandler handleSpecialKeyPathsForBinding:self];
+    [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:self];
 }
 
 - (void)unbind {
@@ -119,81 +116,6 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
                                         withObject:value];
         
         [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
-    }
-}
-
-- (void)parseKeyPaths:(NSString *)bind {
-    NSString *separator = nil;
-    
-    if ([bind rangeOfString:BNDBindingArrowRightNoIntialisation].location != NSNotFound) {
-        separator = BNDBindingArrowRightNoIntialisation;
-        self.shouldSetInitialValues = NO;
-        self.direction = BNDBindingDirectionRightToLeft;
-    }
-    else if ([bind rangeOfString:BNDBindingArrowLeftNoIntialisation].location != NSNotFound) {
-        separator = BNDBindingArrowLeftNoIntialisation;
-        self.shouldSetInitialValues = NO;
-        self.direction = BNDBindingDirectionRightToLeft;
-    }
-    else if ([bind rangeOfString:BNDBindingArrowNoneNoIntialisation].location != NSNotFound) {
-        separator = BNDBindingArrowNoneNoIntialisation;
-        self.shouldSetInitialValues = NO;
-        self.direction = BNDBindingDirectionBoth;
-    }
-    else if ([bind rangeOfString:BNDBindingArrowRight].location != NSNotFound) {
-        separator = BNDBindingArrowRight;
-        self.shouldSetInitialValues = YES;
-        self.direction = BNDBindingDirectionLeftToRight;
-    }
-    else if ([bind rangeOfString:BNDBindingArrowLeft].location != NSNotFound) {
-        separator = BNDBindingArrowLeft;
-        self.shouldSetInitialValues = YES;
-        self.direction = BNDBindingDirectionRightToLeft;
-    }
-    else if ([bind rangeOfString:BNDBindingArrowNone].location != NSNotFound) {
-        separator = BNDBindingArrowNone;
-        self.shouldSetInitialValues = YES;
-        self.direction = BNDBindingDirectionBoth;
-    }
-    else {
-        NSAssert(NO, @"Couldn't find initial assignment direction. Check the BIND syntax manual for more info.");
-    }
-    
-    NSArray *keyPaths = [_BIND componentsSeparatedByString:separator];
-    NSAssert(keyPaths.count == 2, @"Couldn't find keyPaths. Check the BIND syntax manual for more info.");
-    
-    NSArray *keyPathAndTransformer = [keyPaths[1] componentsSeparatedByString:BNDBindingTransformerSeparator];
-    self.leftKeyPath = keyPaths[0];
-    self.rightKeyPath = keyPathAndTransformer[0];
-    
-    NSAssert(self.leftKeyPath.length > 0, @"Provide a valid keyPath. Check the BIND syntax manual for more info.");
-    NSAssert(self.rightKeyPath.length > 0, @"Provide a valid otherKeyPath. Check the BIND syntax manual for more info.");
-    
-    [self parseTransformer:keyPathAndTransformer];
-}
-
-- (void)parseTransformer:(NSArray *)keyPathAndTransformer {
-    if (keyPathAndTransformer.count == 2) {
-        NSString *modifierAndTransformer = keyPathAndTransformer[1];
-        NSString *transformerClassName = nil;
-        NSRange modifierRange = [modifierAndTransformer rangeOfString:BNDBindingTransformerDirectionModifier];
-        if (modifierRange.location != NSNotFound) {
-            transformerClassName = [modifierAndTransformer stringByReplacingCharactersInRange:modifierRange
-                                                                                   withString:@""];
-            self.transformDirection = BNDBindingTransformDirectionRightToLeft;
-        }
-        else {
-            transformerClassName = modifierAndTransformer;
-        }
-        
-        Class transformerClass = NSClassFromString(transformerClassName);
-        NSString *assert __attribute__((unused)) = [NSString stringWithFormat:@"Non existing transformer class %@", transformerClassName];
-        NSAssert(transformerClass != nil, assert);
-        
-        self.valueTransformer = [transformerClass new];
-    }
-    else {
-        self.valueTransformer = [NSValueTransformer new];
     }
 }
 

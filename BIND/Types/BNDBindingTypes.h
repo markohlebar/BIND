@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, BNDBindingDirection) {
     BNDBindingDirectionBoth = 2,
 };
 
-typedef NS_ENUM(NSInteger, BNDBindingTransformDirection) {
+typedef NS_ENUM(BOOL, BNDBindingTransformDirection) {
     /**
      *  Transform direction is executed from object to otherObject.
      */

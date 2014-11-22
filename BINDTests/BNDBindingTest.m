@@ -12,151 +12,146 @@
 #import "BNDTestObjects.h"
 #import "BNDBindingTypes.h"
 
-@interface BNDBinding (Testing)
-
-@property (nonatomic, weak) id leftObject;
-@property (nonatomic, weak) id rightObject;
-@property (nonatomic, strong) NSString *leftKeyPath;
-@property (nonatomic, strong) NSString *rightKeyPath;
-@property (nonatomic) BNDBindingDirection direction;
-@property (nonatomic) BNDBindingTransformDirection transformDirection;
-@property (nonatomic, strong) NSValueTransformer *valueTransformer;
-@property (nonatomic) BOOL shouldSetInitialValues;
-
-@end
-
 @interface BNDBindingTest : XCTestCase {
-    Car *_car;
-    Engine *_engine;
-    BNDBinding *_binding;
+	Car *_car;
+	Engine *_engine;
+    ParkingTicket *_ticket;
+	BNDBinding *_binding;
 }
 @end
 
 @implementation BNDBindingTest
 
 - (void)setUp {
-    [super setUp];
-    
-    _car = Car.new;
-    _engine = Engine.new;
-    _binding = BNDBinding.new;
+	[super setUp];
+
+	_car = Car.new;
+	_engine = Engine.new;
+    _ticket = ParkingTicket.new;
+	_binding = BNDBinding.new;
 }
 
 - (void)tearDown {
-    [super tearDown];
-    
-    _binding = nil;
-    _car = nil;
-    _engine = nil;
-}
+	[super tearDown];
 
-- (void)testBINDKeyPathAssignment {
-    _binding.BIND = @"keyPath1->keyPath2";
-    XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
-    
-    _binding.BIND = @"keyPath1 -> keyPath2";
-    XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
-    
-    _binding.BIND = @"keyPath1     ->     keyPath2";
-    XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
-    
-    _binding.BIND = @"keyPath1<-keyPath2";
-    XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.direction == BNDBindingDirectionRightToLeft, @"assignment should be left");
-    
-    _binding.BIND = @"keyPath1<>keyPath2";
-    XCTAssertEqualObjects(_binding.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(_binding.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(_binding.direction == BNDBindingDirectionBoth, @"assignment should be none");
-}
-
-- (void)testBINDTransformers {
-    _binding.BIND = @"keyPath1->keyPath2|RPMToSpeedTransformer";
-    XCTAssertNotNil(_binding.valueTransformer, @"value transformer should not be nil");
-    XCTAssertTrue([_binding.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be RPMToSpeedTransformer");
-}
-
-- (void)testBINDErroneousInput {
-    XCTAssertThrows([_binding setBIND:@"keyPath1-keyPath2"], @"should assert for no assignment symbol");
-    XCTAssertThrows([_binding setBIND:@"keyPath1->"], @"should assert for no keypaths");
-    XCTAssertThrows([_binding setBIND:@"->keyPath2"], @"should assert for no keypaths");
-    XCTAssertThrows([_binding setBIND:@"keyPath->keyPath2|FooBar"], @"should assert for invalid transformer");
+	_binding = nil;
+	_car = nil;
+    _ticket = nil;
+	_engine = nil;
 }
 
 - (void)testBINDInitialValueLeftToRightAssignment {
-    _car.speed = 0;
-    _engine.rpm = 10000;
-    
-    _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
-            withRight:_car];
-    
-    XCTAssertTrue(_car.speed == 100, @"speed of the car should be 100");
+	_car.make = @"Toyota";
+	_ticket.carMake = nil;
+
+	_binding.BIND = @"make -> carMake";
+	[_binding bindLeft:_car
+	         withRight:_ticket];
+
+	XCTAssertTrue([_ticket.carMake isEqual:@"Toyota"], @"Car make on the ticket should be Toyota");
 }
 
 - (void)testBINDInitialValueRightToLeftAssignment {
-    _car.speed = 100;
-    _engine.rpm = 0;
-    _binding.BIND = @"rpm <- speed | RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
-            withRight:_car];
+    _car.make = @"Toyota";
+    _ticket.carMake = nil;
     
-    XCTAssertTrue(_engine.rpm == 10000, @"rpm of the engine should be 10000");
+    _binding.BIND = @"carMake <- make";
+    [_binding bindLeft:_ticket
+             withRight:_car];
+    
+    XCTAssertTrue([_ticket.carMake isEqual:@"Toyota"], @"Car make on the ticket should be Toyota");
 }
 
 - (void)testBINDInitialValueBidirectionalAssignment {
-    _car.speed = 0;
-    _engine.rpm = 10000;
-    _binding.BIND = @"rpm <> speed | RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
-             withRight:_car];
+    _car.make = @"Toyota";
+    _ticket.carMake = nil;
     
-    XCTAssertTrue(_car.speed == 100, @"speed of the car should be 100");
+    _binding.BIND = @"make <> carMake";
+    [_binding bindLeft:_car
+             withRight:_ticket];
+    
+    XCTAssertTrue([_ticket.carMake isEqual:@"Toyota"], @"Car make on the ticket should be Toyota");
 }
 
 - (void)testBINDInitialValueLeftToRightNoAssignment {
-    _car.speed = 0;
-    _engine.rpm = 10000;
+    _car.make = @"Toyota";
+    _ticket.carMake = nil;
     
-    _binding.BIND = @"rpm !-> speed | RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
-             withRight:_car];
+    _binding.BIND = @"make !-> carMake";
+    [_binding bindLeft:_car
+             withRight:_ticket];
     
-    XCTAssertTrue(_car.speed == 0, @"speed of the car should remain 0");
+    XCTAssertNil(_ticket.carMake, @"Car make on the ticket should be nil");
 }
 
 - (void)testBINDInitialValueRightToLeftNoAssignment {
-    _car.speed = 100;
-    _engine.rpm = 0;
-    _binding.BIND = @"rpm <-! speed | RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
+    _car.make = @"Toyota";
+    _ticket.carMake = nil;
+    
+    _binding.BIND = @"carMake <-! make";
+    [_binding bindLeft:_ticket
              withRight:_car];
     
-    XCTAssertTrue(_engine.rpm == 0, @"rpm of the engine should remain 0");
+    XCTAssertNil(_ticket.carMake, @"Car make on the ticket should be nil");
 }
 
 - (void)testBINDInitialValueBidirectionalNoAssignment {
-    _car.speed = 100;
-    _engine.rpm = 700;
-    _binding.BIND = @"speed <!> rpm | RPMToSpeedTransformer";
-    [_binding bindLeft:_car
-             withRight:_engine];
+    _car.make = @"Toyota";
+    _ticket.carMake = nil;
     
-    XCTAssertTrue(_car.speed == 100, @"speed of the car should remain 100");
-    XCTAssertTrue(_engine.rpm == 700, @"rpm of the engine should remain 999");
+    _binding.BIND = @"make <!> carMake";
+    [_binding bindLeft:_car
+             withRight:_ticket];
+    
+    XCTAssertNil(_ticket.carMake, @"Car make on the ticket should be nil");
 }
 
 - (void)testBINDLeftToRightBindingUpdates {
+	_car.speed = 100;
+	_engine.rpm = 10000;
+	_binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+	[_binding bindLeft:_engine
+	         withRight:_car];
+
+	_engine.rpm = 20000;
+	XCTAssertTrue(_car.speed == 200, @"speed of the car should be 200");
+
+	_car.speed = 300;
+	XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should remain 20000");
+}
+
+- (void)testBINDRightToLeftBindingUpdates {
+	_car.speed = 100;
+	_engine.rpm = 10000;
+	_binding.BIND = @"rpm <- speed | !RPMToSpeedTransformer";
+	[_binding bindLeft:_engine
+	         withRight:_car];
+
+	_car.speed = 200;
+	XCTAssertTrue(_engine.rpm == 20000, @"rpm of the engine should be 20000");
+
+	_engine.rpm = 10000;
+	XCTAssertTrue(_car.speed == 200, @"car speed should remain 200");
+}
+
+- (void)testBINDBiDirectionalUpdates {
+	_car.speed = 100;
+	_engine.rpm = 10000;
+	_binding.BIND = @"rpm <> speed | RPMToSpeedTransformer";
+	[_binding bindLeft:_engine
+	         withRight:_car];
+
+	_car.speed = 200;
+	XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should be 20000");
+
+	_engine.rpm = 5000;
+	XCTAssertTrue(_car.speed == 50, @"car speed should be 50");
+}
+
+- (void)testBINDLeftToRightNoInitialisationBindingUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
-    _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+    _binding.BIND = @"rpm !-> speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
              withRight:_car];
     
@@ -167,10 +162,10 @@
     XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should remain 20000");
 }
 
-- (void)testBINDRightToLeftBindingUpdates {
+- (void)testBINDRightToLeftNoInitialisationBindingUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
-    _binding.BIND = @"rpm <- speed | RPMToSpeedTransformer";
+    _binding.BIND = @"rpm <-! speed | !RPMToSpeedTransformer";
     [_binding bindLeft:_engine
              withRight:_car];
     
@@ -181,10 +176,10 @@
     XCTAssertTrue(_car.speed == 200, @"car speed should remain 200");
 }
 
-- (void)testBINDBiDirectionalUpdates {
+- (void)testBINDBiDirectionalNoInitialisationUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
-    _binding.BIND = @"rpm <> speed | RPMToSpeedTransformer";
+    _binding.BIND = @"rpm <!> speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
              withRight:_car];
     
@@ -196,92 +191,84 @@
 }
 
 - (void)testBINDBindingObjectsBeforeBINDingAssignsValues {
-    _car.speed = 0;
-    _engine.rpm = 10000;
-    [_binding bindLeft:_engine
-            withRight:_car];
-    _binding.BIND = @"rpm -> speed| RPMToSpeedTransformer";
+	_car.speed = 0;
+	_engine.rpm = 10000;
+	[_binding bindLeft:_engine
+	         withRight:_car];
+	_binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
 
-    XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
+	XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
 }
 
 - (void)testBINDBindingNewObjectsAssignsValues {
-    _car.speed = 0;
-    _engine.rpm = 10000;
-    _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
-             withRight:_car];
-    
-    Car *car2 = Car.new;
-    car2.speed = 0;
-    
-    Engine *engine2 = Engine.new;
-    engine2.rpm = 20000;
-    
-    [_binding bindLeft:engine2
-            withRight:car2];
-    
-    XCTAssertTrue(car2.speed == 200, @"car2 speed should be 200");
-    XCTAssertEqual(engine2, _binding.leftObject, @"engine 2 should be the new left object");
-    XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
-    
-    //we need to unbind here because the references to car2 and engine2 are lost and we have a crash if we don't.
-    [_binding unbind];
-}
+	_car.speed = 0;
+	_engine.rpm = 10000;
+	_binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+	[_binding bindLeft:_engine
+	         withRight:_car];
 
-- (void)testBINDTransformDirectionModifierIsAssigned {
-    _binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
-    XCTAssertTrue(_binding.transformDirection == BNDBindingTransformDirectionLeftToRight, @"Unmodified transform direction should be left to right.");
-    
-    _binding.BIND = @"rpm -> speed | !RPMToSpeedTransformer";
-    XCTAssertTrue(_binding.transformDirection == BNDBindingTransformDirectionRightToLeft, @"Modified transform direction should be right to left.");
+	Car *car2 = Car.new;
+	car2.speed = 0;
+
+	Engine *engine2 = Engine.new;
+	engine2.rpm = 20000;
+
+	[_binding bindLeft:engine2
+	         withRight:car2];
+
+	XCTAssertTrue(car2.speed == 200, @"car2 speed should be 200");
+	XCTAssertEqual(engine2, _binding.leftObject, @"engine 2 should be the new left object");
+	XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
+
+	//we need to unbind here because the references to car2 and engine2 are lost and we have a crash if we don't.
+	[_binding unbind];
 }
 
 - (void)testBINDTransformDirectionAssignsCorrectly {
-    _engine.rpm = 10000;
-    
-    _binding.BIND = @"speed <- rpm | !RPMToSpeedTransformer";
-    [_binding bindLeft:_car
-             withRight:_engine];
-    
-    XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
+	_engine.rpm = 10000;
+
+	_binding.BIND = @"speed <- rpm | RPMToSpeedTransformer";
+	[_binding bindLeft:_car
+	         withRight:_engine];
+
+	XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
 }
 
 - (void)testUnbindRemovesReferences {
-    [_binding bindLeft:_engine withRight:_car];
-    [_binding unbind];
-    
-    XCTAssertNil(_binding.leftObject);
-    XCTAssertNil(_binding.rightObject);
+	[_binding bindLeft:_engine withRight:_car];
+	[_binding unbind];
+
+	XCTAssertNil(_binding.leftObject);
+	XCTAssertNil(_binding.rightObject);
 }
 
 - (void)testUnbindDoesntCrashWhenObjectsAreNotSet {
-    _binding.BIND = @"rpm -> speed";
-    XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no objects");
+	_binding.BIND = @"rpm -> speed";
+	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no objects");
 }
 
 - (void)testUnbindDoesntCrashWhenKeyPathsAreNotSet {
-    [_binding bindLeft:_engine withRight:_car];
-    XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no keypaths");
+	[_binding bindLeft:_engine withRight:_car];
+	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no keypaths");
 }
 
 - (void)testUnbindingDoesntCrashWhenCalledTwice {
-    _binding.BIND = @"rpm -> speed";
-    [_binding bindLeft:_engine withRight:_car];
-    [_binding unbind];
-    
-    XCTAssertNoThrow([_binding unbind], @"Should not throw an exception on consecutive unbind calls");
+	_binding.BIND = @"rpm -> speed";
+	[_binding bindLeft:_engine withRight:_car];
+	[_binding unbind];
+
+	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception on consecutive unbind calls");
 }
 
 - (void)testBINDPerformance {
-    __block Engine *engine = [Engine new];
-    __block Car *car = [Car new];
-    [self measureBlock:^{
-        _binding.BIND = @"rpm->speed|RPMToSpeedTransformer";
-        [_binding bindLeft:engine
-                 withRight:car];
-        [_binding unbind];
-    }];
+	__block Engine *engine = [Engine new];
+	__block Car *car = [Car new];
+	[self measureBlock: ^{
+	    _binding.BIND = @"rpm->speed|RPMToSpeedTransformer";
+	    [_binding bindLeft:engine
+	             withRight:car];
+	    [_binding unbind];
+	}];
 }
 
 @end
