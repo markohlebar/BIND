@@ -15,6 +15,8 @@
 		960CBE1F1A21D95100055CDA /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE171A21D95100055CDA /* DDXMLElement.m */; };
 		960CBE201A21D95100055CDA /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE191A21D95100055CDA /* DDXMLNode.m */; };
 		960CBE221A21D96B00055CDA /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 960CBE211A21D96B00055CDA /* libxml2.2.dylib */; };
+		960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */; };
+		960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */; };
 		9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9271A20A60A005A06CB /* AppKit.framework */; };
 		9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9291A20A60A005A06CB /* Foundation.framework */; };
 		9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */; };
@@ -43,6 +45,9 @@
 		960CBE191A21D95100055CDA /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
 		960CBE1B1A21D95100055CDA /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		960CBE211A21D96B00055CDA /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDInterfaceBuilderParser.h; path = Classes/Model/BNDInterfaceBuilderParser.h; sourceTree = "<group>"; };
+		960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderParser.m; path = Classes/Model/BNDInterfaceBuilderParser.m; sourceTree = "<group>"; };
+		960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderParserSpec.m; path = Classes/Model/BNDInterfaceBuilderParserSpec.m; sourceTree = "<group>"; };
 		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -140,6 +145,23 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		960CBE231A21DA2A00055CDA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE271A21DDC700055CDA /* Model */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		960CBE271A21DDC700055CDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */,
+				960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		9699D91B1A20A60A005A06CB = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +198,7 @@
 		9699D92B1A20A60A005A06CB /* BINDPlugin */ = {
 			isa = PBXGroup;
 			children = (
+				960CBE231A21DA2A00055CDA /* Classes */,
 				9699D9301A20A60A005A06CB /* BINDPlugin.h */,
 				9699D9311A20A60A005A06CB /* BINDPlugin.m */,
 				9699D92C1A20A60A005A06CB /* Supporting Files */,
@@ -196,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				9699D93E1A20A631005A06CB /* Supporting Files */,
+				960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */,
 			);
 			path = BINDPluginTests;
 			sourceTree = "<group>";
@@ -450,6 +474,7 @@
 				9699D9581A21BF20005A06CB /* MHXcodeDocumentNavigator.m in Sources */,
 				960CBE1C1A21D95100055CDA /* DDXMLElementAdditions.m in Sources */,
 				960CBE1D1A21D95100055CDA /* NSString+DDXML.m in Sources */,
+				960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
