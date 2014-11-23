@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "959F2957C9AE2280D500D5A2"
+               BuildableName = "libPods-BINDPlugin.a"
+               BlueprintName = "Pods-BINDPlugin"
+               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C63071810B3C0E543A0FA138"
+               BuildableName = "libPods-BINDPluginTests.a"
+               BlueprintName = "Pods-BINDPluginTests"
+               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "9699D9231A20A60A005A06CB"
                BuildableName = "BINDPlugin.xcplugin"
                BlueprintName = "BINDPlugin"
@@ -53,6 +81,15 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9699D9231A20A60A005A06CB"
+            BuildableName = "BINDPlugin.xcplugin"
+            BlueprintName = "BINDPlugin"
+            ReferencedContainer = "container:BINDPlugin.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -86,6 +123,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9699D9231A20A60A005A06CB"
+            BuildableName = "BINDPlugin.xcplugin"
+            BlueprintName = "BINDPlugin"
+            ReferencedContainer = "container:BINDPlugin.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
