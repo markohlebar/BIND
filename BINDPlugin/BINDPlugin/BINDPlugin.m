@@ -7,6 +7,7 @@
 //
 
 #import "BINDPlugin.h"
+#import "MHXcodeDocumentNavigator.h"
 
 static BINDPlugin *sharedPlugin;
 
@@ -59,6 +60,12 @@ static BINDPlugin *sharedPlugin;
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:@"Hello, World"];
     [alert runModal];
+    
+    NSURL *fileURL = [[MHXcodeDocumentNavigator currentInterfaceBuilderDocument] fileURL];
+    NSString *string = [NSString stringWithContentsOfURL:fileURL
+                                                encoding:NSUTF8StringEncoding
+                                                   error:nil];
+    
 }
 
 - (void)dealloc

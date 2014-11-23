@@ -3,19 +3,28 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'BIND' do
-
-end
+workspace 'BIND'
 
 target 'BINDTests' do
-pod 'Kiwi'
-end
-
-target 'BINDApp' do
-
+    platform :ios, '7.0'
+    xcodeproj 'BIND.xcodeproj'
+    pod 'Kiwi'
 end
 
 target 'BINDAppTests' do
-pod 'Kiwi'
+    platform :ios, '7.0'
+    xcodeproj 'BIND.xcodeproj'
+    pod 'Kiwi'
 end
 
+target 'BINDPlugin' do
+    platform :osx, '10.9'
+    xcodeproj 'BINDPlugin/BINDPlugin.xcodeproj'
+    pod 'XcodeEditor'
+end
+
+target 'BINDPluginTests' do
+    platform :osx, '10.9'
+    xcodeproj 'BINDPlugin/BINDPlugin.xcodeproj'
+    pod 'Kiwi'
+end

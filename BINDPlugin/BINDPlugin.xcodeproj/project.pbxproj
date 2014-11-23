@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FBE8B724116D8132EE1FAF1 /* libPods-BINDPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */; };
+		55290459611DCEE44A0045FE /* libPods-BINDPluginTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */; };
 		9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9271A20A60A005A06CB /* AppKit.framework */; };
 		9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9291A20A60A005A06CB /* Foundation.framework */; };
 		9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */; };
 		9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9311A20A60A005A06CB /* BINDPlugin.m */; };
-		9699D9411A20A631005A06CB /* BINDPluginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9401A20A631005A06CB /* BINDPluginTests.m */; };
+		9699D9581A21BF20005A06CB /* MHXcodeDocumentNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9481A21BF20005A06CB /* MHXcodeDocumentNavigator.m */; };
+		9699D9591A21BF20005A06CB /* NSString+XCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D94D1A21BF20005A06CB /* NSString+XCAdditions.m */; };
+		9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D94F1A21BF20005A06CB /* XCProject+Extensions.m */; };
+		9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9531A21BF20005A06CB /* XCTarget+XCProject.m */; };
+		9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9551A21BF20005A06CB /* XCBuildSettings.m */; };
+		9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9571A21BF20005A06CB /* XCWorkspace.m */; };
+		9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9611A21C26D005A06CB /* NSString+Extensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPlugin.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin.debug.xcconfig"; sourceTree = "<group>"; };
 		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -24,7 +33,26 @@
 		9699D9311A20A60A005A06CB /* BINDPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BINDPlugin.m; sourceTree = "<group>"; };
 		9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9699D93F1A20A631005A06CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9699D9401A20A631005A06CB /* BINDPluginTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BINDPluginTests.m; sourceTree = "<group>"; };
+		9699D9471A21BF20005A06CB /* MHXcodeDocumentNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHXcodeDocumentNavigator.h; sourceTree = "<group>"; };
+		9699D9481A21BF20005A06CB /* MHXcodeDocumentNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHXcodeDocumentNavigator.m; sourceTree = "<group>"; };
+		9699D9491A21BF20005A06CB /* XCFXcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodePrivate.h; sourceTree = "<group>"; };
+		9699D94C1A21BF20005A06CB /* NSString+XCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XCAdditions.h"; sourceTree = "<group>"; };
+		9699D94D1A21BF20005A06CB /* NSString+XCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XCAdditions.m"; sourceTree = "<group>"; };
+		9699D94E1A21BF20005A06CB /* XCProject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCProject+Extensions.h"; sourceTree = "<group>"; };
+		9699D94F1A21BF20005A06CB /* XCProject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCProject+Extensions.m"; sourceTree = "<group>"; };
+		9699D9521A21BF20005A06CB /* XCTarget+XCProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTarget+XCProject.h"; sourceTree = "<group>"; };
+		9699D9531A21BF20005A06CB /* XCTarget+XCProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTarget+XCProject.m"; sourceTree = "<group>"; };
+		9699D9541A21BF20005A06CB /* XCBuildSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCBuildSettings.h; sourceTree = "<group>"; };
+		9699D9551A21BF20005A06CB /* XCBuildSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCBuildSettings.m; sourceTree = "<group>"; };
+		9699D9561A21BF20005A06CB /* XCWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCWorkspace.h; sourceTree = "<group>"; };
+		9699D9571A21BF20005A06CB /* XCWorkspace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCWorkspace.m; sourceTree = "<group>"; };
+		9699D9601A21C26D005A06CB /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		9699D9611A21C26D005A06CB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDPlugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		FEC19C255FFAEF307A5386A3 /* Pods-BINDPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPlugin.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDPluginTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +62,7 @@
 			files = (
 				9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */,
 				9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */,
+				4FBE8B724116D8132EE1FAF1 /* libPods-BINDPlugin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55290459611DCEE44A0045FE /* libPods-BINDPluginTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,10 +80,12 @@
 		9699D91B1A20A60A005A06CB = {
 			isa = PBXGroup;
 			children = (
+				9699D9451A21BF20005A06CB /* External */,
 				9699D92B1A20A60A005A06CB /* BINDPlugin */,
 				9699D93D1A20A631005A06CB /* BINDPluginTests */,
 				9699D9261A20A60A005A06CB /* Frameworks */,
 				9699D9251A20A60A005A06CB /* Products */,
+				DCF0329E05D343FD5FB81EB7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +103,8 @@
 			children = (
 				9699D9271A20A60A005A06CB /* AppKit.framework */,
 				9699D9291A20A60A005A06CB /* Foundation.framework */,
+				BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */,
+				FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -97,7 +131,6 @@
 		9699D93D1A20A631005A06CB /* BINDPluginTests */ = {
 			isa = PBXGroup;
 			children = (
-				9699D9401A20A631005A06CB /* BINDPluginTests.m */,
 				9699D93E1A20A631005A06CB /* Supporting Files */,
 			);
 			path = BINDPluginTests;
@@ -111,6 +144,72 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9699D9451A21BF20005A06CB /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9699D95F1A21C26D005A06CB /* Categories */,
+				9699D9461A21BF20005A06CB /* Benoit */,
+				9699D94A1A21BF20005A06CB /* XcodeEditor */,
+			);
+			name = External;
+			path = BINDPlugin/External;
+			sourceTree = "<group>";
+		};
+		9699D9461A21BF20005A06CB /* Benoit */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9471A21BF20005A06CB /* MHXcodeDocumentNavigator.h */,
+				9699D9481A21BF20005A06CB /* MHXcodeDocumentNavigator.m */,
+				9699D9491A21BF20005A06CB /* XCFXcodePrivate.h */,
+			);
+			path = Benoit;
+			sourceTree = "<group>";
+		};
+		9699D94A1A21BF20005A06CB /* XcodeEditor */ = {
+			isa = PBXGroup;
+			children = (
+				9699D94B1A21BF20005A06CB /* Categories */,
+				9699D9541A21BF20005A06CB /* XCBuildSettings.h */,
+				9699D9551A21BF20005A06CB /* XCBuildSettings.m */,
+				9699D9561A21BF20005A06CB /* XCWorkspace.h */,
+				9699D9571A21BF20005A06CB /* XCWorkspace.m */,
+			);
+			path = XcodeEditor;
+			sourceTree = "<group>";
+		};
+		9699D94B1A21BF20005A06CB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9699D94C1A21BF20005A06CB /* NSString+XCAdditions.h */,
+				9699D94D1A21BF20005A06CB /* NSString+XCAdditions.m */,
+				9699D94E1A21BF20005A06CB /* XCProject+Extensions.h */,
+				9699D94F1A21BF20005A06CB /* XCProject+Extensions.m */,
+				9699D9521A21BF20005A06CB /* XCTarget+XCProject.h */,
+				9699D9531A21BF20005A06CB /* XCTarget+XCProject.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9699D95F1A21C26D005A06CB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9601A21C26D005A06CB /* NSString+Extensions.h */,
+				9699D9611A21C26D005A06CB /* NSString+Extensions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DCF0329E05D343FD5FB81EB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */,
+				FEC19C255FFAEF307A5386A3 /* Pods-BINDPlugin.release.xcconfig */,
+				A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */,
+				E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9699D9351A20A60A005A06CB /* Build configuration list for PBXNativeTarget "BINDPlugin" */;
 			buildPhases = (
+				E258F2492257129ABAFD1ADF /* Check Pods Manifest.lock */,
 				9699D9201A20A60A005A06CB /* Sources */,
 				9699D9211A20A60A005A06CB /* Resources */,
 				9699D9221A20A60A005A06CB /* Frameworks */,
+				FD235304C350893E7D761D3C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,9 +236,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9699D9421A20A631005A06CB /* Build configuration list for PBXNativeTarget "BINDPluginTests" */;
 			buildPhases = (
+				10B0B0DC65BB7F290A2A41B4 /* Check Pods Manifest.lock */,
 				9699D9381A20A631005A06CB /* Sources */,
 				9699D9391A20A631005A06CB /* Frameworks */,
 				9699D93A1A20A631005A06CB /* Resources */,
+				8AEE98A54BC4BBAD7D15128C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,12 +304,82 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10B0B0DC65BB7F290A2A41B4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8AEE98A54BC4BBAD7D15128C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E258F2492257129ABAFD1ADF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD235304C350893E7D761D3C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9699D9201A20A60A005A06CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9699D9591A21BF20005A06CB /* NSString+XCAdditions.m in Sources */,
+				9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */,
+				9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */,
+				9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */,
 				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
+				9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */,
+				9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */,
+				9699D9581A21BF20005A06CB /* MHXcodeDocumentNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9699D9411A20A631005A06CB /* BINDPluginTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +464,7 @@
 		};
 		9699D9361A20A60A005A06CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
@@ -306,6 +479,7 @@
 		};
 		9699D9371A20A60A005A06CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEC19C255FFAEF307A5386A3 /* Pods-BINDPlugin.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
@@ -320,6 +494,7 @@
 		};
 		9699D9431A20A631005A06CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -340,6 +515,7 @@
 		};
 		9699D9441A20A631005A06CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -374,6 +550,7 @@
 				9699D9371A20A60A005A06CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9699D9421A20A631005A06CB /* Build configuration list for PBXNativeTarget "BINDPluginTests" */ = {
 			isa = XCConfigurationList;
@@ -382,6 +559,7 @@
 				9699D9441A20A631005A06CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
