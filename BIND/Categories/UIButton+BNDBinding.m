@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "UIButton+BNDBinding.h"
 
 NSString *const UIButtonTouchUpInsideKeyPath = @"onTouchUpInside";
@@ -30,3 +32,5 @@ NSString *const UIButtonTouchUpInsideKeyPath = @"onTouchUpInside";
 }
 
 @end
+
+#endif

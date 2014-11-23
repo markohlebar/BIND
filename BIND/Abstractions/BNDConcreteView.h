@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 #import "BNDView.h"
 
@@ -61,3 +63,5 @@
 @property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
 @property (nonatomic, strong) IBOutlet id <BNDDataController> dataController;
 @end
+
+#endif

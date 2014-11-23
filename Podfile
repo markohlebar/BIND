@@ -21,6 +21,7 @@ target 'BINDPlugin' do
     platform :osx, '10.9'
     xcodeproj 'BINDPlugin/BINDPlugin.xcodeproj'
     pod 'XcodeEditor'
+    pod 'BIND', :path => '.'
 end
 
 target 'BINDPluginTests' do

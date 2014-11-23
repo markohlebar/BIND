@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import "BNDBindingSpecialKeyPathsHandler.h"
-#import "BNDBinding.h"
+#import "BNDSpecialKeyPathHandler.h"
 #import "BNDSpecialKeyPathHandling.h"
+#import "BNDBinding.h"
 
 @interface BNDBinding ()
 
@@ -19,10 +19,10 @@
 
 @end
 
-@implementation BNDBindingSpecialKeyPathsHandler
+@implementation BNDSpecialKeyPathHandler
 
 + (void)handleSpecialKeyPathsForBinding:(BNDBinding *)binding {
-    for (NSString *specialKeyPath in [BNDBindingSpecialKeyPathsHandler specialKeyPaths]) {
+    for (NSString *specialKeyPath in [BNDSpecialKeyPathHandler specialKeyPaths]) {
         if ([binding.leftKeyPath rangeOfString:specialKeyPath].location != NSNotFound) {
             id handler = [self objectForObject:binding.leftObject
                                        keyPath:binding.leftKeyPath];
