@@ -9,14 +9,19 @@
 /* Begin PBXBuildFile section */
 		4FBE8B724116D8132EE1FAF1 /* libPods-BINDPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */; };
 		55290459611DCEE44A0045FE /* libPods-BINDPluginTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */; };
-		960CBE1C1A21D95100055CDA /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE0F1A21D95100055CDA /* DDXMLElementAdditions.m */; };
-		960CBE1D1A21D95100055CDA /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE121A21D95100055CDA /* NSString+DDXML.m */; };
-		960CBE1E1A21D95100055CDA /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE151A21D95100055CDA /* DDXMLDocument.m */; };
-		960CBE1F1A21D95100055CDA /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE171A21D95100055CDA /* DDXMLElement.m */; };
-		960CBE201A21D95100055CDA /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE191A21D95100055CDA /* DDXMLNode.m */; };
 		960CBE221A21D96B00055CDA /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 960CBE211A21D96B00055CDA /* libxml2.2.dylib */; };
 		960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */; };
 		960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */; };
+		960CBE341A2200BD00055CDA /* BNDInterfaceBuilderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */; };
+		960CBE3A1A222FEA00055CDA /* Empty.xib in Copy Test Files */ = {isa = PBXBuildFile; fileRef = 960CBE321A21F96A00055CDA /* Empty.xib */; };
+		960CBE3B1A222FEA00055CDA /* ViewController.xib in Copy Test Files */ = {isa = PBXBuildFile; fileRef = 960CBE371A22266100055CDA /* ViewController.xib */; };
+		960CBE3C1A222FEA00055CDA /* ViewControllerWithBinding.xib in Copy Test Files */ = {isa = PBXBuildFile; fileRef = 960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */; };
+		960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */; };
+		960CBE441A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */; };
+		960CBE471A22526A00055CDA /* BNDBindingDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE461A22526A00055CDA /* BNDBindingDefinition.m */; };
+		960CBE481A22526A00055CDA /* BNDBindingDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE461A22526A00055CDA /* BNDBindingDefinition.m */; };
+		960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */; };
+		960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */; };
 		9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9271A20A60A005A06CB /* AppKit.framework */; };
 		9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9291A20A60A005A06CB /* Foundation.framework */; };
 		9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */; };
@@ -30,24 +35,38 @@
 		9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9611A21C26D005A06CB /* NSString+Extensions.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		960CBE391A222FC600055CDA /* Copy Test Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				960CBE3A1A222FEA00055CDA /* Empty.xib in Copy Test Files */,
+				960CBE3B1A222FEA00055CDA /* ViewController.xib in Copy Test Files */,
+				960CBE3C1A222FEA00055CDA /* ViewControllerWithBinding.xib in Copy Test Files */,
+			);
+			name = "Copy Test Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPlugin.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin.debug.xcconfig"; sourceTree = "<group>"; };
-		960CBE0E1A21D95100055CDA /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
-		960CBE0F1A21D95100055CDA /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
-		960CBE111A21D95100055CDA /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
-		960CBE121A21D95100055CDA /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
-		960CBE131A21D95100055CDA /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
-		960CBE141A21D95100055CDA /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
-		960CBE151A21D95100055CDA /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
-		960CBE161A21D95100055CDA /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
-		960CBE171A21D95100055CDA /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
-		960CBE181A21D95100055CDA /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
-		960CBE191A21D95100055CDA /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
-		960CBE1B1A21D95100055CDA /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		960CBE211A21D96B00055CDA /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDInterfaceBuilderParser.h; path = Classes/Model/BNDInterfaceBuilderParser.h; sourceTree = "<group>"; };
 		960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderParser.m; path = Classes/Model/BNDInterfaceBuilderParser.m; sourceTree = "<group>"; };
 		960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderParserSpec.m; path = Classes/Model/BNDInterfaceBuilderParserSpec.m; sourceTree = "<group>"; };
+		960CBE301A21F78200055CDA /* BNDPluginErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDPluginErrors.h; path = Types/BNDPluginErrors.h; sourceTree = "<group>"; };
+		960CBE321A21F96A00055CDA /* Empty.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Empty.xib; path = TestFiles/Empty.xib; sourceTree = "<group>"; };
+		960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewControllerWithBinding.xib; path = TestFiles/ViewControllerWithBinding.xib; sourceTree = "<group>"; };
+		960CBE371A22266100055CDA /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = TestFiles/ViewController.xib; sourceTree = "<group>"; };
+		960CBE411A2250BE00055CDA /* BNDInterfaceBuilderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDInterfaceBuilderWriter.h; path = Classes/Model/BNDInterfaceBuilderWriter.h; sourceTree = "<group>"; };
+		960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderWriter.m; path = Classes/Model/BNDInterfaceBuilderWriter.m; sourceTree = "<group>"; };
+		960CBE451A22526A00055CDA /* BNDBindingDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingDefinition.h; path = Classes/Model/BNDBindingDefinition.h; sourceTree = "<group>"; };
+		960CBE461A22526A00055CDA /* BNDBindingDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinition.m; path = Classes/Model/BNDBindingDefinition.m; sourceTree = "<group>"; };
+		960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionSpec.m; path = Classes/Model/BNDBindingDefinitionSpec.m; sourceTree = "<group>"; };
+		960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderWriterSpec.m; path = Classes/Model/BNDInterfaceBuilderWriterSpec.m; sourceTree = "<group>"; };
 		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -102,52 +121,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		960CBE0C1A21D95100055CDA /* KissXML */ = {
-			isa = PBXGroup;
-			children = (
-				960CBE0D1A21D95100055CDA /* Additions */,
-				960CBE101A21D95100055CDA /* Categories */,
-				960CBE131A21D95100055CDA /* DDXML.h */,
-				960CBE141A21D95100055CDA /* DDXMLDocument.h */,
-				960CBE151A21D95100055CDA /* DDXMLDocument.m */,
-				960CBE161A21D95100055CDA /* DDXMLElement.h */,
-				960CBE171A21D95100055CDA /* DDXMLElement.m */,
-				960CBE181A21D95100055CDA /* DDXMLNode.h */,
-				960CBE191A21D95100055CDA /* DDXMLNode.m */,
-				960CBE1A1A21D95100055CDA /* Private */,
-			);
-			path = KissXML;
-			sourceTree = "<group>";
-		};
-		960CBE0D1A21D95100055CDA /* Additions */ = {
-			isa = PBXGroup;
-			children = (
-				960CBE0E1A21D95100055CDA /* DDXMLElementAdditions.h */,
-				960CBE0F1A21D95100055CDA /* DDXMLElementAdditions.m */,
-			);
-			path = Additions;
-			sourceTree = "<group>";
-		};
-		960CBE101A21D95100055CDA /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				960CBE111A21D95100055CDA /* NSString+DDXML.h */,
-				960CBE121A21D95100055CDA /* NSString+DDXML.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		960CBE1A1A21D95100055CDA /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				960CBE1B1A21D95100055CDA /* DDXMLPrivate.h */,
-			);
-			path = Private;
-			sourceTree = "<group>";
-		};
 		960CBE231A21DA2A00055CDA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				960CBE2F1A21F75D00055CDA /* Types */,
 				960CBE271A21DDC700055CDA /* Model */,
 			);
 			name = Classes;
@@ -158,8 +135,48 @@
 			children = (
 				960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */,
 				960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */,
+				960CBE411A2250BE00055CDA /* BNDInterfaceBuilderWriter.h */,
+				960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */,
+				960CBE451A22526A00055CDA /* BNDBindingDefinition.h */,
+				960CBE461A22526A00055CDA /* BNDBindingDefinition.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		960CBE2D1A21F27300055CDA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE2E1A21F27A00055CDA /* Model */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		960CBE2E1A21F27A00055CDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */,
+				960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */,
+				960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		960CBE2F1A21F75D00055CDA /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE301A21F78200055CDA /* BNDPluginErrors.h */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		960CBE311A21F94700055CDA /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE321A21F96A00055CDA /* Empty.xib */,
+				960CBE371A22266100055CDA /* ViewController.xib */,
+				960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */,
+			);
+			name = TestFiles;
 			sourceTree = "<group>";
 		};
 		9699D91B1A20A60A005A06CB = {
@@ -218,8 +235,9 @@
 		9699D93D1A20A631005A06CB /* BINDPluginTests */ = {
 			isa = PBXGroup;
 			children = (
+				960CBE311A21F94700055CDA /* TestFiles */,
+				960CBE2D1A21F27300055CDA /* Classes */,
 				9699D93E1A20A631005A06CB /* Supporting Files */,
-				960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */,
 			);
 			path = BINDPluginTests;
 			sourceTree = "<group>";
@@ -235,7 +253,6 @@
 		9699D9451A21BF20005A06CB /* External */ = {
 			isa = PBXGroup;
 			children = (
-				960CBE0C1A21D95100055CDA /* KissXML */,
 				9699D95F1A21C26D005A06CB /* Categories */,
 				9699D9461A21BF20005A06CB /* Benoit */,
 				9699D94A1A21BF20005A06CB /* XcodeEditor */,
@@ -330,6 +347,7 @@
 				9699D9391A20A631005A06CB /* Frameworks */,
 				9699D93A1A20A631005A06CB /* Resources */,
 				8AEE98A54BC4BBAD7D15128C /* Copy Pods Resources */,
+				960CBE391A222FC600055CDA /* Copy Test Files */,
 			);
 			buildRules = (
 			);
@@ -462,18 +480,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9699D9591A21BF20005A06CB /* NSString+XCAdditions.m in Sources */,
-				960CBE1E1A21D95100055CDA /* DDXMLDocument.m in Sources */,
+				960CBE471A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
 				9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */,
 				9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */,
-				960CBE201A21D95100055CDA /* DDXMLNode.m in Sources */,
 				9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */,
 				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
+				960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
 				9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */,
 				9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */,
-				960CBE1F1A21D95100055CDA /* DDXMLElement.m in Sources */,
 				9699D9581A21BF20005A06CB /* MHXcodeDocumentNavigator.m in Sources */,
-				960CBE1C1A21D95100055CDA /* DDXMLElementAdditions.m in Sources */,
-				960CBE1D1A21D95100055CDA /* NSString+DDXML.m in Sources */,
 				960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,7 +497,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */,
 				960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */,
+				960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */,
+				960CBE481A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
+				960CBE441A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
+				960CBE341A2200BD00055CDA /* BNDInterfaceBuilderParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +633,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = BINDPluginTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -631,6 +652,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = BINDPluginTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
