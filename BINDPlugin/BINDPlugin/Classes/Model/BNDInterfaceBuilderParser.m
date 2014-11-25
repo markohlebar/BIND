@@ -21,26 +21,22 @@ static NSString * const BNDBindingXpath = @"document/objects/customObject[@custo
 
 @implementation BNDInterfaceBuilderParser
 
-+ (instancetype)parserWithXIBPathURL:(NSURL *)xibPathURL {
-    NSAssert(xibPathURL, @"xibPathURL should not be nil");
-    return [[self alloc] initWithXIBPathURL:xibPathURL];
++ (instancetype)parserWithXIBDocument:(NSXMLDocument *)xibDocument; {
+    NSAssert(xibDocument, @"xibDocument should not be nil");
+    return [[self alloc] initWithXIBDocument:xibDocument];
 }
 
-- (instancetype)initWithXIBPathURL:(NSURL *)xibPathURL {
+- (instancetype)initWithXIBDocument:(NSXMLDocument *)xibDocument {
     self = [super init];
     if (self) {
-        _xibPathURL = xibPathURL.copy;
+        _xibDocument = xibDocument;
     }
     return self;
 }
 
 - (void)parse:(BNDBindingsBlock)bindingsBlock {
     self.bindingsBlock = bindingsBlock;
-    
-    NSXMLDocument *document = [self openXIBDocument];
-    if (document) {
-        [self parseDocument:document];
-    }
+    [self parseDocument:self.xibDocument];
 }
 
 - (void)parseDocument:(NSXMLDocument *)document {
@@ -63,20 +59,6 @@ static NSString * const BNDBindingXpath = @"document/objects/customObject[@custo
         [bindings addObject:binding];
     }
     return bindings.copy;
-}
-
-- (NSXMLDocument *)openXIBDocument {
-    NSError *error = nil;
-
-    self.xibDocument = [[NSXMLDocument alloc] initWithContentsOfURL:self.xibPathURL
-                                                            options:NSXMLNodePreserveAll
-                                                              error:&error];
-    if (error) {
-        self.bindingsBlock(nil, error);
-        return nil;
-    }
-    
-    return self.xibDocument;
 }
 
 - (void)reportNoBindingsError {

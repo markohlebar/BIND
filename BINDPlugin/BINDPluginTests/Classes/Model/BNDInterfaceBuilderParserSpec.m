@@ -21,7 +21,12 @@ describe(@"BNDInterfaceBuilderParser", ^{
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
         NSURL *pathURL = [bundle URLForResource:xibName
                                   withExtension:@"xib"];
-        return [BNDInterfaceBuilderParser parserWithXIBPathURL:pathURL];
+        
+        NSXMLDocument *xibDocument = [[NSXMLDocument alloc] initWithContentsOfURL:pathURL
+                                                                          options:NSXMLNodePreserveAll
+                                                                            error:nil];
+        
+        return [BNDInterfaceBuilderParser parserWithXIBDocument:xibDocument];
     };
     
     context(@"when a xib file has a file owner that has no bindings", ^{
@@ -49,6 +54,8 @@ describe(@"BNDInterfaceBuilderParser", ^{
             [[_bindings should] haveCountOf:1];
         });
     });
+    
+    
 });
 
 SPEC_END

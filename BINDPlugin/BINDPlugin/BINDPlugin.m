@@ -61,11 +61,11 @@ static BINDPlugin *sharedPlugin;
     [alert setMessageText:@"Hello, World"];
     [alert runModal];
     
-    NSURL *fileURL = [[MHXcodeDocumentNavigator currentInterfaceBuilderDocument] fileURL];
-    NSString *string = [NSString stringWithContentsOfURL:fileURL
-                                                encoding:NSUTF8StringEncoding
-                                                   error:nil];
-    
+//    NSURL *fileURL = [[MHXcodeDocumentNavigator currentInterfaceBuilderDocument] fileURL];
+//    NSString *string = [NSString stringWithContentsOfURL:fileURL
+//                                                encoding:NSUTF8StringEncoding
+//                                                   error:nil];
+//    
 }
 
 - (void)dealloc

@@ -7,13 +7,12 @@
 //
 
 #import <AppKit/AppKit.h>
-
-typedef void(^BNDBindingsBlock)(NSArray *bindings, NSError *error);
+#import "BNDPluginTypes.h"
 
 @interface BNDInterfaceBuilderParser : NSObject
-@property (nonatomic, readonly, copy) NSURL *xibPathURL;
+@property (nonatomic, strong, readonly) NSXMLDocument *xibDocument;
 
-+ (instancetype)parserWithXIBPathURL:(NSURL *)xibPathURL;
++ (instancetype)parserWithXIBDocument:(NSXMLDocument *)xibDocument;
 - (void)parse:(BNDBindingsBlock)bindingsBlock;
 
 @end

@@ -67,6 +67,7 @@
 		960CBE461A22526A00055CDA /* BNDBindingDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinition.m; path = Classes/Model/BNDBindingDefinition.m; sourceTree = "<group>"; };
 		960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionSpec.m; path = Classes/Model/BNDBindingDefinitionSpec.m; sourceTree = "<group>"; };
 		960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderWriterSpec.m; path = Classes/Model/BNDInterfaceBuilderWriterSpec.m; sourceTree = "<group>"; };
+		960CBE4D1A23BEB100055CDA /* BNDPluginTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDPluginTypes.h; path = Types/BNDPluginTypes.h; sourceTree = "<group>"; };
 		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -165,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				960CBE301A21F78200055CDA /* BNDPluginErrors.h */,
+				960CBE4D1A23BEB100055CDA /* BNDPluginTypes.h */,
 			);
 			name = Types;
 			sourceTree = "<group>";

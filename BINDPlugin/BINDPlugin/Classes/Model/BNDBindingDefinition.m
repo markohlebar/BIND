@@ -66,4 +66,15 @@ NSString *const BNDBindingDefinitionXMLTemplate = @"\
     return _element;
 }
 
+- (BOOL) isEqual:(BNDBindingDefinition *)object {
+    if (self == object || [self.ID isEqualToString:object.ID]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return self.ID.hash;
+}
+
 @end

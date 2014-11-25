@@ -44,6 +44,24 @@ describe(@"BNDBindingDefinition", ^{
             [[definition.BIND should] equal:@"input"];
         });
     });
+    
+    context(@"when comparing 2 bindings", ^{
+        it(@"should be equal if their ID's match", ^{
+            definition = [BNDBindingDefinition definitionWithID:@"ID"
+                                                           BIND:@"BIND"];
+            BNDBindingDefinition *definition2 = [BNDBindingDefinition definitionWithID:@"ID"
+                                                                                  BIND:@"BIND2"];
+            [[definition should] equal:definition2];
+        });
+        
+        it(@"should be different if their ID's don't match", ^{
+            definition = [BNDBindingDefinition definitionWithID:@"ID"
+                                                           BIND:@"BIND"];
+            BNDBindingDefinition *definition2 = [BNDBindingDefinition definitionWithID:@"ID2"
+                                                                                  BIND:@"BIND2"];
+            [[definition shouldNot] equal:definition2];
+        });
+    });
 });
 
 SPEC_END
