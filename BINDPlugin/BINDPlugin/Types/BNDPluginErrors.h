@@ -13,6 +13,7 @@
 typedef NS_ENUM(NSUInteger, BNDPluginErrorCode) {
     BNDPluginErrorNoError = 0,
     BNDPluginErrorMissingBindingsErrorCode = 1,
+    BNDPluginErrorWriteErrorCode = 2,
 };
 
 static NSString *const BINDPluginErrorDomain = @"BINDPluginErrorDomain";

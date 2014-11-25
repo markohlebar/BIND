@@ -63,7 +63,7 @@ NSString *const BNDBindingDefinitionXMLTemplate = @"\
                                                                      error:nil];
         _element = document.rootElement;
     }
-    return _element;
+    return _element.copy;
 }
 
 - (BOOL) isEqual:(BNDBindingDefinition *)object {

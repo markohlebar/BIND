@@ -9,6 +9,7 @@
 #import <Kiwi/Kiwi.h>
 #import "BNDInterfaceBuilderWriter.h"
 #import "BNDBindingDefinition.h"
+#import "MHImportBusterTestsHelper.h"
 
 
 SPEC_BEGIN(BNDInterfaceBuilderWriterSpec)
@@ -22,7 +23,11 @@ describe(@"BNDInterfaceBuilderWriter", ^{
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
         NSURL *pathURL = [bundle URLForResource:xibName
                                   withExtension:@"xib"];
-        return [BNDInterfaceBuilderWriter writerWithXIBPathURL:pathURL];
+        
+        NSString *tempFilePath = createTempFile([pathURL path]);
+        NSURL *tempFileURL = [NSURL fileURLWithPath:tempFilePath];
+
+        return [BNDInterfaceBuilderWriter writerWithXIBPathURL:tempFileURL];
     };
     
     void (^addBinding)(NSString *) = ^void(NSString *ID){
@@ -37,6 +42,10 @@ describe(@"BNDInterfaceBuilderWriter", ^{
             _bindings = bindings;
             _error = error;
         }];
+    });
+    
+    afterEach(^{
+        deleteFile(writer.xibPathURL.path);
     });
     
     specify(^{
@@ -85,7 +94,8 @@ describe(@"BNDInterfaceBuilderWriter", ^{
         it(@"should write bindings to the same file URL", ^{
             addBinding(@"ID");
             [writer write:nil];
-            BNDInterfaceBuilderWriter *writer2 = writerWithXIBNamed(@"ViewControllerWithBinding");
+            
+            BNDInterfaceBuilderWriter *writer2 = [BNDInterfaceBuilderWriter writerWithXIBPathURL:writer.xibPathURL];
             [writer2 reloadBindings:nil];
             [[writer.bindings should] equal:writer2.bindings];
         });
