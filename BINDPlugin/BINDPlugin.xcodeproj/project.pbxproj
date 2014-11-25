@@ -23,6 +23,7 @@
 		960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */; };
 		960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */; };
 		967776901A246A06002FA187 /* NSString+Files.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677768F1A246A06002FA187 /* NSString+Files.m */; };
+		9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */; };
 		9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9271A20A60A005A06CB /* AppKit.framework */; };
 		9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9291A20A60A005A06CB /* Foundation.framework */; };
 		9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */; };
@@ -72,6 +73,8 @@
 		9677768D1A245F91002FA187 /* MHImportBusterTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHImportBusterTestsHelper.h; sourceTree = "<group>"; };
 		9677768E1A246A06002FA187 /* NSString+Files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Files.h"; sourceTree = "<group>"; };
 		9677768F1A246A06002FA187 /* NSString+Files.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Files.m"; sourceTree = "<group>"; };
+		967776991A25290F002FA187 /* BNDBindingsOutletDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingsOutletDefinition.h; path = Classes/Model/BNDBindingsOutletDefinition.h; sourceTree = "<group>"; };
+		9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingsOutletDefinition.m; path = Classes/Model/BNDBindingsOutletDefinition.m; sourceTree = "<group>"; };
 		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -144,6 +147,8 @@
 				960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */,
 				960CBE451A22526A00055CDA /* BNDBindingDefinition.h */,
 				960CBE461A22526A00055CDA /* BNDBindingDefinition.m */,
+				967776991A25290F002FA187 /* BNDBindingsOutletDefinition.h */,
+				9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 				960CBE471A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
 				9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */,
 				9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */,
+				9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */,
 				9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */,
 				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
 				960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
