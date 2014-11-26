@@ -49,6 +49,7 @@ describe(@"BNDInterfaceBuilderWriter", ^{
     });
     
     specify(^{
+        [[writer.bindingOutlets should] haveCountOf:1];
         [[_bindings should] haveCountOf:1];
         [[_error should] beNil];
     });
@@ -57,11 +58,13 @@ describe(@"BNDInterfaceBuilderWriter", ^{
         it(@"should increase the number of bindings", ^{
             addBinding(@"ID");
             [[writer.bindings should] haveCountOf:2];
+            [[writer.bindingOutlets should] haveCountOf:2];
         });
         
         it(@"should not increase the number of bindings if adding the the same binding", ^{
             addBinding(@"SwF-v5-LSL");
             [[writer.bindings should] haveCountOf:1];
+            [[writer.bindingOutlets should] haveCountOf:1];
         });
     });
     
@@ -71,6 +74,7 @@ describe(@"BNDInterfaceBuilderWriter", ^{
                                                                                  BIND:@"test"];
             [writer removeBinding:definition];
             [[writer.bindings should] haveCountOf:0];
+            [[writer.bindingOutlets should] haveCountOf:0];
         });
     });
 
@@ -78,6 +82,7 @@ describe(@"BNDInterfaceBuilderWriter", ^{
         it(@"bindings count should be 0", ^{
             [writer removeAllBindings];
             [[writer.bindings should] haveCountOf:0];
+            [[writer.bindingOutlets should] haveCountOf:0];
         });
     });
     
@@ -87,6 +92,7 @@ describe(@"BNDInterfaceBuilderWriter", ^{
             BNDInterfaceBuilderWriter *writer2 = writerWithXIBNamed(@"ViewControllerWithBinding");
             [writer2 reloadBindings:nil];
             [[writer.bindings should] equal:writer2.bindings];
+            [[writer.bindingOutlets should] equal:writer2.bindingOutlets];
         });
     });
     
@@ -98,6 +104,7 @@ describe(@"BNDInterfaceBuilderWriter", ^{
             BNDInterfaceBuilderWriter *writer2 = [BNDInterfaceBuilderWriter writerWithXIBPathURL:writer.xibPathURL];
             [writer2 reloadBindings:nil];
             [[writer.bindings should] equal:writer2.bindings];
+            [[writer.bindingOutlets should] equal:writer2.bindingOutlets];
         });
     });
 });

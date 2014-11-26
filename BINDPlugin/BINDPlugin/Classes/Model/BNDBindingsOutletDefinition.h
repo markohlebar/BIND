@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BNDBindingsOutletDefinition : NSObject
+extern NSString * const BNDBindingsOutletDefinitionXMLTemplate;
 
+@interface BNDBindingsOutletDefinition : NSObject
+@property (nonatomic, copy, readonly) NSString *ID;
+@property (nonatomic, copy, readonly) NSString *bindingID;
+@property (nonatomic, readonly) NSXMLElement *element;
+
++ (instancetype)definitionWithElement:(NSXMLElement *)element;
++ (instancetype)definitionWithID:(NSString *)ID
+                       bindingID:(NSString *)bindingID;
 @end

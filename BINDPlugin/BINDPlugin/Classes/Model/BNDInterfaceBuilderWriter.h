@@ -13,6 +13,7 @@
 @interface BNDInterfaceBuilderWriter : NSObject
 @property (nonatomic, copy, readonly) NSURL *xibPathURL;
 @property (nonatomic, strong, readonly) NSArray *bindings;
+@property (nonatomic, strong, readonly) NSArray *bindingOutlets;
 
 + (instancetype)writerWithXIBPathURL:(NSURL *)xibPathURL;
 - (void)reloadBindings:(BNDBindingsBlock)bindingsBlock;

@@ -11,13 +11,17 @@
 #import <Foundation/NSXMLDocument.h>
 #import "BNDBindingDefinition.h"
 #import "BNDPluginErrors.h"
+#import "BNDBindingsOutletDefinition.h"
 
 static NSString * const BNDObjectsXpath = @"document/objects";
+static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeholder[@placeholderIdentifier='IBFilesOwner']";
 
 @interface BNDInterfaceBuilderWriter ()
 @property (nonatomic, strong) BNDInterfaceBuilderParser *parser;
-@property (nonatomic, strong) NSArray *bindings;
-@property (nonatomic, strong) NSMutableArray *additionalBindings;
+
+@property (nonatomic, strong) NSMutableArray *mutableBindings;
+@property (nonatomic, strong) NSMutableArray *mutablebindingOutlets;
+
 @property (nonatomic, strong) NSXMLDocument *xibDocument;
 @end
 
@@ -32,56 +36,74 @@ static NSString * const BNDObjectsXpath = @"document/objects";
     self = [super init];
     if (self) {
         _xibPathURL = xibPathURL.copy;
-        _additionalBindings = [NSMutableArray new];
+        _mutableBindings = [NSMutableArray new];
+        _mutablebindingOutlets = [NSMutableArray new];
     }
     return self;
 }
 
 - (NSArray *)bindings {
-    return [_bindings arrayByAddingObjectsFromArray:self.additionalBindings];
+    return self.mutableBindings.copy;
+}
+
+- (NSArray *)bindingOutlets {
+    return self.mutablebindingOutlets.copy;
 }
 
 - (void)addBinding:(BNDBindingDefinition *)binding {
-    if ([self.bindings containsObject:binding]) {
-        return;
-    }
-    
-    if (![self.additionalBindings containsObject:binding]) {
-        [self.additionalBindings addObject:binding];
+    if (![self.mutableBindings containsObject:binding]) {
+        [self.mutableBindings addObject:binding];
     }
 }
 
 - (void)removeBinding:(BNDBindingDefinition *)binding {
-    [self.additionalBindings removeObject:binding];
-    
-    NSMutableArray *bindings = self.bindings.mutableCopy;
-    [bindings removeObject:binding];
-    
-    self.bindings = bindings.copy;
+    [self.mutableBindings removeObject:binding];
 }
 
 - (void)removeAllBindings {
-    [self.additionalBindings removeAllObjects];
-    self.bindings = [NSArray new];
+    [self.mutableBindings removeAllObjects];
 }
 
 - (void)write:(BNDErrorBlock)errorBlock {
+    [self addBindingsToObjectsElement];
+    
+    NSError *error = [self writeXIBSocument];
+    if (errorBlock) {
+        errorBlock(error);
+    }
+}
+
+- (void)addBindingsToObjectsElement {
     NSXMLElement *objectsElement = self.objectsElement;
     
-    for (BNDBindingDefinition *bindingDefinition in self.additionalBindings) {
-        [objectsElement addChild:bindingDefinition.element];
-    }
-    
-    NSData* xmlData = [self.xibDocument XMLDataWithOptions:NSXMLNodePrettyPrint];
-    if (![xmlData writeToURL:self.xibPathURL atomically:YES]) {
-        if (errorBlock) {
-            __block NSString *errorMessage = [NSString stringWithFormat:@"Could not write to file %@", self.xibPathURL];
-            errorBlock(BINDPluginError(BNDPluginErrorWriteErrorCode, errorMessage));
+    for (BNDBindingDefinition *bindingDefinition in self.mutableBindings) {
+        if (![self element:objectsElement containsObjectWithID:bindingDefinition.ID]) {
+            [objectsElement addChild:bindingDefinition.element];
         }
     }
-    else if (errorBlock) {
-        errorBlock(nil);
+}
+
+- (BOOL)element:(NSXMLElement *)element containsObjectWithID:(NSString *)ID {
+    NSString *xPath = [NSString stringWithFormat:@"*[@id='%@']", ID];
+    NSXMLNode *node = [[element nodesForXPath:xPath
+                                       error:nil] firstObject];
+    return node ? YES : NO;
+}
+
+- (NSXMLElement *)elementWithID:(NSString *)ID {
+    NSString *xPath = [NSString stringWithFormat:@"//*[@id='%@']", ID];
+    NSXMLElement *node = [[self.xibDocument nodesForXPath:xPath
+                                                    error:nil] firstObject];
+    return node;
+}
+
+- (NSError *)writeXIBSocument {
+    NSData* xmlData = [self.xibDocument XMLDataWithOptions:NSXMLNodePrettyPrint];
+    if (![xmlData writeToURL:self.xibPathURL atomically:YES]) {
+        __block NSString *errorMessage = [NSString stringWithFormat:@"Could not write to file %@", self.xibPathURL];
+        return BINDPluginError(BNDPluginErrorWriteErrorCode, errorMessage);
     }
+    return nil;
 }
 
 - (NSXMLElement *)objectsElement {
@@ -108,12 +130,27 @@ static NSString * const BNDObjectsXpath = @"document/objects";
     self.parser = [BNDInterfaceBuilderParser parserWithXIBDocument:document];
     __weak typeof(self) weakSelf = self;
     [self.parser parse:^(NSArray *bindings, NSError *error) {
-        weakSelf.bindings = bindings;
+        weakSelf.mutableBindings = bindings.mutableCopy;
         
         if (bindingsBlock) {
             bindingsBlock(bindings, error);
         }
     }];
+    
+    [self reloadBindingOutlets];
+}
+
+- (void)reloadBindingOutlets {
+    [self.mutablebindingOutlets removeAllObjects];
+    
+    NSXMLElement *fileOwnerElement = [self elementWithID:@"-1"];
+    NSString *xPath = @"connections/outletCollection[@property='bindings']";
+    NSArray *outletElements = [fileOwnerElement nodesForXPath:xPath
+                                               error:nil];
+    for (NSXMLElement *element in outletElements) {
+        BNDBindingsOutletDefinition *definition = [BNDBindingsOutletDefinition definitionWithElement:element];
+        [self.mutablebindingOutlets addObject:definition];
+    }
 }
 
 @end
