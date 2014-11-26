@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BNDBindingDefinition.h"
+#import "BNDBindingsOutletDefinition.h"
 
-@interface BNDInterfaceBuilderIDProvider : NSObject
+@interface BNDBindingDefinitionFactory : NSObject
 @property (nonatomic, strong, readonly) NSXMLDocument *xibDocument;
 
 + (instancetype)providerWithXIBDocument:(NSXMLDocument *)xibDocument;
-- (NSString *)createBindingID;
-- (NSString *)createBindingOutletID;
+- (BNDBindingDefinition *)createBinding;
+- (BNDBindingsOutletDefinition *)createBindingOutletWithBinding:(BNDBindingDefinition *)definition;
 
 @end
