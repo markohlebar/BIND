@@ -13,6 +13,8 @@
 @property (nonatomic, strong, readonly) NSXMLDocument *xibDocument;
 
 + (instancetype)parserWithXIBDocument:(NSXMLDocument *)xibDocument;
+
+//TODO: remove the block and just return the NSArray of stuff.
 - (void)parse:(BNDBindingsBlock)bindingsBlock;
 
 @end

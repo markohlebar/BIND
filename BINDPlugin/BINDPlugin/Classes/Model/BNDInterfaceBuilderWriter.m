@@ -12,16 +12,16 @@
 #import "BNDBindingDefinition.h"
 #import "BNDPluginErrors.h"
 #import "BNDBindingsOutletDefinition.h"
+#import "BNDBindingDefinitionFactory.h"
 
 static NSString * const BNDObjectsXpath = @"document/objects";
-static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeholder[@placeholderIdentifier='IBFilesOwner']";
+static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeholder[@placeholderIdentifier='IBFilesOwner']/connections";
 
 @interface BNDInterfaceBuilderWriter ()
 @property (nonatomic, strong) BNDInterfaceBuilderParser *parser;
-
+@property (nonatomic, strong) BNDBindingDefinitionFactory *definitionFactory;
 @property (nonatomic, strong) NSMutableArray *mutableBindings;
-@property (nonatomic, strong) NSMutableArray *mutablebindingOutlets;
-
+@property (nonatomic, strong) NSMutableArray *mutableBindingOutlets;
 @property (nonatomic, strong) NSXMLDocument *xibDocument;
 @end
 
@@ -37,7 +37,7 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
     if (self) {
         _xibPathURL = xibPathURL.copy;
         _mutableBindings = [NSMutableArray new];
-        _mutablebindingOutlets = [NSMutableArray new];
+        _mutableBindingOutlets = [NSMutableArray new];
     }
     return self;
 }
@@ -47,25 +47,42 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
 }
 
 - (NSArray *)bindingOutlets {
-    return self.mutablebindingOutlets.copy;
+    return self.mutableBindingOutlets.copy;
 }
 
 - (void)addBinding:(BNDBindingDefinition *)binding {
     if (![self.mutableBindings containsObject:binding]) {
         [self.mutableBindings addObject:binding];
+        
+        BNDBindingsOutletDefinition *outlet = [self.definitionFactory createBindingOutletWithBinding:binding];
+
+        if (![self.mutableBindingOutlets containsObject:outlet]) {
+            [self.mutableBindingOutlets addObject:outlet];
+        }
     }
 }
 
 - (void)removeBinding:(BNDBindingDefinition *)binding {
     [self.mutableBindings removeObject:binding];
+    
+    BNDBindingsOutletDefinition *outlet = [self outletForBinding:binding];
+    [self.mutableBindingOutlets removeObject:outlet];
+}
+
+- (BNDBindingsOutletDefinition *)outletForBinding:(BNDBindingDefinition *)binding {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bindingID == %@", binding.ID];
+    NSArray *outlets = [self.bindingOutlets filteredArrayUsingPredicate:predicate];
+    return [outlets firstObject];
 }
 
 - (void)removeAllBindings {
     [self.mutableBindings removeAllObjects];
+    [self.mutableBindingOutlets removeAllObjects];
 }
 
 - (void)write:(BNDErrorBlock)errorBlock {
     [self addBindingsToObjectsElement];
+    [self addBindingOutletsToFileOwnerConnectionsElement];
     
     NSError *error = [self writeXIBSocument];
     if (errorBlock) {
@@ -74,11 +91,21 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
 }
 
 - (void)addBindingsToObjectsElement {
-    NSXMLElement *objectsElement = self.objectsElement;
+    NSXMLElement *objectsElement = [self objectsElement];
     
     for (BNDBindingDefinition *bindingDefinition in self.mutableBindings) {
         if (![self element:objectsElement containsObjectWithID:bindingDefinition.ID]) {
             [objectsElement addChild:bindingDefinition.element];
+        }
+    }
+}
+
+- (void)addBindingOutletsToFileOwnerConnectionsElement {
+    NSXMLElement *connectionsElement = [self fileOwnerConnectionsElement];
+    
+    for (BNDBindingsOutletDefinition *outlet in self.mutableBindingOutlets) {
+        if (![self element:connectionsElement containsObjectWithID:outlet.ID]) {
+            [connectionsElement addChild:outlet.element];
         }
     }
 }
@@ -107,9 +134,15 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
 }
 
 - (NSXMLElement *)objectsElement {
-    NSArray *objectsArray = [self.xibDocument nodesForXPath:BNDObjectsXpath
-                                                      error:nil];
-    return [objectsArray firstObject];
+    NSArray *objects = [self.xibDocument nodesForXPath:BNDObjectsXpath
+                                                 error:nil];
+    return [objects firstObject];
+}
+
+- (NSXMLElement *)fileOwnerConnectionsElement {
+    NSArray *connections = [self.xibDocument nodesForXPath:BNDFileOwnerConnectionsXpath
+                                                     error:nil];
+    return [connections firstObject];
 }
 
 - (NSXMLDocument *)openXIBDocument:(NSError **) error{
@@ -137,11 +170,13 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
         }
     }];
     
+    self.definitionFactory = [BNDBindingDefinitionFactory factoryWithBindings:self.bindings];
+    
     [self reloadBindingOutlets];
 }
 
 - (void)reloadBindingOutlets {
-    [self.mutablebindingOutlets removeAllObjects];
+    [self.mutableBindingOutlets removeAllObjects];
     
     NSXMLElement *fileOwnerElement = [self elementWithID:@"-1"];
     NSString *xPath = @"connections/outletCollection[@property='bindings']";
@@ -149,7 +184,7 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
                                                error:nil];
     for (NSXMLElement *element in outletElements) {
         BNDBindingsOutletDefinition *definition = [BNDBindingsOutletDefinition definitionWithElement:element];
-        [self.mutablebindingOutlets addObject:definition];
+        [self.mutableBindingOutlets addObject:definition];
     }
 }
 
