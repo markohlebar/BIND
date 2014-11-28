@@ -23,6 +23,8 @@
 		960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */; };
 		960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */; };
 		9616D7231A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
+		9616D7621A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */; };
+		9616D7631A2850ED0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
 		967776901A246A06002FA187 /* NSString+Files.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677768F1A246A06002FA187 /* NSString+Files.m */; };
 		9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */; };
 		9677769D1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */; };
@@ -75,6 +77,7 @@
 		960CBE4D1A23BEB100055CDA /* BNDPluginTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDPluginTypes.h; path = Types/BNDPluginTypes.h; sourceTree = "<group>"; };
 		9616D7211A25BC4B0048E4CD /* BNDBindingDefinitionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingDefinitionFactory.h; path = Classes/Model/BNDBindingDefinitionFactory.h; sourceTree = "<group>"; };
 		9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionFactory.m; path = Classes/Model/BNDBindingDefinitionFactory.m; sourceTree = "<group>"; };
+		9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionFactorySpec.m; path = Classes/Model/BNDBindingDefinitionFactorySpec.m; sourceTree = "<group>"; };
 		9677768D1A245F91002FA187 /* MHImportBusterTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHImportBusterTestsHelper.h; sourceTree = "<group>"; };
 		9677768E1A246A06002FA187 /* NSString+Files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Files.h"; sourceTree = "<group>"; };
 		9677768F1A246A06002FA187 /* NSString+Files.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Files.m"; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 				960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */,
 				960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */,
 				9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */,
+				9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -532,7 +536,9 @@
 			files = (
 				960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */,
 				960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */,
+				9616D7631A2850ED0048E4CD /* BNDBindingDefinitionFactory.m in Sources */,
 				960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */,
+				9616D7621A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m in Sources */,
 				960CBE481A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
 				9677769E1A252D5F002FA187 /* BNDBindingsOutletDefinition.m in Sources */,
 				960CBE441A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,

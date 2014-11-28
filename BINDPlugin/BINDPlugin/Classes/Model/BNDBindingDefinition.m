@@ -66,7 +66,7 @@ NSString *const BNDBindingDefinitionXMLTemplate = @"\
     return _element.copy;
 }
 
-- (BOOL) isEqual:(BNDBindingDefinition *)object {
+- (BOOL)isEqual:(BNDBindingDefinition *)object {
     if (self == object || [self.ID isEqualToString:object.ID]) {
         return YES;
     }

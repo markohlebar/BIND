@@ -61,15 +61,17 @@ NSString * const BNDBindingsOutletDefinitionXMLTemplate = @"\
     return _element.copy;
 }
 
-- (BOOL) isEqual:(BNDBindingsOutletDefinition *)object {
-    if (self == object || [self.ID isEqualToString:object.ID]) {
+- (BOOL)isEqual:(BNDBindingsOutletDefinition *)object {
+    if (self == object ||
+        ([self.ID isEqualToString:object.ID] &&
+         [self.bindingID isEqualToString:object.bindingID])) {
         return YES;
     }
     return NO;
 }
 
 - (NSUInteger)hash {
-    return self.ID.hash;
+    return self.ID.hash ^ self.bindingID.hash;
 }
 
 

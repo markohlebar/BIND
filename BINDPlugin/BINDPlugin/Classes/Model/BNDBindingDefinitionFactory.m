@@ -7,38 +7,64 @@
 //
 
 #import "BNDBindingDefinitionFactory.h"
-#import <Foundation/NSXMLNode.h>
+#import "BNDBindingsOutletDefinition.h"
 
-static NSString *BNDBindingIDFormat = @"binding-%d";
-static NSString *BNDBindingOutletIDFormat = @"binding-out-%d";
+NSString * const BNDBindingIDFormat = @"binding-%ld";
+NSString * const BNDBindingOutletIDSuffix = @"out-";
+NSString * const BNDBindingOutletIDFormat = @"out-binding-%d";
+
+@interface BNDBindingDefinitionFactory ()
+@property (nonatomic, strong) NSMutableArray *mutableBindings;
+@end
 
 @implementation BNDBindingDefinitionFactory {
-    NSUInteger _ID;
+    NSInteger _ID;
 }
 
-+ (instancetype)providerWithXIBDocument:(NSXMLDocument *)xibDocument {
-    return [[self alloc] initWithXIBDocument:xibDocument];
++ (instancetype)factoryWithBindings:(NSArray *)bindings {
+    return [[self alloc] initWithBindings:bindings];
 }
 
-- (instancetype)initWithXIBDocument:(NSXMLDocument *)xibDocument {
+- (instancetype)initWithBindings:(NSArray *)bindings {
     self = [super init];
     if (self) {
-        _xibDocument = xibDocument;
         _ID = 0;
+        _mutableBindings = [[NSMutableArray alloc] initWithArray:bindings];
     }
     return self;
 }
 
+- (NSArray *)bindings {
+    return self.mutableBindings.copy;
+}
+
 - (BNDBindingDefinition *)createBinding {
-    return nil;
+    NSString *ID = [self createID];
+    BNDBindingDefinition *binding = [BNDBindingDefinition definitionWithID:ID
+                                                                      BIND:@""];
+    [self.mutableBindings addObject:binding];
+    return binding;
 }
 
 - (BNDBindingsOutletDefinition *)createBindingOutletWithBinding:(BNDBindingDefinition *)definition {
-    return nil;
+    NSString *ID = [NSString stringWithFormat:@"%@%@", BNDBindingOutletIDSuffix, definition.ID];
+    BNDBindingsOutletDefinition *outlet = [BNDBindingsOutletDefinition definitionWithID:ID bindingID:definition.ID];
+    return outlet;
 }
 
-- (NSUInteger)createID {
-    return ++_ID;
+- (NSString *)createID {
+    BOOL isNotUnique = YES;
+    NSString *format = nil;
+    while (isNotUnique) {
+        format = [NSString stringWithFormat:BNDBindingIDFormat, (long)_ID];
+        _ID++;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID = %@", format];
+        NSArray *array = [self.bindings filteredArrayUsingPredicate:predicate];
+        isNotUnique = array.count > 0 ? YES : NO;
+    }
+
+    return format;
 }
 
 - (BOOL)containsNodeWithID:(NSString *)ID {

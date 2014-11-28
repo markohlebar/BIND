@@ -10,10 +10,14 @@
 #import "BNDBindingDefinition.h"
 #import "BNDBindingsOutletDefinition.h"
 
-@interface BNDBindingDefinitionFactory : NSObject
-@property (nonatomic, strong, readonly) NSXMLDocument *xibDocument;
+extern NSString * const BNDBindingIDFormat;
+extern NSString * const BNDBindingOutletIDFormat;
 
-+ (instancetype)providerWithXIBDocument:(NSXMLDocument *)xibDocument;
+@interface BNDBindingDefinitionFactory : NSObject
+@property (nonatomic, strong, readonly) NSArray *bindings;
+
++ (instancetype)factoryWithBindings:(NSArray *)bindings;
+
 - (BNDBindingDefinition *)createBinding;
 - (BNDBindingsOutletDefinition *)createBindingOutletWithBinding:(BNDBindingDefinition *)definition;
 
