@@ -18,7 +18,7 @@
 + (NSString *)currentWorkspacePath;
 
 + (NSDocument *)currentInterfaceBuilderDocument;
-
++ (NSView *)currentInterfaceBuilderCanvasView;
 
 + (NSString *)pathForFrameworkNamed:(NSString *)frameworkName;
 + (XCTarget *)currentTarget;

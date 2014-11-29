@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BNDBindingTypes.h"
 
-@interface BNDBindingDefinition : NSObject
+@interface BNDBindingModel : NSObject
 @property (nonatomic, strong) NSString *leftKeyPath;
 @property (nonatomic, strong) NSString *rightKeyPath;
 @property (nonatomic) BNDBindingDirection direction;
@@ -19,5 +19,5 @@
 @end
 
 @interface BNDParser : NSObject
-+ (BNDBindingDefinition *)parseBIND:(NSString *)BIND;
++ (BNDBindingModel *)parseBIND:(NSString *)BIND;
 @end

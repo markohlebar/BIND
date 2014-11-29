@@ -8,6 +8,7 @@
 
 #import "BINDPlugin.h"
 #import "MHXcodeDocumentNavigator.h"
+#import "BNDBindingListViewController.h"
 
 static BINDPlugin *sharedPlugin;
 
@@ -67,10 +68,12 @@ static BINDPlugin *sharedPlugin;
     }
     else {
         
-        
-        NSString *string = [NSString stringWithContentsOfURL:fileURL
-                                                    encoding:NSUTF8StringEncoding
-                                                       error:nil];
+        NSView *canvasView = [MHXcodeDocumentNavigator currentInterfaceBuilderCanvasView];
+        [BNDBindingListViewController presentInView:canvasView];
+//        
+//        NSString *string = [NSString stringWithContentsOfURL:fileURL
+//                                                    encoding:NSUTF8StringEncoding
+//                                                       error:nil];
     }
 }
 

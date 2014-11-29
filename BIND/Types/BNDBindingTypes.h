@@ -38,4 +38,16 @@ typedef NS_ENUM(BOOL, BNDBindingTransformDirection) {
     BNDBindingTransformDirectionRightToLeft = 1,
 };
 
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+typedef UIViewController _BNDViewController;
+typedef UIView _BNDView;
+typedef UITableViewCell _BNDTableViewCell;
+#elif TARGET_OS_MAC
+#import <Cocoa/Cocoa.h>
+typedef NSViewController _BNDViewController;
+typedef NSView _BNDView;
+typedef NSTableCellView _BNDTableViewCell;
+#endif
+
 #endif

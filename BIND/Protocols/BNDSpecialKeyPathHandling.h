@@ -10,6 +10,8 @@
 
 #if TARGET_OS_IPHONE
 extern NSString *const UIButtonTouchUpInsideKeyPath;
+#elif  TARGET_OS_MAC
+
 #endif
 
 @protocol BNDSpecialKeyPathHandling <NSObject>

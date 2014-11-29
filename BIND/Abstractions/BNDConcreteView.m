@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
 
 #import "BNDConcreteView.h"
 #import "BNDBinding.h"
@@ -27,10 +26,14 @@
 
 BND_VIEW_IMPLEMENTATION(BNDTableViewCell)
 
-BND_VIEW_IMPLEMENTATION(BNDCollectionViewCell)
-
 BND_VIEW_IMPLEMENTATION(BNDView)
 
 BND_VIEW_IMPLEMENTATION(BNDViewController)
+
+#pragma mark - Platform Specific
+
+#if TARGET_OS_IPHONE
+
+BND_VIEW_IMPLEMENTATION(BNDCollectionViewCell)
 
 #endif

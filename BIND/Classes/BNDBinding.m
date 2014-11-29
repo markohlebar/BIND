@@ -50,7 +50,7 @@
 - (void)setBIND:(NSString *)BIND {
     _BIND = BIND;
 
-    BNDBindingDefinition *definition = [BNDParser parseBIND:_BIND];
+    BNDBindingModel *definition = [BNDParser parseBIND:_BIND];
     [self setDefinition:definition];
     
     if (self.leftObject && self.rightObject) {
@@ -58,7 +58,7 @@
     }
 }
 
-- (void)setDefinition:(BNDBindingDefinition *)definition {
+- (void)setDefinition:(BNDBindingModel *)definition {
     self.leftKeyPath = definition.leftKeyPath;
     self.rightKeyPath = definition.rightKeyPath;
     self.direction = definition.direction;

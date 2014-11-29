@@ -34,6 +34,7 @@
 		9680C93E19FECAB700DFE38A /* BNDConcreteView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */; };
 		9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93919FEC8B000DFE38A /* BNDView.h */; };
 		9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93819FEC88500DFE38A /* BNDViewModel.h */; };
+		96AE6D101A2A1F48004C32DC /* NSTableView+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */; };
 		9C37D1A17AF93F723E9F6189 /* libPods-BINDAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A97AFB8D67CA29A5E64EDE /* libPods-BINDAppTests.a */; };
 		E0843269784F0422C51F2D50 /* libPods-BINDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17ECF80E253441EC3E95DDC9 /* libPods-BINDTests.a */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,8 @@
 		9680C93919FEC8B000DFE38A /* BNDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDView.h; path = Protocols/BNDView.h; sourceTree = "<group>"; };
 		9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDConcreteView.h; path = Abstractions/BNDConcreteView.h; sourceTree = "<group>"; };
 		9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDConcreteView.m; path = Abstractions/BNDConcreteView.m; sourceTree = "<group>"; };
+		96AE6D0E1A2A1F48004C32DC /* NSTableView+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTableView+BNDBinding.h"; path = "Categories/NSTableView+BNDBinding.h"; sourceTree = "<group>"; };
+		96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTableView+BNDBinding.m"; path = "Categories/NSTableView+BNDBinding.m"; sourceTree = "<group>"; };
 		96F74BD91A166C970099110A /* BNDDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDDataController.h; path = Protocols/BNDDataController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +185,8 @@
 			children = (
 				960193A91A1E697600059F90 /* UIButton+BNDBinding.h */,
 				960193AA1A1E697600059F90 /* UIButton+BNDBinding.m */,
+				96AE6D0E1A2A1F48004C32DC /* NSTableView+BNDBinding.h */,
+				96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -640,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960194081A2045CE00059F90 /* BNDParser.m in Sources */,
+				96AE6D101A2A1F48004C32DC /* NSTableView+BNDBinding.m in Sources */,
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
 				960193AB1A1E697600059F90 /* UIButton+BNDBinding.m in Sources */,

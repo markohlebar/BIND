@@ -67,6 +67,14 @@ static NSString * const MHXCUserStatePathFormat = @"xcuserdata/%@.xcuserdatad/Us
     return nil;
 }
 
++ (NSView *)currentInterfaceBuilderCanvasView {
+    id currentEditor = [MHXcodeDocumentNavigator currentEditor];
+    if ([currentEditor isKindOfClass:NSClassFromString(@"IBDocumentEditor")]) {
+        return [currentEditor performSelector:@selector(canvasView)];
+    }
+    return nil;
+}
+
 + (NSTextView *)currentSourceCodeTextView {
     id currentEditor = [MHXcodeDocumentNavigator currentEditor];
     if ([currentEditor isKindOfClass:NSClassFromString(@"IDESourceCodeEditor")]) {
