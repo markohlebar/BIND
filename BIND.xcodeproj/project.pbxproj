@@ -115,6 +115,7 @@
 		960194091A2045E900059F90 /* BNDSpecialKeyPathHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDSpecialKeyPathHandler.h; path = Private/BNDSpecialKeyPathHandler.h; sourceTree = "<group>"; };
 		9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDSpecialKeyPathHandler.m; path = Private/BNDSpecialKeyPathHandler.m; sourceTree = "<group>"; };
 		9601940C1A204C4C00059F90 /* BNDParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDParserTest.m; sourceTree = "<group>"; };
+		9616D7651A29E26D0048E4CD /* BIND-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BIND-PrefixHeader.pch"; sourceTree = SOURCE_ROOT; };
 		967381A81A02C56C00D1C608 /* BNDBindingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingTest.m; sourceTree = "<group>"; };
 		967381AA1A02C61800D1C608 /* BNDTestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDTestObjects.h; sourceTree = "<group>"; };
 		967381AB1A02C61800D1C608 /* BNDTestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDTestObjects.m; sourceTree = "<group>"; };
@@ -310,6 +311,7 @@
 		9680C90D19FEBBB500DFE38A /* BIND */ = {
 			isa = PBXGroup;
 			children = (
+				9616D7651A29E26D0048E4CD /* BIND-PrefixHeader.pch */,
 				960194051A20459900059F90 /* Private */,
 				960194031A1FCC3800059F90 /* Types */,
 				960193A81A1E692500059F90 /* Categories */,
@@ -841,6 +843,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				GCC_PREFIX_HEADER = "BIND-PrefixHeader.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -852,6 +855,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				GCC_PREFIX_HEADER = "BIND-PrefixHeader.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

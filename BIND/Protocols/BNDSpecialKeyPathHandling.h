@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#if TARGET_OS_IPHONE
 extern NSString *const UIButtonTouchUpInsideKeyPath;
+#endif
 
 @protocol BNDSpecialKeyPathHandling <NSObject>
 

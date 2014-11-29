@@ -46,7 +46,7 @@ static BINDPlugin *sharedPlugin;
         NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
         if (menuItem) {
             [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""];
+            NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"BIND" action:@selector(doMenuAction) keyEquivalent:@""];
             [actionMenuItem setTarget:self];
             [[menuItem submenu] addItem:actionMenuItem];
         }
@@ -55,17 +55,23 @@ static BINDPlugin *sharedPlugin;
 }
 
 // Sample Action, for menu item:
-- (void)doMenuAction
-{
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"Hello, World"];
-    [alert runModal];
+- (void)doMenuAction {
+    NSURL *fileURL = [[MHXcodeDocumentNavigator currentInterfaceBuilderDocument] fileURL];
     
-//    NSURL *fileURL = [[MHXcodeDocumentNavigator currentInterfaceBuilderDocument] fileURL];
-//    NSString *string = [NSString stringWithContentsOfURL:fileURL
-//                                                encoding:NSUTF8StringEncoding
-//                                                   error:nil];
-//    
+    if (!fileURL) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert setMessageText:@"No XIB file selected."];
+        [alert setInformativeText:@"Please select a XIB file you want to add bindings to."];
+        [alert runModal];
+    }
+    else {
+        
+        
+        NSString *string = [NSString stringWithContentsOfURL:fileURL
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:nil];
+    }
 }
 
 - (void)dealloc
