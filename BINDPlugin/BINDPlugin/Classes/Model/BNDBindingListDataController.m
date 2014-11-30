@@ -14,7 +14,8 @@
 - (void)updateWithContext:(id)context
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler {
     BNDBindingListViewModel *viewModel = [BNDBindingListViewModel viewModelWithModel:nil];
-    viewModelsHandler(viewModel, nil);
+    
+    viewModelsHandler(@[viewModel], nil);
 }
 
 @end

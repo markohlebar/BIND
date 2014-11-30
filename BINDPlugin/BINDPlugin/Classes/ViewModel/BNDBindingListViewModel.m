@@ -11,7 +11,15 @@
 @implementation BNDBindingListViewModel
 
 + (instancetype)viewModelWithModel:(id)model {
-    return [[self alloc] init];
+    return [[self alloc] initWithModel:model];
+}
+
+- (instancetype)initWithModel:(id)model {
+    self = [super init];
+    if (self) {
+        self.rowViewModels = @[[NSObject new]];
+    }
+    return self;
 }
 
 @end

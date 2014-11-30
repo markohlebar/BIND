@@ -47,6 +47,7 @@
 		96AE6D0A1A2A194A004C32DC /* BNDBindingCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */; };
 		96AE6D0D1A2A198C004C32DC /* BNDBindingListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D0C1A2A198C004C32DC /* BNDBindingListViewModel.m */; };
 		96AE6D2D1A2A265E004C32DC /* BNDBindingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */; };
+		96AE6D4F1A2B2602004C32DC /* libBIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +128,7 @@
 		96AE6D0B1A2A198C004C32DC /* BNDBindingListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListViewModel.h; path = Classes/ViewModel/BNDBindingListViewModel.h; sourceTree = "<group>"; };
 		96AE6D0C1A2A198C004C32DC /* BNDBindingListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListViewModel.m; path = Classes/ViewModel/BNDBindingListViewModel.m; sourceTree = "<group>"; };
 		96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingCellView.xib; path = Classes/View/BNDBindingCellView.xib; sourceTree = "<group>"; };
+		96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBIND-OSX.a"; path = "../build/Debug/libBIND-OSX.a"; sourceTree = "<group>"; };
 		A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDPlugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				960CBE221A21D96B00055CDA /* libxml2.2.dylib in Frameworks */,
 				9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */,
 				9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */,
+				96AE6D4F1A2B2602004C32DC /* libBIND-OSX.a in Frameworks */,
 				4FBE8B724116D8132EE1FAF1 /* libPods-BINDPlugin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +263,7 @@
 		9699D9261A20A60A005A06CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */,
 				960CBE211A21D96B00055CDA /* libxml2.2.dylib */,
 				9699D9271A20A60A005A06CB /* AppKit.framework */,
 				9699D9291A20A60A005A06CB /* Foundation.framework */,
@@ -686,9 +690,14 @@
 					"\"${PODS_ROOT}/Headers/Public/Kiwi\"",
 					"\"${PODS_ROOT}/Headers/Public/XcodeEditor\"",
 					"$(SDKROOT)/usr/include/libxml2",
+					"\"$(SRCROOT)/../BIND\"/**",
 				);
 				INFOPLIST_FILE = BINDPlugin/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mhlebar/Documents/GitHub/BIND/build/Debug,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
@@ -707,9 +716,14 @@
 					"\"${PODS_ROOT}/Headers/Public/Kiwi\"",
 					"\"${PODS_ROOT}/Headers/Public/XcodeEditor\"",
 					"$(SDKROOT)/usr/include/libxml2",
+					"\"$(SRCROOT)/../BIND\"/**",
 				);
 				INFOPLIST_FILE = BINDPlugin/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mhlebar/Documents/GitHub/BIND/build/Debug,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;

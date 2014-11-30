@@ -1,21 +1,13 @@
 PODS:
-  - BIND (1.0.2)
   - Kiwi (2.3.1)
   - XcodeEditor (1.6)
 
 DEPENDENCIES:
-  - BIND (from `.`)
   - Kiwi
   - XcodeEditor
 
-EXTERNAL SOURCES:
-  BIND:
-    :branch: xcode_plugin
-    :path: .
-
 SPEC CHECKSUMS:
-  BIND: 85c2566ed95e065e877b657379b757aca72c5bcc
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
   XcodeEditor: 0214318e7bece3c9b1db81d128b84d1decb0dd63
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

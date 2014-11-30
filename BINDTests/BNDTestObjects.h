@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Engine;
 @interface Car : NSObject
 @property (readwrite) float speed;
+@property (strong) Engine *engine;
 @property (nonatomic, copy) NSString *make;
 @end
 

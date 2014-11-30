@@ -11,6 +11,12 @@ target 'BINDTests' do
     pod 'Kiwi'
 end
 
+target 'BIND-OSXTests' do
+    platform :osx, '10.9'
+    xcodeproj 'BIND.xcodeproj'
+    pod 'Kiwi'
+end
+
 target 'BINDAppTests' do
     platform :ios, '7.0'
     xcodeproj 'BIND.xcodeproj'
@@ -21,7 +27,6 @@ target 'BINDPlugin' do
     platform :osx, '10.9'
     xcodeproj 'BINDPlugin/BINDPlugin.xcodeproj'
     pod 'XcodeEditor'
-    pod 'BIND', :path => '.', :branch => 'xcode_plugin'
 end
 
 target 'BINDPluginTests' do

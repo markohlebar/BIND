@@ -6,9 +6,9 @@
 // project.
 
 
-// XcodeEditor
-#define COCOAPODS_POD_AVAILABLE_XcodeEditor
-#define COCOAPODS_VERSION_MAJOR_XcodeEditor 1
-#define COCOAPODS_VERSION_MINOR_XcodeEditor 6
-#define COCOAPODS_VERSION_PATCH_XcodeEditor 0
+// Kiwi
+#define COCOAPODS_POD_AVAILABLE_Kiwi
+#define COCOAPODS_VERSION_MAJOR_Kiwi 2
+#define COCOAPODS_VERSION_MINOR_Kiwi 3
+#define COCOAPODS_VERSION_PATCH_Kiwi 1
 

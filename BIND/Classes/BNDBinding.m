@@ -185,13 +185,13 @@
     [self lock];
     
     id newObject = change[NSKeyValueChangeNewKey];
-    if ([object isEqual:self.leftObject]) {
+    if ([object isEqual:self.leftObject] && [self.leftKeyPath isEqualToString:keyPath]) {
         id transformedObject = [self.valueTransformer performSelector:[self transformSelector]
                                                            withObject:newObject];
         [self.rightObject setValue:transformedObject
                         forKeyPath:self.rightKeyPath];
     }
-    else if ([object isEqual:self.rightObject]) {
+    else if ([object isEqual:self.rightObject] && [self.rightKeyPath isEqualToString:keyPath]) {
         id transformedObject = [self.valueTransformer performSelector:[self reverseTransformSelector]
                                                            withObject:newObject];
         [self.leftObject setValue:transformedObject

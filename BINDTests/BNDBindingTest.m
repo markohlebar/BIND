@@ -260,6 +260,17 @@
 	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception on consecutive unbind calls");
 }
 
+- (void)testBindingSameObjectUpdatesCorrectValue {
+    _car.speed = 100;
+    _car.engine = [Engine new];
+    
+    _binding.BIND = @"speed !-> engine.rpm | !RPMToSpeedTransformer";
+    [_binding bindLeft:_car withRight:_car];
+    
+    _car.speed = 200;
+    XCTAssertTrue(_car.engine.rpm == 20000, @"should update the correct value if binding the same object");
+}
+
 - (void)testBINDPerformance {
 	__block Engine *engine = [Engine new];
 	__block Car *car = [Car new];

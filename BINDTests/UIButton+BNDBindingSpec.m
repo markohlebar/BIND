@@ -31,6 +31,9 @@ describe(@"UIButton+BNDBinding", ^{
     
     context(@"Given a button", ^{
         it(@"Should fire a KVO notification when touched", ^{
+            UIButton *kvoButton = [button valueForKey:@"onTouchUpInside"];
+            [[kvoButton should] equal:button];
+            
             [[observer should]receive:@selector(observeValueForKeyPath:ofObject:change:context:)
                         withArguments:@"onTouchUpInside", button, any(), any(), nil];
             

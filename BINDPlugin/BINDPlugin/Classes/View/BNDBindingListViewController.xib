@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNDBindingListViewController">
             <connections>
+                <outlet property="dataController" destination="KCy-5L-mg9" id="1To-Ne-pch"/>
                 <outlet property="tableView" destination="b8A-WY-VcE" id="hLe-33-8V3"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -23,7 +24,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="b8A-WY-VcE">
-                                <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,5 +84,6 @@
             </constraints>
             <point key="canvasLocation" x="433" y="152"/>
         </customView>
+        <customObject id="KCy-5L-mg9" customClass="BNDBindingListDataController"/>
     </objects>
 </document>

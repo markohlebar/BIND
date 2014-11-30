@@ -7,31 +7,32 @@
 //
 
 #import "BNDBindingListViewController.h"
+#import "NSTableView+BNDBinding.h"
+#import "BNDBindingCellView.h"
 
-@interface BNDBindingListViewController ()
+@interface BNDBindingListViewController () <NSTableViewDataSource, NSTableViewDelegate>
 @property (weak) IBOutlet NSTableView *tableView;
+@property (nonatomic, strong) BNDBinding *reloadDataBinding;
 @end
 
 @implementation BNDBindingListViewController
 
-static NSPopover *_popover;
+static NSPanel *_panel;
 
 + (instancetype)presentInView:(NSView *)view {
-    if (_popover.isShown) {
-        [_popover close];
-        _popover = nil;
-    }
+    _panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 400, 400)
+                                        styleMask:NSClosableWindowMask
+                                          backing:NSBackingStoreRetained
+                                            defer:NO];
     
     BNDBindingListViewController *contentViewController = [[BNDBindingListViewController alloc] initWithNibName:nil bundle:[NSBundle bundleForClass:self]];
     
-    _popover = [[NSPopover alloc] init];
-    _popover.behavior = NSPopoverBehaviorTransient;
-    _popover.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
-    _popover.animates = NO;
-    _popover.contentViewController = contentViewController;
-    [_popover showRelativeToRect:NSMakeRect(0, 0, 50, 50)
-                         ofView:view
-                  preferredEdge:NSMinYEdge];
+    [_panel setContentViewController:contentViewController];
+    
+    [[NSApp keyWindow] beginSheet:_panel
+                completionHandler:^(NSModalResponse returnCode) {
+                    
+                }];
     
     return contentViewController;
 }
@@ -40,20 +41,41 @@ static NSPopover *_popover;
     [super viewDidLoad];
     // Do view setup here.
     [self loadBindings];
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSNib *nib = [[NSNib alloc] initWithNibNamed:@"BNDBindingCellView"
+                                          bundle:bundle];
+    [self.tableView registerNib:nib
+                  forIdentifier:@"Cell"];
 }
 
 - (void)viewWillAppear {
     [self.dataController updateWithContext:nil
                          viewModelsHandler:^(NSArray *viewModels, NSError *error) {
                              self.viewModel = [viewModels firstObject];
-     }];
+                         }];
 }
 
-- (void)loadBindings {
-    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel -> reloadData"];
-    [binding bindLeft:self.viewModel
-            withRight:self.tableView];
-    self.bindings = [NSArray arrayWithObject:binding];
+- (void)loadBindings {    
+    self.reloadDataBinding = [BNDBinding bindingWithBIND:@"viewModel !-> tableView.onReloadData"];
+    [self.reloadDataBinding bindLeft:self
+                           withRight:self];
+}
+
+- (void)dealloc {
+    [self.reloadDataBinding unbind];
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    id <BNDTableSectionViewModel> viewModel = (id <BNDTableSectionViewModel>)self.viewModel;
+    return viewModel.rowViewModels.count;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+                  row:(NSInteger)row {
+    id view = [tableView makeViewWithIdentifier:@"Cell" owner:self];
+    return view;
 }
 
 @end

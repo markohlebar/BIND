@@ -68,17 +68,13 @@ static BINDPlugin *sharedPlugin;
     }
     else {
         
+        
         NSView *canvasView = [MHXcodeDocumentNavigator currentInterfaceBuilderCanvasView];
         [BNDBindingListViewController presentInView:canvasView];
-//        
-//        NSString *string = [NSString stringWithContentsOfURL:fileURL
-//                                                    encoding:NSUTF8StringEncoding
-//                                                       error:nil];
     }
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
