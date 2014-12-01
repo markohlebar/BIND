@@ -70,7 +70,7 @@ static BINDPlugin *sharedPlugin;
         
         
         NSView *canvasView = [MHXcodeDocumentNavigator currentInterfaceBuilderCanvasView];
-        [BNDBindingListViewController presentInView:canvasView];
+        [BNDBindingListViewController presentWithXIBURL:fileURL];
     }
 }
 

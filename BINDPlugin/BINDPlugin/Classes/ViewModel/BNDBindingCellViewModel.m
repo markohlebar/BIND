@@ -7,7 +7,36 @@
 //
 
 #import "BNDBindingCellViewModel.h"
+#import "BNDBindingDefinition.h"
+
+@interface BNDBindingCellViewModel ()
+@property (nonatomic, strong) BNDBindingDefinition *binding;
+@end
 
 @implementation BNDBindingCellViewModel
+
++ (instancetype)viewModelWithModel:(BNDBindingDefinition *)model {
+    return [[self alloc] initWithModel:model];
+}
+
+- (instancetype)initWithModel:(BNDBindingDefinition *)model {
+    self = [super init];
+    if (self) {
+        _binding = model;
+    }
+    return self;
+}
+
+- (void)setBIND:(NSString *)BIND {
+    _binding.BIND = BIND;
+}
+
+- (NSString *)BIND {
+    return _binding.BIND;
+}
+
+- (void)dealloc {
+    
+}
 
 @end

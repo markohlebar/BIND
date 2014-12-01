@@ -18,8 +18,8 @@ describe(@"NSTableView+BNDBinding", ^{
         tableView = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 0, 100, 200)];
     });
     
-    context(@"when a NSTextView is created", ^{
-        it(@"should be KVO compliant ", ^{
+    context(@"when a NSTableView is created", ^{
+        it(@"should be KVO compliant for onReloadData", ^{
             NSTableView *returnTableView = [tableView valueForKey:@"onReloadData"];
             [[returnTableView should] equal:tableView];
             

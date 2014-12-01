@@ -8,13 +8,23 @@
 
 #import "BNDBindingListDataController.h"
 #import "BNDBindingListViewModel.h"
+#import "BNDInterfaceBuilderWriter.h"
+#import "BNDBindingDefinitionFactory.h"
 
-@implementation BNDBindingListDataController
+@implementation BNDBindingListDataController {
+    BNDInterfaceBuilderWriter *_bindingWriter;
+    BNDBindingDefinitionFactory *_bindingFactory;
+}
 
-- (void)updateWithContext:(id)context
+- (void)updateWithContext:(NSURL *)xibURL
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler {
-    BNDBindingListViewModel *viewModel = [BNDBindingListViewModel viewModelWithModel:nil];
     
+    _bindingWriter = [BNDInterfaceBuilderWriter writerWithXIBPathURL:xibURL];
+    [_bindingWriter reloadBindings:nil];
+    
+    _bindingFactory = [BNDBindingDefinitionFactory factoryWithBindings:_bindingWriter.bindings];
+    
+    BNDBindingListViewModel *viewModel = [BNDBindingListViewModel viewModelWithModel:_bindingWriter.bindings];
     viewModelsHandler(@[viewModel], nil);
 }
 

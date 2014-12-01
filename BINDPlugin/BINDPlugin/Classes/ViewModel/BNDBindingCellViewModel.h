@@ -10,5 +10,5 @@
 #import "BIND.h"
 
 @interface BNDBindingCellViewModel : NSObject <BNDTableViewModel>
-
+@property (nonatomic, copy) NSString *BIND;
 @end

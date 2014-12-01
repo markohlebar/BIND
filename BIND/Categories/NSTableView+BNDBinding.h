@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#if TARGET_OS_MAC
-
 #import <Cocoa/Cocoa.h>
 #import "BNDSpecialKeyPathHandling.h"
 
@@ -18,5 +16,3 @@ extern NSString *const NSTableViewReloadDataKeyPath;
 @property (nonatomic) NSTableView *onReloadData;
 
 @end
-
-#endif

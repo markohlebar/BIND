@@ -7,13 +7,25 @@
 //
 
 #import "BNDBindingCellView.h"
+#import "BIND.h"
+
+@interface BNDBindingCellView ()
+@property (weak) IBOutlet NSTextField *textField;
+@end
 
 @implementation BNDBindingCellView
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
+- (void)awakeFromNib {
+    [self loadBindings];
+}
+
+- (void)loadBindings {
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel.BIND <> textField.stringValue"];
+    self.bindings = @[binding];
+}
+
+- (void)dealloc {
+    [self.bindings makeObjectsPerformSelector:@selector(unbind)];
 }
 
 @end

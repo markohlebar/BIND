@@ -10,29 +10,31 @@
 #import "NSTableView+BNDBinding.h"
 #import "BNDBindingCellView.h"
 
-@interface BNDBindingListViewController () <NSTableViewDataSource, NSTableViewDelegate>
+@interface BNDBindingListViewController () <NSTableViewDataSource, NSTableViewDelegate, NSPopoverDelegate>
 @property (weak) IBOutlet NSTableView *tableView;
 @property (nonatomic, strong) BNDBinding *reloadDataBinding;
+@property (nonatomic, strong) NSURL *xibURL;
 @end
 
 @implementation BNDBindingListViewController
 
 static NSPanel *_panel;
+static NSPopover *_popover;
 
-+ (instancetype)presentInView:(NSView *)view {
-    _panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 400, 400)
-                                        styleMask:NSClosableWindowMask
-                                          backing:NSBackingStoreRetained
-                                            defer:NO];
-    
++ (instancetype)presentWithXIBURL:(NSURL *)xibURL {
+    NSView *view = [[NSApp keyWindow] contentView];
     BNDBindingListViewController *contentViewController = [[BNDBindingListViewController alloc] initWithNibName:nil bundle:[NSBundle bundleForClass:self]];
+    contentViewController.xibURL = xibURL;
     
-    [_panel setContentViewController:contentViewController];
-    
-    [[NSApp keyWindow] beginSheet:_panel
-                completionHandler:^(NSModalResponse returnCode) {
-                    
-                }];
+    _popover = [[NSPopover alloc] init];
+    _popover.behavior = NSPopoverBehaviorTransient;
+    _popover.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+    _popover.animates = NO;
+    _popover.contentViewController = contentViewController;
+    _popover.delegate = contentViewController;
+    [_popover showRelativeToRect:NSMakeRect(400, 100, 400, 100)
+                          ofView:view
+                   preferredEdge:NSMinYEdge];
     
     return contentViewController;
 }
@@ -50,9 +52,10 @@ static NSPanel *_panel;
 }
 
 - (void)viewWillAppear {
-    [self.dataController updateWithContext:nil
+    __weak typeof(self) weakSelf = self;
+    [self.dataController updateWithContext:self.xibURL
                          viewModelsHandler:^(NSArray *viewModels, NSError *error) {
-                             self.viewModel = [viewModels firstObject];
+                             weakSelf.viewModel = [viewModels firstObject];
                          }];
 }
 
@@ -62,9 +65,7 @@ static NSPanel *_panel;
                            withRight:self];
 }
 
-- (void)dealloc {
-    [self.reloadDataBinding unbind];
-}
+#pragma mark - NSTableViewDelegate / NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     id <BNDTableSectionViewModel> viewModel = (id <BNDTableSectionViewModel>)self.viewModel;
@@ -74,8 +75,35 @@ static NSPanel *_panel;
 - (NSView *)tableView:(NSTableView *)tableView
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row {
-    id view = [tableView makeViewWithIdentifier:@"Cell" owner:self];
+    BNDTableViewCell *view = [tableView makeViewWithIdentifier:@"Cell" owner:self];
+    id <BNDTableSectionViewModel> viewModel = (id <BNDTableSectionViewModel>)self.viewModel;
+    view.viewModel = viewModel.rowViewModels[row];
     return view;
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    return 37;
+}
+
+#pragma mark - NSPopoverDelegate
+
+- (void)popoverDidClose:(NSNotification *)notification {
+    [self.reloadDataBinding unbind];
+    
+    NSRange range = [self.tableView rowsInRect:self.tableView.visibleRect];
+    
+    for (NSInteger row = range.location; row < range.location + range.length; row++) {
+        BNDBindingCellView *cell = [self.tableView viewAtColumn:0
+                                                            row:row
+                                                makeIfNecessary:NO];
+        [cell.bindings makeObjectsPerformSelector:@selector(unbind)];
+    }
+    
+    _popover = nil;
+}
+
+- (void)dealloc {
+    
 }
 
 @end

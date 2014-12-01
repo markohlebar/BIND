@@ -409,6 +409,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9699D9351A20A60A005A06CB /* Build configuration list for PBXNativeTarget "BINDPlugin" */;
 			buildPhases = (
+				969DBB9B1A2B81B500BA6987 /* Build BIND-OSX */,
 				E258F2492257129ABAFD1ADF /* Check Pods Manifest.lock */,
 				9699D9201A20A60A005A06CB /* Sources */,
 				9699D9211A20A60A005A06CB /* Resources */,
@@ -530,6 +531,20 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		969DBB9B1A2B81B500BA6987 /* Build BIND-OSX */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build BIND-OSX";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild test -workspace ../BIND.xcworkspace -scheme BIND-OSX";
+		};
 		E258F2492257129ABAFD1ADF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -644,6 +659,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 			};
 			name = Debug;
 		};
@@ -675,6 +691,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 			};
 			name = Release;
 		};

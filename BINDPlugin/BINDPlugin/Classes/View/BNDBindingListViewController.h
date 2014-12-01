@@ -11,6 +11,6 @@
 
 @interface BNDBindingListViewController : BNDViewController
 
-+ (instancetype)presentInView:(NSView *)view;
++ (instancetype)presentWithXIBURL:(NSURL *)xibURL;
 
 @end

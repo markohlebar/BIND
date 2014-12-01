@@ -17,7 +17,6 @@ NSString *const BNDBindingDefinitionXMLTemplate = @"\
 
 @interface BNDBindingDefinition ()
 @property (nonatomic, copy) NSString *ID;
-@property (nonatomic, copy) NSString *BIND;
 @property (nonatomic) NSXMLElement *element;
 @end
 

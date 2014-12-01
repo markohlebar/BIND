@@ -7,19 +7,34 @@
 //
 
 #import "BNDBindingListViewModel.h"
+#import "BNDBindingDefinition.h"
+#import "BNDBindingCellViewModel.h"
 
 @implementation BNDBindingListViewModel
 
-+ (instancetype)viewModelWithModel:(id)model {
-    return [[self alloc] initWithModel:model];
++ (instancetype)viewModelWithModel:(NSArray *)bindings {
+    return [[self alloc] initWithModel:bindings];
 }
 
-- (instancetype)initWithModel:(id)model {
+- (instancetype)initWithModel:(NSArray *)bindings {
     self = [super init];
     if (self) {
-        self.rowViewModels = @[[NSObject new]];
+        self.rowViewModels = [self createRowViewModelsForBindings:bindings];
     }
     return self;
+}
+
+- (NSArray *)createRowViewModelsForBindings:(NSArray *)bindings {
+    NSMutableArray *viewModels = [NSMutableArray new];
+    for (BNDBindingDefinition *definition in bindings) {
+        BNDBindingCellViewModel *viewModel = [BNDBindingCellViewModel viewModelWithModel:definition];
+        [viewModels addObject:viewModel];
+    }
+    return viewModels.copy;
+}
+
+- (void)dealloc {
+    
 }
 
 @end
