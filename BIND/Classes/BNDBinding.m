@@ -10,6 +10,7 @@
 #import "BNDSpecialKeyPathHandler.h"
 #import "BNDBindingTypes.h"
 #import "BNDParser.h"
+#import <KVOController/FBKVOController.h>
 
 @interface BNDBinding ()
 @property (nonatomic, weak) id leftObject;
@@ -138,18 +139,18 @@
     
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
-        [self.leftObject addObserver:self
-                          forKeyPath:self.leftKeyPath
-                             options:NSKeyValueObservingOptionNew
-                             context:NULL];
+        [[self KVOControllerNonRetaining] observe:self.leftObject
+                                          keyPath:self.leftKeyPath
+                                          options:NSKeyValueObservingOptionNew
+                                          context:NULL];
     }
     
     if (self.direction == BNDBindingDirectionRightToLeft ||
         self.direction == BNDBindingDirectionBoth) {
-        [self.rightObject addObserver:self
-                           forKeyPath:self.rightKeyPath
-                              options:NSKeyValueObservingOptionNew
-                              context:NULL];
+        [[self KVOControllerNonRetaining] observe:self.rightObject
+                                          keyPath:self.rightKeyPath
+                                          options:NSKeyValueObservingOptionNew
+                                          context:NULL];
     }
 }
 
@@ -160,12 +161,14 @@
     
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
-        [self.leftObject removeObserver:self forKeyPath:self.leftKeyPath];
+        [[self KVOControllerNonRetaining] unobserve:self.leftObject
+                                            keyPath:self.leftKeyPath];
     }
     
     if (self.direction == BNDBindingDirectionRightToLeft ||
         self.direction == BNDBindingDirectionBoth) {
-        [self.rightObject removeObserver:self forKeyPath:self.rightKeyPath];
+        [[self KVOControllerNonRetaining] unobserve:self.rightObject
+                                            keyPath:self.rightKeyPath];
     }
 }
 
