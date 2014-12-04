@@ -19,15 +19,13 @@
 @end
 
 @interface TableViewCell : BNDTableViewCell
-- (void)unbind;
+
 @end
 
 @implementation TableViewCell
 
-- (void)unbind {
-    for (BNDBinding *binding in self.bindings) {
-        [binding unbind];
-    }
+- (void)dealloc {
+
 }
 
 @end
@@ -40,7 +38,7 @@ describe(@"BNDTableViewCell", ^{
     __block BNDBinding *binding = nil;
     beforeEach(^{
         cell = [[TableViewCell alloc] init];
-        binding = [BNDBinding bindingWithBIND:@"viewModel.text -> textLabel.text"];
+        binding = [BNDBinding bindingWithBIND:@"text -> textLabel.text"];
         cell.bindings = @[binding];
     });
     
@@ -48,8 +46,6 @@ describe(@"BNDTableViewCell", ^{
         it(@"should bind on view model update", ^{
             ViewModel *viewModel = [ViewModel new];
             cell.viewModel = viewModel;
-            
-//            [cell unbind];
             cell = nil;
         });
     });

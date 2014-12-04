@@ -10,7 +10,6 @@
 #import "BNDSpecialKeyPathHandler.h"
 #import "BNDBindingTypes.h"
 #import "BNDParser.h"
-#import <KVOController/FBKVOController.h>
 
 @interface BNDBinding ()
 @property (nonatomic, weak) id leftObject;
@@ -133,47 +132,56 @@
 }
 
 - (void)setupObservers {
-    if (![self areKeypathsSet]) {
+    if (![self areKeypathsSet] || ![self areObjectsSet]) {
         return;
     }
     
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
-        [[self KVOControllerNonRetaining] observe:self.leftObject
-                                          keyPath:self.leftKeyPath
-                                          options:NSKeyValueObservingOptionNew
-                                          context:NULL];
+        [self.leftObject addObserver:self
+                          forKeyPath:self.leftKeyPath
+                             options:NSKeyValueObservingOptionNew
+                             context:NULL];
     }
     
     if (self.direction == BNDBindingDirectionRightToLeft ||
         self.direction == BNDBindingDirectionBoth) {
-        [[self KVOControllerNonRetaining] observe:self.rightObject
-                                          keyPath:self.rightKeyPath
-                                          options:NSKeyValueObservingOptionNew
-                                          context:NULL];
+        [self.rightObject addObserver:self
+                          forKeyPath:self.rightKeyPath
+                             options:NSKeyValueObservingOptionNew
+                             context:NULL];
     }
 }
 
 - (void)removeObservers {
-    if (![self areKeypathsSet]) {
+    if (![self areKeypathsSet] || ![self areObjectsSet]) {
         return;
     }
     
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
-        [[self KVOControllerNonRetaining] unobserve:self.leftObject
-                                            keyPath:self.leftKeyPath];
+        [self.leftObject removeObserver:self
+                             forKeyPath:self.leftKeyPath
+                                context:NULL];
     }
     
     if (self.direction == BNDBindingDirectionRightToLeft ||
         self.direction == BNDBindingDirectionBoth) {
-        [[self KVOControllerNonRetaining] unobserve:self.rightObject
-                                            keyPath:self.rightKeyPath];
+        [self.rightObject removeObserver:self
+                              forKeyPath:self.rightKeyPath
+                                 context:NULL];
     }
 }
 
+- (BOOL)areObjectsSet {
+    BOOL isLeftObject = _leftObject != nil;
+    BOOL isRightObject = _rightObject != nil;
+    return isLeftObject && isRightObject;
+}
+
 - (BOOL)areKeypathsSet {
-    return self.leftKeyPath != nil && self.rightKeyPath != nil;
+    BOOL areKeypathsSet = _leftKeyPath != nil && _rightKeyPath != nil;
+    return areKeypathsSet;
 }
 
 
