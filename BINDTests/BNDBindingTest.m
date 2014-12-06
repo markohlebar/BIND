@@ -219,9 +219,6 @@
 	XCTAssertTrue(car2.speed == 200, @"car2 speed should be 200");
 	XCTAssertEqual(engine2, _binding.leftObject, @"engine 2 should be the new left object");
 	XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
-
-	//we need to unbind here because the references to car2 and engine2 are lost and we have a crash if we don't.
-	[_binding unbind];
 }
 
 - (void)testBINDTransformDirectionAssignsCorrectly {
@@ -258,6 +255,15 @@
 	[_binding unbind];
 
 	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception on consecutive unbind calls");
+}
+
+- (void)testBindDoesntCrashWhenOneObjectReferenceIsLost {
+    _binding.BIND = @"rpm <> speed";
+    [_binding bindLeft:_engine withRight:_car];
+    
+    _car = nil;
+    
+    XCTAssertNoThrow([_engine setRpm:10000], @"Should not throw an exception on updating values on unbound objects");
 }
 
 - (void)testBindingSameObjectUpdatesCorrectValue {

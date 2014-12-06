@@ -60,9 +60,8 @@ static NSPopover *_popover;
 }
 
 - (void)loadBindings {    
-    self.reloadDataBinding = [BNDBinding bindingWithBIND:@"viewModel !-> tableView.onReloadData"];
-    [self.reloadDataBinding bindLeft:self
-                           withRight:self];
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel -> tableView.onReloadData"];
+    self.bindings = [NSArray arrayWithObject:binding];
 }
 
 #pragma mark - NSTableViewDelegate / NSTableViewDataSource
@@ -85,25 +84,8 @@ static NSPopover *_popover;
     return 37;
 }
 
-#pragma mark - NSPopoverDelegate
-
 - (void)popoverDidClose:(NSNotification *)notification {
-    [self.reloadDataBinding unbind];
-    
-    NSRange range = [self.tableView rowsInRect:self.tableView.visibleRect];
-    
-    for (NSInteger row = range.location; row < range.location + range.length; row++) {
-        BNDBindingCellView *cell = [self.tableView viewAtColumn:0
-                                                            row:row
-                                                makeIfNecessary:NO];
-        [cell.bindings makeObjectsPerformSelector:@selector(unbind)];
-    }
-    
     _popover = nil;
-}
-
-- (void)dealloc {
-    
 }
 
 @end

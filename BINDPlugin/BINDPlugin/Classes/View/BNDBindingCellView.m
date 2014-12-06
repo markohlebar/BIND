@@ -24,8 +24,4 @@
     self.bindings = @[binding];
 }
 
-- (void)dealloc {
-    [self.bindings makeObjectsPerformSelector:@selector(unbind)];
-}
-
 @end

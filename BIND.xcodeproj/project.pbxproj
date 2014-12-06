@@ -38,6 +38,7 @@
 		9680C93E19FECAB700DFE38A /* BNDConcreteView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */; };
 		9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93919FEC8B000DFE38A /* BNDView.h */; };
 		9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93819FEC88500DFE38A /* BNDViewModel.h */; };
+		9691B9BF1A2E5AC70029360A /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9691B9BE1A2E5AC70029360A /* MAKVONotificationCenter.m */; };
 		96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
 		96AE6D4A1A2B25A8004C32DC /* BNDConcreteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */; };
 		96AE6D4B1A2B25B4004C32DC /* NSTableView+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */; };
@@ -154,6 +155,8 @@
 		9680C93919FEC8B000DFE38A /* BNDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDView.h; path = Protocols/BNDView.h; sourceTree = "<group>"; };
 		9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDConcreteView.h; path = Abstractions/BNDConcreteView.h; sourceTree = "<group>"; };
 		9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDConcreteView.m; path = Abstractions/BNDConcreteView.m; sourceTree = "<group>"; };
+		9691B9BD1A2E5AC70029360A /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAKVONotificationCenter.h; path = "../../../Downloads/MAKVONotificationCenter-master/MAKVONotificationCenter.h"; sourceTree = "<group>"; };
+		9691B9BE1A2E5AC70029360A /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAKVONotificationCenter.m; path = "../../../Downloads/MAKVONotificationCenter-master/MAKVONotificationCenter.m"; sourceTree = "<group>"; };
 		96AE6D0E1A2A1F48004C32DC /* NSTableView+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTableView+BNDBinding.h"; path = "Categories/NSTableView+BNDBinding.h"; sourceTree = "<group>"; };
 		96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTableView+BNDBinding.m"; path = "Categories/NSTableView+BNDBinding.m"; sourceTree = "<group>"; };
 		96AE6D321A2B254E004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBIND-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -351,6 +354,8 @@
 		9680C90219FEBBB500DFE38A = {
 			isa = PBXGroup;
 			children = (
+				9691B9BD1A2E5AC70029360A /* MAKVONotificationCenter.h */,
+				9691B9BE1A2E5AC70029360A /* MAKVONotificationCenter.m */,
 				9680C90D19FEBBB500DFE38A /* BIND */,
 				9680C91A19FEBBB500DFE38A /* BINDTests */,
 				9680901F1A2B32CF00EE2C03 /* BIND-OSXTests */,
@@ -811,6 +816,7 @@
 			files = (
 				960194081A2045CE00059F90 /* BNDParser.m in Sources */,
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
+				9691B9BF1A2E5AC70029360A /* MAKVONotificationCenter.m in Sources */,
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
 				960193AB1A1E697600059F90 /* UIButton+BNDBinding.m in Sources */,
 				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
