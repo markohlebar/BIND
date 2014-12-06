@@ -15,6 +15,4 @@
 @property (nonatomic, strong) BNDBindingDefinitionFactory *bindingFactory;
 @property (nonatomic, strong) BNDInterfaceBuilderWriter *bindingWriter;
 
-- (void)createBinding;
-
 @end

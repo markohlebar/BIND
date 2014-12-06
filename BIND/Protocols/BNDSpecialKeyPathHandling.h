@@ -14,6 +14,9 @@ extern NSString *const UIButtonTouchUpInsideKeyPath;
 
 #endif
 
+extern NSString *const BNDTableViewCellTouchUpInsideKeyPath;
+
+
 @protocol BNDSpecialKeyPathHandling <NSObject>
 
 - (void)handleSpecialKeyPath:(NSString *)keyPath;

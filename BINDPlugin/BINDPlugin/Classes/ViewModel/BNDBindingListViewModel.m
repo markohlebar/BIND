@@ -33,7 +33,7 @@
     return viewModels.copy;
 }
 
-- (void)dealloc {
+- (void)setCreateBinding:(id)createBinding {
     
 }
 

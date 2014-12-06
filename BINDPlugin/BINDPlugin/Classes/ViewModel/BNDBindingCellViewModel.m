@@ -35,8 +35,4 @@
     return _binding.BIND;
 }
 
-- (void)dealloc {
-    
-}
-
 @end

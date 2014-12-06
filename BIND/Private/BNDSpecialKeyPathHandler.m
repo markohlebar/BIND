@@ -62,8 +62,10 @@
 + (NSArray *)specialKeyPaths {
     return @[
 #if TARGET_OS_IPHONE
-             UIButtonTouchUpInsideKeyPath
+             UIButtonTouchUpInsideKeyPath,
 #endif
+             BNDTableViewCellTouchUpInsideKeyPath
+             
              ];
 }
 

@@ -25,6 +25,8 @@
 		9616D7231A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
 		9616D7621A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */; };
 		9616D7631A2850ED0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
+		961BE2B01A32DAB40052E168 /* BNDBindingCreateCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */; };
+		961BE2B31A32DADE0052E168 /* BNDBindingCreateCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */; };
 		967776901A246A06002FA187 /* NSString+Files.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677768F1A246A06002FA187 /* NSString+Files.m */; };
 		9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */; };
 		9677769D1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */; };
@@ -40,6 +42,7 @@
 		9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9551A21BF20005A06CB /* XCBuildSettings.m */; };
 		9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9571A21BF20005A06CB /* XCWorkspace.m */; };
 		9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9611A21C26D005A06CB /* NSString+Extensions.m */; };
+		969AE2E31A32EA610058752F /* BNDBindingCreateCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969AE2E21A32EA610058752F /* BNDBindingCreateCellView.xib */; };
 		96AE6CFF1A29EE76004C32DC /* BNDBindingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6CFD1A29EE76004C32DC /* BNDBindingListViewController.m */; };
 		96AE6D001A29EE76004C32DC /* BNDBindingListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AE6CFE1A29EE76004C32DC /* BNDBindingListViewController.xib */; };
 		96AE6D031A29F78A004C32DC /* BNDBindingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D021A29F78A004C32DC /* BNDBindingCellView.m */; };
@@ -86,6 +89,10 @@
 		9616D7211A25BC4B0048E4CD /* BNDBindingDefinitionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingDefinitionFactory.h; path = Classes/Model/BNDBindingDefinitionFactory.h; sourceTree = "<group>"; };
 		9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionFactory.m; path = Classes/Model/BNDBindingDefinitionFactory.m; sourceTree = "<group>"; };
 		9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionFactorySpec.m; path = Classes/Model/BNDBindingDefinitionFactorySpec.m; sourceTree = "<group>"; };
+		961BE2AE1A32DAB40052E168 /* BNDBindingCreateCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCreateCellViewModel.h; path = Classes/ViewModel/BNDBindingCreateCellViewModel.h; sourceTree = "<group>"; };
+		961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCreateCellViewModel.m; path = Classes/ViewModel/BNDBindingCreateCellViewModel.m; sourceTree = "<group>"; };
+		961BE2B11A32DADE0052E168 /* BNDBindingCreateCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCreateCellView.h; path = Classes/View/BNDBindingCreateCellView.h; sourceTree = "<group>"; };
+		961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCreateCellView.m; path = Classes/View/BNDBindingCreateCellView.m; sourceTree = "<group>"; };
 		9677768D1A245F91002FA187 /* MHImportBusterTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHImportBusterTestsHelper.h; sourceTree = "<group>"; };
 		9677768E1A246A06002FA187 /* NSString+Files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Files.h"; sourceTree = "<group>"; };
 		9677768F1A246A06002FA187 /* NSString+Files.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Files.m"; sourceTree = "<group>"; };
@@ -116,6 +123,7 @@
 		9699D9571A21BF20005A06CB /* XCWorkspace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCWorkspace.m; sourceTree = "<group>"; };
 		9699D9601A21C26D005A06CB /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		9699D9611A21C26D005A06CB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		969AE2E21A32EA610058752F /* BNDBindingCreateCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingCreateCellView.xib; path = Classes/View/BNDBindingCreateCellView.xib; sourceTree = "<group>"; };
 		96AE6CFC1A29EE76004C32DC /* BNDBindingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListViewController.h; path = Classes/View/BNDBindingListViewController.h; sourceTree = "<group>"; };
 		96AE6CFD1A29EE76004C32DC /* BNDBindingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListViewController.m; path = Classes/View/BNDBindingListViewController.m; sourceTree = "<group>"; };
 		96AE6CFE1A29EE76004C32DC /* BNDBindingListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingListViewController.xib; path = Classes/View/BNDBindingListViewController.xib; sourceTree = "<group>"; };
@@ -376,6 +384,9 @@
 				96AE6D011A29F78A004C32DC /* BNDBindingCellView.h */,
 				96AE6D021A29F78A004C32DC /* BNDBindingCellView.m */,
 				96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */,
+				961BE2B11A32DADE0052E168 /* BNDBindingCreateCellView.h */,
+				961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */,
+				969AE2E21A32EA610058752F /* BNDBindingCreateCellView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -387,6 +398,8 @@
 				96AE6D0C1A2A198C004C32DC /* BNDBindingListViewModel.m */,
 				96AE6D081A2A194A004C32DC /* BNDBindingCellViewModel.h */,
 				96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */,
+				961BE2AE1A32DAB40052E168 /* BNDBindingCreateCellViewModel.h */,
+				961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -488,6 +501,7 @@
 				96AE6D001A29EE76004C32DC /* BNDBindingListViewController.xib in Resources */,
 				9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */,
 				96AE6D2D1A2A265E004C32DC /* BNDBindingCellView.xib in Resources */,
+				969AE2E31A32EA610058752F /* BNDBindingCreateCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +607,7 @@
 				9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */,
 				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
 				960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
+				961BE2B01A32DAB40052E168 /* BNDBindingCreateCellViewModel.m in Sources */,
 				96AE6CFF1A29EE76004C32DC /* BNDBindingListViewController.m in Sources */,
 				9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */,
 				9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */,
@@ -600,6 +615,7 @@
 				96AE6D031A29F78A004C32DC /* BNDBindingCellView.m in Sources */,
 				96AE6D0A1A2A194A004C32DC /* BNDBindingCellViewModel.m in Sources */,
 				960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */,
+				961BE2B31A32DADE0052E168 /* BNDBindingCreateCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

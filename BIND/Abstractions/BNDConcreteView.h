@@ -7,7 +7,7 @@
 //
 
 #import "BNDView.h"
-#import "BNDBindingTypes.h"
+#import "BNDMacros.h"
 
 @class BNDBinding;
 

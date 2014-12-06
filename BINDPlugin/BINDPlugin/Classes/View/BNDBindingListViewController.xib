@@ -86,8 +86,9 @@
                 <constraint firstItem="SHd-ua-eW1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="YkQ-59-DBJ"/>
                 <constraint firstItem="SHd-ua-eW1" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="uQW-YX-FoB"/>
             </constraints>
-            <point key="canvasLocation" x="433" y="152"/>
+            <point key="canvasLocation" x="439" y="-45"/>
         </customView>
         <customObject id="KCy-5L-mg9" customClass="BNDBindingListDataController"/>
+        <customObject id="R46-Vz-tSs"/>
     </objects>
 </document>
