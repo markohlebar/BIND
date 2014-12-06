@@ -8,7 +8,7 @@
 
 #import "BNDConcreteView.h"
 #import "BNDSpecialKeyPathHandling.h"
-#import "BNDBindingTypes.h"
+#import "BNDMacros.h"
 
 extern NSString *const BNDTableViewCellTouchUpInsideKeyPath;
 

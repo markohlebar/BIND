@@ -9,8 +9,6 @@
 #ifndef BIND_BNDMacros_h
 #define BIND_BNDMacros_h
 
-<<<<<<< Updated upstream
-=======
 #if TARGET_OS_IPHONE
 
 #import <UIKit/UIKit.h>
@@ -28,6 +26,5 @@
 #define _BNDTableViewCell   NSTableCellView
 
 #endif
->>>>>>> Stashed changes
 
 #endif

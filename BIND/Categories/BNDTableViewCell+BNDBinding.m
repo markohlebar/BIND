@@ -9,7 +9,6 @@
 #import "BNDTableViewCell+BNDBinding.h"
 #import <objc/runtime.h>
 #import "BNDBinding.h"
-#import "BNDBindingTypes.h"
 
 NSString *const BNDTableViewCellTouchUpInsideKeyPath = @"onTouchUpInside";
 const void * BNDTableViewCellTouchUpInsideBindingKey = &BNDTableViewCellTouchUpInsideBindingKey;
