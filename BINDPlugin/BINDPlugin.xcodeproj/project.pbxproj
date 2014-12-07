@@ -1,0 +1,862 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4FBE8B724116D8132EE1FAF1 /* libPods-BINDPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */; };
+		55290459611DCEE44A0045FE /* libPods-BINDPluginTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */; };
+		960CBE221A21D96B00055CDA /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 960CBE211A21D96B00055CDA /* libxml2.2.dylib */; };
+		960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */; };
+		960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */; };
+		960CBE341A2200BD00055CDA /* BNDInterfaceBuilderParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */; };
+		960CBE3A1A222FEA00055CDA /* Empty.xib in Copy Test Files */ = {isa = PBXBuildFile; fileRef = 960CBE321A21F96A00055CDA /* Empty.xib */; };
+		960CBE3B1A222FEA00055CDA /* ViewController.xib in Copy Test Files */ = {isa = PBXBuildFile; fileRef = 960CBE371A22266100055CDA /* ViewController.xib */; };
+		960CBE3C1A222FEA00055CDA /* ViewControllerWithBinding.xib in Copy Test Files */ = {isa = PBXBuildFile; fileRef = 960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */; };
+		960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */; };
+		960CBE441A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */; };
+		960CBE471A22526A00055CDA /* BNDBindingDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE461A22526A00055CDA /* BNDBindingDefinition.m */; };
+		960CBE481A22526A00055CDA /* BNDBindingDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE461A22526A00055CDA /* BNDBindingDefinition.m */; };
+		960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */; };
+		960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */; };
+		9616D7231A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
+		9616D7621A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */; };
+		9616D7631A2850ED0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
+		961BE2B01A32DAB40052E168 /* BNDBindingCreateCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */; };
+		961BE2B31A32DADE0052E168 /* BNDBindingCreateCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */; };
+		9630832F1A34601D00156E68 /* BNDBindingListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */; };
+		967776901A246A06002FA187 /* NSString+Files.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677768F1A246A06002FA187 /* NSString+Files.m */; };
+		9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */; };
+		9677769D1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */; };
+		9677769E1A252D5F002FA187 /* BNDBindingsOutletDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */; };
+		9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9271A20A60A005A06CB /* AppKit.framework */; };
+		9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9699D9291A20A60A005A06CB /* Foundation.framework */; };
+		9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */; };
+		9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9311A20A60A005A06CB /* BINDPlugin.m */; };
+		9699D9581A21BF20005A06CB /* MHXcodeDocumentNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9481A21BF20005A06CB /* MHXcodeDocumentNavigator.m */; };
+		9699D9591A21BF20005A06CB /* NSString+XCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D94D1A21BF20005A06CB /* NSString+XCAdditions.m */; };
+		9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D94F1A21BF20005A06CB /* XCProject+Extensions.m */; };
+		9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9531A21BF20005A06CB /* XCTarget+XCProject.m */; };
+		9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9551A21BF20005A06CB /* XCBuildSettings.m */; };
+		9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9571A21BF20005A06CB /* XCWorkspace.m */; };
+		9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9699D9611A21C26D005A06CB /* NSString+Extensions.m */; };
+		969AE2E31A32EA610058752F /* BNDBindingCreateCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969AE2E21A32EA610058752F /* BNDBindingCreateCellView.xib */; };
+		96AE6CFF1A29EE76004C32DC /* BNDBindingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6CFD1A29EE76004C32DC /* BNDBindingListViewController.m */; };
+		96AE6D001A29EE76004C32DC /* BNDBindingListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AE6CFE1A29EE76004C32DC /* BNDBindingListViewController.xib */; };
+		96AE6D031A29F78A004C32DC /* BNDBindingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D021A29F78A004C32DC /* BNDBindingCellView.m */; };
+		96AE6D061A29FC94004C32DC /* BNDBindingListDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */; };
+		96AE6D0A1A2A194A004C32DC /* BNDBindingCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */; };
+		96AE6D2D1A2A265E004C32DC /* BNDBindingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */; };
+		96AE6D4F1A2B2602004C32DC /* libBIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */; };
+		96E01F9D1A349C4000294550 /* BNDNilToEmptyStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E01F9C1A349C4000294550 /* BNDNilToEmptyStringTransformer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		960CBE391A222FC600055CDA /* Copy Test Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				960CBE3A1A222FEA00055CDA /* Empty.xib in Copy Test Files */,
+				960CBE3B1A222FEA00055CDA /* ViewController.xib in Copy Test Files */,
+				960CBE3C1A222FEA00055CDA /* ViewControllerWithBinding.xib in Copy Test Files */,
+			);
+			name = "Copy Test Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPlugin.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		960CBE211A21D96B00055CDA /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDInterfaceBuilderParser.h; path = Classes/Model/BNDInterfaceBuilderParser.h; sourceTree = "<group>"; };
+		960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderParser.m; path = Classes/Model/BNDInterfaceBuilderParser.m; sourceTree = "<group>"; };
+		960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderParserSpec.m; path = Classes/Model/BNDInterfaceBuilderParserSpec.m; sourceTree = "<group>"; };
+		960CBE301A21F78200055CDA /* BNDPluginErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDPluginErrors.h; path = Types/BNDPluginErrors.h; sourceTree = "<group>"; };
+		960CBE321A21F96A00055CDA /* Empty.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Empty.xib; path = TestFiles/Empty.xib; sourceTree = "<group>"; };
+		960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewControllerWithBinding.xib; path = TestFiles/ViewControllerWithBinding.xib; sourceTree = "<group>"; };
+		960CBE371A22266100055CDA /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = TestFiles/ViewController.xib; sourceTree = "<group>"; };
+		960CBE411A2250BE00055CDA /* BNDInterfaceBuilderWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDInterfaceBuilderWriter.h; path = Classes/Model/BNDInterfaceBuilderWriter.h; sourceTree = "<group>"; };
+		960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderWriter.m; path = Classes/Model/BNDInterfaceBuilderWriter.m; sourceTree = "<group>"; };
+		960CBE451A22526A00055CDA /* BNDBindingDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingDefinition.h; path = Classes/Model/BNDBindingDefinition.h; sourceTree = "<group>"; };
+		960CBE461A22526A00055CDA /* BNDBindingDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinition.m; path = Classes/Model/BNDBindingDefinition.m; sourceTree = "<group>"; };
+		960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionSpec.m; path = Classes/Model/BNDBindingDefinitionSpec.m; sourceTree = "<group>"; };
+		960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDInterfaceBuilderWriterSpec.m; path = Classes/Model/BNDInterfaceBuilderWriterSpec.m; sourceTree = "<group>"; };
+		960CBE4D1A23BEB100055CDA /* BNDPluginTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDPluginTypes.h; path = Types/BNDPluginTypes.h; sourceTree = "<group>"; };
+		9616D7211A25BC4B0048E4CD /* BNDBindingDefinitionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingDefinitionFactory.h; path = Classes/Model/BNDBindingDefinitionFactory.h; sourceTree = "<group>"; };
+		9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionFactory.m; path = Classes/Model/BNDBindingDefinitionFactory.m; sourceTree = "<group>"; };
+		9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingDefinitionFactorySpec.m; path = Classes/Model/BNDBindingDefinitionFactorySpec.m; sourceTree = "<group>"; };
+		961BE2AE1A32DAB40052E168 /* BNDBindingCreateCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCreateCellViewModel.h; path = Classes/ViewModel/BNDBindingCreateCellViewModel.h; sourceTree = "<group>"; };
+		961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCreateCellViewModel.m; path = Classes/ViewModel/BNDBindingCreateCellViewModel.m; sourceTree = "<group>"; };
+		961BE2B11A32DADE0052E168 /* BNDBindingCreateCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCreateCellView.h; path = Classes/View/BNDBindingCreateCellView.h; sourceTree = "<group>"; };
+		961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCreateCellView.m; path = Classes/View/BNDBindingCreateCellView.m; sourceTree = "<group>"; };
+		9630832D1A34601D00156E68 /* BNDBindingListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListViewModel.h; path = Classes/ViewModel/BNDBindingListViewModel.h; sourceTree = "<group>"; };
+		9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListViewModel.m; path = Classes/ViewModel/BNDBindingListViewModel.m; sourceTree = "<group>"; };
+		9677768D1A245F91002FA187 /* MHImportBusterTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHImportBusterTestsHelper.h; sourceTree = "<group>"; };
+		9677768E1A246A06002FA187 /* NSString+Files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Files.h"; sourceTree = "<group>"; };
+		9677768F1A246A06002FA187 /* NSString+Files.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Files.m"; sourceTree = "<group>"; };
+		967776991A25290F002FA187 /* BNDBindingsOutletDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingsOutletDefinition.h; path = Classes/Model/BNDBindingsOutletDefinition.h; sourceTree = "<group>"; };
+		9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingsOutletDefinition.m; path = Classes/Model/BNDBindingsOutletDefinition.m; sourceTree = "<group>"; };
+		9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingsOutletDefinitionSpec.m; path = Classes/Model/BNDBindingsOutletDefinitionSpec.m; sourceTree = "<group>"; };
+		9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		9699D9271A20A60A005A06CB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		9699D9291A20A60A005A06CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		9699D92D1A20A60A005A06CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BINDPlugin.xcscheme; path = BINDPlugin.xcodeproj/xcshareddata/xcschemes/BINDPlugin.xcscheme; sourceTree = SOURCE_ROOT; };
+		9699D9301A20A60A005A06CB /* BINDPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BINDPlugin.h; sourceTree = "<group>"; };
+		9699D9311A20A60A005A06CB /* BINDPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BINDPlugin.m; sourceTree = "<group>"; };
+		9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BINDPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9699D93F1A20A631005A06CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9699D9471A21BF20005A06CB /* MHXcodeDocumentNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHXcodeDocumentNavigator.h; sourceTree = "<group>"; };
+		9699D9481A21BF20005A06CB /* MHXcodeDocumentNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHXcodeDocumentNavigator.m; sourceTree = "<group>"; };
+		9699D9491A21BF20005A06CB /* XCFXcodePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFXcodePrivate.h; sourceTree = "<group>"; };
+		9699D94C1A21BF20005A06CB /* NSString+XCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XCAdditions.h"; sourceTree = "<group>"; };
+		9699D94D1A21BF20005A06CB /* NSString+XCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XCAdditions.m"; sourceTree = "<group>"; };
+		9699D94E1A21BF20005A06CB /* XCProject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCProject+Extensions.h"; sourceTree = "<group>"; };
+		9699D94F1A21BF20005A06CB /* XCProject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCProject+Extensions.m"; sourceTree = "<group>"; };
+		9699D9521A21BF20005A06CB /* XCTarget+XCProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTarget+XCProject.h"; sourceTree = "<group>"; };
+		9699D9531A21BF20005A06CB /* XCTarget+XCProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTarget+XCProject.m"; sourceTree = "<group>"; };
+		9699D9541A21BF20005A06CB /* XCBuildSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCBuildSettings.h; sourceTree = "<group>"; };
+		9699D9551A21BF20005A06CB /* XCBuildSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCBuildSettings.m; sourceTree = "<group>"; };
+		9699D9561A21BF20005A06CB /* XCWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCWorkspace.h; sourceTree = "<group>"; };
+		9699D9571A21BF20005A06CB /* XCWorkspace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCWorkspace.m; sourceTree = "<group>"; };
+		9699D9601A21C26D005A06CB /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		9699D9611A21C26D005A06CB /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		969AE2E21A32EA610058752F /* BNDBindingCreateCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingCreateCellView.xib; path = Classes/View/BNDBindingCreateCellView.xib; sourceTree = "<group>"; };
+		96AE6CFC1A29EE76004C32DC /* BNDBindingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListViewController.h; path = Classes/View/BNDBindingListViewController.h; sourceTree = "<group>"; };
+		96AE6CFD1A29EE76004C32DC /* BNDBindingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListViewController.m; path = Classes/View/BNDBindingListViewController.m; sourceTree = "<group>"; };
+		96AE6CFE1A29EE76004C32DC /* BNDBindingListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingListViewController.xib; path = Classes/View/BNDBindingListViewController.xib; sourceTree = "<group>"; };
+		96AE6D011A29F78A004C32DC /* BNDBindingCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCellView.h; path = Classes/View/BNDBindingCellView.h; sourceTree = "<group>"; };
+		96AE6D021A29F78A004C32DC /* BNDBindingCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCellView.m; path = Classes/View/BNDBindingCellView.m; sourceTree = "<group>"; };
+		96AE6D041A29FC94004C32DC /* BNDBindingListDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListDataController.h; path = Classes/Model/BNDBindingListDataController.h; sourceTree = "<group>"; };
+		96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListDataController.m; path = Classes/Model/BNDBindingListDataController.m; sourceTree = "<group>"; };
+		96AE6D081A2A194A004C32DC /* BNDBindingCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCellViewModel.h; path = Classes/ViewModel/BNDBindingCellViewModel.h; sourceTree = "<group>"; };
+		96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCellViewModel.m; path = Classes/ViewModel/BNDBindingCellViewModel.m; sourceTree = "<group>"; };
+		96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingCellView.xib; path = Classes/View/BNDBindingCellView.xib; sourceTree = "<group>"; };
+		96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBIND-OSX.a"; path = "../build/Debug/libBIND-OSX.a"; sourceTree = "<group>"; };
+		96E01F9B1A349C4000294550 /* BNDNilToEmptyStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDNilToEmptyStringTransformer.h; path = Classes/ViewModel/Transformers/BNDNilToEmptyStringTransformer.h; sourceTree = "<group>"; };
+		96E01F9C1A349C4000294550 /* BNDNilToEmptyStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDNilToEmptyStringTransformer.m; path = Classes/ViewModel/Transformers/BNDNilToEmptyStringTransformer.m; sourceTree = "<group>"; };
+		A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDPlugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		FEC19C255FFAEF307A5386A3 /* Pods-BINDPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPlugin.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDPluginTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9699D9221A20A60A005A06CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				960CBE221A21D96B00055CDA /* libxml2.2.dylib in Frameworks */,
+				9699D9281A20A60A005A06CB /* AppKit.framework in Frameworks */,
+				9699D92A1A20A60A005A06CB /* Foundation.framework in Frameworks */,
+				96AE6D4F1A2B2602004C32DC /* libBIND-OSX.a in Frameworks */,
+				4FBE8B724116D8132EE1FAF1 /* libPods-BINDPlugin.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9699D9391A20A631005A06CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55290459611DCEE44A0045FE /* libPods-BINDPluginTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		960CBE231A21DA2A00055CDA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE2F1A21F75D00055CDA /* Types */,
+				960CBE271A21DDC700055CDA /* Model */,
+				96AE6CF81A29ED4A004C32DC /* View */,
+				96AE6D071A2A0899004C32DC /* ViewModel */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		960CBE271A21DDC700055CDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9616D7211A25BC4B0048E4CD /* BNDBindingDefinitionFactory.h */,
+				9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */,
+				960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */,
+				960CBE291A21DDF000055CDA /* BNDInterfaceBuilderParser.m */,
+				960CBE411A2250BE00055CDA /* BNDInterfaceBuilderWriter.h */,
+				960CBE421A2250BE00055CDA /* BNDInterfaceBuilderWriter.m */,
+				960CBE451A22526A00055CDA /* BNDBindingDefinition.h */,
+				960CBE461A22526A00055CDA /* BNDBindingDefinition.m */,
+				967776991A25290F002FA187 /* BNDBindingsOutletDefinition.h */,
+				9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		960CBE2D1A21F27300055CDA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE2E1A21F27A00055CDA /* Model */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		960CBE2E1A21F27A00055CDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE2B1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m */,
+				960CBE4B1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m */,
+				960CBE491A2257E000055CDA /* BNDBindingDefinitionSpec.m */,
+				9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */,
+				9616D7611A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		960CBE2F1A21F75D00055CDA /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE301A21F78200055CDA /* BNDPluginErrors.h */,
+				960CBE4D1A23BEB100055CDA /* BNDPluginTypes.h */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		960CBE311A21F94700055CDA /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE321A21F96A00055CDA /* Empty.xib */,
+				960CBE371A22266100055CDA /* ViewController.xib */,
+				960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */,
+			);
+			name = TestFiles;
+			sourceTree = "<group>";
+		};
+		960F97CB1A33999100753B77 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				96AE6D041A29FC94004C32DC /* BNDBindingListDataController.h */,
+				96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */,
+			);
+			name = DataController;
+			sourceTree = "<group>";
+		};
+		9677768C1A245F91002FA187 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9677768E1A246A06002FA187 /* NSString+Files.h */,
+				9677768F1A246A06002FA187 /* NSString+Files.m */,
+				9677768D1A245F91002FA187 /* MHImportBusterTestsHelper.h */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		9699D91B1A20A60A005A06CB = {
+			isa = PBXGroup;
+			children = (
+				9699D9451A21BF20005A06CB /* External */,
+				9699D92B1A20A60A005A06CB /* BINDPlugin */,
+				9699D93D1A20A631005A06CB /* BINDPluginTests */,
+				9699D9261A20A60A005A06CB /* Frameworks */,
+				9699D9251A20A60A005A06CB /* Products */,
+				DCF0329E05D343FD5FB81EB7 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		9699D9251A20A60A005A06CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */,
+				9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9699D9261A20A60A005A06CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */,
+				960CBE211A21D96B00055CDA /* libxml2.2.dylib */,
+				9699D9271A20A60A005A06CB /* AppKit.framework */,
+				9699D9291A20A60A005A06CB /* Foundation.framework */,
+				BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */,
+				FEEC7C57DBD204D78207E910 /* libPods-BINDPluginTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9699D92B1A20A60A005A06CB /* BINDPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				960CBE231A21DA2A00055CDA /* Classes */,
+				9699D9301A20A60A005A06CB /* BINDPlugin.h */,
+				9699D9311A20A60A005A06CB /* BINDPlugin.m */,
+				9699D92C1A20A60A005A06CB /* Supporting Files */,
+			);
+			path = BINDPlugin;
+			sourceTree = "<group>";
+		};
+		9699D92C1A20A60A005A06CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9699D92D1A20A60A005A06CB /* Info.plist */,
+				9699D92E1A20A60A005A06CB /* BINDPlugin.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9699D93D1A20A631005A06CB /* BINDPluginTests */ = {
+			isa = PBXGroup;
+			children = (
+				9677768C1A245F91002FA187 /* External */,
+				960CBE311A21F94700055CDA /* TestFiles */,
+				960CBE2D1A21F27300055CDA /* Classes */,
+				9699D93E1A20A631005A06CB /* Supporting Files */,
+			);
+			path = BINDPluginTests;
+			sourceTree = "<group>";
+		};
+		9699D93E1A20A631005A06CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9699D93F1A20A631005A06CB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9699D9451A21BF20005A06CB /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9699D95F1A21C26D005A06CB /* Categories */,
+				9699D9461A21BF20005A06CB /* Benoit */,
+				9699D94A1A21BF20005A06CB /* XcodeEditor */,
+			);
+			name = External;
+			path = BINDPlugin/External;
+			sourceTree = "<group>";
+		};
+		9699D9461A21BF20005A06CB /* Benoit */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9471A21BF20005A06CB /* MHXcodeDocumentNavigator.h */,
+				9699D9481A21BF20005A06CB /* MHXcodeDocumentNavigator.m */,
+				9699D9491A21BF20005A06CB /* XCFXcodePrivate.h */,
+			);
+			path = Benoit;
+			sourceTree = "<group>";
+		};
+		9699D94A1A21BF20005A06CB /* XcodeEditor */ = {
+			isa = PBXGroup;
+			children = (
+				9699D94B1A21BF20005A06CB /* Categories */,
+				9699D9541A21BF20005A06CB /* XCBuildSettings.h */,
+				9699D9551A21BF20005A06CB /* XCBuildSettings.m */,
+				9699D9561A21BF20005A06CB /* XCWorkspace.h */,
+				9699D9571A21BF20005A06CB /* XCWorkspace.m */,
+			);
+			path = XcodeEditor;
+			sourceTree = "<group>";
+		};
+		9699D94B1A21BF20005A06CB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9699D94C1A21BF20005A06CB /* NSString+XCAdditions.h */,
+				9699D94D1A21BF20005A06CB /* NSString+XCAdditions.m */,
+				9699D94E1A21BF20005A06CB /* XCProject+Extensions.h */,
+				9699D94F1A21BF20005A06CB /* XCProject+Extensions.m */,
+				9699D9521A21BF20005A06CB /* XCTarget+XCProject.h */,
+				9699D9531A21BF20005A06CB /* XCTarget+XCProject.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9699D95F1A21C26D005A06CB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9699D9601A21C26D005A06CB /* NSString+Extensions.h */,
+				9699D9611A21C26D005A06CB /* NSString+Extensions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		96AE6CF81A29ED4A004C32DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				960F97CB1A33999100753B77 /* DataController */,
+				96AE6CFC1A29EE76004C32DC /* BNDBindingListViewController.h */,
+				96AE6CFD1A29EE76004C32DC /* BNDBindingListViewController.m */,
+				96AE6CFE1A29EE76004C32DC /* BNDBindingListViewController.xib */,
+				96AE6D011A29F78A004C32DC /* BNDBindingCellView.h */,
+				96AE6D021A29F78A004C32DC /* BNDBindingCellView.m */,
+				96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */,
+				961BE2B11A32DADE0052E168 /* BNDBindingCreateCellView.h */,
+				961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */,
+				969AE2E21A32EA610058752F /* BNDBindingCreateCellView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		96AE6D071A2A0899004C32DC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				96E01F9A1A349C0E00294550 /* Transformers */,
+				9630832D1A34601D00156E68 /* BNDBindingListViewModel.h */,
+				9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */,
+				96AE6D081A2A194A004C32DC /* BNDBindingCellViewModel.h */,
+				96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */,
+				961BE2AE1A32DAB40052E168 /* BNDBindingCreateCellViewModel.h */,
+				961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		96E01F9A1A349C0E00294550 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				96E01F9B1A349C4000294550 /* BNDNilToEmptyStringTransformer.h */,
+				96E01F9C1A349C4000294550 /* BNDNilToEmptyStringTransformer.m */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		DCF0329E05D343FD5FB81EB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */,
+				FEC19C255FFAEF307A5386A3 /* Pods-BINDPlugin.release.xcconfig */,
+				A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */,
+				E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9699D9231A20A60A005A06CB /* BINDPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9699D9351A20A60A005A06CB /* Build configuration list for PBXNativeTarget "BINDPlugin" */;
+			buildPhases = (
+				969DBB9B1A2B81B500BA6987 /* Build BIND-OSX */,
+				E258F2492257129ABAFD1ADF /* Check Pods Manifest.lock */,
+				9699D9201A20A60A005A06CB /* Sources */,
+				9699D9211A20A60A005A06CB /* Resources */,
+				9699D9221A20A60A005A06CB /* Frameworks */,
+				FD235304C350893E7D761D3C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BINDPlugin;
+			productName = BINDPlugin;
+			productReference = 9699D9241A20A60A005A06CB /* BINDPlugin.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		9699D93B1A20A631005A06CB /* BINDPluginTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9699D9421A20A631005A06CB /* Build configuration list for PBXNativeTarget "BINDPluginTests" */;
+			buildPhases = (
+				10B0B0DC65BB7F290A2A41B4 /* Check Pods Manifest.lock */,
+				9699D9381A20A631005A06CB /* Sources */,
+				9699D9391A20A631005A06CB /* Frameworks */,
+				9699D93A1A20A631005A06CB /* Resources */,
+				8AEE98A54BC4BBAD7D15128C /* Copy Pods Resources */,
+				960CBE391A222FC600055CDA /* Copy Test Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BINDPluginTests;
+			productName = BINDPluginTests;
+			productReference = 9699D93C1A20A631005A06CB /* BINDPluginTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9699D91C1A20A60A005A06CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Marko Hlebar";
+				TargetAttributes = {
+					9699D9231A20A60A005A06CB = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					9699D93B1A20A631005A06CB = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 9699D91F1A20A60A005A06CB /* Build configuration list for PBXProject "BINDPlugin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9699D91B1A20A60A005A06CB;
+			productRefGroup = 9699D9251A20A60A005A06CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9699D9231A20A60A005A06CB /* BINDPlugin */,
+				9699D93B1A20A631005A06CB /* BINDPluginTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9699D9211A20A60A005A06CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96AE6D001A29EE76004C32DC /* BNDBindingListViewController.xib in Resources */,
+				9699D92F1A20A60A005A06CB /* BINDPlugin.xcscheme in Resources */,
+				96AE6D2D1A2A265E004C32DC /* BNDBindingCellView.xib in Resources */,
+				969AE2E31A32EA610058752F /* BNDBindingCreateCellView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9699D93A1A20A631005A06CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10B0B0DC65BB7F290A2A41B4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8AEE98A54BC4BBAD7D15128C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		969DBB9B1A2B81B500BA6987 /* Build BIND-OSX */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build BIND-OSX";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild test -workspace ../BIND.xcworkspace -scheme BIND-OSX";
+		};
+		E258F2492257129ABAFD1ADF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD235304C350893E7D761D3C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-BINDPlugin/Pods-BINDPlugin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9699D9201A20A60A005A06CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9699D9591A21BF20005A06CB /* NSString+XCAdditions.m in Sources */,
+				960CBE471A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
+				96AE6D061A29FC94004C32DC /* BNDBindingListDataController.m in Sources */,
+				9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */,
+				9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */,
+				9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */,
+				9616D7231A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m in Sources */,
+				9630832F1A34601D00156E68 /* BNDBindingListViewModel.m in Sources */,
+				9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */,
+				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
+				960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
+				961BE2B01A32DAB40052E168 /* BNDBindingCreateCellViewModel.m in Sources */,
+				96E01F9D1A349C4000294550 /* BNDNilToEmptyStringTransformer.m in Sources */,
+				96AE6CFF1A29EE76004C32DC /* BNDBindingListViewController.m in Sources */,
+				9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */,
+				9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */,
+				9699D9581A21BF20005A06CB /* MHXcodeDocumentNavigator.m in Sources */,
+				96AE6D031A29F78A004C32DC /* BNDBindingCellView.m in Sources */,
+				96AE6D0A1A2A194A004C32DC /* BNDBindingCellViewModel.m in Sources */,
+				960CBE2A1A21DDF000055CDA /* BNDInterfaceBuilderParser.m in Sources */,
+				961BE2B31A32DADE0052E168 /* BNDBindingCreateCellView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9699D9381A20A631005A06CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				960CBE4A1A2257E000055CDA /* BNDBindingDefinitionSpec.m in Sources */,
+				960CBE2C1A21DE2700055CDA /* BNDInterfaceBuilderParserSpec.m in Sources */,
+				9616D7631A2850ED0048E4CD /* BNDBindingDefinitionFactory.m in Sources */,
+				960CBE4C1A22653300055CDA /* BNDInterfaceBuilderWriterSpec.m in Sources */,
+				9616D7621A284DF20048E4CD /* BNDBindingDefinitionFactorySpec.m in Sources */,
+				960CBE481A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
+				9677769E1A252D5F002FA187 /* BNDBindingsOutletDefinition.m in Sources */,
+				960CBE441A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
+				9677769D1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m in Sources */,
+				960CBE341A2200BD00055CDA /* BNDInterfaceBuilderParser.m in Sources */,
+				967776901A246A06002FA187 /* NSString+Files.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9699D9331A20A60A005A06CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+			};
+			name = Debug;
+		};
+		9699D9341A20A60A005A06CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+			};
+			name = Release;
+		};
+		9699D9361A20A60A005A06CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 718128D5F9F18B0DA3739E9B /* Pods-BINDPlugin.debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/Public/XcodeEditor\"",
+					"$(SDKROOT)/usr/include/libxml2",
+					"\"$(SRCROOT)/../BIND\"/**",
+				);
+				INFOPLIST_FILE = BINDPlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mhlebar/Documents/GitHub/BIND/build/Debug,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		9699D9371A20A60A005A06CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEC19C255FFAEF307A5386A3 /* Pods-BINDPlugin.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/Public/XcodeEditor\"",
+					"$(SDKROOT)/usr/include/libxml2",
+					"\"$(SRCROOT)/../BIND\"/**",
+				);
+				INFOPLIST_FILE = BINDPlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/mhlebar/Documents/GitHub/BIND/build/Debug,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+		9699D9431A20A631005A06CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = BINDPluginTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9699D9441A20A631005A06CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = BINDPluginTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9699D91F1A20A60A005A06CB /* Build configuration list for PBXProject "BINDPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9699D9331A20A60A005A06CB /* Debug */,
+				9699D9341A20A60A005A06CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9699D9351A20A60A005A06CB /* Build configuration list for PBXNativeTarget "BINDPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9699D9361A20A60A005A06CB /* Debug */,
+				9699D9371A20A60A005A06CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9699D9421A20A631005A06CB /* Build configuration list for PBXNativeTarget "BINDPluginTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9699D9431A20A631005A06CB /* Debug */,
+				9699D9441A20A631005A06CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9699D91C1A20A60A005A06CB /* Project object */;
+}

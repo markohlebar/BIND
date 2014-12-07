@@ -18,7 +18,7 @@
 @implementation BNDParserTest
 
 - (void)testBINDKeyPathAssignment {
-    BNDBindingDefinition *definition = [BNDParser parseBIND:@"keyPath1->keyPath2"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1->keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
@@ -77,7 +77,7 @@
 }
 
 - (void)testBINDTransformerFromClass {
-    BNDBindingDefinition *definition = [BNDParser parseBIND:@"keyPath1->keyPath2|RPMToSpeedTransformer"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1->keyPath2|RPMToSpeedTransformer"];
     XCTAssertNotNil(definition.valueTransformer, @"value transformer should not be nil");
     XCTAssertTrue([definition.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be RPMToSpeedTransformer");
 }
@@ -85,13 +85,13 @@
 - (void)testBINDTransformerFromName {
     [NSValueTransformer setValueTransformer:[RPMToSpeedTransformer new]
                                     forName:@"RPMToSpeedTransformerName"];
-    BNDBindingDefinition *definition = [BNDParser parseBIND:@"keyPath1->keyPath2|RPMToSpeedTransformerName"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1->keyPath2|RPMToSpeedTransformerName"];
     XCTAssertNotNil(definition.valueTransformer, @"value transformer should not be nil");
     XCTAssertTrue([definition.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be RPMToSpeedTransformer");
 }
 
 - (void)testBINDTransformDirectionModifierIsAssigned {
-    BNDBindingDefinition *definition = [BNDParser parseBIND:@"rpm -> speed | RPMToSpeedTransformer"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"rpm -> speed | RPMToSpeedTransformer"];
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"Unmodified transform direction should be left to right.");
     
     definition = [BNDParser parseBIND:@"rpm -> speed | !RPMToSpeedTransformer"];

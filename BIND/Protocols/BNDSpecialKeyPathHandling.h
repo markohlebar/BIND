@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const UIButtonTouchUpInsideKeyPath;
+static NSString *const BNDBindingTouchUpInsideKeyPath = @"onTouchUpInside";
 
 @protocol BNDSpecialKeyPathHandling <NSObject>
 

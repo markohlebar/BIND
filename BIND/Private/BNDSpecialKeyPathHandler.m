@@ -61,7 +61,7 @@
 
 + (NSArray *)specialKeyPaths {
     return @[
-             UIButtonTouchUpInsideKeyPath
+             BNDBindingTouchUpInsideKeyPath
              ];
 }
 

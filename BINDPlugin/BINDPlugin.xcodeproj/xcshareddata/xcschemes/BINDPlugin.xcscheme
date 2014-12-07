@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0500"
+   version = "2.0">
+   <BuildAction
+      parallelizeBuildables = "NO"
+      buildImplicitDependencies = "NO">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "959F2957C9AE2280D500D5A2"
+               BuildableName = "libPods-BINDPlugin.a"
+               BlueprintName = "Pods-BINDPlugin"
+               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C63071810B3C0E543A0FA138"
+               BuildableName = "libPods-BINDPluginTests.a"
+               BlueprintName = "Pods-BINDPluginTests"
+               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9699D9231A20A60A005A06CB"
+               BuildableName = "BINDPlugin.xcplugin"
+               BlueprintName = "BINDPlugin"
+               ReferencedContainer = "container:BINDPlugin.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9699D93B1A20A631005A06CB"
+               BuildableName = "BINDPluginTests.xctest"
+               BlueprintName = "BINDPluginTests"
+               ReferencedContainer = "container:BINDPlugin.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9699D93B1A20A631005A06CB"
+               BuildableName = "BINDPluginTests.xctest"
+               BlueprintName = "BINDPluginTests"
+               ReferencedContainer = "container:BINDPlugin.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9699D9231A20A60A005A06CB"
+            BuildableName = "BINDPlugin.xcplugin"
+            BlueprintName = "BINDPlugin"
+            ReferencedContainer = "container:BINDPlugin.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "NO"
+      debugXPCServices = "NO"
+      allowLocationSimulation = "NO"
+      viewDebuggingEnabled = "No">
+      <PathRunnable
+         FilePath = "/Applications/Xcode.app">
+      </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9699D9231A20A60A005A06CB"
+            BuildableName = "BINDPlugin.xcplugin"
+            BlueprintName = "BINDPlugin"
+            ReferencedContainer = "container:BINDPlugin.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9699D9231A20A60A005A06CB"
+            BuildableName = "BINDPlugin.xcplugin"
+            BlueprintName = "BINDPlugin"
+            ReferencedContainer = "container:BINDPlugin.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

@@ -19,20 +19,20 @@ static NSString *const BNDBindingArrowBidirectionalNoIntialisation = @"<!>";
 static NSString *const BNDBindingTransformerSeparator = @"|";
 static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 
-@implementation BNDBindingDefinition
+@implementation BNDBindingModel
 
 @end
 
 @implementation BNDParser
 
-+ (BNDBindingDefinition *)parseBIND:(NSString *)BIND {
++ (BNDBindingModel *)parseBIND:(NSString *)BIND {
 	NSString *bind = [BIND stringByReplacingOccurrencesOfString:@" "
 	                                                 withString:@""];
 	bind = [bind stringByReplacingOccurrencesOfString:@"\n"
 	                                       withString:@""];
 
 	NSString *separator = nil;
-	BNDBindingDefinition *definition = [BNDBindingDefinition new];
+	BNDBindingModel *definition = [BNDBindingModel new];
 
 	if ([bind rangeOfString:BNDBindingArrowLeftToRightNoIntialisation].location != NSNotFound) {
 		separator = BNDBindingArrowLeftToRightNoIntialisation;
@@ -91,7 +91,7 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 }
 
 + (void)parseTransformer:(NSArray *)keyPathAndTransformer
-           forDefinition:(BNDBindingDefinition *)definition {
+           forDefinition:(BNDBindingModel *)definition {
 	if (keyPathAndTransformer.count == 2) {
 		NSString *modifierAndTransformer = keyPathAndTransformer[1];
 		NSString *transformerClassName = nil;

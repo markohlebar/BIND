@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 #import "BNDSpecialKeyPathHandling.h"
-
-extern NSString *const UIButtonTouchUpInsideKeyPath;
 
 @interface UIButton (BNDBinding) <BNDSpecialKeyPathHandling>
 
 - (UIButton *)onTouchUpInside;
 
 @end
+
+#endif

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
+
 #import "BNDConcreteView.h"
 #import "BNDBinding.h"
 
@@ -14,9 +15,11 @@
 @synthesize viewModel = _viewModel; \
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
     for (BNDBinding *binding in self.bindings) { \
-        [binding bindLeft:viewModel withRight:self]; \
+        [binding bindLeft:self withRight:self]; \
     } \
+    [self willChangeValueForKey:@"viewModel"]; \
     _viewModel = viewModel; \
+    [self didChangeValueForKey:@"viewModel"]; \
     [self viewDidUpdateViewModel:viewModel]; \
 } \
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
@@ -25,8 +28,14 @@
 
 BND_VIEW_IMPLEMENTATION(BNDTableViewCell)
 
-BND_VIEW_IMPLEMENTATION(BNDCollectionViewCell)
-
 BND_VIEW_IMPLEMENTATION(BNDView)
 
 BND_VIEW_IMPLEMENTATION(BNDViewController)
+
+#pragma mark - Platform Specific
+
+#if TARGET_OS_IPHONE
+
+BND_VIEW_IMPLEMENTATION(BNDCollectionViewCell)
+
+#endif

@@ -10,6 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 @protocol BNDViewModel <NSObject>
+@optional
 
 /**
  *  Instantiate a new instance of the view model with a model.
@@ -31,7 +32,8 @@
 
 @end
 
-@protocol BNDTableViewModel <BNDViewModel>
+@protocol BNDTableRowViewModel <BNDViewModel>
+@optional
 
 /**
  *  Cell height when used in table view.
@@ -42,12 +44,16 @@
 
 @end
 
-@protocol BNDTableSectionViewModel <BNDTableViewModel>
+@protocol BNDTableSectionViewModel <BNDTableRowViewModel>
+
+@required
 
 /**
  *  A collection of row view models.
  */
 @property (nonatomic, strong, readonly) NSArray *rowViewModels;
+
+@optional
 
 /**
  *  A section title.
@@ -62,6 +68,8 @@
 @end
 
 @protocol BNDCollectionViewModel <BNDViewModel>
+
+@optional
 
 /**
  *  Cell size when used in collection view

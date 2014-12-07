@@ -16,6 +16,10 @@
 
 @end
 
+@implementation GasPedal
+
+@end
+
 @implementation ParkingTicket
 
 @end
@@ -30,6 +34,18 @@
 - (id)reverseTransformedValue:(id)speed {
     float rpm = [speed floatValue] * 100;
     return @(rpm);
+}
+
+@end
+
+@implementation ViewModel
+@end
+
+
+@implementation TableViewCell
+
+- (void)dealloc {
+    
 }
 
 @end

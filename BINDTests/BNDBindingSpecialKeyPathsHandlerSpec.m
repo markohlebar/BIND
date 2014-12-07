@@ -60,10 +60,10 @@ describe(@"BNDSpecialKeyPathHandler", ^{
             [binding stub:@selector(rightKeyPath) andReturn:@"button2.onTouchUpInside"];
 
             [[viewController.button should] receive:@selector(handleSpecialKeyPath:)
-                                      withArguments:UIButtonTouchUpInsideKeyPath, nil];
+                                      withArguments:BNDBindingTouchUpInsideKeyPath, nil];
             
             [[viewController.button2 should] receive:@selector(handleSpecialKeyPath:)
-                                       withArguments:UIButtonTouchUpInsideKeyPath, nil];
+                                       withArguments:BNDBindingTouchUpInsideKeyPath, nil];
             
             [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:binding];
         });

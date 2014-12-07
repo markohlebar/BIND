@@ -6,23 +6,22 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import "UIButton+BNDBinding.h"
+#if TARGET_OS_IPHONE
 
-NSString *const UIButtonTouchUpInsideKeyPath = @"onTouchUpInside";
+#import "UIButton+BNDBinding.h"
 
 @implementation UIButton (BNDBinding)
 
 - (void)handleSpecialKeyPath:(NSString *)keyPath {
-    if ([keyPath isEqual:UIButtonTouchUpInsideKeyPath]) {
+    if ([keyPath isEqual:BNDBindingTouchUpInsideKeyPath]) {
         [self addTarget:self
-                 action:@selector(touchUpInside:)
+                 action:@selector(setOnTouchUpInside:)
        forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
-- (void)touchUpInside:(UIButton *)button {
-    [self willChangeValueForKey:UIButtonTouchUpInsideKeyPath];
-    [self didChangeValueForKey:UIButtonTouchUpInsideKeyPath];
+- (void)setOnTouchUpInside:(UIButton *)button {
+    [self didChangeValueForKey:BNDBindingTouchUpInsideKeyPath];
 }
 
 - (UIButton *)onTouchUpInside {
@@ -30,3 +29,5 @@ NSString *const UIButtonTouchUpInsideKeyPath = @"onTouchUpInside";
 }
 
 @end
+
+#endif
