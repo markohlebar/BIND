@@ -7,6 +7,7 @@
 //
 
 #import "BNDBindingCreateCellView.h"
+#import "BNDTableViewCell+BNDBinding.h"
 
 @implementation BNDBindingCreateCellView
 
@@ -17,6 +18,17 @@
 - (void)loadBindings {
     BNDBinding *binding = [BNDBinding bindingWithBIND:@"onTouchUpInside !-> viewModel.createBinding"];
     self.bindings = @[binding];
+}
+
+- (void)setOnTouchUpInside:(id)sender {
+    [super setOnTouchUpInside:sender];
+    
+    self.alphaValue = 0;
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0.5;
+        self.animator.alphaValue = 0;
+    }
+                        completionHandler:nil];
 }
 
 @end

@@ -36,12 +36,9 @@
 }
 
 - (BNDBindingListViewModel *)listViewModelForBindings:(NSArray *)bindings {
-    
     NSMutableArray *rows = [self rowViewModelsForBindings:bindings].mutableCopy;
-    
     BNDBindingCreateCellViewModel *createViewModel = [BNDBindingCreateCellViewModel viewModelWithModel:_bindingWriter];
     [rows addObject:createViewModel];
-    
     return [BNDBindingListViewModel viewModelWithModel:rows.copy];
 }
 

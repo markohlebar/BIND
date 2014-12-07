@@ -83,16 +83,28 @@ static NSPopover *_popover;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF isKindOfClass:%@", NSClassFromString(className)];
         view = [[topLevelObjects filteredArrayUsingPredicate:predicate] firstObject];
         [view setIdentifier:className];
-        
-        NSLog(@"Creating view %@", view);
     }
-    
     view.viewModel = rowViewModel;
     return view;
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
     return 37;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    if (self.tableView.selectedRow == -1) {
+        return;
+    }
+
+    BNDBindingCellView *cell = [self.tableView viewAtColumn:self.tableView.selectedColumn
+                                                        row:self.tableView.selectedRow
+                                            makeIfNecessary:NO];
+    if ([cell isKindOfClass:[BNDBindingCellView class]]) {
+        [cell.textField becomeFirstResponder];
+    }
+    
+    [self.tableView deselectRow:self.tableView.selectedRow];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
