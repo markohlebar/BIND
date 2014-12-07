@@ -15,7 +15,6 @@
 }
 
 - (void)setOnReloadData:(id)data {
-    [self willChangeValueForKey:@"onReloadData"];
     [self reloadData];
     [self didChangeValueForKey:@"onReloadData"];
 }

@@ -38,4 +38,6 @@ typedef NS_ENUM(BOOL, BNDBindingTransformDirection) {
     BNDBindingTransformDirectionRightToLeft = 1,
 };
 
+typedef id BNDAction;
+
 #endif

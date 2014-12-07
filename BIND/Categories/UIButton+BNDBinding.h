@@ -11,8 +11,6 @@
 #import <UIKit/UIKit.h>
 #import "BNDSpecialKeyPathHandling.h"
 
-extern NSString *const UIButtonTouchUpInsideKeyPath;
-
 @interface UIButton (BNDBinding) <BNDSpecialKeyPathHandling>
 
 - (UIButton *)onTouchUpInside;

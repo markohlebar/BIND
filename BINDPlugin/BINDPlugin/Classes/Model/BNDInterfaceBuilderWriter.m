@@ -37,7 +37,7 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
     if (self) {
         _xibPathURL = xibPathURL.copy;
         _mutableBindings = [NSMutableArray new];
-        _mutableBindingOutlets = [NSMutableArray new];
+        _mutableBindingOutlets = [NSMutableArray new];        
     }
     return self;
 }
@@ -50,6 +50,11 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
     return self.mutableBindingOutlets.copy;
 }
 
+- (void)createBinding {
+    BNDBindingDefinition *definition = [self.definitionFactory createBinding];
+    [self addBinding:definition];
+}
+
 - (void)addBinding:(BNDBindingDefinition *)binding {
     if (![self.mutableBindings containsObject:binding]) {
         [self.mutableBindings addObject:binding];
@@ -60,6 +65,8 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
             [self.mutableBindingOutlets addObject:outlet];
         }
     }
+    
+    [self notifyDelegate];
 }
 
 - (void)removeBinding:(BNDBindingDefinition *)binding {
@@ -67,6 +74,8 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
     
     BNDBindingsOutletDefinition *outlet = [self outletForBinding:binding];
     [self.mutableBindingOutlets removeObject:outlet];
+    
+    [self notifyDelegate];
 }
 
 - (BNDBindingsOutletDefinition *)outletForBinding:(BNDBindingDefinition *)binding {
@@ -78,6 +87,8 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
 - (void)removeAllBindings {
     [self.mutableBindings removeAllObjects];
     [self.mutableBindingOutlets removeAllObjects];
+    
+    [self notifyDelegate];
 }
 
 - (void)write:(BNDErrorBlock)errorBlock {
@@ -152,27 +163,30 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
     return self.xibDocument;
 }
 
-- (void)reloadBindings:(BNDBindingsBlock)bindingsBlock {
+- (NSArray *)reloadBindings:(NSError **)reloadError {
     NSError *error = nil;
     NSXMLDocument *document = [self openXIBDocument:&error];
-    if (error) {
-        if(bindingsBlock) bindingsBlock(nil, error);
-        return;
+    if (error && reloadError) {
+        *reloadError = error;
+        return nil;
     }
     
+    __block NSError *parseError = nil;
     self.parser = [BNDInterfaceBuilderParser parserWithXIBDocument:document];
     __weak typeof(self) weakSelf = self;
     [self.parser parse:^(NSArray *bindings, NSError *error) {
         weakSelf.mutableBindings = bindings.mutableCopy;
-        
-        if (bindingsBlock) {
-            bindingsBlock(bindings, error);
-        }
+        parseError = error;
     }];
     
-    self.definitionFactory = [BNDBindingDefinitionFactory factoryWithBindings:self.bindings];
+    if (parseError && reloadError) {
+        *reloadError = parseError;
+    }
     
+    self.definitionFactory = [BNDBindingDefinitionFactory factoryWithBindings:self.bindings];
     [self reloadBindingOutlets];
+    
+    return self.bindings;
 }
 
 - (void)reloadBindingOutlets {
@@ -186,6 +200,12 @@ static NSString * const BNDFileOwnerConnectionsXpath = @"document/objects/placeh
         BNDBindingsOutletDefinition *definition = [BNDBindingsOutletDefinition definitionWithElement:element];
         [self.mutableBindingOutlets addObject:definition];
     }
+}
+
+
+- (void)notifyDelegate {
+    [self.delegate writer:self
+    didUpdateWithBindings:self.bindings];
 }
 
 @end

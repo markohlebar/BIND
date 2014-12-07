@@ -10,4 +10,24 @@
 
 @implementation BNDBindingCreateCellViewModel
 
++ (instancetype)viewModelWithModel:(id)model {
+    return [[self alloc] initWithModel:model];
+}
+
+- (instancetype)initWithModel:(id)model {
+    self = [super init];
+    if (self) {
+        self.modelCreator = model;
+    }
+    return self;
+}
+
+- (void)setCreateBinding:(BNDAction)createBinding {
+    [self.modelCreator createBinding];
+}
+
+- (NSString *)identifier {
+    return @"BNDBindingCreateCellView";
+}
+
 @end

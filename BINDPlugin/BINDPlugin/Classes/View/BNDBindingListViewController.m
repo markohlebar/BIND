@@ -43,12 +43,6 @@ static NSPopover *_popover;
     [super viewDidLoad];
     // Do view setup here.
     [self loadBindings];
-    
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSNib *nib = [[NSNib alloc] initWithNibNamed:@"BNDBindingCellView"
-                                          bundle:bundle];
-    [self.tableView registerNib:nib
-                  forIdentifier:@"Cell"];
 }
 
 - (void)viewWillAppear {
@@ -74,9 +68,24 @@ static NSPopover *_popover;
 - (NSView *)tableView:(NSTableView *)tableView
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row {
-    BNDTableViewCell *view = [tableView makeViewWithIdentifier:@"Cell" owner:self];
     id <BNDTableSectionViewModel> viewModel = (id <BNDTableSectionViewModel>)self.viewModel;
-    view.viewModel = viewModel.rowViewModels[row];
+    id <BNDTableRowViewModel> rowViewModel = viewModel.rowViewModels[row];
+    
+    NSString *className = [rowViewModel identifier];
+    BNDTableViewCell *view = [tableView makeViewWithIdentifier:className
+                                                         owner:self];
+    if (!view) {
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSArray *topLevelObjects = nil;
+        [bundle loadNibNamed:className
+                       owner:self
+             topLevelObjects:&topLevelObjects];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF isKindOfClass:%@", NSClassFromString(className)];
+        view = [[topLevelObjects filteredArrayUsingPredicate:predicate] firstObject];
+        [view setIdentifier:className];
+    }
+    
+    view.viewModel = rowViewModel;
     return view;
 }
 

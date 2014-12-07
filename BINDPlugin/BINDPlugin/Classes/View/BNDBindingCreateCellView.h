@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BIND.h"
 
-@interface BNDBindingCreateCellView : NSTableCellView
-
+@interface BNDBindingCreateCellView : BNDTableViewCell
 @end

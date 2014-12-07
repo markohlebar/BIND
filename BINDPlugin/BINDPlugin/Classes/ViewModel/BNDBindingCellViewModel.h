@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BIND.h"
 
-@interface BNDBindingCellViewModel : NSObject <BNDTableViewModel>
+@interface BNDBindingCellViewModel : NSObject <BNDTableRowViewModel>
 @property (nonatomic, copy) NSString *BIND;
 @end

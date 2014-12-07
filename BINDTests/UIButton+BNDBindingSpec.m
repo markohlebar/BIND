@@ -10,7 +10,7 @@
 #import "UIButton+BNDBinding.h"
 
 @interface UIButton (Testing)
-- (void)touchUpInside:(UIButton *)button;
+- (void)setOnTouchUpInside:(UIButton *)button;
 @end
 
 SPEC_BEGIN(UIButton_BNDBindingSpec)

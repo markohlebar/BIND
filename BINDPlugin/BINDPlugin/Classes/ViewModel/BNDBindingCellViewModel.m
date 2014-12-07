@@ -35,4 +35,8 @@
     return _binding.BIND;
 }
 
+- (NSString *)identifier {
+    return @"BNDBindingCellView";
+}
+
 @end

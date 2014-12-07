@@ -7,25 +7,65 @@
 //
 
 #import "BNDBindingListDataController.h"
-#import "BNDBindingListViewModel.h"
 #import "BNDInterfaceBuilderWriter.h"
 #import "BNDBindingDefinitionFactory.h"
+#import "BNDBindingCreateCellViewModel.h"
+#import "BNDBindingCellViewModel.h"
+#import "BNDBindingListViewModel.h"
 
-@implementation BNDBindingListDataController {
-    BNDInterfaceBuilderWriter *_bindingWriter;
-    BNDBindingDefinitionFactory *_bindingFactory;
-}
+@interface BNDBindingListDataController () <BNDInterfaceBuilderWriterDelegate>
+@property (nonatomic, copy) BNDViewModelsBlock viewModelsHandler;
+@end
+
+@implementation BNDBindingListDataController
 
 - (void)updateWithContext:(NSURL *)xibURL
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler {
+    self.viewModelsHandler = viewModelsHandler;
     
+    NSError *error = nil;
     _bindingWriter = [BNDInterfaceBuilderWriter writerWithXIBPathURL:xibURL];
-    [_bindingWriter reloadBindings:nil];
+    _bindingWriter.delegate = self;
+    NSArray *bindings = [_bindingWriter reloadBindings:&error];
     
-    _bindingFactory = [BNDBindingDefinitionFactory factoryWithBindings:_bindingWriter.bindings];
+    if (error) {
+        self.viewModelsHandler(nil, error);
+    }
+
+    [self updateViewModelWithBindings:bindings];
+}
+
+- (BNDBindingListViewModel *)listViewModelForBindings:(NSArray *)bindings {
     
-    BNDBindingListViewModel *viewModel = [BNDBindingListViewModel viewModelWithModel:_bindingWriter.bindings];
-    viewModelsHandler(@[viewModel], nil);
+    NSMutableArray *rows = [self rowViewModelsForBindings:bindings].mutableCopy;
+    
+    BNDBindingCreateCellViewModel *createViewModel = [BNDBindingCreateCellViewModel viewModelWithModel:_bindingWriter];
+    [rows addObject:createViewModel];
+    
+    return [BNDBindingListViewModel viewModelWithModel:rows.copy];
+}
+
+- (NSArray *)rowViewModelsForBindings:(NSArray *)bindings {
+    NSMutableArray *viewModels = [NSMutableArray new];
+    for (BNDBindingDefinition *definition in bindings) {
+        BNDBindingCellViewModel *viewModel = [BNDBindingCellViewModel viewModelWithModel:definition];
+        [viewModels addObject:viewModel];
+    }
+    
+    return viewModels.copy;
+}
+
+- (void)updateViewModelWithBindings:(NSArray *)bindings {
+    BNDBindingListViewModel *viewModel = [self listViewModelForBindings:bindings];
+    self.viewModelsHandler(@[viewModel], nil);
+}
+
+#pragma mark = Writer Delegate
+
+- (void)writer:(id)writer didUpdateWithBindings:(NSArray *)bindings {
+    if (writer == _bindingWriter) {
+        [self updateViewModelWithBindings:bindings];
+    }
 }
 
 @end

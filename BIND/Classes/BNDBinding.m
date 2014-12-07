@@ -16,7 +16,7 @@ static NSMutableSet *BNDBindingObject_swizzledClasses = nil;
 static NSMutableSet *BNDBindingObject_bindings = nil;
 
 static void *BNDBindingContext = &BNDBindingContext;
-static NSString *BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBindingsKey";
+NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBindingsKey";
 
 @interface BNDBindingKVOObserver : NSObject
 @property (nonatomic, copy, readonly) NSString *keyPath;

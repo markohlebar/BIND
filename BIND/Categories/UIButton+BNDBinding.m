@@ -10,21 +10,18 @@
 
 #import "UIButton+BNDBinding.h"
 
-NSString *const UIButtonTouchUpInsideKeyPath = @"onTouchUpInside";
-
 @implementation UIButton (BNDBinding)
 
 - (void)handleSpecialKeyPath:(NSString *)keyPath {
-    if ([keyPath isEqual:UIButtonTouchUpInsideKeyPath]) {
+    if ([keyPath isEqual:BNDBindingTouchUpInsideKeyPath]) {
         [self addTarget:self
-                 action:@selector(touchUpInside:)
+                 action:@selector(setOnTouchUpInside:)
        forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
-- (void)touchUpInside:(UIButton *)button {
-    [self willChangeValueForKey:UIButtonTouchUpInsideKeyPath];
-    [self didChangeValueForKey:UIButtonTouchUpInsideKeyPath];
+- (void)setOnTouchUpInside:(UIButton *)button {
+    [self didChangeValueForKey:BNDBindingTouchUpInsideKeyPath];
 }
 
 - (UIButton *)onTouchUpInside {

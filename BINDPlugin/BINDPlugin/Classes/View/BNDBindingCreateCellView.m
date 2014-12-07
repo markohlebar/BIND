@@ -10,4 +10,13 @@
 
 @implementation BNDBindingCreateCellView
 
+- (void)awakeFromNib {
+    [self loadBindings];
+}
+
+- (void)loadBindings {
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"onTouchUpInside !-> viewModel.createBinding"];
+    self.bindings = @[binding];
+}
+
 @end

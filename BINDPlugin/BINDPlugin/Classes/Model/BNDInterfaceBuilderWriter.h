@@ -9,17 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "BNDPluginTypes.h"
 
+@protocol BNDInterfaceBuilderWriterDelegate <NSObject>
+- (void)writer:(id)writer didUpdateWithBindings:(NSArray *)bindings;
+@end
+
 @class BNDBindingDefinition;
 @interface BNDInterfaceBuilderWriter : NSObject
 @property (nonatomic, copy, readonly) NSURL *xibPathURL;
+@property (nonatomic, weak) id <BNDInterfaceBuilderWriterDelegate> delegate;
 @property (nonatomic, strong, readonly) NSArray *bindings;
 @property (nonatomic, strong, readonly) NSArray *bindingOutlets;
 
 + (instancetype)writerWithXIBPathURL:(NSURL *)xibPathURL;
-- (void)reloadBindings:(BNDBindingsBlock)bindingsBlock;
+
+- (NSArray *)reloadBindings:(NSError **)error;
+
+- (void)createBinding;
+
 - (void)addBinding:(BNDBindingDefinition *)binding;
+
 - (void)removeBinding:(BNDBindingDefinition *)binding;
+
 - (void)removeAllBindings;
+
 - (void)write:(BNDErrorBlock)errorBlock;
 
 @end

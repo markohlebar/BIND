@@ -11,6 +11,8 @@
 #import "BNDDataController.h"
 #import "BNDView.h"
 #import "BNDViewModel.h"
+#import "BNDBindingTypes.h"
+#import "BNDMacros.h"
 
 #if TARGET_OS_IPHONE
 #import "UIButton+BNDBinding.h"

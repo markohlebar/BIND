@@ -7,5 +7,29 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView id="9yZ-a9-dxX" customClass="BNDBindingCreateCellView">
+            <rect key="frame" x="0.0" y="0.0" width="196" height="37"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-24-DD2">
+                    <rect key="frame" x="-2" y="10" width="200" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Create Binding..." id="dsW-A9-jPb">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ZOe-24-DD2" firstAttribute="leading" secondItem="9yZ-a9-dxX" secondAttribute="leading" id="BNR-zN-DFF"/>
+                <constraint firstItem="ZOe-24-DD2" firstAttribute="top" secondItem="9yZ-a9-dxX" secondAttribute="top" constant="10" id="MCT-gd-xuJ"/>
+                <constraint firstAttribute="bottom" secondItem="ZOe-24-DD2" secondAttribute="bottom" constant="10" id="WeZ-vY-hjC"/>
+                <constraint firstAttribute="trailing" secondItem="ZOe-24-DD2" secondAttribute="trailing" id="t8T-ey-Hjg"/>
+            </constraints>
+            <connections>
+                <outlet property="textField" destination="ZOe-24-DD2" id="78z-MX-sTf"/>
+            </connections>
+            <point key="canvasLocation" x="253" y="318"/>
+        </tableCellView>
     </objects>
 </document>

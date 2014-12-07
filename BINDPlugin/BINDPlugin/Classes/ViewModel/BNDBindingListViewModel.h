@@ -10,6 +10,5 @@
 #import "BIND.h"
 
 @interface BNDBindingListViewModel : NSObject <BNDTableSectionViewModel>
-@property (nonatomic, strong) NSArray *rowViewModels;
-@property (nonatomic, strong) id createBinding;
+@property (nonatomic, strong, readonly) NSArray *rowViewModels;
 @end

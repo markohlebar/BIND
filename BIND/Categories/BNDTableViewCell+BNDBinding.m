@@ -10,52 +10,58 @@
 #import <objc/runtime.h>
 #import "BNDBinding.h"
 
-NSString *const BNDTableViewCellTouchUpInsideKeyPath = @"onTouchUpInside";
-const void * BNDTableViewCellTouchUpInsideBindingKey = &BNDTableViewCellTouchUpInsideBindingKey;
+NSString * const BNDTableViewCellTouchUpInsideBindingKey = @"BNDTableViewCellTouchUpInsideBindingKey";
 
 @implementation _BNDTableViewCell (BNDBinding)
 
 - (void)handleSpecialKeyPath:(NSString *)keyPath {
-    if ([keyPath isEqualToString:BNDTableViewCellTouchUpInsideKeyPath]) {
-        
+    if ([keyPath isEqualToString:BNDBindingTouchUpInsideKeyPath]) {
+        [self setupTouchUpInsideBinding];
     }
 }
 
-- (BNDBinding *)touchUpInsideBinding {
-    BNDBinding *binding = objc_getAssociatedObject(self, BNDTableViewCellTouchUpInsideBindingKey);
-    if (!binding) {
-        NSString *BIND = nil;
+- (void)setupTouchUpInsideBinding {
+    NSString *BIND = nil;
 #if TARGET_OS_IPHONE
-        BIND = @"highlighted |-> onHighlighted";
+    BIND = @"highlighted !-> onHighlighted";
 #elif TARGET_OS_MAC
-        BIND = @"backgroundStyle |-> onBackgroundStyle";
+    BIND = @"backgroundStyle !-> onBackgroundStyle";
 #endif
-        binding = [BNDBinding bindingWithBIND:BIND];
-        [binding bindLeft:self withRight:self];
-        
-        objc_setAssociatedObject(self,
-                                 BNDTableViewCellTouchUpInsideBindingKey,
-                                 binding,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return binding;
+    BNDBinding *binding  = [BNDBinding bindingWithBIND:BIND];
+    [binding bindLeft:self withRight:self];
+    
+    objc_setAssociatedObject(self,
+                             &BNDTableViewCellTouchUpInsideBindingKey,
+                             binding,
+                             OBJC_ASSOCIATION_RETAIN);    
 }
 
 #if TARGET_OS_IPHONE
 
-- (void)setOnHighlighted:(BOOL)onHiglighted {
-    if (onHiglighted) {
-        [self willChangeValueForKey:BNDTableViewCellTouchUpInsideKeyPath];
-        [self didChangeValueForKey:BNDTableViewCellTouchUpInsideKeyPath];
+- (void)setOnHighlighted:(BOOL)onHighlighted {
+    if (onHighlighted) {
+        [self setOnTouchUpInside:self];
     }
 }
 
+- (BOOL)onHighlighted {
+    return self.highlighted;
+}
+
 #elif TARGET_OS_MAC
-- (void)setOnBackgroundStyle:(NSBackgroundStyle)backgroundStyle
+- (void)setOnBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+    if (backgroundStyle == NSBackgroundStyleDark) {
+        [self setOnTouchUpInside:self];
+    }
+}
 
 #endif
 
-- (BNDTableViewCell *)onTouchUpInside {
+- (void)setOnTouchUpInside:(_BNDTableViewCell *)cell {
+    [self didChangeValueForKey:BNDBindingTouchUpInsideKeyPath];
+}
+
+- (_BNDTableViewCell *)onTouchUpInside {
     return self;
 }
 

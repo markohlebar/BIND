@@ -32,7 +32,7 @@
 
 @end
 
-@protocol BNDTableViewModel <BNDViewModel>
+@protocol BNDTableRowViewModel <BNDViewModel>
 @optional
 
 /**
@@ -44,7 +44,7 @@
 
 @end
 
-@protocol BNDTableSectionViewModel <BNDTableViewModel>
+@protocol BNDTableSectionViewModel <BNDTableRowViewModel>
 
 @required
 

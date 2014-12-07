@@ -27,6 +27,7 @@
 		9616D7631A2850ED0048E4CD /* BNDBindingDefinitionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */; };
 		961BE2B01A32DAB40052E168 /* BNDBindingCreateCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */; };
 		961BE2B31A32DADE0052E168 /* BNDBindingCreateCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */; };
+		9630832F1A34601D00156E68 /* BNDBindingListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */; };
 		967776901A246A06002FA187 /* NSString+Files.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677768F1A246A06002FA187 /* NSString+Files.m */; };
 		9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769A1A25290F002FA187 /* BNDBindingsOutletDefinition.m */; };
 		9677769D1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677769C1A252AF0002FA187 /* BNDBindingsOutletDefinitionSpec.m */; };
@@ -48,7 +49,6 @@
 		96AE6D031A29F78A004C32DC /* BNDBindingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D021A29F78A004C32DC /* BNDBindingCellView.m */; };
 		96AE6D061A29FC94004C32DC /* BNDBindingListDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */; };
 		96AE6D0A1A2A194A004C32DC /* BNDBindingCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */; };
-		96AE6D0D1A2A198C004C32DC /* BNDBindingListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D0C1A2A198C004C32DC /* BNDBindingListViewModel.m */; };
 		96AE6D2D1A2A265E004C32DC /* BNDBindingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */; };
 		96AE6D4F1A2B2602004C32DC /* libBIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */; };
 /* End PBXBuildFile section */
@@ -93,6 +93,8 @@
 		961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCreateCellViewModel.m; path = Classes/ViewModel/BNDBindingCreateCellViewModel.m; sourceTree = "<group>"; };
 		961BE2B11A32DADE0052E168 /* BNDBindingCreateCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCreateCellView.h; path = Classes/View/BNDBindingCreateCellView.h; sourceTree = "<group>"; };
 		961BE2B21A32DADE0052E168 /* BNDBindingCreateCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCreateCellView.m; path = Classes/View/BNDBindingCreateCellView.m; sourceTree = "<group>"; };
+		9630832D1A34601D00156E68 /* BNDBindingListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListViewModel.h; path = Classes/ViewModel/BNDBindingListViewModel.h; sourceTree = "<group>"; };
+		9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListViewModel.m; path = Classes/ViewModel/BNDBindingListViewModel.m; sourceTree = "<group>"; };
 		9677768D1A245F91002FA187 /* MHImportBusterTestsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHImportBusterTestsHelper.h; sourceTree = "<group>"; };
 		9677768E1A246A06002FA187 /* NSString+Files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Files.h"; sourceTree = "<group>"; };
 		9677768F1A246A06002FA187 /* NSString+Files.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Files.m"; sourceTree = "<group>"; };
@@ -133,8 +135,6 @@
 		96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListDataController.m; path = Classes/Model/BNDBindingListDataController.m; sourceTree = "<group>"; };
 		96AE6D081A2A194A004C32DC /* BNDBindingCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingCellViewModel.h; path = Classes/ViewModel/BNDBindingCellViewModel.h; sourceTree = "<group>"; };
 		96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCellViewModel.m; path = Classes/ViewModel/BNDBindingCellViewModel.m; sourceTree = "<group>"; };
-		96AE6D0B1A2A198C004C32DC /* BNDBindingListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDBindingListViewModel.h; path = Classes/ViewModel/BNDBindingListViewModel.h; sourceTree = "<group>"; };
-		96AE6D0C1A2A198C004C32DC /* BNDBindingListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingListViewModel.m; path = Classes/ViewModel/BNDBindingListViewModel.m; sourceTree = "<group>"; };
 		96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingCellView.xib; path = Classes/View/BNDBindingCellView.xib; sourceTree = "<group>"; };
 		96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBIND-OSX.a"; path = "../build/Debug/libBIND-OSX.a"; sourceTree = "<group>"; };
 		A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -182,8 +182,6 @@
 		960CBE271A21DDC700055CDA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				96AE6D041A29FC94004C32DC /* BNDBindingListDataController.h */,
-				96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */,
 				9616D7211A25BC4B0048E4CD /* BNDBindingDefinitionFactory.h */,
 				9616D7221A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m */,
 				960CBE281A21DDF000055CDA /* BNDInterfaceBuilderParser.h */,
@@ -235,6 +233,15 @@
 				960CBE351A2224C100055CDA /* ViewControllerWithBinding.xib */,
 			);
 			name = TestFiles;
+			sourceTree = "<group>";
+		};
+		960F97CB1A33999100753B77 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				96AE6D041A29FC94004C32DC /* BNDBindingListDataController.h */,
+				96AE6D051A29FC94004C32DC /* BNDBindingListDataController.m */,
+			);
+			name = DataController;
 			sourceTree = "<group>";
 		};
 		9677768C1A245F91002FA187 /* External */ = {
@@ -378,6 +385,7 @@
 		96AE6CF81A29ED4A004C32DC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				960F97CB1A33999100753B77 /* DataController */,
 				96AE6CFC1A29EE76004C32DC /* BNDBindingListViewController.h */,
 				96AE6CFD1A29EE76004C32DC /* BNDBindingListViewController.m */,
 				96AE6CFE1A29EE76004C32DC /* BNDBindingListViewController.xib */,
@@ -394,8 +402,8 @@
 		96AE6D071A2A0899004C32DC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				96AE6D0B1A2A198C004C32DC /* BNDBindingListViewModel.h */,
-				96AE6D0C1A2A198C004C32DC /* BNDBindingListViewModel.m */,
+				9630832D1A34601D00156E68 /* BNDBindingListViewModel.h */,
+				9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */,
 				96AE6D081A2A194A004C32DC /* BNDBindingCellViewModel.h */,
 				96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */,
 				961BE2AE1A32DAB40052E168 /* BNDBindingCreateCellViewModel.h */,
@@ -597,13 +605,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9699D9591A21BF20005A06CB /* NSString+XCAdditions.m in Sources */,
-				96AE6D0D1A2A198C004C32DC /* BNDBindingListViewModel.m in Sources */,
 				960CBE471A22526A00055CDA /* BNDBindingDefinition.m in Sources */,
 				96AE6D061A29FC94004C32DC /* BNDBindingListDataController.m in Sources */,
 				9699D95E1A21BF20005A06CB /* XCWorkspace.m in Sources */,
 				9699D95C1A21BF20005A06CB /* XCTarget+XCProject.m in Sources */,
 				9677769B1A25290F002FA187 /* BNDBindingsOutletDefinition.m in Sources */,
 				9616D7231A25BC4B0048E4CD /* BNDBindingDefinitionFactory.m in Sources */,
+				9630832F1A34601D00156E68 /* BNDBindingListViewModel.m in Sources */,
 				9699D9621A21C26D005A06CB /* NSString+Extensions.m in Sources */,
 				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
 				960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
