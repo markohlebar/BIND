@@ -25,9 +25,11 @@
 - (void)setUp {
 	[super setUp];
 
-	_car = Car.new;
-	_engine = Engine.new;
+    _engine = Engine.new;
     _ticket = ParkingTicket.new;
+	_car = Car.new;
+    _car.engine = _engine;
+
 	_binding = BNDBinding.new;
 }
 
@@ -239,33 +241,6 @@
 	XCTAssertNil(_binding.rightObject);
 }
 
-- (void)testUnbindDoesntCrashWhenObjectsAreNotSet {
-	_binding.BIND = @"rpm -> speed";
-	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no objects");
-}
-
-- (void)testUnbindDoesntCrashWhenKeyPathsAreNotSet {
-	[_binding bindLeft:_engine withRight:_car];
-	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no keypaths");
-}
-
-- (void)testUnbindingDoesntCrashWhenCalledTwice {
-	_binding.BIND = @"rpm -> speed";
-	[_binding bindLeft:_engine withRight:_car];
-	[_binding unbind];
-
-	XCTAssertNoThrow([_binding unbind], @"Should not throw an exception on consecutive unbind calls");
-}
-
-- (void)testBindDoesntCrashWhenOneObjectReferenceIsLost {
-    _binding.BIND = @"rpm <> speed";
-    [_binding bindLeft:_engine withRight:_car];
-    
-    _car = nil;
-    
-    XCTAssertNoThrow([_engine setRpm:10000], @"Should not throw an exception on updating values on unbound objects");
-}
-
 - (void)testBindingSameObjectUpdatesCorrectValue {
     _car.speed = 100;
     _car.engine = [Engine new];
@@ -286,6 +261,35 @@
 	             withRight:car];
 	    [_binding unbind];
 	}];
+}
+
+#pragma mark - Crash tests
+
+- (void)testUnbindDoesntCrashWhenObjectsAreNotSet {
+    _binding.BIND = @"rpm -> speed";
+    XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no objects");
+}
+
+- (void)testUnbindDoesntCrashWhenKeyPathsAreNotSet {
+    [_binding bindLeft:_engine withRight:_car];
+    XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no keypaths");
+}
+
+- (void)testUnbindingDoesntCrashWhenCalledTwice {
+    _binding.BIND = @"rpm -> speed";
+    [_binding bindLeft:_engine withRight:_car];
+    [_binding unbind];
+    
+    XCTAssertNoThrow([_binding unbind], @"Should not throw an exception on consecutive unbind calls");
+}
+
+- (void)testBindDoesntCrashWhenOneObjectReferenceIsLost {
+    _binding.BIND = @"rpm <> speed";
+    [_binding bindLeft:_engine withRight:_car];
+    
+    _car = nil;
+    
+    XCTAssertNoThrow([_engine setRpm:10000], @"Should not throw an exception on updating values on unbound objects");
 }
 
 @end

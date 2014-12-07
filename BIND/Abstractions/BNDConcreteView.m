@@ -14,12 +14,12 @@
 @implementation __CLASS_NAME__ \
 @synthesize viewModel = _viewModel; \
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
-    [self willChangeValueForKey:@"viewModel"]; \
-    _viewModel = viewModel; \
-    [self didChangeValueForKey:@"viewModel"]; \
     for (BNDBinding *binding in self.bindings) { \
         [binding bindLeft:self withRight:self]; \
     } \
+    [self willChangeValueForKey:@"viewModel"]; \
+    _viewModel = viewModel; \
+    [self didChangeValueForKey:@"viewModel"]; \
     [self viewDidUpdateViewModel:viewModel]; \
 } \
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \

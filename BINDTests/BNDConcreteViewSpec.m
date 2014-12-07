@@ -9,26 +9,7 @@
 #import <Kiwi/Kiwi.h>
 #import "BNDConcreteView.h"
 #import "BNDBinding.h"
-#import "BNDViewModel.h"
-
-@interface ViewModel : NSObject <BNDViewModel>
-@property (nonatomic, strong) NSString *text;
-@end
-
-@implementation ViewModel
-@end
-
-@interface TableViewCell : BNDTableViewCell
-
-@end
-
-@implementation TableViewCell
-
-- (void)dealloc {
-
-}
-
-@end
+#import "BNDTestObjects.h"
 
 SPEC_BEGIN(BNDConcreteViewSpec)
 
@@ -38,7 +19,7 @@ describe(@"BNDTableViewCell", ^{
     __block BNDBinding *binding = nil;
     beforeEach(^{
         cell = [[TableViewCell alloc] init];
-        binding = [BNDBinding bindingWithBIND:@"text -> textLabel.text"];
+        binding = [BNDBinding bindingWithBIND:@"viewModel.text -> textLabel.text"];
         cell.bindings = @[binding];
     });
     

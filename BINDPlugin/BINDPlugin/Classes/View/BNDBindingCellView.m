@@ -20,7 +20,7 @@
 }
 
 - (void)loadBindings {
-    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel.BIND <> textField.stringValue"];
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel.BIND <> textField.stringValue | BNDNilToEmptyStringTransformer"];
     self.bindings = @[binding];
 }
 

@@ -49,6 +49,7 @@
 		96AE6D4B1A2B25B4004C32DC /* NSTableView+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */; };
 		96AE6D4C1A2B25BD004C32DC /* BNDSpecialKeyPathHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */; };
 		96AE6D4D1A2B25C0004C32DC /* BNDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960194071A2045CE00059F90 /* BNDParser.m */; };
+		96E01F991A3490D300294550 /* BNDCrashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E01F981A3490D300294550 /* BNDCrashTests.m */; };
 		9C37D1A17AF93F723E9F6189 /* libPods-BINDAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A97AFB8D67CA29A5E64EDE /* libPods-BINDAppTests.a */; };
 		E0843269784F0422C51F2D50 /* libPods-BINDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17ECF80E253441EC3E95DDC9 /* libPods-BINDTests.a */; };
 		FA4A430E628628DE453C0C39 /* libPods-BIND-OSXTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4915D45EADA80061F5440E70 /* libPods-BIND-OSXTests.a */; };
@@ -170,6 +171,7 @@
 		96AE6D0E1A2A1F48004C32DC /* NSTableView+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTableView+BNDBinding.h"; path = "Categories/NSTableView+BNDBinding.h"; sourceTree = "<group>"; };
 		96AE6D0F1A2A1F48004C32DC /* NSTableView+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTableView+BNDBinding.m"; path = "Categories/NSTableView+BNDBinding.m"; sourceTree = "<group>"; };
 		96AE6D321A2B254E004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBIND-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E01F981A3490D300294550 /* BNDCrashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDCrashTests.m; sourceTree = "<group>"; };
 		96F74BD91A166C970099110A /* BNDDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDDataController.h; path = Protocols/BNDDataController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -428,6 +430,7 @@
 				9601940C1A204C4C00059F90 /* BNDParserTest.m */,
 				960C5CC01A2B96BF002CA964 /* BNDConcreteViewSpec.m */,
 				960193F61A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m */,
+				96E01F981A3490D300294550 /* BNDCrashTests.m */,
 			);
 			path = BINDTests;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 			files = (
 				969AE2E71A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */,
 				960193F21A1EB9D200059F90 /* UIButton+BNDBindingSpec.m in Sources */,
+				96E01F991A3490D300294550 /* BNDCrashTests.m in Sources */,
 				967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */,
 				967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */,
 				960C5CC11A2B96BF002CA964 /* BNDConcreteViewSpec.m in Sources */,

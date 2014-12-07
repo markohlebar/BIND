@@ -83,6 +83,8 @@ static NSPopover *_popover;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF isKindOfClass:%@", NSClassFromString(className)];
         view = [[topLevelObjects filteredArrayUsingPredicate:predicate] firstObject];
         [view setIdentifier:className];
+        
+        NSLog(@"Creating view %@", view);
     }
     
     view.viewModel = rowViewModel;

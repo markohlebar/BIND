@@ -51,6 +51,7 @@
 		96AE6D0A1A2A194A004C32DC /* BNDBindingCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */; };
 		96AE6D2D1A2A265E004C32DC /* BNDBindingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */; };
 		96AE6D4F1A2B2602004C32DC /* libBIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */; };
+		96E01F9D1A349C4000294550 /* BNDNilToEmptyStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E01F9C1A349C4000294550 /* BNDNilToEmptyStringTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +138,8 @@
 		96AE6D091A2A194A004C32DC /* BNDBindingCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDBindingCellViewModel.m; path = Classes/ViewModel/BNDBindingCellViewModel.m; sourceTree = "<group>"; };
 		96AE6D2C1A2A265E004C32DC /* BNDBindingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNDBindingCellView.xib; path = Classes/View/BNDBindingCellView.xib; sourceTree = "<group>"; };
 		96AE6D4E1A2B2602004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBIND-OSX.a"; path = "../build/Debug/libBIND-OSX.a"; sourceTree = "<group>"; };
+		96E01F9B1A349C4000294550 /* BNDNilToEmptyStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDNilToEmptyStringTransformer.h; path = Classes/ViewModel/Transformers/BNDNilToEmptyStringTransformer.h; sourceTree = "<group>"; };
+		96E01F9C1A349C4000294550 /* BNDNilToEmptyStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDNilToEmptyStringTransformer.m; path = Classes/ViewModel/Transformers/BNDNilToEmptyStringTransformer.m; sourceTree = "<group>"; };
 		A29E4088C878C784ADBA1D50 /* Pods-BINDPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BDFB41A078211EBF43FBA458 /* libPods-BINDPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDPlugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A10154A405210865D293FA /* Pods-BINDPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDPluginTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BINDPluginTests/Pods-BINDPluginTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -402,6 +405,7 @@
 		96AE6D071A2A0899004C32DC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				96E01F9A1A349C0E00294550 /* Transformers */,
 				9630832D1A34601D00156E68 /* BNDBindingListViewModel.h */,
 				9630832E1A34601D00156E68 /* BNDBindingListViewModel.m */,
 				96AE6D081A2A194A004C32DC /* BNDBindingCellViewModel.h */,
@@ -410,6 +414,15 @@
 				961BE2AF1A32DAB40052E168 /* BNDBindingCreateCellViewModel.m */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		96E01F9A1A349C0E00294550 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				96E01F9B1A349C4000294550 /* BNDNilToEmptyStringTransformer.h */,
+				96E01F9C1A349C4000294550 /* BNDNilToEmptyStringTransformer.m */,
+			);
+			name = Transformers;
 			sourceTree = "<group>";
 		};
 		DCF0329E05D343FD5FB81EB7 /* Pods */ = {
@@ -616,6 +629,7 @@
 				9699D9321A20A60A005A06CB /* BINDPlugin.m in Sources */,
 				960CBE431A2250BE00055CDA /* BNDInterfaceBuilderWriter.m in Sources */,
 				961BE2B01A32DAB40052E168 /* BNDBindingCreateCellViewModel.m in Sources */,
+				96E01F9D1A349C4000294550 /* BNDNilToEmptyStringTransformer.m in Sources */,
 				96AE6CFF1A29EE76004C32DC /* BNDBindingListViewController.m in Sources */,
 				9699D95D1A21BF20005A06CB /* XCBuildSettings.m in Sources */,
 				9699D95A1A21BF20005A06CB /* XCProject+Extensions.m in Sources */,

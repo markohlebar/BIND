@@ -102,7 +102,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)bindLeft:(id)leftObject
-       withRight:(id)rightObject; {
+       withRight:(id)rightObject {
     [self unbind];
     
     self.leftObject = leftObject;
@@ -222,7 +222,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     return areKeypathsSet;
 }
 
-
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -234,6 +233,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [self lock];
     
     id newObject = change[NSKeyValueChangeNewKey];
+    if ([newObject isKindOfClass:[NSNull class]]) {
+        newObject = nil;
+    }
+    
     if ([object isEqual:self.leftObject] && [self.leftKeyPath isEqualToString:keyPath]) {
         id transformedObject = [self.valueTransformer performSelector:[self transformSelector]
                                                            withObject:newObject];
@@ -294,7 +297,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [observable removeObserver:self
                     forKeyPath:self.keyPath
                        context:BNDBindingContext];
-    [self removeBindingsForObject:observable];
+    [self removeBindingForObject:observable];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -316,6 +319,11 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [bindings addObject:self];
 }
 
+- (void)removeBindingForObject:(id)object {
+    NSMutableSet *bindings = [self bindingsForObject:object];
+    [bindings removeObject:self];
+}
+
 - (NSMutableSet *)bindingsForObject:(id)object {
     NSMutableSet *set = objc_getAssociatedObject(object, &BNDBindingAssociatedBindingsKey);
     if (!set) {
@@ -323,10 +331,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         objc_setAssociatedObject(object, &BNDBindingAssociatedBindingsKey, set, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return set;
-}
-
-- (void)removeBindingsForObject:(id)object {
-    objc_setAssociatedObject(object, &BNDBindingAssociatedBindingsKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)swizzleDeallocIfNeeded:(id)object {
