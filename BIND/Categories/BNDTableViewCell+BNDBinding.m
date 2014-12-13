@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import "BNDBinding.h"
 
-NSString * const BNDTableViewCellTouchUpInsideBindingKey = @"BNDTableViewCellTouchUpInsideBindingKey";
+NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath = @"BNDTableViewCellTouchUpInsideBindingKey";
 
 @implementation _BNDTableViewCell (BNDBinding)
 
@@ -31,7 +31,7 @@ NSString * const BNDTableViewCellTouchUpInsideBindingKey = @"BNDTableViewCellTou
     [binding bindLeft:self withRight:self];
     
     objc_setAssociatedObject(self,
-                             &BNDTableViewCellTouchUpInsideBindingKey,
+                             &BNDTableViewCellTouchUpInsideBindingKeyPath,
                              binding,
                              OBJC_ASSOCIATION_RETAIN);    
 }

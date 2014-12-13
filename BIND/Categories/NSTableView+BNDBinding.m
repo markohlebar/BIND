@@ -8,6 +8,8 @@
 
 #import "NSTableView+BNDBinding.h"
 
+NSString *const NSTableViewReloadDataKeyPath = @"onReloadData";
+
 @implementation NSTableView (BNDBinding)
 
 - (void)handleSpecialKeyPath:(NSString *)keyPath {
@@ -16,7 +18,7 @@
 
 - (void)setOnReloadData:(id)data {
     [self reloadData];
-    [self didChangeValueForKey:@"onReloadData"];
+    [self didChangeValueForKey:NSTableViewReloadDataKeyPath];
 }
 
 - (NSTableView *)onReloadData {

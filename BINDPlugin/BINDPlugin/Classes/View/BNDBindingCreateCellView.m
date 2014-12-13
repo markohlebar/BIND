@@ -20,13 +20,15 @@
     self.bindings = @[binding];
 }
 
-- (void)setOnTouchUpInside:(id)sender {
-    [super setOnTouchUpInside:sender];
-    
+- (void)prepareForReuse {
+    [self animateIn];
+}
+
+- (void)animateIn {
     self.alphaValue = 0;
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         context.duration = 0.5;
-        self.animator.alphaValue = 0;
+        self.animator.alphaValue = 1;
     }
                         completionHandler:nil];
 }

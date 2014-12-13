@@ -10,7 +10,7 @@
 #import "BNDSpecialKeyPathHandling.h"
 #import "BNDMacros.h"
 
-extern NSString * const BNDTableViewCellTouchUpInsideBindingKey;
+extern NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath;
 
 @interface _BNDTableViewCell (BNDBinding) <BNDSpecialKeyPathHandling>
 @property (nonatomic) _BNDTableViewCell *onTouchUpInside;

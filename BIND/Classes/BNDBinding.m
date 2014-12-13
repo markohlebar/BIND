@@ -232,6 +232,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     
     [self lock];
     
+    NSLog(@"%@", change);
+    
     id newObject = change[NSKeyValueChangeNewKey];
     if ([newObject isKindOfClass:[NSNull class]]) {
         newObject = nil;
@@ -348,7 +350,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         IMP newDeallocImplementation = imp_implementationWithBlock(^(void *obj) {
             @autoreleasepool {
                 NSArray *bindings = [objc_getAssociatedObject((__bridge id)obj, &BNDBindingAssociatedBindingsKey) copy];
-                NSObject *object = CFBridgingRelease(obj);
+                NSObject *object = (__bridge id)(obj);
                 for (BNDBindingKVOObserver *observer in bindings) {
                     [observer unobserve:object];
                     [observer.binding unbind];
