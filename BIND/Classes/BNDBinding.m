@@ -232,8 +232,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     
     [self lock];
     
-    NSLog(@"%@", change);
-    
     id newObject = change[NSKeyValueChangeNewKey];
     if ([newObject isKindOfClass:[NSNull class]]) {
         newObject = nil;

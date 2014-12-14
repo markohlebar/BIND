@@ -50,11 +50,15 @@ describe(@"BNDInterfaceBuilderWriter", ^{
         [[_error should] beNil];
     });
     
-    context(@"when creatingg a binding", ^{
+    context(@"when creating a binding", ^{
         it(@"should increase the number of bindings", ^{
             [_writer createBinding];
             [[_writer.bindings should] haveCountOf:2];
             [[_writer.bindingOutlets should] haveCountOf:2];
+            
+            [_writer createBinding];
+            [[_writer.bindings should] haveCountOf:3];
+            [[_writer.bindingOutlets should] haveCountOf:3];
         });
     });
     
@@ -63,6 +67,10 @@ describe(@"BNDInterfaceBuilderWriter", ^{
             addBinding(@"ID");
             [[_writer.bindings should] haveCountOf:2];
             [[_writer.bindingOutlets should] haveCountOf:2];
+            
+            addBinding(@"ID2");
+            [[_writer.bindings should] haveCountOf:3];
+            [[_writer.bindingOutlets should] haveCountOf:3];
         });
         
         it(@"should not increase the number of bindings if adding the the same binding", ^{

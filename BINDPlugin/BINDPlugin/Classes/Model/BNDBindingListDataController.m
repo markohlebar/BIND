@@ -60,9 +60,19 @@
 #pragma mark = Writer Delegate
 
 - (void)writer:(id)writer didUpdateWithBindings:(NSArray *)bindings {
-    if (writer == _bindingWriter) {
+    if (writer == self.bindingWriter) {
         [self updateViewModelWithBindings:bindings];
     }
+}
+
+- (void)createBinding {
+    [self.bindingWriter createBinding];
+}
+
+- (void)write {
+    [self.bindingWriter write:^(NSError *error) {
+        
+    }];
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "BNDBindingListViewController.h"
 #import "NSTableView+BNDBinding.h"
 #import "BNDBindingCellView.h"
+#import "BNDBindingCreateCellView.h"
+#import "BNDBindingListDataController.h"
 
 @interface BNDBindingListViewController () <NSTableViewDataSource, NSTableViewDelegate, NSPopoverDelegate>
 @property (weak) IBOutlet NSTableView *tableView;
@@ -103,11 +105,18 @@ static NSPopover *_popover;
     if ([cell isKindOfClass:[BNDBindingCellView class]]) {
         [cell.textField becomeFirstResponder];
     }
+    else if ([cell isKindOfClass:[BNDBindingCreateCellView class]]) {
+        BNDBindingListDataController *dataController = self.dataController;
+        [dataController createBinding];
+    }
     
     [self.tableView deselectRow:self.tableView.selectedRow];
 }
 
 - (void)popoverDidClose:(NSNotification *)notification {
+    BNDBindingListDataController *dataController = self.dataController;
+    [dataController write];
+    
     _popover = nil;
 }
 

@@ -16,8 +16,8 @@
 }
 
 - (void)loadBindings {
-    BNDBinding *binding = [BNDBinding bindingWithBIND:@"onTouchUpInside !-> viewModel.createBinding"];
-    self.bindings = @[binding];
+//    BNDBinding *binding = [BNDBinding bindingWithBIND:@"onTouchUpInside !-> viewModel.createBinding"];
+//    self.bindings = @[binding];
 }
 
 - (void)prepareForReuse {
