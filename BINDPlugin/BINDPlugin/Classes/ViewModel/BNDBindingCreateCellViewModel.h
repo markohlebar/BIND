@@ -9,11 +9,5 @@
 #import <Foundation/Foundation.h>
 #import "BIND.h"
 
-@protocol BNDBindingCreateCellViewModelCreator <NSObject>
-- (void)createBinding;
-@end
-
 @interface BNDBindingCreateCellViewModel : NSObject <BNDTableRowViewModel>
-@property (nonatomic, weak) id <BNDBindingCreateCellViewModelCreator> modelCreator;
-@property (nonatomic) BNDAction createBinding;
 @end

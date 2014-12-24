@@ -73,6 +73,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     return binding;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return [self init];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
