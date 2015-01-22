@@ -20,6 +20,9 @@ Data Binding and MVVM for iOS.
 
   s.source       = { :git => "https://github.com/markohlebar/BIND.git", :tag => "1.0.3" }
   s.source_files  = "BIND", "BIND/**/*.{h,m}"
+  s.ios.exclude_files = "BIND/Categories/OSX/**/*.{h,m}"
+  s.osx.exclude_files = "BIND/Categories/iOS/**/*.{h,m}"
+  
   # s.public_header_files = "Classes/**/*.h"
   s.prefix_header_file = 'BIND-PrefixHeader.pch'
   s.requires_arc = true
