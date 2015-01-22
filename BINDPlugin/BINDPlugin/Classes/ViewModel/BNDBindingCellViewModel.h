@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "BIND.h"
 
+@protocol BNDBindingCellViewModelBindingWriter <NSObject>
+
+@end
+
 @interface BNDBindingCellViewModel : NSObject <BNDTableRowViewModel>
 @property (nonatomic, copy) NSString *BIND;
+@property (nonatomic) BNDAction deleteBinding;
 @end

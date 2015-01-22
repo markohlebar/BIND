@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14A386a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
@@ -12,9 +12,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZZY-EK-zrC">
-                    <rect key="frame" x="-2" y="2" width="368" height="28"/>
+                    <rect key="frame" x="-2" y="2" width="368" height="23"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="crw-IM-x0d">
-                        <font key="font" size="24" name="HelveticaNeue-Light"/>
+                        <font key="font" size="16" name="HelveticaNeue-Thin"/>
                         <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -24,12 +24,12 @@
                 <constraint firstAttribute="bottom" secondItem="ZZY-EK-zrC" secondAttribute="bottom" constant="2" id="TuI-rk-Qnb"/>
                 <constraint firstAttribute="trailing" secondItem="ZZY-EK-zrC" secondAttribute="trailing" id="hOV-B3-dTW"/>
                 <constraint firstItem="ZZY-EK-zrC" firstAttribute="leading" secondItem="1hh-Xv-KW2" secondAttribute="leading" id="tzI-Yx-8jx"/>
-                <constraint firstItem="ZZY-EK-zrC" firstAttribute="top" secondItem="1hh-Xv-KW2" secondAttribute="top" id="zYZ-iz-gXu"/>
+                <constraint firstItem="ZZY-EK-zrC" firstAttribute="top" secondItem="1hh-Xv-KW2" secondAttribute="top" constant="5" id="zYZ-iz-gXu"/>
             </constraints>
             <connections>
                 <outlet property="textField" destination="ZZY-EK-zrC" id="yqP-jd-WgD"/>
             </connections>
-            <point key="canvasLocation" x="186" y="-158.5"/>
+            <point key="canvasLocation" x="62" y="-205.5"/>
         </tableCellView>
     </objects>
 </document>

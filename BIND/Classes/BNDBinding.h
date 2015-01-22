@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BNDBinding : NSObject
+@interface BNDBinding : NSObject <NSCoding>
 
 /**
  *  BIND is a special syntax to bind values at keyPath for an object

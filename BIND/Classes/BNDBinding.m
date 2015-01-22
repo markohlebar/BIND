@@ -73,6 +73,14 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     return binding;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return [self init];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -348,7 +356,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         IMP newDeallocImplementation = imp_implementationWithBlock(^(void *obj) {
             @autoreleasepool {
                 NSArray *bindings = [objc_getAssociatedObject((__bridge id)obj, &BNDBindingAssociatedBindingsKey) copy];
-                NSObject *object = CFBridgingRelease(obj);
+                NSObject *object = (__bridge id)(obj);
                 for (BNDBindingKVOObserver *observer in bindings) {
                     [observer unobserve:object];
                     [observer.binding unbind];

@@ -13,4 +13,6 @@
 @class BNDInterfaceBuilderWriter;
 @interface BNDBindingListDataController : NSObject <BNDDataController>
 @property (nonatomic, strong, readonly) BNDInterfaceBuilderWriter *bindingWriter;
+- (void)createBinding;
+- (void)write;
 @end

@@ -9,6 +9,7 @@
 #import "BNDSpecialKeyPathHandler.h"
 #import "BNDBinding.h"
 #import "BNDSpecialKeyPathHandling.h"
+#import "NSString+BNDKeyPathHandling.h"
 
 @interface BNDBinding ()
 
@@ -22,23 +23,20 @@
 @implementation BNDSpecialKeyPathHandler
 
 + (void)handleSpecialKeyPathsForBinding:(BNDBinding *)binding {
-    for (NSString *specialKeyPath in [BNDSpecialKeyPathHandler specialKeyPaths]) {
-        if ([binding.leftKeyPath rangeOfString:specialKeyPath].location != NSNotFound) {
-            id handler = [self objectForObject:binding.leftObject
+    NSString *leftSpecialKeyPath = [binding.leftKeyPath bnd_lastKeyPathComponent];
+    id handler = [self keypathHandlerForObject:binding.leftObject
                                        keyPath:binding.leftKeyPath];
-            [self handleSpecialKeyPath:specialKeyPath
-                               handler:handler];
-                  }
-        
-        if ([binding.rightKeyPath rangeOfString:specialKeyPath].location != NSNotFound) {
-            id handler = [self objectForObject:binding.rightObject
-                                       keyPath:binding.rightKeyPath];
-            [self handleSpecialKeyPath:specialKeyPath
-                               handler:handler];        }
-    }
+    [self handleSpecialKeyPath:leftSpecialKeyPath
+                       handler:handler];
+    
+    NSString *rightSpecialKeyPath = [binding.rightKeyPath bnd_lastKeyPathComponent];
+    handler = [self keypathHandlerForObject:binding.rightObject
+                                    keyPath:binding.rightKeyPath];
+    [self handleSpecialKeyPath:rightSpecialKeyPath
+                       handler:handler];
 }
 
-+ (id)objectForObject:(NSObject *)object keyPath:(NSString *)keyPath {
++ (id)keypathHandlerForObject:(NSObject *)object keyPath:(NSString *)keyPath {
     NSArray *components = [keyPath componentsSeparatedByString:@"."];
     if (components.count == 1) {
         return object;
@@ -57,12 +55,6 @@
     if ([handler respondsToSelector:@selector(handleSpecialKeyPath:)]) {
         [handler handleSpecialKeyPath:keyPath];
     }
-}
-
-+ (NSArray *)specialKeyPaths {
-    return @[
-             BNDBindingTouchUpInsideKeyPath
-             ];
 }
 
 @end
