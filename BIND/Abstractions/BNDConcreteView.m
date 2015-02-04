@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-
 #import "BNDConcreteView.h"
 #import "BNDBinding.h"
 
@@ -15,12 +14,20 @@
 @synthesize viewModel = _viewModel; \
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
     for (BNDBinding *binding in self.bindings) { \
-        [binding bindLeft:self withRight:self]; \
+        if ([self isShorthandBinding:binding]) { \
+            [binding bindLeft:viewModel withRight:self]; \
+        } \
+        else { \
+            [binding bindLeft:self withRight:self]; \
+        } \
     } \
     [self willChangeValueForKey:@"viewModel"]; \
     _viewModel = viewModel; \
     [self didChangeValueForKey:@"viewModel"]; \
     [self viewDidUpdateViewModel:viewModel]; \
+} \
+- (BOOL)isShorthandBinding:(BNDBinding *)binding { \
+    return [binding.BIND rangeOfString:@"viewModel"].location == NSNotFound; \
 } \
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
 } \

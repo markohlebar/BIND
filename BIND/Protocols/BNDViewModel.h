@@ -67,7 +67,7 @@
 
 @end
 
-@protocol BNDCollectionViewModel <BNDViewModel>
+@protocol BNDCollectionCellViewModel <BNDViewModel>
 
 @optional
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0610"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "NO"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "959F2957C9AE2280D500D5A2"
+               BlueprintIdentifier = "500300474125A35472848048"
                BuildableName = "libPods-BINDPlugin.a"
                BlueprintName = "Pods-BINDPlugin"
                ReferencedContainer = "container:../Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C63071810B3C0E543A0FA138"
+               BlueprintIdentifier = "CC63080AEA8035054C129683"
                BuildableName = "libPods-BINDPluginTests.a"
                BlueprintName = "Pods-BINDPluginTests"
                ReferencedContainer = "container:../Pods/Pods.xcodeproj">
