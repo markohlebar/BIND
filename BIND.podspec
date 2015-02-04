@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BIND"
-  s.version      = "1.0.3"
+  s.version      = "1.1.0"
   s.summary      = "Data Binding and MVVM for iOS."
 
   s.description  = <<-DESC
