@@ -153,12 +153,11 @@ Also let the transformation between rpm's -> speed be as trivial as 100:1.
 
 ```
     car.speed = 100;
-	   engine.rpm = 10000;
+    engine.rpm = 10000;
     BNDBinding *binding = [BNDBinding bindingWithBIND:@"rpm -> speed | RPMToSpeedTransformer"];
-	   [binding bindLeft:engine withRight:car];
-	   
-	   engine.rpm = 20000;
-	   //car.speed is 200 at this point. 
+    [binding bindLeft:engine withRight:car];
+    engine.rpm = 20000;
+    //car.speed is 200 at this point. 
 ```
 
 ## Automagic Unbinding ##
