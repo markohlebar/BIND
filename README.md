@@ -101,12 +101,12 @@ Observe the symbol `->` in the expression `name -> textLabel.text`.
 **BIND** syntax lets you configure the way that the binding is reflected on the bound objects values. 
 It offers six different direction and intial value assignment configurations:
 ```
-  name -> textLabel.text /// left object passes values to right object
-  name <- textLabel.text /// right object passes values to left object.
-  name <> textLabel.text /// binding is bidirectional. Initial value is passed from left to right object.
-  name !-> textLabel.text /// left object passes values to right object with no initial value assignment.
-  name <-! textLabel.text /// right object passes values to left object with no initial value assignment.
-  name <!> textLabel.text /// binding is bidirectional with no initial value assignment. 
+name -> textLabel.text /// left object passes values to right object
+name <- textLabel.text /// right object passes values to left object.
+name <> textLabel.text /// binding is bidirectional. Initial value is passed from left to right object.
+name !-> textLabel.text /// left object passes values to right object with no initial value assignment.
+name <-! textLabel.text /// right object passes values to left object with no initial value assignment.
+name <!> textLabel.text /// binding is bidirectional with no initial value assignment. 
 ```
 
 #### Transformers ####
