@@ -22,7 +22,7 @@ with a couple of major feature advantages.
 - **data binding** from **XIBs** or **code** by using a custom **BIND DSL**
 - **data transforms** by using subclasses of `NSValueTransformer`
 - **protocols** and **abstract classes** to make your **MVVM**-ing easier
-- **lightweight** (200ish lines of code)
+- **automagic unbinding** no more **KVO exceptions** on dealloc
 
 ## Why Use This? ##
 
@@ -40,8 +40,7 @@ That's one of the reasons anyways...
 
 ## BIND DSL ##
 
-Bind offers a special [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) to build your bindings. 
-You can use it either from code or from XIB-s. The language describes which keypaths are assigned from each binding,
+Bind offers a special language to build your bindings. You can use it either from code or from XIB-s. The language describes which keypaths are assigned for each binding. 
 
 ### Examples ###
 
@@ -71,45 +70,48 @@ In the gif above you can observe a simple procedure of adding a binding to a cel
 Similar to the binding from XIB example, what you need to do is bind the cell's `textLabel.text` key path with the `name` key path of your **view model**. 
 
 ```
-@implementation PersonTableViewCell {
-    BNDBinding *_binding;
-}
+@interface PersonTableViewCell : BNDTableViewCell
+@end
+
+@implementation PersonTableViewCell 
 
 - (instancetype)init {
     ...
-    _binding = [BNDBinding new];
-    _binding.BIND = @"name -> textLabel.text";
+    //this will bind viewModel.name to cell's textLabel.text property
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"name -> textLabel.text"];
+    
+    //assign the binding to the array of bindings property (BNDTableViewCell).
+    //any calls to setViewModel: will automatically refresh the binding by calling 
+    //[binding bindLeft:self.viewModel withRight:self];
+    //making sure that your objects are bound on cell reuse.
+    self.bindings = @[binding]; 
     ...
 }
 
-- (void)setViewModel:(id)viewModel {
-    _viewModel = viewModel;
-    [_binding bindLeft:viewModel withRight:self];
-}
+- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
+    //this method is called after each call to setViewModel: on the cell
+    //use this instead of overriding setViewModel: 
+} 
     
 @end
 ``` 
 
-#### Binding Direction ####
+#### Binding Direction and Initial Value Assignment####
 Observe the symbol `->` in the expression `name -> textLabel.text`. 
 **BIND** syntax lets you configure the way that the binding is reflected on the bound objects values. 
-It offers three different direction configurations:
+It offers six different direction and intial value assignment configurations:
 ```
-  name -> textLabel.text /// changes on name reflect on textLabel.text, but not the other way around
-  name <- textLabel.text /// changes on textLabel.text reflect on name, but not the other way around
-  name <> textLabel.text /// changes on name reflect on textLabel.text and vice versa. 
+  name -> textLabel.text /// left object passes values to right object
+  name <- textLabel.text /// right object passes values to left object.
+  name <> textLabel.text /// binding is bidirectional. Initial value is passed from left to right object.
+  name !-> textLabel.text /// left object passes values to right object with no initial value assignment.
+  name <-! textLabel.text /// right object passes values to left object with no initial value assignment.
+  name <!> textLabel.text /// binding is bidirectional with no initial value assignment. 
 ```
-
-#### Initial Value Assignment ####
-Initial values are assigned by default. The direction of assignment is from left to right object 
-in cases the binding directions are either `->` or `<>`,
-and from right to left object when binding direction is `<-`.
-You can disable initial value assignment by using `bindLeft:withRight:setInitialValues:` method. 
-
 
 #### Transformers ####
 **BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
-to other object and reverse. Let's take the previous example, and assume that there is a requirement that the names should be displayed capitalized in the cells. You could then build your subclass of `NSValueTransformer` and easily assign it to the binding.
+to other object and reverse. Let's take the previous example, and assume that there is a requirement that the names should be displayed capitalized in the cells. You could then build your subclass of `NSValueTransformer` and easily assign it to the binding. When assigning a value transformer, you can either use it's class name or transformer name. If you pass in a class name that hasn't yet been registered, **BIND** will register that `NSValueTransformer`, and use the class name as the registered transformer name on any subsequent calls. 
 
 ```
 @interface CapitalizeStringTransformer : NSValueTransformer
@@ -132,8 +134,7 @@ to other object and reverse. Let's take the previous example, and assume that th
 ...
 - (instancetype)init {
     ...
-    _binding = [BNDBinding new];
-    _binding.BIND = @"name -> textLabel.text | CapitalizeStringTransformer";
+    _binding = [BNDBinding bindingWithBIND:@"name -> textLabel.text | CapitalizeStringTransformer"];
     ...
 }
 ...
@@ -142,22 +143,28 @@ to other object and reverse. Let's take the previous example, and assume that th
 Observe `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
 You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `name -> textLabel.text | !CapitalizeStringTransformer`.
 
-## Memory Management ##
+## KVO with BIND ##
 
-**BIND** is built on `KVO`, so the rules for observing an object apply here as well. Each `BNDBinding` object holds weak references to 2 assigned objects, namely `leftObject` and `rightObject`. If any of those objects gets deallocated before you `unbind` the binding, an exception will occur `"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.` Therefore, keep that in mind while managing the objects you bind. Best practice would be to destroy the binding before bound objects get destroyed. You can also call `unbind` to destroy the references to bound objects. 
+KVO is ugly and it will crash your app if you forget to remove your observer. 
+**BIND** is not just limited to viewModels and cells, you can use it for same purposes as you would use KVO. 
+Let's say you have a car and an engine within that car. 
+When the engine increases it's rpm's then you want your car's speed to change as well. 
+Also let the transformation between rpm's -> speed be as trivial as 100:1. 
 
 ```
-//Exception 
-BNDBinding *binding = [BNDBinding new];
-NSObject *leftObject = [NSObject new];
-[binding bindLeft:leftObject withRight:...];
-leftObject = nil; ///This will throw an exception. 
-
-//All good
-[binding bindLeft:leftObject withRight:...];
-binding = nil;    ///OR [binding unbind];
-leftObject = nil; ///Cool
+    car.speed = 100;
+	   engine.rpm = 10000;
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"rpm -> speed | RPMToSpeedTransformer"];
+	   [binding bindLeft:engine withRight:car];
+	   
+	   engine.rpm = 20000;
+	   //car.speed is 200 at this point. 
 ```
+
+## Automagic Unbinding ##
+
+As of version 1.1.0, **BIND** is automatically handling unbinding of bound objects. This means no more KVO exceptions like the following:
+`"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.`
 
 ## Sample Project ##
 
