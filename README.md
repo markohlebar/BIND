@@ -7,31 +7,12 @@ BIND
 
 Data binding and MVVM for iOS
 
-## History ##
-
-This library emerged from my exploration of [different architectures](https://github.com/markohlebar/iOSArchitectures) for iOS apps. 
-It draws some ideas from other similar projects like 
- - [KJSimpleBinding](https://github.com/kristopherjohnson/KJSimpleBinding)
- - [KeyPathBindings](https://github.com/dewind/KeyPathBindings)
- - [objc-simple-bindings](https://github.com/mruegenberg/objc-simple-bindings)
-
-with a couple of major feature advantages.
-
 ## Features ##
 
-- **data binding** from **XIBs** or **code** by using a custom **BIND DSL**
+- **data binding** from XIBs or code by using BIND DSL
 - **data transforms** by using subclasses of `NSValueTransformer`
-- **protocols** and **abstract classes** to make your **MVVM**-ing easier
-- **automagic unbinding** no more **KVO exceptions** on dealloc
-
-## Why Use This? ##
-
-Because your `View` implementation code will literally start looking like this:
-```
-@implementation MyTableViewCell
-@end
-```
-That's one of the reasons anyways... 
+- **automagic unbinding** - **no more KVO exceptions** on dealloc
+- **MVVM** out of the box by utilizing protocols and abstract classes
 
 ## Integration ##
 #### CocoaPods ####
@@ -169,5 +150,10 @@ As of version 1.1.0, **BIND** is automatically handling unbinding of bound objec
 
 Check [iOSArchitectures project](https://github.com/markohlebar/iOSArchitectures).
 
-## TBC ##
-- more abstract classes like viewcontrollers, views etc. 
+## History ##
+
+This library emerged from my exploration of [different architectures](https://github.com/markohlebar/iOSArchitectures) for iOS apps. 
+It draws some ideas from other similar projects like 
+ - [KJSimpleBinding](https://github.com/kristopherjohnson/KJSimpleBinding)
+ - [KeyPathBindings](https://github.com/dewind/KeyPathBindings)
+ - [objc-simple-bindings](https://github.com/mruegenberg/objc-simple-bindings)
