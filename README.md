@@ -43,7 +43,7 @@ In the gif above you can observe a simple procedure of adding a binding to a cel
 - add a keypath, change it's "Type" to `String`, "Key Path" to `BIND`, and type a BIND expression as the "Value" (In the example above I'm connecting my viewmodel's `name` keypath to `textLabel.text` of the cell)
 - right click on your table view cell and find the Outlet Collection called `bindings`
 - connect the previously created Binding with the outlet collection. 
-- in your table view delegate's 'tableView:cellForRowAtIndexPath:' you should set the `viewModel` property of the cell with your view model
+- in your table view delegate's `tableView:cellForRowAtIndexPath:` you should set the `viewModel` property of the cell with your view model
 
 #### Binding From Code ####
 Similar to the binding from XIB example, what you need to do is bind the cell's `textLabel.text` key path with the `name` key path of your **view model**. 
