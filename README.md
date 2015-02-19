@@ -173,14 +173,14 @@ Usually the best time to refresh the View Model would be in `UIViewController`'s
     }];
 }
 ```
-For your convenience, **BIND** offers an abstract class **BNDViewController** which holds an `IBOutlet` property `dataController`. You can assign this property from code or XIB (think dependency injection).
+For your convenience, **BIND** offers an abstract class `BNDViewController` which holds an `IBOutlet` property `dataController`. You can assign this property from code or XIB (think dependency injection).
 
 #### View ####
 **BIND** offers the following abstract subclasses for the View elements:
-- BNDView
-- BNDTableViewCell
-- BNDCollectionViewCell
-- BNDViewController
+- `BNDView`
+- `BNDTableViewCell`
+- `BNDCollectionViewCell`
+- `BNDViewController`
 
 These subclasses hold a weak reference to the `viewModel` and a strong reference to an array of `bindings`. 
 Think of a common scenario when presenting `UITableView` cells:
