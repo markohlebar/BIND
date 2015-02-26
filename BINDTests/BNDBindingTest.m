@@ -263,6 +263,17 @@
 	}];
 }
 
+- (void)testBINDAssignmentPerformance {
+    __block Engine *engine = [Engine new];
+    __block Car *car = [Car new];
+    _binding.BIND = @"rpm->speed|RPMToSpeedTransformer";
+    [_binding bindLeft:engine
+             withRight:car];
+    [self measureBlock: ^{
+        engine.rpm = 10000;
+    }];
+}
+
 #pragma mark - Crash tests
 
 - (void)testUnbindDoesntCrashWhenObjectsAreNotSet {
