@@ -127,8 +127,8 @@ You can reverse the transformation direction if you need to by adding a `!` modi
 KVO is ugly and it will crash your app if you forget to remove your observer. 
 **BIND** is not just limited to viewModels and cells, you can use it for same purposes as you would use KVO. 
 Let's say you have a car and an engine within that car. 
-When the engine increases it's rpm's then you want your car's speed to change as well. 
-Also let the transformation between rpm's -> speed be as trivial as 100:1. 
+When the engine increases it's rpm then you want your car's speed to change as well. 
+Also let the transformation between rpm -> speed be as trivial as 100:1. 
 
 ```
 car.speed = 100;
