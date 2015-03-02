@@ -252,6 +252,108 @@
     XCTAssertTrue(_car.engine.rpm == 20000, @"should update the correct value if binding the same object");
 }
 
+#pragma mark - Async Transformer
+
+- (void)expectAsyncValueTransform:(void(^)(void)) expectationBlock {
+    [self expectAsyncValueTransform:expectationBlock afterTime:0.2];
+}
+
+- (void)expectAsyncValueTransform:(void(^)(void)) expectationBlock
+                        afterTime:(NSTimeInterval) time {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Expect async transform"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        expectationBlock();
+        [expectation fulfill];
+    });
+    [self waitForExpectationsWithTimeout:time + 0.1 handler:nil];
+}
+
+- (void)testAsyncTransformersSetInitialValueWithForwardTransform {
+    Engine *engine = [Engine new];
+    engine.rpm = 10000;
+    
+    __block Car *car = [Car new];
+    _binding.BIND = @"rpm -> speed | AsyncRPMToSpeedTransformer";
+    [_binding bindLeft:engine withRight:car];
+    
+    [self expectAsyncValueTransform:^{
+        XCTAssertTrue(car.speed == 100, "Should be able to update the value asynchronously");
+    }];
+}
+
+- (void)testAsyncTransformersSetInitialValueWithReverseTransform {
+    Car *car = [Car new];
+    car.speed = 100;
+
+    Engine *engine = [Engine new];
+    
+    _binding.BIND = @"rpm <- speed | !AsyncRPMToSpeedTransformer";
+    [_binding bindLeft:engine withRight:car];
+    
+    [self expectAsyncValueTransform:^{
+        XCTAssertTrue(engine.rpm == 10000, "Should be able to update the value asynchronously");
+    }];
+}
+
+- (void)testAssignsLeftToRightValueAsynchronously {
+    Engine *engine = [Engine new];
+    engine.rpm = 10000;
+    
+    __block Car *car = [Car new];
+    _binding.BIND = @"rpm -> speed | AsyncRPMToSpeedTransformer";
+    [_binding bindLeft:engine withRight:car];
+    
+    engine.rpm = 20000;
+    
+    [self expectAsyncValueTransform:^{
+        XCTAssertTrue(car.speed == 200, "Should be able to update the value asynchronously");
+    }];
+}
+
+- (void)testAssignsRightToLeftValueAsynchronously {
+    Car *car = [Car new];
+    car.speed = 100;
+    
+    Engine *engine = [Engine new];
+    
+    _binding.BIND = @"rpm <- speed | !AsyncRPMToSpeedTransformer";
+    [_binding bindLeft:engine withRight:car];
+    
+    car.speed = 200;
+    
+    [self expectAsyncValueTransform:^{
+        XCTAssertTrue(engine.rpm == 20000, "Should be able to update the value asynchronously");
+    }];
+}
+
+- (void)testAssignsBidirectionalValueAsynchronously {
+    __block Engine *engine = [Engine new];
+    engine.rpm = 10000;
+    
+    __block Car *car = [Car new];
+    _binding.BIND = @"rpm <> speed | AsyncRPMToSpeedTransformer";
+    [_binding bindLeft:engine withRight:car];
+    
+    engine.rpm = 20000;
+    
+    [self expectAsyncValueTransform:^{
+        XCTAssertTrue(engine.rpm == 20000, "Should be able to update the value asynchronously");
+        XCTAssertTrue(car.speed == 200, "Should be able to update the value asynchronously");
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+                   dispatch_queue_create("car", DISPATCH_QUEUE_CONCURRENT), ^{
+        car.speed = 100;
+    });
+
+    [self expectAsyncValueTransform:^{
+        XCTAssertTrue(engine.rpm == 10000, "Should be able to update the value asynchronously");
+        XCTAssertTrue(car.speed == 100, "Should be able to update the value asynchronously");
+    } afterTime:1.1];
+}
+
+#pragma mark - Performance
+
 - (void)testBINDPerformance {
 	__block Engine *engine = [Engine new];
 	__block Car *car = [Car new];
