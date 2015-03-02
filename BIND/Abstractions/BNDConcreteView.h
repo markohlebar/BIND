@@ -37,6 +37,18 @@
 @end
 
 /**
+ *  BNDButton is an concrete button subclass that loads bindings
+ *  from a XIB and then refreshes the bindings when the
+ *  cell gets updated.
+ *  It also synthesizes your viewModel property.
+ *  The user of this view should call setViewModel:
+ *  so that the bindings get updated.
+ */
+@interface BNDButton : _BNDButton <BNDView>
+@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
+@end
+
+/**
  *  BNDViewController is a concrete view controller subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the
  *  cell gets updated.

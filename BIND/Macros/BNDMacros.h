@@ -16,6 +16,7 @@
 #define _BNDViewController  UIViewController
 #define _BNDView            UIView
 #define _BNDTableViewCell   UITableViewCell
+#define _BNDButton          UIButton
 
 #elif TARGET_OS_MAC
 
@@ -24,6 +25,7 @@
 #define _BNDViewController  NSViewController
 #define _BNDView            NSView
 #define _BNDTableViewCell   NSTableCellView
+#define _BNDButton          NSButton
 
 #endif
 
