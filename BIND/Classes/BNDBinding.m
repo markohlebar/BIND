@@ -115,6 +115,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     self.shouldSetInitialValues = definition.shouldSetInitialValues;
     self.asynchronousMode = [definition.valueTransformer isKindOfClass:[BNDAsyncValueTransformer class]];
     
+    NSAssert(!(self.asynchronousMode && self.direction == BNDBindingDirectionBoth), @"Bidirectional asynchronous binding not supported");
+    
     [self prepareTransformSelectorsWithAsynchronousMode:self.isAsynchronousMode
                                      transformDirection:self.transformDirection];
 }

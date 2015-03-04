@@ -326,30 +326,8 @@
     }];
 }
 
-- (void)testAssignsBidirectionalValueAsynchronously {
-    __block Engine *engine = [Engine new];
-    engine.rpm = 10000;
-    
-    __block Car *car = [Car new];
-    _binding.BIND = @"rpm <> speed | AsyncRPMToSpeedTransformer";
-    [_binding bindLeft:engine withRight:car];
-    
-    engine.rpm = 20000;
-    
-    [self expectAsyncValueTransform:^{
-        XCTAssertTrue(engine.rpm == 20000, "Should be able to update the value asynchronously");
-        XCTAssertTrue(car.speed == 200, "Should be able to update the value asynchronously");
-    }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
-                   dispatch_queue_create("car", DISPATCH_QUEUE_CONCURRENT), ^{
-        car.speed = 100;
-    });
-
-    [self expectAsyncValueTransform:^{
-        XCTAssertTrue(engine.rpm == 10000, "Should be able to update the value asynchronously");
-        XCTAssertTrue(car.speed == 100, "Should be able to update the value asynchronously");
-    } afterTime:1.1];
+- (void)testAssignsBidirectionalValueAsynchronouslyThrowsException {
+    XCTAssertThrows(_binding.BIND = @"rpm <> speed | AsyncRPMToSpeedTransformer", @"Bidirectional asynchronous binding not supported");
 }
 
 #pragma mark - Performance
