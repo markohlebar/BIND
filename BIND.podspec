@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "BIND"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "Data Binding and MVVM for iOS."
 
   s.description  = <<-DESC
@@ -18,7 +18,7 @@ Data Binding and MVVM for iOS.
   s.author             = { "Marko Hlebar" => "marko.hlebar@gmail.com" }
   s.social_media_url   = "https://twitter.com/markohlebar"
 
-  s.source       = { :git => "https://github.com/markohlebar/BIND.git", :tag => "1.1.0" }
+  s.source       = { :git => "https://github.com/markohlebar/BIND.git", :tag => "1.2.0" }
   s.source_files  = "BIND", "BIND/**/*.{h,m}"
   s.ios.exclude_files = "BIND/Categories/OSX/**/*.{h,m}"
   s.osx.exclude_files = "BIND/Categories/iOS/**/*.{h,m}"
