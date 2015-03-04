@@ -91,7 +91,6 @@ name <!> textLabel.text /// binding is bidirectional with no initial value assig
 #### Transformers ####
 **BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
 to other object and reverse. Let's take the previous example, and assume that there is a requirement that the names should be displayed capitalized in the cells. You could then build your subclass of `NSValueTransformer` and easily assign it to the binding. When assigning a value transformer, you can either use it's class name or transformer name. If you pass in a class name that hasn't yet been registered, **BIND** will register that `NSValueTransformer`, and use the class name as the registered transformer name on any subsequent calls. 
-
 ```
 @interface CapitalizeStringTransformer : NSValueTransformer
 @end
@@ -121,6 +120,40 @@ to other object and reverse. Let's take the previous example, and assume that th
 ```
 Observe `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
 You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `name -> textLabel.text | !CapitalizeStringTransformer`.
+
+#### Asynchronous Transformers ####
+Let's say you want to grab an image from the web asynchronously by using a transformation from an `NSURL` to a `UIImage`. You can do this by creating a `BNDAsyncValueTransformer` subclass and implementing it's transform and reverse transform methods. Following is a trivial example of the implementation of such a class.
+```
+@implementation BNDURLToImageTransformer
+
+- (void)asyncTransformValue:(NSURL *)value
+             transformBlock:(BNDAsyncValueTransformBlock)transformBlock {
+    NSURLRequest *request = [NSURLRequest requestWithURL:value];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue new]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               if (data) {
+                                   UIImage *image = [UIImage imageWithData:data];
+                                   transformBlock(image);
+                               }
+                           }];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
+@end
+
+...
+- (instancetype)init {
+    ...
+    _binding = [BNDBinding bindingWithBIND:@"imageURL -> imageView.image | BNDURLToImageTransformer"];
+    ...
+}
+...
+```
+Note that bidirectional asynchronous binding is not supported and will throw an exception.
 
 ## KVO with BIND ##
 
