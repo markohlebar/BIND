@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BNDConcreteView.h"
 #import "BNDViewModel.h"
+#import "BNDAsyncValueTransformer.h"
 
 @class Engine;
 @class GasPedal;
@@ -32,15 +33,19 @@
 @property (nonatomic, copy) NSString *carMake;
 @end
 
-@interface RPMToSpeedTransformer : NSValueTransformer
-
-@end
+#pragma mark - UI Tests
 
 @interface ViewModel : NSObject <BNDViewModel>
 @property (nonatomic, strong) NSString *text;
 @end
 
 @interface TableViewCell : BNDTableViewCell
-
 @end
 
+#pragma mark - Transformers
+
+@interface RPMToSpeedTransformer : NSValueTransformer
+@end
+
+@interface AsyncRPMToSpeedTransformer : BNDAsyncValueTransformer
+@end

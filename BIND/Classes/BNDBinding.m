@@ -11,6 +11,7 @@
 #import "BNDBindingTypes.h"
 #import "BNDParser.h"
 #import <objc/runtime.h>
+#import "BNDAsyncValueTransformer.h"
 
 static NSMutableSet *BNDBindingObject_swizzledClasses = nil;
 static NSMutableSet *BNDBindingObject_bindings = nil;
@@ -41,6 +42,11 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 @property (nonatomic, strong) BNDBindingKVOObserver *leftObserver;
 @property (nonatomic, strong) BNDBindingKVOObserver *rightObserver;
+
+@property (nonatomic) SEL transformSelector;
+@property (nonatomic) SEL reverseTransformSelector;
+
+@property (nonatomic, getter=isAsynchronousMode) BOOL asynchronousMode;
 @end
 
 #pragma clang diagnostic push
@@ -75,7 +81,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     return [self init];
-}
+}   
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     
@@ -107,6 +113,12 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     self.transformDirection = definition.transformDirection;
     self.valueTransformer = definition.valueTransformer;
     self.shouldSetInitialValues = definition.shouldSetInitialValues;
+    self.asynchronousMode = [definition.valueTransformer isKindOfClass:[BNDAsyncValueTransformer class]];
+    
+    NSAssert(!(self.asynchronousMode && self.direction == BNDBindingDirectionBoth), @"Bidirectional asynchronous binding not supported");
+    
+    [self prepareTransformSelectorsWithAsynchronousMode:self.isAsynchronousMode
+                                     transformDirection:self.transformDirection];
 }
 
 - (void)bindLeft:(id)leftObject
@@ -156,29 +168,67 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
         id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
-        value = [_valueTransformer performSelector:[self transformSelector]
-                                        withObject:value];
-        [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
+        [self setRightObjectValue:value];
     }
     else if (self.direction == BNDBindingDirectionRightToLeft) {
         id value = [self.rightObject valueForKeyPath:self.rightKeyPath];
-        value = [_valueTransformer performSelector:[self reverseTransformSelector]
-                                        withObject:value];
+        [self setLeftObjectValue:value];
+    }
+}
+
+- (void)setLeftObjectValue:(id)value {
+    if (self.isAsynchronousMode) {
+        __weak typeof(self) weakSelf = self;
+        void (^asyncTransformBlock)(id) = ^(id transformedValue) {
+            [weakSelf.leftObject setValue:transformedValue
+                               forKeyPath:weakSelf.leftKeyPath];
+        };
+        
+        [self.valueTransformer performSelector:self.reverseTransformSelector
+                                    withObject:value
+                                    withObject:asyncTransformBlock];
+    }
+    else {
+        value = [self.valueTransformer performSelector:self.reverseTransformSelector
+                                            withObject:value];
         
         [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
     }
 }
 
-- (SEL)transformSelector {
-    return self.transformDirection == BNDBindingTransformDirectionLeftToRight ?
-    @selector(transformedValue:) :
-    @selector(reverseTransformedValue:);
+- (void)setRightObjectValue:(id)value {
+    if (self.isAsynchronousMode) {
+        __weak typeof(self) weakSelf = self;
+        void (^asyncTransformBlock)(id) = ^(id transformedValue) {
+            [weakSelf.rightObject setValue:transformedValue
+                                forKeyPath:weakSelf.rightKeyPath];
+        };
+        
+        [self.valueTransformer performSelector:self.transformSelector
+                                    withObject:value
+                                    withObject:asyncTransformBlock];
+    }
+    else {
+        value = [self.valueTransformer performSelector:self.transformSelector
+                                            withObject:value];
+        [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
+    }
+
 }
 
-- (SEL)reverseTransformSelector {
-    return self.transformDirection == BNDBindingTransformDirectionLeftToRight ?
-    @selector(reverseTransformedValue:) :
-    @selector(transformedValue:);
+- (void)prepareTransformSelectorsWithAsynchronousMode:(BOOL)asynchronousMode
+                                   transformDirection:(BNDBindingTransformDirection)transformDirection {
+	SEL transformSelector = asynchronousMode ?
+	    @selector(asyncTransformValue:transformBlock:) :
+	    @selector(transformedValue:);
+    
+	SEL reverseTransformSelector = asynchronousMode ?
+	    @selector(reverseAsyncTransformValue:transformBlock:) :
+	    @selector(reverseTransformedValue:);
+
+	BOOL isForwardDirection = (transformDirection == BNDBindingTransformDirectionLeftToRight);
+	self.transformSelector = isForwardDirection ? transformSelector : reverseTransformSelector;
+	self.reverseTransformSelector = isForwardDirection ? reverseTransformSelector : transformSelector;
 }
 
 - (void)setupObservers {
@@ -246,16 +296,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     }
     
     if ([object isEqual:self.leftObject] && [self.leftKeyPath isEqualToString:keyPath]) {
-        id transformedObject = [self.valueTransformer performSelector:[self transformSelector]
-                                                           withObject:newObject];
-        [self.rightObject setValue:transformedObject
-                        forKeyPath:self.rightKeyPath];
+        [self setRightObjectValue:newObject];
     }
     else if ([object isEqual:self.rightObject] && [self.rightKeyPath isEqualToString:keyPath]) {
-        id transformedObject = [self.valueTransformer performSelector:[self reverseTransformSelector]
-                                                           withObject:newObject];
-        [self.leftObject setValue:transformedObject
-                   forKeyPath:self.leftKeyPath];
+        [self setLeftObjectValue:newObject];
     }
     
     [self unlock];
