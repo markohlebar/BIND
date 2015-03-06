@@ -5,6 +5,18 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 workspace 'BIND'
 
+target 'BIND' do
+    platform :ios, '7.0'
+    xcodeproj 'BIND.xcodeproj'
+	pod 'libextobjc'
+end
+
+target 'BIND-OSX' do
+    platform :osx, '10.9'
+    xcodeproj 'BIND.xcodeproj'
+    pod 'libextobjc'
+end
+
 target 'BINDTests' do
     platform :ios, '7.0'
     xcodeproj 'BIND.xcodeproj'
