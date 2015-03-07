@@ -258,8 +258,8 @@ In the gif above you can observe a simple procedure of adding a binding to a cel
 
 ## Sample Project ##
 
-Check [iOSArchitectures project](https://github.com/markohlebar/iOSArchitectures).
-
+Clone `BIND`, open `BIND.xcworkspace` and check out `BINDApp` target. 
+ 
 ## History ##
 
 This library emerged from my exploration of [different architectures](https://github.com/markohlebar/iOSArchitectures) for iOS apps. 
