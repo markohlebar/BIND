@@ -49,22 +49,22 @@
 
 #pragma mark - Memory management
 
-- (void)testAAUnassignedBindingsWorkUntilObservableIsDealloced {
-    BIND(_car, speed, ->, _engine, rpm);
-    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
-    
-    _car = nil;
-    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
-}
-
-- (void)testZZUnassignedBindingsWorkUntilObservableIsDealloced {
-    BIND(_engine, rpm, ->, _car, speed);
-    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
-    
-    _engine = nil;
-    _car.engine = nil;
-    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
-}
+//- (void)testAAUnassignedBindingsWorkUntilObservableIsDealloced {
+//    BIND(_car, speed, ->, _engine, rpm);
+//    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
+//    
+//    _car = nil;
+//    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
+//}
+//
+//- (void)testZZUnassignedBindingsWorkUntilObservableIsDealloced {
+//    BIND(_engine, rpm, ->, _car, speed);
+//    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
+//    
+//    _engine = nil;
+//    _car.engine = nil;
+//    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
+//}
 
 - (void)testBINDInitialValueLeftToRightAssignment {
 	_car.make = @"Toyota";

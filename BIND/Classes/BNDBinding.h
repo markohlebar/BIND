@@ -79,10 +79,6 @@ typedef id(^BNDBindingTransformValueBlock)(id object, id value);
 - (void)unbind;
 
 /**
-
- */
-
-/**
  *  Transforms the bound values with the transform given in the block.
  *  Calling transform: on a binding will cause it to set the values as per binding direction.
  *  If value transformer and transform are assigned,
