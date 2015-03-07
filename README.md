@@ -55,7 +55,7 @@ You can change the way the values are transformed by using the `transform:` oper
 ```
 ...
 viewModel.name = @"Kim";
-[BIND(viewModel, name, ->, nameLabel, text, CapitalizeStringTransformer) transform:^id(id sender, id value) {
+[BIND(viewModel, name, ->, nameLabel, text) transform:^id(id sender, id value) {
         return value.capitalizedString;
     }];
 //nameLabel.text says @"KIM" at this point. 
