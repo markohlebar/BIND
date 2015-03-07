@@ -15,11 +15,11 @@
 
 SPEC_BEGIN(UIButton_BNDBindingSpec)
 
-describe(@"UIButton+BNDBinding", ^{
-    __block UIButton *button = nil;
-    __block NSObject *observer = nil;
-    
-    beforeEach(^{
+//describe(@"UIButton+BNDBinding", ^{
+//    __block UIButton *button = nil;
+//    __block NSObject *observer = nil;
+//    
+//    beforeEach(^{
 //        button = [UIButton buttonWithType:UIButtonTypeSystem];
 //        observer = [NSObject new];
 //        
@@ -27,13 +27,13 @@ describe(@"UIButton+BNDBinding", ^{
 //                forKeyPath:@"onTouchUpInside"
 //                    options:0
 //                    context:NULL];
-    });
-    
-    context(@"Given a button", ^{
-        it(@"Should fire a KVO notification when touched", ^{
-
-        });
-    });
-});
+//    });
+//    
+//    context(@"Given a button", ^{
+//        it(@"Should fire a KVO notification when touched", ^{
+//
+//        });
+//    });
+//});
 
 SPEC_END
