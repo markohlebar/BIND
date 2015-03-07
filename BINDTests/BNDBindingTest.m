@@ -21,6 +21,10 @@
 @property (nonatomic, strong) NSString *blah;
 @end
 
+@interface BNDBinding (Test)
++ (NSMutableSet *)allBindings;
+@end
+
 @implementation BNDBindingTest
 
 - (void)setUp {
@@ -41,6 +45,25 @@
 	_car = nil;
     _ticket = nil;
 	_engine = nil;
+}
+
+#pragma mark - Memory management
+
+- (void)testAAUnassignedBindingsWorkUntilObservableIsDealloced {
+    BIND(_car, speed, ->, _engine, rpm);
+    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
+    
+    _car = nil;
+    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
+}
+
+- (void)testZZUnassignedBindingsWorkUntilObservableIsDealloced {
+    BIND(_engine, rpm, ->, _car, speed);
+    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
+    
+    _engine = nil;
+    _car.engine = nil;
+    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
 }
 
 - (void)testBINDInitialValueLeftToRightAssignment {
@@ -403,6 +426,7 @@
 
     _car.speed = 100;
     XCTAssertEqual(transformedObject, _car, @"Car should be the transformed object");
+    transformedObject = nil;
 }
 
 - (void)testPassesTheCorrectTransformedObjectLeft {
@@ -415,6 +439,7 @@
     
     _engine.rpm = 10000;
     XCTAssertEqual(transformedObject, _engine, @"Engine should be the transformed object");
+    transformedObject = nil;
 }
 
 - (void)testPassesTheCorrectTransformedObjectBidirectional {
@@ -430,6 +455,7 @@
     
     _car.speed = 100;
     XCTAssertEqual(transformedObject, _car, @"Car should be the transformed object");
+    transformedObject = nil;
 }
 
 #pragma mark - Keypath Checking Shorthand Syntax

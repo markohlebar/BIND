@@ -56,14 +56,14 @@
     __block float speed = [rpm floatValue] / 100;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        transformBlock(@(speed));
+        transformBlock(rpm, @(speed));
     });
 }
 
 - (void)reverseAsyncTransformValue:(id)speed transformBlock:(BNDAsyncValueTransformBlock)transformBlock {
     __block float rpm = [speed floatValue] * 100;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        transformBlock(@(rpm));
+        transformBlock(speed, @(rpm));
     });
 }
 

@@ -48,6 +48,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 @property (nonatomic, getter=isAsynchronousMode) BOOL asynchronousMode;
 @property (nonatomic, copy) BNDBindingTransformValueBlock transformBlock;
+
++ (NSMutableSet *)allBindings;
 @end
 
 #pragma clang diagnostic push
@@ -63,6 +65,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         BNDBindingObject_swizzledClasses = [NSMutableSet new];
         BNDBindingObject_bindings = [NSMutableSet new];
     });
+}
+
++ (NSMutableSet *)allBindings {
+    return BNDBindingObject_bindings;
 }
 
 - (BOOL)isValidBinding {
@@ -146,6 +152,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)bind {
+    if (![self areKeypathsSet] || ![self areObjectsSet]) {
+        return;
+    }
+    
     [self setInitialValues];
     [self setupObservers];
     [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:self];
@@ -153,22 +163,12 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [BNDBindingObject_bindings addObject:self];
 }
 
-- (BNDBinding * (^)(BNDBindingTransformValueBlock))transform {
-    return ^id(BNDBindingTransformValueBlock transformBlock) {
-        self.transformBlock = transformBlock;
-        return self;
-    };
-}
-
 - (void)unbind {
-    if (![self isValidBinding]) {
-        return;
-    }
-    
     [self removeObservers];
     
     self.leftObject = nil;
     self.rightObject = nil;
+    self.transformBlock = nil;
     
     [BNDBindingObject_bindings removeObject:self];
 }
@@ -182,14 +182,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)setValues {
-    if (![self areKeypathsSet]) {
-        return;
-    }
-    
-    if (!self.leftObject || !self.rightObject) {
-        return;
-    }
-    
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
         id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
@@ -204,7 +196,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 - (void)setLeftObjectValue:(id)value {
     if (self.isAsynchronousMode) {
         __weak typeof(self) weakSelf = self;
-        void (^asyncTransformBlock)(id) = ^(id transformedValue) {
+        void (^asyncTransformBlock)(id, id) = ^(id value, id transformedValue) {
             [weakSelf.leftObject setValue:transformedValue
                                forKeyPath:weakSelf.leftKeyPath];
         };
@@ -217,7 +209,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         value = [self.valueTransformer performSelector:self.reverseTransformSelector
                                             withObject:value];
         if (self.transformBlock) {
-            value = self.transformBlock(self.rightObject, value);
+            __weak id object = self.rightObject;
+            value = self.transformBlock(object, value);
         }
         [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
     }
@@ -226,7 +219,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 - (void)setRightObjectValue:(id)value {
     if (self.isAsynchronousMode) {
         __weak typeof(self) weakSelf = self;
-        void (^asyncTransformBlock)(id) = ^(id transformedValue) {
+        void (^asyncTransformBlock)(id, id) = ^(id value, id transformedValue) {
             [weakSelf.rightObject setValue:transformedValue
                                 forKeyPath:weakSelf.rightKeyPath];
         };
@@ -239,7 +232,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         value = [self.valueTransformer performSelector:self.transformSelector
                                             withObject:value];
         if (self.transformBlock) {
-            value = self.transformBlock(self.leftObject, value);
+            __weak id object = self.leftObject;
+            value = self.transformBlock(object, value);
         }
         [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
     }
@@ -262,10 +256,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)setupObservers {
-    if (![self areKeypathsSet] || ![self areObjectsSet]) {
-        return;
-    }
-    
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
         self.leftObserver = [BNDBindingKVOObserver observerWithKeyPath:self.leftKeyPath
