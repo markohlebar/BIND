@@ -23,57 +23,110 @@ Data binding and MVVM for iOS
 
 Bind offers a special language to build your bindings. You can use it either from code or from XIB-s. The language describes which keypaths are assigned for each binding. 
 
-### Examples ###
+#### Binding ####
+KVO is ugly and it will crash your app if you forget to remove your observer. 
+You can use **BIND** for the same purposes as you would use KVO. 
+Let's say you have a `UILabel *nameLabel` and a `viewModel` representing the contents of the `nameLabel`. 
+When the `viewModel` changes it's `name` value for whatever reasons, this should automatically be visible
+on the label. 
+```
+viewModel.name = @"Kim";
+BIND(viewModel, name, ->, nameLabel, text);
+//nameLabel.text says Kim at this point. 
 
-Let's say you are building a table view based app and you want to show names of different persons in the cells. 
-Assume that the `PersonViewModel` **view model** has a property `name` which you want to display on you **cell's** `textLabel`. 
+viewModel.name = @"Hobbit";
+//nameLabel.text says Hobbit at this point. 
+```
+Notice that in the example above the binding is not assigned to any instance variable. 
+The bindings are automagically broken when the observable (in the above example `viewModel` instance) is deallocated.
 
-#### Binding From XIB ####
-**BIND** lets you create your bindings from XIBs. The easiest way to do this is to use 
-the `BNDTableViewCell` class or create it's subclass. `BNDTableViewCell` exposes an interface
-for assigning the `viewModel`, which should happen on each `tableView:cellForRowAtIndexPath:` call, 
-and `bindings` which is a xib collection outlet of bindings which will be updated with each subsequent `viewModel` assignment.
+#### Unbinding ####
+As of version 1.1.0, **BIND** is automatically handling unbinding of bound objects. This means no more KVO exceptions like the following:
+`"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.`
+You can, however, unbind the binding manually by calling `unbind` method like so: 
+```
+BNDBinding *binding = BIND(engine, rpm, ->, car, speed);
+...
+[binding unbind];
+```
 
-![](https://raw.githubusercontent.com/markohlebar/BIND/master/misc/bind_from_xib.gif)
+#### Transform operation ####
+You can change the way the values are transformed by using the `transform:` operation. Let's take the previous example, and assume that there is a requirement that the name should be displayed capitalized in the label.
+```
+...
+viewModel.name = @"Kim";
+[BIND(viewModel, name, ->, nameLabel, text, CapitalizeStringTransformer) transform:^id(id sender, id value) {
+        return value.capitalizedString;
+    }];
+//nameLabel.text says @"KIM" at this point. 
 
-In the gif above you can observe a simple procedure of adding a binding to a cell which is a subclass of `BNDTableViewCell`. The steps are as follows: 
-- create an empty XIB and name it the same as your `BNDTableViewCell` subclass
-- from Objects Library drag in a `Table View Cell` and change it's class to subclass you created.
-- next, from Objects Library drag in an `Object` and change it's class to `BNDBinding`
-- add a keypath, change it's "Type" to `String`, "Key Path" to `BIND`, and type a BIND expression as the "Value" (In the example above I'm connecting my viewmodel's `name` keypath to `textLabel.text` of the cell)
-- right click on your table view cell and find the Outlet Collection called `bindings`
-- connect the previously created Binding with the outlet collection. 
-- in your table view delegate's `tableView:cellForRowAtIndexPath:` you should set the `viewModel` property of the cell with your view model
+viewModel.name = @"Hobbit";
+//nameLabel.text says @"HOBBIT" at this point. 
+...
+```
 
-#### Binding From Code ####
-Similar to the binding from XIB example, what you need to do is bind the cell's `textLabel.text` key path with the `name` key path of your **view model**. 
+#### Transformers ####
+**BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
+to other object and reverse. 
+
+Using an `NSValueTransformer` subclass instead of a block transform is a design decision you have to make depending on the amount of logic you are putting in the transform. The `NSValueTransformer` subclass is easier to test and it's reusable, but for trivial transforms it might be better to use the `transform:` operation. 
+
+You can build your subclass of `NSValueTransformer` and easily assign it to the binding. When assigning a value transformer, you can either use it's class name or transformer name. If you pass in a class name that hasn't yet been registered, **BIND** will register that `NSValueTransformer`, and use the class name as the registered transformer name on any subsequent calls, thus saving memory and processing time.  
 
 ```
-@interface PersonTableViewCell : BNDTableViewCell
+...
+viewModel.name = @"Kim";
+//Set the transformer by using BINDT() macro 
+BINDT(viewModel, name, ->, nameLabel, text, CapitalizeStringTransformer);
+//nameLabel.text says @"KIM" at this point. 
+
+viewModel.name = @"Hobbit";
+//nameLabel.text says @"HOBBIT" at this point. 
+...
+
+//Trivial transformer implementation
+@interface CapitalizeStringTransformer : NSValueTransformer
 @end
 
-@implementation PersonTableViewCell 
+@implementation CapitalizeStringTransformer 
+- (NSString *)transformValue:(NSString *)string {
+    return string.capitalizedString; 
+}
+- (NSString *)reverseTransformValue:(NSString *)string {
+    return string.lowercaseString; 
+}
+@end 
+```
+Passing `CapitalizeStringTransformer` tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
+You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `BINDNT(viewModel, name, ->, nameLabel, text, !, CapitalizeStringTransformer)`.
 
-- (instancetype)init {
-    ...
-    //this will bind viewModel.name to cell's textLabel.text property
-    BNDBinding *binding = [BNDBinding bindingWithBIND:@"name -> textLabel.text"];
-    
-    //assign the binding to the array of bindings property (BNDTableViewCell).
-    //any calls to setViewModel: will automatically refresh the binding by calling 
-    //[binding bindLeft:self.viewModel withRight:self];
-    //making sure that your objects are bound on cell reuse.
-    self.bindings = @[binding]; 
-    ...
+#### Asynchronous Transformers ####
+Let's say you want to grab an image from the web asynchronously by using a transformation from an `NSURL` to a `UIImage`. You can do this by creating a `BNDAsyncValueTransformer` subclass and implementing it's transform and reverse transform methods. Following is a trivial example of the implementation of such a class.
+```
+...
+BINDT(self,viewModel.imageURL,->,self,imageView.image,BNDURLToImageTransformer);
+...
+
+@implementation BNDURLToImageTransformer
+- (void)asyncTransformValue:(NSURL *)value
+             transformBlock:(BNDAsyncValueTransformBlock)transformBlock {
+    NSURLRequest *request = [NSURLRequest requestWithURL:value];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue new]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               if (data) {
+                                   UIImage *image = [UIImage imageWithData:data];
+                                   transformBlock(response.URL, image);
+                               }
+                           }];
 }
 
-- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
-    //this method is called after each call to setViewModel: on the cell
-    //use this instead of overriding setViewModel: 
-} 
-
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
 @end
-``` 
+```
+Note that bidirectional asynchronous binding is not supported and will throw an exception.
 
 #### Binding Direction and Initial Value Assignment####
 Observe the symbol `->` in the expression `name -> textLabel.text`. 
@@ -87,95 +140,6 @@ name !-> textLabel.text /// left object passes values to right object with no in
 name <-! textLabel.text /// right object passes values to left object with no initial value assignment.
 name <!> textLabel.text /// binding is bidirectional with no initial value assignment. 
 ```
-
-#### Transformers ####
-**BIND** also lets you assign your own subclasses of `NSValueTransformer` to transform values coming from object
-to other object and reverse. Let's take the previous example, and assume that there is a requirement that the names should be displayed capitalized in the cells. You could then build your subclass of `NSValueTransformer` and easily assign it to the binding. When assigning a value transformer, you can either use it's class name or transformer name. If you pass in a class name that hasn't yet been registered, **BIND** will register that `NSValueTransformer`, and use the class name as the registered transformer name on any subsequent calls. 
-```
-@interface CapitalizeStringTransformer : NSValueTransformer
-@end
-
-@implementation CapitalizeStringTransformer 
-
-///transformValue: is called when assigning from object to otherObject
-- (NSString *)transformValue:(NSString *)string {
-    return string.capitalizedString; 
-}
-
-///reverseTransformValue: is called when assigning from otherObject to object
-- (NSString *)reverseTransformValue:(NSString *)string {
-    return string;
-}
-
-@end 
-
-...
-- (instancetype)init {
-    ...
-    _binding = [BNDBinding bindingWithBIND:@"name -> textLabel.text | CapitalizeStringTransformer"];
-    ...
-}
-...
-
-```
-Observe `| CapitalizeStringTransformer` syntax which tells the binding to use the `CapitalizeStringTransformer` subclass of `NSValueTransformer` to transform the values. 
-You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `name -> textLabel.text | !CapitalizeStringTransformer`.
-
-#### Asynchronous Transformers ####
-Let's say you want to grab an image from the web asynchronously by using a transformation from an `NSURL` to a `UIImage`. You can do this by creating a `BNDAsyncValueTransformer` subclass and implementing it's transform and reverse transform methods. Following is a trivial example of the implementation of such a class.
-```
-@implementation BNDURLToImageTransformer
-
-- (void)asyncTransformValue:(NSURL *)value
-             transformBlock:(BNDAsyncValueTransformBlock)transformBlock {
-    NSURLRequest *request = [NSURLRequest requestWithURL:value];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue new]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               if (data) {
-                                   UIImage *image = [UIImage imageWithData:data];
-                                   transformBlock(image);
-                               }
-                           }];
-}
-
-+ (BOOL)allowsReverseTransformation {
-    return NO;
-}
-
-@end
-
-...
-- (instancetype)init {
-    ...
-    _binding = [BNDBinding bindingWithBIND:@"imageURL -> imageView.image | BNDURLToImageTransformer"];
-    ...
-}
-...
-```
-Note that bidirectional asynchronous binding is not supported and will throw an exception.
-
-## KVO with BIND ##
-
-KVO is ugly and it will crash your app if you forget to remove your observer. 
-**BIND** is not just limited to viewModels and cells, you can use it for same purposes as you would use KVO. 
-Let's say you have a car and an engine within that car. 
-When the engine increases it's rpm then you want your car's speed to change as well. 
-Also let the transformation between rpm -> speed be as trivial as 100:1. 
-
-```
-car.speed = 100;
-engine.rpm = 10000;
-BNDBinding *binding = [BNDBinding bindingWithBIND:@"rpm -> speed | RPMToSpeedTransformer"];
-[binding bindLeft:engine withRight:car];
-engine.rpm = 20000;
-//car.speed is 200 at this point. 
-```
-
-## Automagic Unbinding ##
-
-As of version 1.1.0, **BIND** is automatically handling unbinding of bound objects. This means no more KVO exceptions like the following:
-`"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.`
 
 ## MVVMC Architecture ##
 This architecture offers an obvious distribution of responsibility and a clear split between your business logic and your presentation layer, which makes the code easier to test and maintain. 
@@ -229,10 +193,68 @@ Think of a common scenario when presenting `UITableView` cells:
 Given you are using a `BNDTableViewCell` subclass, When you assign the `viewModel` reference with it's corresponding View Model, the array of associated `bindings` is automatically iterated and the bindings between the View and the View Model are refreshed. Bindings are explained in more detail in sections above. 
 
 #### View Model ####
-The View Model plays the middle man role between your business logic and the View. Upon receiving the View Model from the Data Controller, the View Controller should assign the View Model to it's designated View so that the bindings between the View and the View Model are created.
+The View Model plays the middle man role between your business logic and the View. Upon receiving the View Model from the Data Controller, the View Controller should assign the View Model to it's designated View so that the bindings between the View and the View Model are created. View model may contain sub viewModels but it should never create them. The creation of view models is the sole responsibility of the `DataController`. 
 
 #### Model ####
 Your ususal PONSO or whatever model, BIND doesn't care about what you are dealing with as long as you transform it to a View Model before serving it to the View. 
+
+#### MVVMC and Bindings ####
+Let's say you are building a table view based app and you want to show names of different persons in the cells. 
+Assume that the `PersonViewModel` **view model** has a property `name` which you want to display on you **cell's** `textLabel`. 
+
+#### Binding From XIB #### 
+**BIND** lets you create your bindings from XIBs. The easiest way to do this is to use 
+the `BNDTableViewCell` class or create it's subclass. `BNDTableViewCell` exposes an interface
+for assigning the `viewModel`, which should happen on each `tableView:cellForRowAtIndexPath:` call, 
+and `bindings` which is a xib collection outlet of bindings which will be updated with each subsequent `viewModel` assignment.
+
+![](https://raw.githubusercontent.com/markohlebar/BIND/master/misc/bind_from_xib.gif)
+
+In the gif above you can observe a simple procedure of adding a binding to a cell which is a subclass of `BNDTableViewCell`. The steps are as follows: 
+- create an empty XIB and name it the same as your `BNDTableViewCell` subclass
+- from Objects Library drag in a `Table View Cell` and change it's class to subclass you created.
+- next, from Objects Library drag in an `Object` and change it's class to `BNDBinding`
+- add a keypath, change it's "Type" to `String`, "Key Path" to `BIND`, and type a BIND expression as the "Value" (In the example above I'm connecting my viewmodel's `name` keypath to `textLabel.text` of the cell)
+- right click on your table view cell and find the Outlet Collection called `bindings`
+- connect the previously created Binding with the outlet collection. 
+- in your table view delegate's `tableView:cellForRowAtIndexPath:` you should set the `viewModel` property of the cell with your view model
+
+#### Binding From Code ####
+Similar to the binding from XIB example, what you need to do is bind the cell's `textLabel.text` key path with the `name` key path of your **view model**. 
+
+```
+@interface PersonTableViewCell : BNDTableViewCell
+@end
+
+@implementation PersonTableViewCell 
+
+- (instancetype)init... {
+    ...
+    //assign the binding to the array of bindings property (BNDTableViewCell).
+    //any calls to setViewModel: will automatically refresh the binding by calling 
+    //[binding bindLeft:self.viewModel withRight:self];
+    //making sure that your objects are bound on cell reuse.
+    //this will bind viewModel.name to cell's textLabel.text property
+    self.bindings = @[
+        BIND(self,viewModel.name,->,self,textLabel.text);
+    ]; 
+    ...
+    //You can also use the BIND string syntax to do the same thing.
+    //notice that we didn't write viewModel.name, BIND lets
+    //you use shorthand syntax when used on BNDViews 
+    self.bindings = @[
+        [BNDBinding bindingWithBIND:@"name -> textLabel.text"];
+    ]; 
+    ...
+}
+
+- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
+    //this method is called after each call to setViewModel: on the cell
+    //use this instead of overriding setViewModel: 
+} 
+
+@end
+``` 
 
 ## Sample Project ##
 
