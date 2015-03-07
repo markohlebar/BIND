@@ -36,7 +36,7 @@ describe(@"BNDURLToImageTransformer", ^{
     
     it(@"Should be able to transform an image URL to an image", ^{
         __block UIImage *receivedImage = nil;
-        BNDAsyncValueTransformBlock transformBlock = ^(UIImage *image) {
+        BNDAsyncValueTransformBlock transformBlock = ^(NSURL *url, UIImage *image) {
             receivedImage = image;
         };
     

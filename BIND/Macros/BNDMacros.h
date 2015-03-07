@@ -47,17 +47,13 @@ static inline BNDBinding* bndBIND(id left,
     return binding;
 }
 
-#define BIND(...) \
-metamacro_if_eq(5, metamacro_argcount(__VA_ARGS__))(BIND1(__VA_ARGS__))\
-(metamacro_if_eq(6, metamacro_argcount(__VA_ARGS__))(BIND2(__VA_ARGS__))(BIND3(__VA_ARGS__)))
+#define BIND(left, leftKeyPath, direction, right, rightKeyPath) \
+bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"", nil)
 
-#define BIND1(LEFT_TARGET, LEFT, DIRECTION, RIGHT_TARGET, RIGHT) \
-bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @"", nil)
+#define BINDT(left, leftKeyPath, direction, right, rightKeyPath, TransformClass) \
+BINDNT(left, leftKeyPath, direction, right, rightKeyPath, , TransformClass)
 
-#define BIND2(LEFT_TARGET, LEFT, DIRECTION, RIGHT_TARGET, RIGHT, TRANSFORM) \
-bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @"", [TRANSFORM class])
-
-#define BIND3(LEFT_TARGET, LEFT, DIRECTION, RIGHT_TARGET, RIGHT, TRANSFORM_DIRECTION, TRANSFORM) \
-bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @metamacro_stringify(TRANSFORM_DIRECTION), [TRANSFORM class])
+#define BINDNT(left, leftKeyPath, direction, right, rightKeyPath, transformDirection, TransformClass) \
+bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @metamacro_stringify(transformDirection), [TransformClass class])
 
 #endif

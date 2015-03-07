@@ -19,7 +19,7 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                if (data) {
                                    UIImage *image = [UIImage imageWithData:data];
-                                   transformBlock(image);
+                                   transformBlock(response.URL, image);
                                }
                            }];
 }

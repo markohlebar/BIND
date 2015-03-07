@@ -47,6 +47,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 @property (nonatomic) SEL reverseTransformSelector;
 
 @property (nonatomic, getter=isAsynchronousMode) BOOL asynchronousMode;
+@property (nonatomic, copy) BNDBindingTransformValueBlock transformBlock;
 @end
 
 #pragma clang diagnostic push
@@ -73,10 +74,17 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [self unbind];
 }
 
-+ (BNDBinding *)bindingWithBIND:(NSString *)BIND {
++ (BNDBinding *)bindingWithBIND:(NSString *)BIND
+                 transformBlock:(BNDBindingTransformValueBlock)transformBlock {
     BNDBinding *binding = [BNDBinding new];
     binding.BIND = BIND;
+    binding.transformBlock = transformBlock;
     return binding;
+}
+
++ (BNDBinding *)bindingWithBIND:(NSString *)BIND {
+    return [self bindingWithBIND:BIND
+                  transformBlock:nil];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -92,6 +100,12 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     if (self) {
         self.shouldSetInitialValues = YES;
     }
+    return self;
+}
+
+- (BNDBinding *)transform:(BNDBindingTransformValueBlock)transformBlock {
+    self.transformBlock = transformBlock;
+    [self setValues];
     return self;
 }
 
@@ -139,6 +153,13 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [BNDBindingObject_bindings addObject:self];
 }
 
+- (BNDBinding * (^)(BNDBindingTransformValueBlock))transform {
+    return ^id(BNDBindingTransformValueBlock transformBlock) {
+        self.transformBlock = transformBlock;
+        return self;
+    };
+}
+
 - (void)unbind {
     if (![self isValidBinding]) {
         return;
@@ -157,6 +178,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         return;
     }
     
+    [self setValues];
+}
+
+- (void)setValues {
     if (![self areKeypathsSet]) {
         return;
     }
@@ -191,7 +216,9 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     else {
         value = [self.valueTransformer performSelector:self.reverseTransformSelector
                                             withObject:value];
-        
+        if (self.transformBlock) {
+            value = self.transformBlock(self.rightObject, value);
+        }
         [self.leftObject setValue:value forKeyPath:self.leftKeyPath];
     }
 }
@@ -211,6 +238,9 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     else {
         value = [self.valueTransformer performSelector:self.transformSelector
                                             withObject:value];
+        if (self.transformBlock) {
+            value = self.transformBlock(self.leftObject, value);
+        }
         [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
     }
 

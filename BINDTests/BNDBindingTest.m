@@ -303,7 +303,7 @@
     __block Car *car = [Car new];
     _binding.BIND = @"rpm -> speed | AsyncRPMToSpeedTransformer";
     [_binding bindLeft:engine withRight:car];
-    
+        
     engine.rpm = 20000;
     
     [self expectAsyncValueTransform:^{
@@ -333,7 +333,7 @@
 
 #pragma mark - Performance
 
-- (void)testBINDPerformance {
+- (void)testBINDPerformance {    
 	__block Engine *engine = [Engine new];
 	__block Car *car = [Car new];
 	[self measureBlock: ^{
@@ -355,6 +355,85 @@
     }];
 }
 
+#pragma mark - Transform Blocks
+
+- (void)testTransformBlockIsCalledWhenValueChanges {
+    _binding = [BIND(_engine,rpm,->,_car,speed) transform:^id(id object, id value) {
+        return @([value integerValue] / 100);;
+    }];
+        
+    _engine.rpm = 10000;
+    XCTAssertTrue(_car.speed == 100, @"Car speed should reflect the transform");
+}
+
+- (void)testCallingTransformChangesTheValues {
+    _binding = BIND(_car, speed, ->, _engine, rpm);
+    _car.speed = 100;
+    XCTAssertTrue(_engine.rpm == 100, @"Engine rpm should be equal car speed at this point");
+    
+    [_binding transform:^id(id object, id value) {
+        return @([value integerValue] * 100);
+    }];
+    XCTAssertTrue(_engine.rpm == 10000, @"Engine rpm should reflect the transform");
+}
+
+- (void)testTransformBlockIsCalledWhenValueChangesAndTransformerIsAssigned {
+    _binding = [BINDT(_engine,rpm,->,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
+        return @([value integerValue] / 2);
+    }];
+    _engine.rpm = 10000;
+    XCTAssertTrue(_car.speed == 50, @"Car speed should reflect transformer change + transform block change");
+}
+
+- (void)testTransformBlockIsCalledWhenValueChangesAndReverseTransformerIsAssigned {
+    _binding = [BINDNT(_engine,rpm,<-,_car,speed, !, RPMToSpeedTransformer) transform:^id(id object, id value) {
+        return @([value integerValue] / 2);
+    }];
+    _car.speed = 100;
+    XCTAssertTrue(_engine.rpm == 5000, @"Engine rpm should reflect reverse transformer change + transform block change");
+}
+
+- (void)testPassesTheCorrectTransformedObjectRight {
+    __block id transformedObject = nil;
+    _binding = [BIND(_car, speed, ->, _engine, rpm)
+                transform:^id(id object, id value) {
+                    transformedObject = object;
+                    return value;
+    }];
+
+    _car.speed = 100;
+    XCTAssertEqual(transformedObject, _car, @"Car should be the transformed object");
+}
+
+- (void)testPassesTheCorrectTransformedObjectLeft {
+    __block id transformedObject = nil;
+    _binding = [BIND(_car, speed, <-, _engine, rpm)
+                transform:^id(id object, id value) {
+                    transformedObject = object;
+                    return value;
+                }];
+    
+    _engine.rpm = 10000;
+    XCTAssertEqual(transformedObject, _engine, @"Engine should be the transformed object");
+}
+
+- (void)testPassesTheCorrectTransformedObjectBidirectional {
+    __block id transformedObject = nil;
+    _binding = [BIND(_car, speed, <>, _engine, rpm)
+                transform:^id(id object, id value) {
+                    transformedObject = object;
+                    return value;
+                }];
+    
+    _engine.rpm = 10000;
+    XCTAssertEqual(transformedObject, _engine, @"Engine should be the transformed object");
+    
+    _car.speed = 100;
+    XCTAssertEqual(transformedObject, _car, @"Car should be the transformed object");
+}
+
+#pragma mark - Keypath Checking Shorthand Syntax
+
 - (void)testBINDKeyPathChecking {
     _binding = BIND(_engine,rpm,->,_car,speed);
     XCTAssertEqualObjects(_binding.BIND, @"rpm->speed", @"BIND should produce the same output");
@@ -363,14 +442,14 @@
 }
 
 - (void)testBINDKeyPathTransform {
-    _binding = BIND(_engine,rpm,->,_car,speed, RPMToSpeedTransformer);
+    _binding = BINDT(_engine,rpm,->,_car,speed, RPMToSpeedTransformer);
     XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|RPMToSpeedTransformer", @"BIND should produce the same output");
     XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
     XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
 }
 
 - (void)testBINDKeyPathTransformDirection {
-    _binding = BIND(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
+    _binding = BINDNT(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
     XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|!RPMToSpeedTransformer", @"BIND should produce the same output");
     XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
     XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
@@ -380,7 +459,7 @@
     _engine = nil;
     _car = nil;
     
-    _binding = BIND(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
+    _binding = BINDNT(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
     XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|!RPMToSpeedTransformer", @"BIND should produce the same output");
     XCTAssertNil(_binding.leftObject, @"Left should be nil");
     XCTAssertNil(_binding.rightObject, @"Right should be nil");

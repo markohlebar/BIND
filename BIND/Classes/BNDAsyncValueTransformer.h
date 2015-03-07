@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^BNDAsyncValueTransformBlock)(id transformedValue);
+typedef void(^BNDAsyncValueTransformBlock)(id value, id transformedValue);
 
 @interface BNDAsyncValueTransformer : NSValueTransformer
 

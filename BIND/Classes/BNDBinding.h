@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  The valur block which contains the object who's value is being transformed.
+ *
+ *  @param object object who's value is being transformed.
+ *  @param value  a value to transform.
+ *
+ *  @return a transformed value.
+ */
+typedef id(^BNDBindingTransformValueBlock)(id object, id value);
+
 @interface BNDBinding : NSObject <NSCoding>
 
 /**
@@ -47,7 +57,7 @@
  *
  *  @return a binding.
  */
-+ (BNDBinding *)bindingWithBIND:(NSString *)BIND;
++ (instancetype)bindingWithBIND:(NSString *)BIND;
 
 /**
  *  Binds the left object in BIND expression with the right object and sets the initial values.
@@ -67,5 +77,13 @@
  *  Removes all bindings and references to leftObject and rightObject.
  */
 - (void)unbind;
+
+/**
+ *  Transforms the bound values with the transform given in the block.
+ *  Calling transform: on a binding will cause it to set the values as per binding direction.
+ *  If value transformer and transform are assigned,
+ *  the value is first passed through the value transformer and then through the block.
+ */
+- (instancetype)transform:(BNDBindingTransformValueBlock)transformBlock;
 
 @end
