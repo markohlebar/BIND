@@ -219,14 +219,14 @@ We will bind the cell's `textLabel.text` key path with the `name` key path of yo
     //making sure that your objects are bound on cell reuse.
     //this will bind viewModel.name to cell's textLabel.text property
     self.bindings = @[
-        BIND(self,viewModel.name,->,self,textLabel.text);
+        BIND(self,viewModel.name,->,self,textLabel.text)
     ]; 
     ...
     //You can also use the BIND string syntax to do the same thing.
     //notice that we didn't write viewModel.name, BIND lets
     //you use shorthand syntax when used on BNDViews 
     self.bindings = @[
-        [BNDBinding bindingWithBIND:@"name -> textLabel.text"];
+        [BNDBinding bindingWithBIND:@"name -> textLabel.text"]
     ]; 
     ...
 }
