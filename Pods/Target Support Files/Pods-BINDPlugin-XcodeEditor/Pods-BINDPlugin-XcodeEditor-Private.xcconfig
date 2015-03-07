@@ -1,5 +1,5 @@
 #include "Pods-BINDPlugin-XcodeEditor.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/XcodeEditor" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Kiwi" "${PODS_ROOT}/Headers/Public/XcodeEditor"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/XcodeEditor" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Kiwi" "${PODS_ROOT}/Headers/Public/XcodeEditor" "${PODS_ROOT}/Headers/Public/libextobjc"
 OTHER_LDFLAGS = -ObjC
 PODS_ROOT = ${SRCROOT}
