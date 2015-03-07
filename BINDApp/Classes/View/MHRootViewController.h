@@ -1,15 +1,14 @@
 //
 //  ViewController.h
-//  BINDApp
+//  MVVM
 //
-//  Created by Marko Hlebar on 20/11/2014.
+//  Created by Marko Hlebar on 25/10/2014.
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MHRootViewController : UITableViewController
 
 @end
 
