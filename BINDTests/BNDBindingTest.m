@@ -363,7 +363,7 @@
 }
 
 - (void)testBINDKeyPathTransform {
-    _binding = BIND(_engine,rpm,->,_car,speed,RPMToSpeedTransformer);
+    _binding = BIND(_engine,rpm,->,_car,speed, RPMToSpeedTransformer);
     XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|RPMToSpeedTransformer", @"BIND should produce the same output");
     XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
     XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
@@ -374,6 +374,16 @@
     XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|!RPMToSpeedTransformer", @"BIND should produce the same output");
     XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
     XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
+}
+
+- (void)testBINDKeyPathNilObjects {
+    _engine = nil;
+    _car = nil;
+    
+    _binding = BIND(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
+    XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|!RPMToSpeedTransformer", @"BIND should produce the same output");
+    XCTAssertNil(_binding.leftObject, @"Left should be nil");
+    XCTAssertNil(_binding.rightObject, @"Right should be nil");
 }
 
 #pragma mark - Crash tests

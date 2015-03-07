@@ -38,8 +38,10 @@ static inline BNDBinding* bndBIND(id left,
                                   id right,
                                   NSString *rightKeyPath,
                                   NSString *transformDirection,
-                                  NSString *valueTransformer) {
-    NSString *BIND = [NSString stringWithFormat:@"%@%@%@|%@%@",leftKeypath, direction, rightKeyPath, transformDirection, valueTransformer];
+                                  Class transformerClass) {
+    NSString *format = transformerClass ? @"%@%@%@|%@%@" : @"%@%@%@%@%@";
+    NSString *transformer = transformerClass ? NSStringFromClass(transformerClass) : @"";
+    NSString *BIND = [NSString stringWithFormat:format,leftKeypath, direction, rightKeyPath, transformDirection, transformer];
     BNDBinding *binding = [BNDBinding bindingWithBIND:BIND];
     [binding bindLeft:left withRight:right];
     return binding;
@@ -50,12 +52,12 @@ metamacro_if_eq(5, metamacro_argcount(__VA_ARGS__))(BIND1(__VA_ARGS__))\
 (metamacro_if_eq(6, metamacro_argcount(__VA_ARGS__))(BIND2(__VA_ARGS__))(BIND3(__VA_ARGS__)))
 
 #define BIND1(LEFT_TARGET, LEFT, DIRECTION, RIGHT_TARGET, RIGHT) \
-bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @"", @"")
+bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @"", nil)
 
 #define BIND2(LEFT_TARGET, LEFT, DIRECTION, RIGHT_TARGET, RIGHT, TRANSFORM) \
-bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @"", @metamacro_stringify(TRANSFORM))
+bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @"", [TRANSFORM class])
 
 #define BIND3(LEFT_TARGET, LEFT, DIRECTION, RIGHT_TARGET, RIGHT, TRANSFORM_DIRECTION, TRANSFORM) \
-bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @metamacro_stringify(TRANSFORM_DIRECTION), @metamacro_stringify(TRANSFORM))
+bndBIND(LEFT_TARGET, @keypath(LEFT_TARGET,LEFT), @metamacro_stringify(DIRECTION), RIGHT_TARGET, @keypath(RIGHT_TARGET,RIGHT), @metamacro_stringify(TRANSFORM_DIRECTION), [TRANSFORM class])
 
 #endif
