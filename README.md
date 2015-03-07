@@ -153,7 +153,7 @@ The Data Controller is responsible for transforming the Model from external sour
 - (void)updateWithContext:(id)context
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler;
 ```
-Every data controller should ideally implement only this method and expose it to the owning View Controller. 
+Every data controller should ideally expose only this method to the owning View Controller. 
 Calling this method should trigger a series of events, like fetching Model from a web service and then transforming that Model to a View Model which maps to your View. 
 
 #### View Controller ####
