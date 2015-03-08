@@ -37,10 +37,48 @@ BIND(viewModel, name, ->, nameLabel, text);
 viewModel.name = @"Hobbit";
 //nameLabel.text says Hobbit at this point. 
 ```
-Notice that in the example above the binding is not assigned to any instance variable. 
-The bindings are automagically broken when the observable (in the above example `viewModel` instance) is deallocated.
+Now say you just want to observe that the `name` value has changed in the `viewModel`. 
+You can do that by using the observe action. 
+```
+[BINDO(viewModel,name) observe:^(id observable, id value) {
+     //fired when viewModel changes it's name property
+}];
+```
+
+#### Shorthands ####
+You can use shorthand operators to create most of your bindings. Shorthands were designed for brevity of expression, while still keeping the clarity of bound properties. 
+```
+UILabel *nameLabel ... //a label instance
+UITextField *nameField ... // a textfield instance
+id viewModel ... //a viewModel containing property name
+UIButton *button ... //a button instance
+
+BINDS(nameField,->,nameLabel);
+nameField.text = @"Kim";
+//nameLabel.text says Kim at this point.
+
+BINDSR(viewModel,name,->,nameLabel); 
+viewModel.text = @"Hobbit"; 
+//nameLabel.text says Hobbit at this point.
+
+BINDSL(nameField,->,viewModel,name);
+nameField.text = @"Cartman"; 
+//viewModel.name says Cartman at this point. 
+
+[BINDOS(button) observe:^(id observable, id value){
+     //Fired when you press the button. 
+}];
+
+```
+The shorthands are mnemonics really, so you might interpret them as
+- `BINDS` bind shorthand
+- `BINDSR` bind shorthand right
+- `BINDSL` bind shorhand left
+- `BINDOS` bind observe shorthand
 
 #### Unbinding ####
+Notice that in the examples above the binding is not assigned to any instance variable. 
+The bindings are automagically broken when the observable is deallocated. 
 As of version 1.1.0, **BIND** is automatically handling unbinding of bound objects. This means no more KVO exceptions like the following:
 `"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.`
 You can, however, unbind the binding manually by calling `unbind` method like so: 
@@ -63,6 +101,14 @@ viewModel.name = @"Kim";
 viewModel.name = @"Hobbit";
 //nameLabel.text says @"HOBBIT" at this point. 
 ...
+```
+
+#### Observe operation ####
+Observe operation was covered in earlier examples. Use observe operation to passively observe when bound values are being changed, similar to KVO. 
+```
+[BINDSR(viewModel,name,->,nameLabel) observe:^(id observable, id value){
+     //Fired when name changes on the viewModel. 
+}]; 
 ```
 
 #### Transformers ####
@@ -219,7 +265,7 @@ We will bind the cell's `textLabel.text` key path with the `name` key path of yo
     //making sure that your objects are bound on cell reuse.
     //this will bind viewModel.name to cell's textLabel.text property
     self.bindings = @[
-        BIND(self,viewModel.name,->,self,textLabel.text)
+        BIND(self, viewModel.name, ->, self, textLabel.text)
     ]; 
     ...
     //You can also use the BIND string syntax to do the same thing.
@@ -260,10 +306,11 @@ In the gif above you can observe a simple procedure of adding a binding to a cel
 
 Clone `BIND`, open `BIND.xcworkspace` and check out `BINDApp` target. 
  
-## History ##
+## Acknowledgements ##
 
 This library emerged from my exploration of [different architectures](https://github.com/markohlebar/iOSArchitectures) for iOS apps. 
 It draws some ideas from other similar projects like 
+- [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) as of version 1.3+ 
 - [KJSimpleBinding](https://github.com/kristopherjohnson/KJSimpleBinding)
 - [KeyPathBindings](https://github.com/dewind/KeyPathBindings)
 - [objc-simple-bindings](https://github.com/mruegenberg/objc-simple-bindings)
