@@ -125,7 +125,7 @@
     XCTAssertEqualObjects(textField.text, receivedValue, @"Observed value should be the same");
 }
 
-- (void)testBINDTargetActionUIButtonSpecialKeyPath {
+- (void)testBINDObserveUIButtonSpecialKeyPath {
     UIButton *button = [UIButton new];
     
     __block id receivedSender = nil;
@@ -139,6 +139,30 @@
     button.onTouchUpInside = button;
     XCTAssertEqual(button, receivedSender, @"Button should be the observable");
     XCTAssertEqualObjects(button, receivedValue, @"Button should be the value passed back");
+}
+
+- (void)testBINDObserveShorthandUIButtonSpecialKeyPath {
+    UIButton *button = [UIButton new];
+    
+    __block id receivedSender = nil;
+    __block id receivedValue = nil;
+    
+    [BINDOS(button) observe:^(id sender, id value) {
+        receivedSender = sender;
+        receivedValue = value;
+    }];
+    
+    button.onTouchUpInside = button;
+    XCTAssertEqual(button, receivedSender, @"Button should be the observable");
+    XCTAssertEqualObjects(button, receivedValue, @"Button should be the value passed back");
+}
+
+- (void)testRegisterShorthands {
+    bndRegisterShorthands(@{
+                            @"Engine" : @"rpm",
+                            @"Car" : @"speed"
+                            });
+    XCTAssertNoThrow(BINDS(_car, ->, _engine), @"The shorthand keypaths should be registered");
 }
 
 @end

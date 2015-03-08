@@ -59,8 +59,11 @@ static inline BNDBinding* bndBIND(id left,
 
 static inline BNDBinding* bndBINDObserve(id left,
                                         NSString *leftKeypath) {
-    BNDBinding *binding = [BNDBinding new];
-    binding.BIND = [NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath];
+    if ([leftKeypath isEqualToString:@""]) {
+        leftKeypath = bndShorthandKeypathForObject(left);
+    }
+    
+    BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath]];
     [binding bindLeft:left withRight:binding];
     return binding;
 }
@@ -79,15 +82,15 @@ static inline NSDictionary *bndDefaultShorthands() {
 
 static NSMutableDictionary *_bndShorthandMap = nil;
 
-static inline NSDictionary *bndGetRegisteredShorthands() {
+static inline NSMutableDictionary *bndGetRegisteredShorthands() {
     if (!_bndShorthandMap) {
         _bndShorthandMap = bndDefaultShorthands().mutableCopy;
     }
-    return _bndShorthandMap.copy;
+    return _bndShorthandMap;
 }
 
 static inline void bndRegisterShorthands(NSDictionary *shorthands) {
-    [_bndShorthandMap addEntriesFromDictionary:shorthands];
+    [bndGetRegisteredShorthands() addEntriesFromDictionary:shorthands];
 }
 
 static inline NSString *bndShorthandKeypathForObject(id object) {
@@ -118,5 +121,8 @@ bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right
 
 #define BINDO(left, leftKeyPath) \
 bndBINDObserve(left, @keypath(left,leftKeyPath))
+
+#define BINDOS(left) \
+bndBINDObserve(left, @"")
 
 #endif
