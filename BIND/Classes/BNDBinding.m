@@ -47,7 +47,12 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 @property (nonatomic) SEL reverseTransformSelector;
 
 @property (nonatomic, getter=isAsynchronousMode) BOOL asynchronousMode;
+
+@property (nonatomic, strong) id voidKeyPath;
+
 @property (nonatomic, copy) BNDBindingTransformValueBlock transformBlock;
+@property (nonatomic, copy) BNDBindingObservationBlock observationBlock;
+
 
 + (NSMutableSet *)allBindings;
 @end
@@ -112,6 +117,11 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 - (BNDBinding *)transform:(BNDBindingTransformValueBlock)transformBlock {
     self.transformBlock = transformBlock;
     [self setValues];
+    return self;
+}
+
+- (instancetype)observe:(BNDBindingObservationBlock)observationBlock {
+    self.observationBlock = observationBlock;
     return self;
 }
 
@@ -237,7 +247,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         }
         [self.rightObject setValue:value forKeyPath:self.rightKeyPath];
     }
-
 }
 
 - (void)prepareTransformSelectorsWithAsynchronousMode:(BOOL)asynchronousMode
@@ -320,6 +329,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     }
     else if ([object isEqual:self.rightObject] && [self.rightKeyPath isEqualToString:keyPath]) {
         [self setLeftObjectValue:newObject];
+    }
+    
+    if (self.observationBlock) {
+        self.observationBlock(object, newObject);
     }
     
     [self unlock];

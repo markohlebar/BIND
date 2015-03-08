@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  The valur block which contains the object who's value is being transformed.
+ *  The value block which contains the object who's value is being transformed.
  *
  *  @param object object who's value is being transformed.
  *  @param value  a value to transform.
@@ -17,6 +17,14 @@
  *  @return a transformed value.
  */
 typedef id(^BNDBindingTransformValueBlock)(id object, id value);
+
+/**
+ *  The observe block contains info on the observable being modified.
+ *
+ *  @param observable the observable being modified.
+ *  @param value  a value that was modified.
+ */
+typedef void(^BNDBindingObservationBlock)(id observable, id value);
 
 @interface BNDBinding : NSObject <NSCoding>
 
@@ -89,5 +97,15 @@ typedef id(^BNDBindingTransformValueBlock)(id object, id value);
  *  @return a binding that is performing the transform.
  */
 - (instancetype)transform:(BNDBindingTransformValueBlock)transformBlock;
+
+/**
+ *  Observes the changes in the binding and reports back.
+ *  The observed object is sent back as a sender.
+ *
+ *  @param observationBlock an observation block
+ *
+ *  @return a binding that is performing the observation.
+ */
+- (instancetype)observe:(BNDBindingObservationBlock)observationBlock;
 
 @end

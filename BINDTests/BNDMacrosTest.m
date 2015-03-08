@@ -108,5 +108,20 @@
     XCTAssertEqualObjects(_car.make, textField.text, @"The objects should have equal values");
 }
 
+- (void)testBINDTargetActionTriggersActionBlock {
+    UITextField *textField = [UITextField new];
+    
+    __block id receivedSender = nil;
+    __block id receivedValue = nil;
+
+    [BINDO(textField, text) observe:^(id sender, id value) {
+        receivedSender = sender;
+        receivedValue = value;
+    }];
+          
+    textField.text = @"Kim";
+    XCTAssertEqual(textField, receivedSender, @"Sender should be the textfield");
+    XCTAssertEqualObjects(textField.text, receivedValue, @"Observed value should be the same");
+}
 
 @end

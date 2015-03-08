@@ -57,6 +57,14 @@ static inline BNDBinding* bndBIND(id left,
     return binding;
 }
 
+static inline BNDBinding* bndBINDObserve(id left,
+                                        NSString *leftKeypath) {
+    BNDBinding *binding = [BNDBinding new];
+    binding.BIND = [NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath];
+    [binding bindLeft:left withRight:binding];
+    return binding;
+}
+
 static inline NSDictionary *bndDefaultShorthands() {
     return @{
              @"UILabel" : @"text",
@@ -105,5 +113,10 @@ bndBIND(left, @"", @metamacro_stringify(direction), right, @keypath(right,rightK
 
 #define BINDSR(left, leftKeyPath, direction, right) \
 bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @"", @"", nil)
+
+#pragma mark - Target-Action
+
+#define BINDO(left, leftKeyPath) \
+bndBINDObserve(left, @keypath(left,leftKeyPath))
 
 #endif

@@ -378,7 +378,7 @@
     }];
 }
 
-#pragma mark - Transform Blocks
+#pragma mark - Action Transform
 
 - (void)testTransformBlockIsCalledWhenValueChanges {
     _binding = [BIND(_engine,rpm,->,_car,speed) transform:^id(id object, id value) {
@@ -456,6 +456,60 @@
     _car.speed = 100;
     XCTAssertEqual(transformedObject, _car, @"Car should be the transformed object");
     transformedObject = nil;
+}
+
+#pragma mark - Action Observe
+
+- (void)testObserveGetsFiredWhenDirectionIsRight {
+    __block id receivedSender = nil;
+    __block id receivedValue = nil;
+
+    [BIND(_engine,rpm,->,_car,speed) observe:^(id observable, id value) {
+        receivedSender = observable;
+        receivedValue = value;
+    }];
+    
+    _engine.rpm = 100;
+    XCTAssertEqual(_engine, receivedSender, @"Received observable should be the engine");
+    XCTAssertEqualObjects(@(100), receivedValue, @"Received value should be 100");
+
+    receivedSender = nil;
+}
+
+- (void)testObserveGetsFiredWhenDirectionIsLeft {
+    __block id receivedSender = nil;
+    __block id receivedValue = nil;
+    
+    [BIND(_engine,rpm,<-,_car,speed) observe:^(id observable, id value) {
+        receivedSender = observable;
+        receivedValue = value;
+    }];
+    
+    _car.speed = 100;
+    XCTAssertEqual(_car, receivedSender, @"Received observable should be the car");
+    XCTAssertEqualObjects(@(100), receivedValue, @"Received value should be 100");
+    
+    receivedSender = nil;
+}
+
+- (void)testObserveGetsFiredWhenDirectionIsBidirectional {
+    __block id receivedSender = nil;
+    __block id receivedValue = nil;
+    
+    [BIND(_engine,rpm,<>,_car,speed) observe:^(id observable, id value) {
+        receivedSender = observable;
+        receivedValue = value;
+    }];
+    
+    _engine.rpm = 100;
+    XCTAssertEqual(_engine, receivedSender, @"Received observable should be the engine");
+    XCTAssertEqualObjects(@(100), receivedValue, @"Received value should be 100");
+    
+    _car.speed = 200;
+    XCTAssertEqual(_car, receivedSender, @"Received observable should be the car");
+    XCTAssertEqualObjects(@(200), receivedValue, @"Received value should be 200");
+    
+    receivedSender = nil;
 }
 
 #pragma mark - Crash tests
