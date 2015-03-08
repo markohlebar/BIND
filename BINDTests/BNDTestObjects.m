@@ -10,6 +10,15 @@
 
 @implementation Car
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _engine = [Engine new];
+        _gasPedal = [GasPedal new];
+    }
+    return self;
+}
+
 @end
 
 @implementation Engine

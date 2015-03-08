@@ -78,6 +78,7 @@
 		96EF5D8B1AAB9A2500F6F222 /* MHPersonSectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D781AAB9A2500F6F222 /* MHPersonSectionViewModel.m */; };
 		96EF5D8C1AAB9A2500F6F222 /* MHPersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D7A1AAB9A2500F6F222 /* MHPersonViewModel.m */; };
 		96EF5D8F1AAB9AAF00F6F222 /* persons.json in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5D8E1AAB9AAF00F6F222 /* persons.json */; };
+		96EF5D961AABB1DB00F6F222 /* BNDFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D951AABB1DB00F6F222 /* BNDFunctions.m */; };
 		DE7B7A56EB894CCB04564F4A /* libPods-BIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B186E83B11B997C5D965F76 /* libPods-BIND-OSX.a */; };
 		E2890733D924A826F86F2705 /* libPods-BINDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BA6D6920EFF0689976704C /* libPods-BINDTests.a */; };
 /* End PBXBuildFile section */
@@ -238,6 +239,8 @@
 		96EF5D791AAB9A2500F6F222 /* MHPersonViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonViewModel.h; sourceTree = "<group>"; };
 		96EF5D7A1AAB9A2500F6F222 /* MHPersonViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonViewModel.m; sourceTree = "<group>"; };
 		96EF5D8E1AAB9AAF00F6F222 /* persons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = persons.json; sourceTree = "<group>"; };
+		96EF5D931AABB04700F6F222 /* BNDFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNDFunctions.h; sourceTree = "<group>"; };
+		96EF5D951AABB1DB00F6F222 /* BNDFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDFunctions.m; sourceTree = "<group>"; };
 		96F74BD91A166C970099110A /* BNDDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDDataController.h; path = Protocols/BNDDataController.h; sourceTree = "<group>"; };
 		BD64B86BCE6B06AF8F341667 /* libPods-BINDAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8F44652575E7C5EB281874 /* libPods-BIND-OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BIND-OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -469,16 +472,17 @@
 		9680C90D19FEBBB500DFE38A /* BIND */ = {
 			isa = PBXGroup;
 			children = (
+				9680C90E19FEBBB500DFE38A /* BIND.h */,
 				9616D7651A29E26D0048E4CD /* BIND-PrefixHeader.pch */,
 				965128A81A7192C9008A9547 /* Categories */,
 				9680C92519FEBC2800DFE38A /* Classes */,
-				969AE2E01A32E5390058752F /* Macros */,
 				960194051A20459900059F90 /* Private */,
+				969AE2E01A32E5390058752F /* Macros */,
+				96EF5D921AABB02900F6F222 /* Functions */,
 				960194031A1FCC3800059F90 /* Types */,
 				9680C93A19FEC9C500DFE38A /* Abstractions */,
 				9680C93719FEC85500DFE38A /* Protocols */,
 				96896E891AA1D9D90067BDE3 /* Transformers */,
-				9680C90E19FEBBB500DFE38A /* BIND.h */,
 			);
 			path = BIND;
 			sourceTree = "<group>";
@@ -486,6 +490,7 @@
 		9680C91A19FEBBB500DFE38A /* BINDTests */ = {
 			isa = PBXGroup;
 			children = (
+				96EF5D941AABB17200F6F222 /* Functions */,
 				96896E8D1AA1F37E0067BDE3 /* Resources */,
 				96896E861A9FE5F50067BDE3 /* Transformers */,
 				969AE2EA1A331AF60058752F /* Categories */,
@@ -704,6 +709,22 @@
 				96EF5D8E1AAB9AAF00F6F222 /* persons.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		96EF5D921AABB02900F6F222 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				96EF5D931AABB04700F6F222 /* BNDFunctions.h */,
+			);
+			name = Functions;
+			sourceTree = "<group>";
+		};
+		96EF5D941AABB17200F6F222 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				96EF5D951AABB1DB00F6F222 /* BNDFunctions.m */,
+			);
+			name = Functions;
 			sourceTree = "<group>";
 		};
 		CF3983A7AFBE30929F52A37B /* Pods */ = {
@@ -1200,6 +1221,7 @@
 				967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */,
 				967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */,
 				960C5CC11A2B96BF002CA964 /* BNDConcreteViewSpec.m in Sources */,
+				96EF5D961AABB1DB00F6F222 /* BNDFunctions.m in Sources */,
 				96896E881A9FE60F0067BDE3 /* BNDURLToImageTransformerSpec.m in Sources */,
 				9601940D1A204C4C00059F90 /* BNDParserTest.m in Sources */,
 				960193F71A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m in Sources */,

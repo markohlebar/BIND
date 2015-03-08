@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  The valur block which contains the object who's value is being transformed.
+ *  The value block which contains the object whose value is being transformed.
  *
- *  @param object object who's value is being transformed.
+ *  @param object object whose value is being transformed.
  *  @param value  a value to transform.
  *
  *  @return a transformed value.

@@ -9,7 +9,7 @@
 #ifndef BIND_BNDMacros_h
 #define BIND_BNDMacros_h
 
-#import "BNDBinding.h"
+#import "BNDFunctions.h"
 #import <libextobjc/EXTKeyPathCoding.h>
 
 #if TARGET_OS_IPHONE
@@ -31,21 +31,6 @@
 #define _BNDButton          NSButton
 
 #endif
-
-static inline BNDBinding* bndBIND(id left,
-                                  NSString *leftKeypath,
-                                  NSString *direction,
-                                  id right,
-                                  NSString *rightKeyPath,
-                                  NSString *transformDirection,
-                                  Class transformerClass) {
-    NSString *format = transformerClass ? @"%@%@%@|%@%@" : @"%@%@%@%@%@";
-    NSString *transformer = transformerClass ? NSStringFromClass(transformerClass) : @"";
-    NSString *BIND = [NSString stringWithFormat:format,leftKeypath, direction, rightKeyPath, transformDirection, transformer];
-    BNDBinding *binding = [BNDBinding bindingWithBIND:BIND];
-    [binding bindLeft:left withRight:right];
-    return binding;
-}
 
 #define BIND(left, leftKeyPath, direction, right, rightKeyPath) \
 bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"", nil)
