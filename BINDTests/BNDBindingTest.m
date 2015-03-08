@@ -458,39 +458,6 @@
     transformedObject = nil;
 }
 
-#pragma mark - Keypath Checking Shorthand Syntax
-
-- (void)testBINDKeyPathChecking {
-    _binding = BIND(_engine,rpm,->,_car,speed);
-    XCTAssertEqualObjects(_binding.BIND, @"rpm->speed", @"BIND should produce the same output");
-    XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
-    XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
-}
-
-- (void)testBINDKeyPathTransform {
-    _binding = BINDT(_engine,rpm,->,_car,speed, RPMToSpeedTransformer);
-    XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|RPMToSpeedTransformer", @"BIND should produce the same output");
-    XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
-    XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
-}
-
-- (void)testBINDKeyPathTransformDirection {
-    _binding = BINDNT(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
-    XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|!RPMToSpeedTransformer", @"BIND should produce the same output");
-    XCTAssertEqual(_engine, _binding.leftObject, @"BIND should bind the left object");
-    XCTAssertEqual(_car, _binding.rightObject, @"BIND should bind the right object");
-}
-
-- (void)testBINDKeyPathNilObjects {
-    _engine = nil;
-    _car = nil;
-    
-    _binding = BINDNT(_engine,rpm,->,_car,speed,!,RPMToSpeedTransformer);
-    XCTAssertEqualObjects(_binding.BIND, @"rpm->speed|!RPMToSpeedTransformer", @"BIND should produce the same output");
-    XCTAssertNil(_binding.leftObject, @"Left should be nil");
-    XCTAssertNil(_binding.rightObject, @"Right should be nil");
-}
-
 #pragma mark - Crash tests
 
 - (void)testUnbindDoesntCrashWhenObjectsAreNotSet {

@@ -32,6 +32,8 @@
 
 #endif
 
+static inline NSString *bndShorthandKeypathForObject(id object);
+
 static inline BNDBinding* bndBIND(id left,
                                   NSString *leftKeypath,
                                   NSString *direction,
@@ -39,12 +41,49 @@ static inline BNDBinding* bndBIND(id left,
                                   NSString *rightKeyPath,
                                   NSString *transformDirection,
                                   Class transformerClass) {
+    if ([leftKeypath isEqualToString:@""]) {
+        leftKeypath = bndShorthandKeypathForObject(left);
+    }
+    
+    if ([rightKeyPath isEqualToString:@""]) {
+        rightKeyPath = bndShorthandKeypathForObject(right);
+    }
+    
     NSString *format = transformerClass ? @"%@%@%@|%@%@" : @"%@%@%@%@%@";
     NSString *transformer = transformerClass ? NSStringFromClass(transformerClass) : @"";
     NSString *BIND = [NSString stringWithFormat:format,leftKeypath, direction, rightKeyPath, transformDirection, transformer];
     BNDBinding *binding = [BNDBinding bindingWithBIND:BIND];
     [binding bindLeft:left withRight:right];
     return binding;
+}
+
+static inline NSDictionary *bndDefaultShorthands() {
+    return @{
+             @"UILabel" : @"text",
+             @"UITextField" : @"text",
+             @"UITextView" : @"text",
+             @"UIButton" : @"onTouchUpInside",
+             @"UITableViewCell" : @"onTouchUpInside",
+             @"UIImageView" : @"image",
+             @"UIScrollView" : @"contentOffset"
+             };
+}
+
+static NSMutableDictionary *_bndShorthandMap = nil;
+
+static inline NSDictionary *bndGetRegisteredShorthands() {
+    if (!_bndShorthandMap) {
+        _bndShorthandMap = bndDefaultShorthands().mutableCopy;
+    }
+    return _bndShorthandMap.copy;
+}
+
+static inline void bndRegisterShorthands(NSDictionary *shorthands) {
+    [_bndShorthandMap addEntriesFromDictionary:shorthands];
+}
+
+static inline NSString *bndShorthandKeypathForObject(id object) {
+    return bndGetRegisteredShorthands()[NSStringFromClass([object class])];
 }
 
 #define BIND(left, leftKeyPath, direction, right, rightKeyPath) \
@@ -55,5 +94,16 @@ BINDNT(left, leftKeyPath, direction, right, rightKeyPath, , TransformClass)
 
 #define BINDNT(left, leftKeyPath, direction, right, rightKeyPath, transformDirection, TransformClass) \
 bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @metamacro_stringify(transformDirection), [TransformClass class])
+
+#pragma mark - Shorthands
+
+#define BINDS(left, direction, right) \
+bndBIND(left, @"", @metamacro_stringify(direction), right, @"", @"", nil)
+
+#define BINDSL(left, direction, right, rightKeyPath) \
+bndBIND(left, @"", @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"", nil)
+
+#define BINDSR(left, leftKeyPath, direction, right) \
+bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @"", @"", nil)
 
 #endif
