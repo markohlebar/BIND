@@ -58,7 +58,7 @@ nameField.text = @"Kim";
 //nameLabel.text says Kim at this point.
 
 BINDSR(viewModel,name,->,nameLabel); 
-viewModel.text = @"Hobbit"; 
+viewModel.name = @"Hobbit"; 
 //nameLabel.text says Hobbit at this point.
 
 BINDSL(nameField,->,viewModel,name);
