@@ -14,6 +14,7 @@
 #import "BNDBindingTypes.h"
 #import "BNDMacros.h"
 
+#import "BNDTableViewCell+BNDBinding.h"
 #if TARGET_OS_IPHONE
 #import "UIButton+BNDBinding.h"
 #elif TARGET_OS_MAC

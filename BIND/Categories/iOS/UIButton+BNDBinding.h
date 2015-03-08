@@ -12,9 +12,7 @@
 #import "BNDSpecialKeyPathHandling.h"
 
 @interface UIButton (BNDBinding) <BNDSpecialKeyPathHandling>
-
-- (UIButton *)onTouchUpInside;
-
+@property (nonatomic) UIButton *onTouchUpInside;
 @end
 
 #endif

@@ -11,6 +11,7 @@
 #import "BNDMacros.h"
 #import "BNDBinding.h"
 #import "BNDTestObjects.h"
+#import "UIButton+BNDBinding.h"
 
 @interface BNDMacrosTest : XCTestCase
 
@@ -122,6 +123,22 @@
     textField.text = @"Kim";
     XCTAssertEqual(textField, receivedSender, @"Sender should be the textfield");
     XCTAssertEqualObjects(textField.text, receivedValue, @"Observed value should be the same");
+}
+
+- (void)testBINDTargetActionUIButtonSpecialKeyPath {
+    UIButton *button = [UIButton new];
+    
+    __block id receivedSender = nil;
+    __block id receivedValue = nil;
+    
+    [BINDO(button, onTouchUpInside) observe:^(id sender, id value) {
+        receivedSender = sender;
+        receivedValue = value;
+    }];
+    
+    button.onTouchUpInside = button;
+    XCTAssertEqual(button, receivedSender, @"Button should be the observable");
+    XCTAssertEqualObjects(button, receivedValue, @"Button should be the value passed back");
 }
 
 @end
