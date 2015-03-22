@@ -251,35 +251,26 @@ Assume that the `PersonViewModel` **view model** has a property `name` which you
 #### Binding From Code ####
 `BNDTableViewCell` exposes an interface for assigning the `viewModel`, which should happen on each `tableView:cellForRowAtIndexPath:` call, and `bindings` which is a xib collection outlet of bindings which will be updated with each subsequent `viewModel` assignment.
 We will bind the cell's `textLabel.text` key path with the `name` key path of your **view model**. 
+The easiest way to do this is to use `BINDINGS` macro with `BINDViewModel` to create your `BNDView` bindings, 
+like in the following example. 
 ```
 @interface PersonTableViewCell : BNDTableViewCell
 @end
 
+//assigns the binding to the array of bindings property (BNDTableViewCell).
+//any calls to setViewModel: will automatically refresh the binding by calling 
+//[binding bindLeft:self.viewModel withRight:self];
+//making sure that your objects are bound on cell reuse.
+//the following code will bind viewModel.name to cell's textLabel.text property
 @implementation PersonTableViewCell 
+BINDINGS(PersonViewModel, //you must provide the viewModel's class over here,                     
+         BINDViewModel(name, ->, textLabel.text), //add as many bindings you like, 
+         nil); //and nil terminate the list when done.
 
-- (instancetype)init... {
-    ...
-    //assign the binding to the array of bindings property (BNDTableViewCell).
-    //any calls to setViewModel: will automatically refresh the binding by calling 
-    //[binding bindLeft:self.viewModel withRight:self];
-    //making sure that your objects are bound on cell reuse.
-    //this will bind viewModel.name to cell's textLabel.text property
-    self.bindings = @[
-        BIND(self, viewModel.name, ->, self, textLabel.text)
-    ]; 
-    ...
-    //You can also use the BIND string syntax to do the same thing.
-    //notice that we didn't write viewModel.name, BIND lets
-    //you use shorthand syntax when used on BNDViews 
-    self.bindings = @[
-        [BNDBinding bindingWithBIND:@"name -> textLabel.text"]
-    ]; 
-    ...
-}
-
+//Optionally, override viewDidUpdateViewModel:  
+//this method is called after each call to setViewModel: on the cell,
+//use this instead of overriding setViewModel: 
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
-    //this method is called after each call to setViewModel: on the cell
-    //use this instead of overriding setViewModel: 
 } 
 
 @end
