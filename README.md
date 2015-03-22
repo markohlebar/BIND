@@ -257,24 +257,28 @@ like in the following example.
 @interface PersonTableViewCell : BNDTableViewCell
 @end
 
-//assigns the binding to the array of bindings property (BNDTableViewCell).
-//any calls to setViewModel: will automatically refresh the binding by calling 
-//[binding bindLeft:self.viewModel withRight:self];
-//making sure that your objects are bound on cell reuse.
-//the following code will bind viewModel.name to cell's textLabel.text property
 @implementation PersonTableViewCell 
 BINDINGS(PersonViewModel, //you must provide the viewModel's class over here,                     
          BINDViewModel(name, ->, textLabel.text), //add as many bindings you like, 
          nil); //and nil terminate the list when done.
-
-//Optionally, override viewDidUpdateViewModel:  
-//this method is called after each call to setViewModel: on the cell,
-//use this instead of overriding setViewModel: 
-- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
-} 
-
+...
 @end
 ``` 
+
+The code in this example assigns the binding to the array of bindings property (BNDTableViewCell).
+Any subsequent calls to setViewModel: will automatically refresh the binding by calling 
+[binding bindLeft:self.viewModel withRight:self]; making sure that your objects are bound on cell reuse.
+
+Optionally, if you want to do some additional operations when `viewModel` is set, you can override `viewDidUpdateViewModel:` method. This method is called after each call to `setViewModel:` on the cell,
+use this instead of overriding `setViewModel:`. 
+```
+@implementation PersonTableViewCell 
+...
+- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
+} 
+...
+@end
+```
 
 #### Binding From XIB ####
 **BIND** lets you create your bindings from XIBs. The easiest way to do this is to use 
