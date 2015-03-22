@@ -7,8 +7,10 @@
 //
 
 #import "MHColorTableCell.h"
-#import "BNDBinding.h"
+#import "MHColorViewModel.h"
 
 @implementation MHColorTableCell
-
+BINDINGS(MHColorViewModel,
+         BINDViewModel(color, ->, contentView.backgroundColor),
+         nil);
 @end

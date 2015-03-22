@@ -11,5 +11,4 @@
 
 @protocol MHColorViewModel;
 @interface MHColorTableCell : BNDTableViewCell
-
 @end

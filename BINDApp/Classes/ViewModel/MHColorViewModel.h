@@ -16,4 +16,8 @@
 @property (nonatomic, copy) UIColor *color;
 @end
 
+@interface MHColorViewModel : NSObject <MHColorViewModel>
+
+@end
+
 #endif
