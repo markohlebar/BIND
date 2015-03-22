@@ -11,6 +11,17 @@
 #import "BNDBinding.h"
 #import "BNDTestObjects.h"
 
+@interface TestTableViewCell : BNDTableViewCell
+
+@end
+
+@implementation TestTableViewCell
+BINDINGS(ViewModel,
+         BINDViewModel(text, ->, textLabel.text),
+         BINDViewModel(color, ->, backgroundColor),
+         nil)
+@end
+
 SPEC_BEGIN(BNDConcreteViewSpec)
 
 describe(@"BNDTableViewCell", ^{
@@ -34,8 +45,8 @@ describe(@"BNDTableViewCell", ^{
         cell = nil;
     });
     
-    context(@"when using a BNDTableViewCell", ^{
-        it(@"should bind on view model update", ^{
+    context(@"When using a BNDTableViewCell", ^{
+        it(@"Should bind on view model update", ^{
             cell.bindings = createBindings(@[
                                              @"viewModel.text -> textLabel.text",
                                              @"textLabel.text <- viewModel.text"
@@ -54,8 +65,8 @@ describe(@"BNDTableViewCell", ^{
         });
     });
     
-    context(@"when using a BNDTableViewCell", ^{
-        it(@"should shorthand bind on view model update", ^{
+    context(@"When using a BNDTableViewCell", ^{
+        it(@"Should shorthand bind on view model update", ^{
             cell.bindings = createBindings(@[
                                              @"text -> textLabel.text"
                                              ]);
@@ -66,6 +77,19 @@ describe(@"BNDTableViewCell", ^{
                         withArguments:viewModel, cell, nil];
             
             cell.viewModel = viewModel;
+        });
+    });
+    
+    context(@"When using a BNDTableViewCell subclass and BINDViewModel", ^{
+        it(@"Should bind the view model correctly", ^{
+            TestTableViewCell *cell = [TestTableViewCell new];
+            ViewModel *viewModel = [ViewModel new];
+            viewModel.text = @"TEST";
+            viewModel.color = [UIColor redColor];
+            cell.viewModel = viewModel;
+            
+            [[cell.textLabel.text should] equal:@"TEST"];
+            [[cell.backgroundColor should] equal:[UIColor redColor]];
         });
     });
 });

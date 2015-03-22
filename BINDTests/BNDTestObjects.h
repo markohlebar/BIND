@@ -37,6 +37,7 @@
 
 @interface ViewModel : NSObject <BNDViewModel>
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) UIColor *color;
 @end
 
 @interface TableViewCell : BNDTableViewCell

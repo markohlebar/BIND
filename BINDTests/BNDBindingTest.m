@@ -409,7 +409,7 @@
 }
 
 - (void)testTransformBlockIsCalledWhenValueChangesAndReverseTransformerIsAssigned {
-    _binding = [BINDNT(_engine,rpm,<-,_car,speed, !, RPMToSpeedTransformer) transform:^id(id object, id value) {
+    _binding = [BINDRT(_engine,rpm,<-,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
         return @([value integerValue] / 2);
     }];
     _car.speed = 100;
