@@ -38,9 +38,11 @@
 @interface ViewModel : NSObject <BNDViewModel>
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) ViewModel *childViewModel;
 @end
 
 @interface TableViewCell : BNDTableViewCell
+@property (nonatomic, strong) TableViewCell *childCell;
 @end
 
 #pragma mark - Transformers

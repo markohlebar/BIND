@@ -27,7 +27,7 @@
     [self viewDidUpdateViewModel:viewModel]; \
 } \
 - (BOOL)isShorthandBinding:(BNDBinding *)binding { \
-    return [binding.BIND rangeOfString:@"viewModel"].location == NSNotFound; \
+    return [binding.BIND rangeOfString:@"viewModel."].location == NSNotFound; \
 } \
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
 } \

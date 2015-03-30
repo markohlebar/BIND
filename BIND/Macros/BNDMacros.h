@@ -215,7 +215,7 @@ bndBINDObserve(observable, @"")
 #define BINDINGS(viewModelClass, ...) \
 @synthesize bindings = _bindings; \
 - (NSArray *)bindings { \
-viewModelClass *viewModel = (viewModelClass *)self.viewModel; \
+viewModelClass *viewModel __unused = (viewModelClass *)self.viewModel; \
 if (!_bindings) { \
 _bindings = [NSArray arrayWithObjects:__VA_ARGS__]; \
 } \
