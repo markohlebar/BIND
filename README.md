@@ -1,7 +1,7 @@
 BIND
 ====
 
-[![Pod](http://img.shields.io/badge/pod-1.4.1-lightgrey.svg)](http://cocoapods.org/)
+[![Pod](http://img.shields.io/badge/pod-1.4.2-lightgrey.svg)](http://cocoapods.org/)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Build Status](https://travis-ci.org/markohlebar/BIND.svg?branch=master)](https://travis-ci.org/markohlebar/BIND)
 
