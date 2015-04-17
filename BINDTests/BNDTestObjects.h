@@ -50,5 +50,8 @@
 @interface RPMToSpeedTransformer : NSValueTransformer
 @end
 
+@interface UppercaseStringTransformer : NSValueTransformer
+@end
+
 @interface AsyncRPMToSpeedTransformer : BNDAsyncValueTransformer
 @end
