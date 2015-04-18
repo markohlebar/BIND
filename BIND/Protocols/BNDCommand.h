@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol BNDCommand <NSObject>
-- (void)execute;
+@property (nonatomic) id execute;
 @end

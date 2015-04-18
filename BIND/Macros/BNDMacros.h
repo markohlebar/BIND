@@ -244,6 +244,11 @@ return _bindings; \
 #define BINDViewModel(leftKeyPath, direction, rightKeyPath) \
 bndBIND(viewModel, @keypath(viewModel,leftKeyPath), @metamacro_stringify(direction), self, @keypath(self,rightKeyPath), @"", nil)
 
+#pragma - Command
+
+#define BINDViewModelCommand(command, rightObject, rightKeyPath) \
+bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
+
 #define BINDCommand(leftObject, leftKeyPath, command) \
 bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
 
