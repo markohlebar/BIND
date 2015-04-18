@@ -58,6 +58,9 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value);
  */
 @property (nonatomic, weak, readonly) id rightObject;
 
+
+@property (nonatomic, readonly, getter=isLocked) BOOL locked;
+
 /**
  *  Builds a binding using BIND syntax.
  *
@@ -107,5 +110,7 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value);
  *  @return a binding that is performing the observation.
  */
 - (instancetype)observe:(BNDBindingObservationBlock)observationBlock;
+
+- (instancetype)lock;
 
 @end

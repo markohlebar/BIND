@@ -10,5 +10,4 @@
 #import "BNDConcreteView.h"
 
 @interface MHNameTableCell : BNDTableViewCell
-
 @end

@@ -165,4 +165,14 @@
     XCTAssertNoThrow(BINDS(_car, ->, _engine), @"The shorthand keypaths should be registered");
 }
 
+- (void)testBINDCommand {
+    Command *command = [Command new];
+    UIButton *button = [UIButton new];
+
+    BINDCommand(button, onTouchUpInside, command);
+    
+    button.onTouchUpInside = button;
+    XCTAssertTrue(command.isExecuted, @"Command should execute on touch up inside");
+}
+
 @end

@@ -53,6 +53,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 @property (nonatomic, copy) BNDBindingTransformValueBlock transformBlock;
 @property (nonatomic, copy) BNDBindingObservationBlock observationBlock;
 
+@property (nonatomic, getter=isLocked) BOOL locked;
 
 + (NSMutableSet *)allBindings;
 @end
@@ -61,7 +62,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 @implementation BNDBinding {
-    BOOL _locked;
+    BOOL _lockedObservation;
 }
 
 + (void)initialize {
@@ -153,12 +154,26 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 - (void)bindLeft:(id)leftObject
        withRight:(id)rightObject {
+    if (self.isLocked) {
+        return;
+    }
+    
     [self unbind];
     
     self.leftObject = leftObject;
     self.rightObject = rightObject;
     
     [self bind];
+}
+
+- (instancetype)lock {
+    _locked = YES;
+    return self;
+}
+
+- (instancetype)unlock {
+    _locked = NO;
+    return self;
 }
 
 - (void)bind {
@@ -313,11 +328,11 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    if (self.isLocked) {
+    if (self.isObservationLocked) {
         return;
     }
     
-    [self lock];
+    [self lockObservation];
     
     id newObject = change[NSKeyValueChangeNewKey];
     if ([newObject isKindOfClass:[NSNull class]]) {
@@ -335,19 +350,19 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         self.observationBlock(object, newObject);
     }
     
-    [self unlock];
+    [self unlockObservation];
 }
 
-- (void)lock {
-    _locked = YES;
+- (void)lockObservation {
+    _lockedObservation = YES;
 }
 
-- (void)unlock {
-    _locked = NO;
+- (void)unlockObservation {
+    _lockedObservation = NO;
 }
 
-- (BOOL)isLocked {
-    return _locked;
+- (BOOL)isObservationLocked {
+    return _lockedObservation;
 }
 
 @end

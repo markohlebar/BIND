@@ -11,6 +11,8 @@
 
 #import "BNDBinding.h"
 #import <libextobjc/EXTKeyPathCoding.h>
+#import "BNDCommand.h"
+#import "NSObject+BNDCommand.h"
 
 #if TARGET_OS_IPHONE
 
@@ -65,6 +67,19 @@ static inline BNDBinding* bndBINDObserve(id left,
     
     BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath]];
     [binding bindLeft:left withRight:binding];
+    return binding;
+}
+
+static inline BNDBinding* bndBINDCommand(id left,
+                                         NSString *leftKeypath,
+                                         id <BNDCommand> command) {
+    if ([leftKeypath isEqualToString:@""]) {
+        leftKeypath = bndShorthandKeypathForObject(left);
+    }
+    
+    BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@!->bnd_command", leftKeypath]];
+    [binding bindLeft:left withRight:binding];
+    [binding setBnd_commandObject:command];
     return binding;
 }
 
@@ -228,5 +243,8 @@ return _bindings; \
  */
 #define BINDViewModel(leftKeyPath, direction, rightKeyPath) \
 bndBIND(viewModel, @keypath(viewModel,leftKeyPath), @metamacro_stringify(direction), self, @keypath(self,rightKeyPath), @"", nil)
+
+#define BINDCommand(leftObject, leftKeyPath, command) \
+bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
 
 #endif

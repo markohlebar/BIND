@@ -68,3 +68,11 @@
 }
 
 @end
+
+@implementation Command
+
+- (void)execute {
+    _executed = YES;
+}
+
+@end

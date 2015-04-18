@@ -67,12 +67,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    id <MHNameViewModel> viewModel = self.viewModels[indexPath.row];
-    if ([viewModel respondsToSelector:@selector(setName:)]) {
-        viewModel.name = @"DUDE!!!";
-    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

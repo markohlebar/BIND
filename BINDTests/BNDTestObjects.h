@@ -52,3 +52,9 @@
 
 @interface AsyncRPMToSpeedTransformer : BNDAsyncValueTransformer
 @end
+
+#pragma mark - Command
+
+@interface Command : NSObject <BNDCommand>
+@property (getter=isExecuted) BOOL executed;
+@end
