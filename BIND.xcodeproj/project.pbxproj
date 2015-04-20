@@ -56,6 +56,9 @@
 		96896E8F1AA1F37E0067BDE3 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 96896E8E1AA1F37E0067BDE3 /* white.png */; };
 		969AE2E71A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */; };
 		969AE2E91A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 969AE2E81A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m */; };
+		96A811841AE250A70087D078 /* BNDSelectorBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A811821AE250A70087D078 /* BNDSelectorBinding.h */; };
+		96A811851AE250A70087D078 /* BNDSelectorBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A811831AE250A70087D078 /* BNDSelectorBinding.m */; };
+		96A811861AE250A70087D078 /* BNDSelectorBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A811831AE250A70087D078 /* BNDSelectorBinding.m */; };
 		96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
 		96AE6D4A1A2B25A8004C32DC /* BNDConcreteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */; };
 		96AE6D4C1A2B25BD004C32DC /* BNDSpecialKeyPathHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */; };
@@ -204,6 +207,8 @@
 		969AE2E11A32E5550058752F /* BNDMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDMacros.h; path = Macros/BNDMacros.h; sourceTree = "<group>"; };
 		969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BNDTableViewCell+BNDBindingSpec.m"; sourceTree = "<group>"; };
 		969AE2E81A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BNDTableViewCell+BNDBindingSpec.m"; sourceTree = "<group>"; };
+		96A811821AE250A70087D078 /* BNDSelectorBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDSelectorBinding.h; sourceTree = "<group>"; };
+		96A811831AE250A70087D078 /* BNDSelectorBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDSelectorBinding.m; sourceTree = "<group>"; };
 		96AE6D321A2B254E004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBIND-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E01F981A3490D300294550 /* BNDCrashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDCrashTests.m; sourceTree = "<group>"; };
 		96EF5D4F1AAB9A2500F6F222 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -527,6 +532,8 @@
 			children = (
 				9680C92819FEBC2800DFE38A /* BNDBinding.h */,
 				9680C92919FEBC2800DFE38A /* BNDBinding.m */,
+				96A811821AE250A70087D078 /* BNDSelectorBinding.h */,
+				96A811831AE250A70087D078 /* BNDSelectorBinding.m */,
 				96896E7B1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h */,
 				96896E7C1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m */,
 			);
@@ -756,6 +763,7 @@
 				965128BE1A7192C9008A9547 /* NSTableView+BNDBinding.h in Headers */,
 				965128C11A7192C9008A9547 /* NSTextField+BNDBinding.h in Headers */,
 				965128BB1A7192C9008A9547 /* NSString+BNDKeyPathHandling.h in Headers */,
+				96A811841AE250A70087D078 /* BNDSelectorBinding.h in Headers */,
 				96896E7D1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1207,6 +1215,7 @@
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
 				B59D0B7B1ADAF2F0004A7757 /* UITextField+BNDBinding.m in Sources */,
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
+				96A811851AE250A70087D078 /* BNDSelectorBinding.m in Sources */,
 				965128B91A7192C9008A9547 /* UIButton+BNDBinding.m in Sources */,
 				96896E8C1AA1D9D90067BDE3 /* BNDURLToImageTransformer.m in Sources */,
 				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
@@ -1245,6 +1254,7 @@
 				96AE6D4C1A2B25BD004C32DC /* BNDSpecialKeyPathHandler.m in Sources */,
 				965128C31A7192C9008A9547 /* NSTextField+BNDBinding.m in Sources */,
 				96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */,
+				96A811861AE250A70087D078 /* BNDSelectorBinding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
