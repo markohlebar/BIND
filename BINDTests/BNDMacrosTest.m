@@ -115,7 +115,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
 
-    [BINDO(textField, text) observe:^(id sender, id value) {
+    [BINDO(textField, text) observe:^(id sender, id value, NSDictionary *observationInfo) {
         receivedSender = sender;
         receivedValue = value;
     }];
@@ -131,7 +131,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
     
-    [BINDO(button, onTouchUpInside) observe:^(id sender, id value) {
+    [BINDO(button, onTouchUpInside) observe:^(id sender, id value, NSDictionary *observationInfo) {
         receivedSender = sender;
         receivedValue = value;
     }];
@@ -147,7 +147,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
     
-    [BINDOS(button) observe:^(id sender, id value) {
+    [BINDOS(button) observe:^(id sender, id value, NSDictionary *observationInfo) {
         receivedSender = sender;
         receivedValue = value;
     }];
