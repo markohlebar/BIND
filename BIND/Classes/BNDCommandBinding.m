@@ -32,6 +32,7 @@
 
 - (void)setLeftObjectValue:(id)value {
     id <BNDCommand> command = [self.leftObject valueForKeyPath:self.commandKeyPath];
+    NSAssert([command conformsToProtocol:@protocol(BNDCommand)], @"A command should conform BNDCommand protocol");
     [command execute];
 }
 
