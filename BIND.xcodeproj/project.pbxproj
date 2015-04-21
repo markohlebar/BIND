@@ -53,9 +53,6 @@
 		9680C93F19FECABA00DFE38A /* BNDView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93919FEC8B000DFE38A /* BNDView.h */; };
 		9680C94019FECABD00DFE38A /* BNDViewModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9680C93819FEC88500DFE38A /* BNDViewModel.h */; };
 		9686DEF01ACD29EB00F81F81 /* BNDCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 9686DEEF1ACD29EB00F81F81 /* BNDCommand.h */; };
-		9686DEF31ACD2A9700F81F81 /* NSObject+BNDCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 9686DEF11ACD2A9700F81F81 /* NSObject+BNDCommand.h */; };
-		9686DEF41ACD2A9700F81F81 /* NSObject+BNDCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686DEF21ACD2A9700F81F81 /* NSObject+BNDCommand.m */; };
-		9686DEF51ACD2A9700F81F81 /* NSObject+BNDCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686DEF21ACD2A9700F81F81 /* NSObject+BNDCommand.m */; };
 		96896E7D1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 96896E7B1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h */; };
 		96896E7E1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96896E7C1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m */; };
 		96896E7F1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96896E7C1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m */; };
@@ -208,8 +205,6 @@
 		9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDConcreteView.h; path = Abstractions/BNDConcreteView.h; sourceTree = "<group>"; };
 		9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDConcreteView.m; path = Abstractions/BNDConcreteView.m; sourceTree = "<group>"; };
 		9686DEEF1ACD29EB00F81F81 /* BNDCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDCommand.h; path = Protocols/BNDCommand.h; sourceTree = "<group>"; };
-		9686DEF11ACD2A9700F81F81 /* NSObject+BNDCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BNDCommand.h"; sourceTree = "<group>"; };
-		9686DEF21ACD2A9700F81F81 /* NSObject+BNDCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BNDCommand.m"; sourceTree = "<group>"; };
 		96896E7B1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDAsyncValueTransformer.h; sourceTree = "<group>"; };
 		96896E7C1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDAsyncValueTransformer.m; sourceTree = "<group>"; };
 		96896E871A9FE60F0067BDE3 /* BNDURLToImageTransformerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDURLToImageTransformerSpec.m; sourceTree = "<group>"; };
@@ -418,8 +413,6 @@
 		965128A81A7192C9008A9547 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				9686DEF11ACD2A9700F81F81 /* NSObject+BNDCommand.h */,
-				9686DEF21ACD2A9700F81F81 /* NSObject+BNDCommand.m */,
 				965128A91A7192C9008A9547 /* BNDTableViewCell+BNDBinding.h */,
 				965128AA1A7192C9008A9547 /* BNDTableViewCell+BNDBinding.m */,
 				965128AE1A7192C9008A9547 /* NSString+BNDKeyPathHandling.h */,
@@ -789,7 +782,6 @@
 				965128BE1A7192C9008A9547 /* NSTableView+BNDBinding.h in Headers */,
 				965128C11A7192C9008A9547 /* NSTextField+BNDBinding.h in Headers */,
 				965128BB1A7192C9008A9547 /* NSString+BNDKeyPathHandling.h in Headers */,
-				9686DEF31ACD2A9700F81F81 /* NSObject+BNDCommand.h in Headers */,
 				96896E7D1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h in Headers */,
 				9686DEF01ACD29EB00F81F81 /* BNDCommand.h in Headers */,
 				96056B7F1AE5A3050002E5B0 /* BNDCommandBinding.h in Headers */,
@@ -1238,7 +1230,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9686DEF41ACD2A9700F81F81 /* NSObject+BNDCommand.m in Sources */,
 				965128BC1A7192C9008A9547 /* NSString+BNDKeyPathHandling.m in Sources */,
 				960194081A2045CE00059F90 /* BNDParser.m in Sources */,
 				965128B61A7192C9008A9547 /* BNDTableViewCell+BNDBinding.m in Sources */,
@@ -1276,7 +1267,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9686DEF51ACD2A9700F81F81 /* NSObject+BNDCommand.m in Sources */,
 				965128BD1A7192C9008A9547 /* NSString+BNDKeyPathHandling.m in Sources */,
 				965128C01A7192C9008A9547 /* NSTableView+BNDBinding.m in Sources */,
 				96896E7F1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m in Sources */,

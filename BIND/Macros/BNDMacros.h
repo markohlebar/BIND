@@ -13,7 +13,6 @@
 #import <libextobjc/EXTKeyPathCoding.h>
 #import "BNDCommand.h"
 #import "BNDCommandBinding.h"
-#import "NSObject+BNDCommand.h"
 
 #if TARGET_OS_IPHONE
 
@@ -68,19 +67,6 @@ static inline BNDBinding* bndBINDObserve(id left,
     
     BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath]];
     [binding bindLeft:left withRight:binding];
-    return binding;
-}
-
-static inline BNDBinding* bndBINDCommand(id left,
-                                         NSString *leftKeypath,
-                                         id <BNDCommand> command) {
-    if ([leftKeypath isEqualToString:@""]) {
-        leftKeypath = bndShorthandKeypathForObject(left);
-    }
-    
-    BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@!->bnd_command", leftKeypath]];
-    [binding bindLeft:left withRight:binding];
-    [binding setBnd_commandObject:command];
     return binding;
 }
 
@@ -258,8 +244,12 @@ return _bindings; \
 #define BINDViewModel(viewModelKeyPath, direction, selfKeyPath) \
 bndBIND(viewModel, @keypath(viewModel,viewModelKeyPath), @metamacro_stringify(direction), self, @keypath(self,selfKeyPath), @"", nil)
 
-
+/**
+ *  This is a shorthand to use only in couple with BINDINGS shorthand.
+ *  Assuming that the viewModel has a property that implements BNDCommand protocol, 
+ *  Whenever there is a change in the actionKeyPath, the command at commandKeyPath is executed.
+ */
 #define BINDViewModelCommand(commandKeyPath, actionKeyPath) \
-bndBINDViewModelCommand(viewModel, @keyPath(viewModel, commandKeyPath), self, @keypath(self, rightKeyPath))
+bndBINDViewModelCommand(viewModel, @keypath(viewModel, commandKeyPath), self, @keypath(self, actionKeyPath))
 
 #endif

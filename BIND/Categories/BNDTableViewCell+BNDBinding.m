@@ -23,6 +23,7 @@ NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath = @"BNDTableViewCel
 - (void)setupTouchUpInsideBinding {
 #if TARGET_OS_IPHONE
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchUpInside:)];
+    [tapGestureRecognizer setCancelsTouchesInView:NO];
     [self addGestureRecognizer:tapGestureRecognizer];
     
 #elif TARGET_OS_MAC
@@ -35,7 +36,6 @@ NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath = @"BNDTableViewCel
                              binding,
                              OBJC_ASSOCIATION_RETAIN);
 #endif
- 
 }
 
 #if TARGET_OS_IPHONE

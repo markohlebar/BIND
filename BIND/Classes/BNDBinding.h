@@ -109,6 +109,4 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value, NSDictionary 
  */
 - (instancetype)observe:(BNDBindingObservationBlock)observationBlock;
 
-- (instancetype)lock;
-
 @end

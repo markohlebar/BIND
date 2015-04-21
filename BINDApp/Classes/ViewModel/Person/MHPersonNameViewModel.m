@@ -16,13 +16,15 @@
     self = [super initWithModel:person];
     if (self) {
         [self loadBindings];
-        [self loadCommands];
     }
     return self;
 }
 
-- (void)loadCommands {
-    self.reverseNameCommand = [MHReversePersonNameCommand commandWithPerson:self.person];
+- (MHReversePersonNameCommand *)reverseNameCommand {
+    if (!_reverseNameCommand) {
+        _reverseNameCommand = [MHReversePersonNameCommand commandWithPerson:self.person];
+    }
+    return _reverseNameCommand;
 }
 
 - (void)loadBindings {
