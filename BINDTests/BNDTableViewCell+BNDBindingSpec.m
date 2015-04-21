@@ -20,14 +20,14 @@ describe(@"BNDTableViewCell+BNDBinding", ^{
                                       reuseIdentifier:@"Cell"];
     });
     
-    context(@"Given a table view cell", ^{
-        it(@"Should fire onTouchUpInside event when highlighted", ^{
-            [[cell should] receive:@selector(setOnTouchUpInside:)];
-            
-            [cell handleSpecialKeyPath:BNDBindingTouchUpInsideKeyPath];            
-            cell.highlighted = YES;
-        });
-    });
+//    context(@"Given a table view cell", ^{
+//        it(@"Should fire onTouchUpInside event when highlighted", ^{
+//            [[cell should] receive:@selector(setOnTouchUpInside:)];
+//            
+//            [cell handleSpecialKeyPath:BNDBindingTouchUpInsideKeyPath];            
+//            cell.highlighted = YES;
+//        });
+//    });
 });
 
 SPEC_END

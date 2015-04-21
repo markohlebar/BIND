@@ -12,6 +12,7 @@
 #import "BNDBinding.h"
 #import <libextobjc/EXTKeyPathCoding.h>
 #import "BNDCommand.h"
+#import "BNDCommandBinding.h"
 #import "NSObject+BNDCommand.h"
 
 #if TARGET_OS_IPHONE
@@ -80,6 +81,16 @@ static inline BNDBinding* bndBINDCommand(id left,
     BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@!->bnd_command", leftKeypath]];
     [binding bindLeft:left withRight:binding];
     [binding setBnd_commandObject:command];
+    return binding;
+}
+
+static inline BNDBinding *bndBINDViewModelCommand(id viewModel,
+                                                  NSString *commandKeyPath,
+                                                  id viewObject,
+                                                  NSString *actionKeyPath) {
+    BNDBinding *binding = [BNDCommandBinding bindingWithCommandKeyPath:commandKeyPath
+                                                         actionKeyPath:actionKeyPath];
+    [binding bindLeft:viewModel withRight:viewObject];
     return binding;
 }
 
@@ -221,6 +232,9 @@ bndBINDObserve(observable, @keypath(observable,observableKeyPath))
 #define BINDOS(observable) \
 bndBINDObserve(observable, @"")
 
+#define BINDCommand(leftObject, leftKeyPath, command) \
+bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
+
 /**
  *  This is a shorthand for creating bindings in a BNDView environment.
  *
@@ -241,15 +255,11 @@ return _bindings; \
  *  This is a shorthand to use only in couple with BINDINGS shorthand.
  *  It assumes that the left object is a viewModel property of the BNDView.
  */
-#define BINDViewModel(leftKeyPath, direction, rightKeyPath) \
-bndBIND(viewModel, @keypath(viewModel,leftKeyPath), @metamacro_stringify(direction), self, @keypath(self,rightKeyPath), @"", nil)
+#define BINDViewModel(viewModelKeyPath, direction, selfKeyPath) \
+bndBIND(viewModel, @keypath(viewModel,viewModelKeyPath), @metamacro_stringify(direction), self, @keypath(self,selfKeyPath), @"", nil)
 
-#pragma - Command
 
-#define BINDViewModelCommand(command, rightObject, rightKeyPath) \
-bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
-
-#define BINDCommand(leftObject, leftKeyPath, command) \
-bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
+#define BINDViewModelCommand(commandKeyPath, actionKeyPath) \
+bndBINDViewModelCommand(viewModel, @keyPath(viewModel, commandKeyPath), self, @keypath(self, rightKeyPath))
 
 #endif

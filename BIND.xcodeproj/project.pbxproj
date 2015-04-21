@@ -21,6 +21,10 @@
 		960194081A2045CE00059F90 /* BNDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 960194071A2045CE00059F90 /* BNDParser.m */; };
 		9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */; };
 		9601940D1A204C4C00059F90 /* BNDParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9601940C1A204C4C00059F90 /* BNDParserTest.m */; };
+		96056B7F1AE5A3050002E5B0 /* BNDCommandBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 96056B7D1AE5A3050002E5B0 /* BNDCommandBinding.h */; };
+		96056B801AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96056B7E1AE5A3050002E5B0 /* BNDCommandBinding.m */; };
+		96056B811AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96056B7E1AE5A3050002E5B0 /* BNDCommandBinding.m */; };
+		96056B831AE5A5910002E5B0 /* BNDCommandBindingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96056B821AE5A5910002E5B0 /* BNDCommandBindingTests.m */; };
 		960C5CC11A2B96BF002CA964 /* BNDConcreteViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 960C5CC01A2B96BF002CA964 /* BNDConcreteViewSpec.m */; };
 		9626B5291AC9D30600F29A9E /* BNDIssuesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9626B5281AC9D30600F29A9E /* BNDIssuesTests.m */; };
 		96347A661ABB6BF200FA2991 /* MHColorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96347A651ABB6BF200FA2991 /* MHColorViewModel.m */; };
@@ -168,6 +172,9 @@
 		960194091A2045E900059F90 /* BNDSpecialKeyPathHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDSpecialKeyPathHandler.h; path = Private/BNDSpecialKeyPathHandler.h; sourceTree = "<group>"; };
 		9601940A1A2045E900059F90 /* BNDSpecialKeyPathHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDSpecialKeyPathHandler.m; path = Private/BNDSpecialKeyPathHandler.m; sourceTree = "<group>"; };
 		9601940C1A204C4C00059F90 /* BNDParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDParserTest.m; sourceTree = "<group>"; };
+		96056B7D1AE5A3050002E5B0 /* BNDCommandBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDCommandBinding.h; sourceTree = "<group>"; };
+		96056B7E1AE5A3050002E5B0 /* BNDCommandBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDCommandBinding.m; sourceTree = "<group>"; };
+		96056B821AE5A5910002E5B0 /* BNDCommandBindingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDCommandBindingTests.m; sourceTree = "<group>"; };
 		960C5CC01A2B96BF002CA964 /* BNDConcreteViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDConcreteViewSpec.m; sourceTree = "<group>"; };
 		9616D7651A29E26D0048E4CD /* BIND-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BIND-PrefixHeader.pch"; sourceTree = SOURCE_ROOT; };
 		9626B5281AC9D30600F29A9E /* BNDIssuesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDIssuesTests.m; sourceTree = "<group>"; };
@@ -512,6 +519,7 @@
 				967381AA1A02C61800D1C608 /* BNDTestObjects.h */,
 				967381AB1A02C61800D1C608 /* BNDTestObjects.m */,
 				967381A81A02C56C00D1C608 /* BNDBindingTest.m */,
+				96056B821AE5A5910002E5B0 /* BNDCommandBindingTests.m */,
 				9601940C1A204C4C00059F90 /* BNDParserTest.m */,
 				960C5CC01A2B96BF002CA964 /* BNDConcreteViewSpec.m */,
 				960193F61A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m */,
@@ -534,6 +542,8 @@
 			children = (
 				9680C92819FEBC2800DFE38A /* BNDBinding.h */,
 				9680C92919FEBC2800DFE38A /* BNDBinding.m */,
+				96056B7D1AE5A3050002E5B0 /* BNDCommandBinding.h */,
+				96056B7E1AE5A3050002E5B0 /* BNDCommandBinding.m */,
 				96896E7B1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h */,
 				96896E7C1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m */,
 			);
@@ -777,6 +787,7 @@
 				9686DEF31ACD2A9700F81F81 /* NSObject+BNDCommand.h in Headers */,
 				96896E7D1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h in Headers */,
 				9686DEF01ACD29EB00F81F81 /* BNDCommand.h in Headers */,
+				96056B7F1AE5A3050002E5B0 /* BNDCommandBinding.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1230,6 +1241,7 @@
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
 				965128B91A7192C9008A9547 /* UIButton+BNDBinding.m in Sources */,
 				96896E8C1AA1D9D90067BDE3 /* BNDURLToImageTransformer.m in Sources */,
+				96056B801AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */,
 				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
 				96896E7E1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m in Sources */,
 			);
@@ -1247,6 +1259,7 @@
 				960C5CC11A2B96BF002CA964 /* BNDConcreteViewSpec.m in Sources */,
 				96896E881A9FE60F0067BDE3 /* BNDURLToImageTransformerSpec.m in Sources */,
 				96EF5D991AAC3B5300F6F222 /* BNDMacrosTest.m in Sources */,
+				96056B831AE5A5910002E5B0 /* BNDCommandBindingTests.m in Sources */,
 				9626B5291AC9D30600F29A9E /* BNDIssuesTests.m in Sources */,
 				9601940D1A204C4C00059F90 /* BNDParserTest.m in Sources */,
 				960193F71A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m in Sources */,
@@ -1265,6 +1278,7 @@
 				965128B71A7192C9008A9547 /* BNDTableViewCell+BNDBinding.m in Sources */,
 				96AE6D4A1A2B25A8004C32DC /* BNDConcreteView.m in Sources */,
 				96AE6D4C1A2B25BD004C32DC /* BNDSpecialKeyPathHandler.m in Sources */,
+				96056B811AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */,
 				965128C31A7192C9008A9547 /* NSTextField+BNDBinding.m in Sources */,
 				96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */,
 			);

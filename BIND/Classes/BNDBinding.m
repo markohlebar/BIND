@@ -88,7 +88,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 + (BNDBinding *)bindingWithBIND:(NSString *)BIND
                  transformBlock:(BNDBindingTransformValueBlock)transformBlock {
-    BNDBinding *binding = [BNDBinding new];
+    BNDBinding *binding = [self new];
     binding.BIND = BIND;
     binding.transformBlock = transformBlock;
     return binding;
@@ -154,26 +154,12 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 - (void)bindLeft:(id)leftObject
        withRight:(id)rightObject {
-    if (self.isLocked) {
-        return;
-    }
-    
     [self unbind];
     
     self.leftObject = leftObject;
     self.rightObject = rightObject;
     
     [self bind];
-}
-
-- (instancetype)lock {
-    _locked = YES;
-    return self;
-}
-
-- (instancetype)unlock {
-    _locked = NO;
-    return self;
 }
 
 - (void)bind {

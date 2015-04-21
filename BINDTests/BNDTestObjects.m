@@ -27,6 +27,14 @@
 #pragma mark - UI Tests
 
 @implementation ViewModel
+
+- (Command *)command {
+    if (!_command) {
+        _command = [Command new];
+    }
+    return _command;
+}
+
 @end
 
 @implementation TableViewCell
