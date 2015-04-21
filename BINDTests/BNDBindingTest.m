@@ -464,7 +464,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
 
-    [BIND(_engine,rpm,->,_car,speed) observe:^(id observable, id value) {
+    [BIND(_engine,rpm,->,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
         receivedSender = observable;
         receivedValue = value;
     }];
@@ -480,7 +480,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
     
-    [BIND(_engine,rpm,<-,_car,speed) observe:^(id observable, id value) {
+    [BIND(_engine,rpm,<-,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
         receivedSender = observable;
         receivedValue = value;
     }];
@@ -496,7 +496,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
     
-    [BIND(_engine,rpm,<>,_car,speed) observe:^(id observable, id value) {
+    [BIND(_engine,rpm,<>,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
         receivedSender = observable;
         receivedValue = value;
     }];
@@ -510,6 +510,17 @@
     XCTAssertEqualObjects(@(200), receivedValue, @"Received value should be 200");
     
     receivedSender = nil;
+}
+
+- (void)testObservationInfo {
+    __block NSDictionary *receivedObservationInfo = nil;
+    
+    [BIND(_engine,rpm,->,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
+        receivedObservationInfo = observationInfo;
+    }];
+    
+    _engine.rpm = 100;
+    XCTAssertNotNil(receivedObservationInfo, @"Should contain observation info.");
 }
 
 #pragma mark - Crash tests

@@ -333,7 +333,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     }
     
     if (self.observationBlock) {
-        self.observationBlock(object, newObject);
+        self.observationBlock(object, newObject, change);
     }
     
     [self unlockObservation];

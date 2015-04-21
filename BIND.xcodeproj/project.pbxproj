@@ -90,6 +90,7 @@
 		96EF5D8C1AAB9A2500F6F222 /* MHPersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D7A1AAB9A2500F6F222 /* MHPersonViewModel.m */; };
 		96EF5D8F1AAB9AAF00F6F222 /* persons.json in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5D8E1AAB9AAF00F6F222 /* persons.json */; };
 		96EF5D991AAC3B5300F6F222 /* BNDMacrosTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D981AAC3B5300F6F222 /* BNDMacrosTest.m */; };
+		B59D0B7B1ADAF2F0004A7757 /* UITextField+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D0B7A1ADAF2F0004A7757 /* UITextField+BNDBinding.m */; };
 		DE7B7A56EB894CCB04564F4A /* libPods-BIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B186E83B11B997C5D965F76 /* libPods-BIND-OSX.a */; };
 		E2890733D924A826F86F2705 /* libPods-BINDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BA6D6920EFF0689976704C /* libPods-BINDTests.a */; };
 /* End PBXBuildFile section */
@@ -262,6 +263,8 @@
 		96EF5D8E1AAB9AAF00F6F222 /* persons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = persons.json; sourceTree = "<group>"; };
 		96EF5D981AAC3B5300F6F222 /* BNDMacrosTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDMacrosTest.m; sourceTree = "<group>"; };
 		96F74BD91A166C970099110A /* BNDDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDDataController.h; path = Protocols/BNDDataController.h; sourceTree = "<group>"; };
+		B59D0B791ADAF2F0004A7757 /* UITextField+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BNDBinding.h"; sourceTree = "<group>"; };
+		B59D0B7A1ADAF2F0004A7757 /* UITextField+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BNDBinding.m"; sourceTree = "<group>"; };
 		BD64B86BCE6B06AF8F341667 /* libPods-BINDAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BINDAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8F44652575E7C5EB281874 /* libPods-BIND-OSXTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BIND-OSXTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E252302C6C731784FE49E49F /* Pods-BINDAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BINDAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BINDAppTests/Pods-BINDAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -430,6 +433,8 @@
 		965128AB1A7192C9008A9547 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B59D0B791ADAF2F0004A7757 /* UITextField+BNDBinding.h */,
+				B59D0B7A1ADAF2F0004A7757 /* UITextField+BNDBinding.m */,
 				965128AC1A7192C9008A9547 /* UIButton+BNDBinding.h */,
 				965128AD1A7192C9008A9547 /* UIButton+BNDBinding.m */,
 			);
@@ -1238,6 +1243,7 @@
 				960194081A2045CE00059F90 /* BNDParser.m in Sources */,
 				965128B61A7192C9008A9547 /* BNDTableViewCell+BNDBinding.m in Sources */,
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
+				B59D0B7B1ADAF2F0004A7757 /* UITextField+BNDBinding.m in Sources */,
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
 				965128B91A7192C9008A9547 /* UIButton+BNDBinding.m in Sources */,
 				96896E8C1AA1D9D90067BDE3 /* BNDURLToImageTransformer.m in Sources */,

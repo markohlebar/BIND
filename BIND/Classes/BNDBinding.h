@@ -21,10 +21,11 @@ typedef id(^BNDBindingTransformValueBlock)(id object, id value);
 /**
  *  The observe block contains info on the observable being modified.
  *
- *  @param observable the observable being modified.
- *  @param value  a value that was modified.
+ *  @param observable      the observable being modified.
+ *  @param value           a value that was modified.
+ *  @param observationInfo KVO observation info
  */
-typedef void(^BNDBindingObservationBlock)(id observable, id value);
+typedef void(^BNDBindingObservationBlock)(id observable, id value, NSDictionary *observationInfo);
 
 @interface BNDBinding : NSObject <NSCoding>
 
