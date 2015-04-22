@@ -11,6 +11,8 @@
 
 #import "BNDBinding.h"
 #import <libextobjc/EXTKeyPathCoding.h>
+#import "BNDCommand.h"
+#import "BNDCommandBinding.h"
 
 #if TARGET_OS_IPHONE
 
@@ -65,6 +67,16 @@ static inline BNDBinding* bndBINDObserve(id left,
     
     BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath]];
     [binding bindLeft:left withRight:binding];
+    return binding;
+}
+
+static inline BNDBinding *bndBINDViewModelCommand(id viewModel,
+                                                  NSString *commandKeyPath,
+                                                  id viewObject,
+                                                  NSString *actionKeyPath) {
+    BNDBinding *binding = [BNDCommandBinding bindingWithCommandKeyPath:commandKeyPath
+                                                         actionKeyPath:actionKeyPath];
+    [binding bindLeft:viewModel withRight:viewObject];
     return binding;
 }
 
@@ -206,6 +218,9 @@ bndBINDObserve(observable, @keypath(observable,observableKeyPath))
 #define BINDOS(observable) \
 bndBINDObserve(observable, @"")
 
+#define BINDCommand(leftObject, leftKeyPath, command) \
+bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
+
 /**
  *  This is a shorthand for creating bindings in a BNDView environment.
  *
@@ -226,7 +241,15 @@ return _bindings; \
  *  This is a shorthand to use only in couple with BINDINGS shorthand.
  *  It assumes that the left object is a viewModel property of the BNDView.
  */
-#define BINDViewModel(leftKeyPath, direction, rightKeyPath) \
-bndBIND(viewModel, @keypath(viewModel,leftKeyPath), @metamacro_stringify(direction), self, @keypath(self,rightKeyPath), @"", nil)
+#define BINDViewModel(viewModelKeyPath, direction, selfKeyPath) \
+bndBIND(viewModel, @keypath(viewModel,viewModelKeyPath), @metamacro_stringify(direction), self, @keypath(self,selfKeyPath), @"", nil)
+
+/**
+ *  This is a shorthand to use only in couple with BINDINGS shorthand.
+ *  Assuming that the viewModel has a property that implements BNDCommand protocol, 
+ *  Whenever there is a change in the actionKeyPath, the command at commandKeyPath is executed.
+ */
+#define BINDViewModelCommand(commandKeyPath, actionKeyPath) \
+bndBINDViewModelCommand(viewModel, @keypath(viewModel, commandKeyPath), self, @keypath(self, actionKeyPath))
 
 #endif

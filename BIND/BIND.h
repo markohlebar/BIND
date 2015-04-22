@@ -8,6 +8,8 @@
 
 #import "BNDBinding.h"
 #import "BNDConcreteView.h"
+#import "BNDCommand.h"
+#import "BNDCommandBinding.h"
 #import "BNDDataController.h"
 #import "BNDView.h"
 #import "BNDViewModel.h"
@@ -17,6 +19,7 @@
 #import "BNDTableViewCell+BNDBinding.h"
 #if TARGET_OS_IPHONE
 #import "UIButton+BNDBinding.h"
+#import "UITextField+BNDBinding.h"
 #elif TARGET_OS_MAC
 #import "NSTableView+BNDBinding.h"
 #endif

@@ -8,8 +8,28 @@
 
 #import "MHPersonNameViewModel.h"
 #import "MHPerson.h"
+#import "MHReversePersonNameCommand.h"
 
 @implementation MHPersonNameViewModel
+
+- (instancetype)initWithModel:(MHPerson *)person {
+    self = [super initWithModel:person];
+    if (self) {
+        [self loadBindings];
+    }
+    return self;
+}
+
+- (MHReversePersonNameCommand *)reverseNameCommand {
+    if (!_reverseNameCommand) {
+        _reverseNameCommand = [MHReversePersonNameCommand commandWithPerson:self.person];
+    }
+    return _reverseNameCommand;
+}
+
+- (void)loadBindings {
+    BIND(self.person, fullName, <>, self, name);
+}
 
 - (void)setHexColorCode:(NSString *)hexColorCode {
     self.person.hexColorCode = hexColorCode;
@@ -17,14 +37,6 @@
 
 - (NSString *)hexColorCode {
     return self.person.hexColorCode;
-}
-
-- (void)setName:(NSString *)name {
-    self.person.fullName = name;
-}
-
-- (NSString *)name {
-    return self.person.fullName;
 }
 
 - (NSString *)ID {

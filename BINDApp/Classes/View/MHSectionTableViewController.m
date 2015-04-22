@@ -69,12 +69,4 @@
     return viewModel.cellHeight;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    id <BNDTableSectionViewModel> sectionViewModel = self.viewModels[indexPath.section];
-    id <MHNameViewModel> viewModel = sectionViewModel.rowViewModels[indexPath.row];
-    viewModel.name = @"DUDE!!!";
-}
-
 @end

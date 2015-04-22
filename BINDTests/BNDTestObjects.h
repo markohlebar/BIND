@@ -35,10 +35,12 @@
 
 #pragma mark - UI Tests
 
+@class Command;
 @interface ViewModel : NSObject <BNDViewModel>
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) ViewModel *childViewModel;
+@property (nonatomic, strong) Command *command;
 @end
 
 @interface TableViewCell : BNDTableViewCell
@@ -51,4 +53,10 @@
 @end
 
 @interface AsyncRPMToSpeedTransformer : BNDAsyncValueTransformer
+@end
+
+#pragma mark - Command
+
+@interface Command : NSObject <BNDCommand>
+@property (getter=isExecuted) BOOL executed;
 @end

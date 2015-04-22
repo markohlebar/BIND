@@ -21,31 +21,27 @@ NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath = @"BNDTableViewCel
 }
 
 - (void)setupTouchUpInsideBinding {
-    NSString *BIND = nil;
 #if TARGET_OS_IPHONE
-    BIND = @"highlighted !-> onHighlighted";
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchUpInside:)];
+    [tapGestureRecognizer setCancelsTouchesInView:NO];
+    [self addGestureRecognizer:tapGestureRecognizer];
+    
 #elif TARGET_OS_MAC
-    BIND = @"backgroundStyle !-> onBackgroundStyle";
-#endif
+    NSString *BIND = @"backgroundStyle !-> onBackgroundStyle";
     BNDBinding *binding  = [BNDBinding bindingWithBIND:BIND];
     [binding bindLeft:self withRight:self];
     
     objc_setAssociatedObject(self,
                              &BNDTableViewCellTouchUpInsideBindingKeyPath,
                              binding,
-                             OBJC_ASSOCIATION_RETAIN);    
+                             OBJC_ASSOCIATION_RETAIN);
+#endif
 }
 
 #if TARGET_OS_IPHONE
 
-- (void)setOnHighlighted:(BOOL)onHighlighted {
-    if (onHighlighted) {
-        [self setOnTouchUpInside:self];
-    }
-}
-
-- (BOOL)onHighlighted {
-    return self.highlighted;
+- (void)didTouchUpInside:(UIGestureRecognizer *)gestureRecognizer {
+    [self setOnTouchUpInside:self];
 }
 
 #elif TARGET_OS_MAC
@@ -54,7 +50,6 @@ NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath = @"BNDTableViewCel
         [self setOnTouchUpInside:self];
     }
 }
-
 #endif
 
 - (void)setOnTouchUpInside:(_BNDTableViewCell *)cell {

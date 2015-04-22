@@ -27,6 +27,14 @@
 #pragma mark - UI Tests
 
 @implementation ViewModel
+
+- (Command *)command {
+    if (!_command) {
+        _command = [Command new];
+    }
+    return _command;
+}
+
 @end
 
 @implementation TableViewCell
@@ -65,6 +73,14 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         transformBlock(speed, @(rpm));
     });
+}
+
+@end
+
+@implementation Command
+
+- (void)execute {
+    _executed = YES;
 }
 
 @end

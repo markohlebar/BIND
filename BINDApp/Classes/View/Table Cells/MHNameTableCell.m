@@ -8,7 +8,14 @@
 
 #import "MHNameTableCell.h"
 #import "BNDBinding.h"
+#import "MHPersonNameViewModel.h"
+#import "MHReversePersonNameCommand.h"
 
 @implementation MHNameTableCell
-
+BINDINGS(MHPersonNameViewModel,
+         BINDViewModel(name, ->, textLabel.text),
+         BINDViewModel(ID, ->, detailTextLabel.text),
+         BINDViewModelCommand(reverseNameCommand, onTouchUpInside),
+         nil
+         );
 @end
