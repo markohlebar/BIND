@@ -10,7 +10,6 @@
 #import "MHPerson.h"
 #import "UIColor+Hex.h"
 
-
 @implementation MHPersonColorViewModel
 
 - (UIColor *)color {
