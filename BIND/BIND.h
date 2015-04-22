@@ -19,6 +19,7 @@
 #import "BNDTableViewCell+BNDBinding.h"
 #if TARGET_OS_IPHONE
 #import "UIButton+BNDBinding.h"
+#import "UITextField+BNDBinding.h"
 #elif TARGET_OS_MAC
 #import "NSTableView+BNDBinding.h"
 #endif
