@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BNDViewModel.h"
+#import "BNDConcreteViewModel.h"
 
 @class MHPerson;
-@interface MHPersonViewModel : NSObject <BNDViewModel>
+@interface MHPersonViewModel : BNDViewModel
 @property (nonatomic, strong, readonly) MHPerson *person;
-- (instancetype)initWithModel:(MHPerson *)person;
 @end

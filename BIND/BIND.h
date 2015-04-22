@@ -8,6 +8,7 @@
 
 #import "BNDBinding.h"
 #import "BNDConcreteView.h"
+#import "BNDConcreteViewModel.h"
 #import "BNDCommand.h"
 #import "BNDCommandBinding.h"
 #import "BNDDataController.h"

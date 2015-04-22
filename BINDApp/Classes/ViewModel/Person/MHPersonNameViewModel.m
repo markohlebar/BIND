@@ -11,24 +11,15 @@
 #import "MHReversePersonNameCommand.h"
 
 @implementation MHPersonNameViewModel
-
-- (instancetype)initWithModel:(MHPerson *)person {
-    self = [super initWithModel:person];
-    if (self) {
-        [self loadBindings];
-    }
-    return self;
-}
+BINDINGS(MHPerson,
+         BINDModel(fullName, <>, name),
+         nil);
 
 - (MHReversePersonNameCommand *)reverseNameCommand {
     if (!_reverseNameCommand) {
         _reverseNameCommand = [MHReversePersonNameCommand commandWithPerson:self.person];
     }
     return _reverseNameCommand;
-}
-
-- (void)loadBindings {
-    BIND(self.person, fullName, <>, self, name);
 }
 
 - (void)setHexColorCode:(NSString *)hexColorCode {

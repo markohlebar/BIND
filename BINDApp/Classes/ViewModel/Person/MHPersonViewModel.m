@@ -11,16 +11,8 @@
 
 @implementation MHPersonViewModel
 
-+ (instancetype)viewModelWithModel:(MHPerson *)person {
-    return [[self alloc] initWithModel:person];
-}
-
-- (instancetype)initWithModel:(MHPerson *)person {
-    self = [super init];
-    if (self) {
-        _person = person;
-    }
-    return self;
+- (MHPerson *)person {
+    return self.model;
 }
 
 - (NSString *)identifier {

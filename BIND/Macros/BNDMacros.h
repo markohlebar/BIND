@@ -227,10 +227,12 @@ bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
  *  @param viewModelClass a view model class
  *  @param ...            nil terminated list of BINDViewModel bindings
  */
-#define BINDINGS(viewModelClass, ...) \
+#define BINDINGS(class, ...) \
 @synthesize bindings = _bindings; \
 - (NSArray *)bindings { \
-viewModelClass *viewModel __unused = (viewModelClass *)self.viewModel; \
+class *object __unused = nil;\
+if ([self respondsToSelector:@selector(viewModel)]) object = [self performSelector:@selector(viewModel)]; \
+else if ([self respondsToSelector:@selector(model)]) object = [self performSelector:@selector(model)]; \
 if (!_bindings) { \
 _bindings = [NSArray arrayWithObjects:__VA_ARGS__]; \
 } \
@@ -242,7 +244,7 @@ return _bindings; \
  *  It assumes that the left object is a viewModel property of the BNDView.
  */
 #define BINDViewModel(viewModelKeyPath, direction, selfKeyPath) \
-bndBIND(viewModel, @keypath(viewModel,viewModelKeyPath), @metamacro_stringify(direction), self, @keypath(self,selfKeyPath), @"", nil)
+bndBIND(object, @keypath(object,viewModelKeyPath), @metamacro_stringify(direction), self, @keypath(self,selfKeyPath), @"", nil)
 
 /**
  *  This is a shorthand to use only in couple with BINDINGS shorthand.
@@ -250,6 +252,9 @@ bndBIND(viewModel, @keypath(viewModel,viewModelKeyPath), @metamacro_stringify(di
  *  Whenever there is a change in the actionKeyPath, the command at commandKeyPath is executed.
  */
 #define BINDViewModelCommand(commandKeyPath, actionKeyPath) \
-bndBINDViewModelCommand(viewModel, @keypath(viewModel, commandKeyPath), self, @keypath(self, actionKeyPath))
+bndBINDViewModelCommand(object, @keypath(object, commandKeyPath), self, @keypath(self, actionKeyPath))
+
+#define BINDModel(modelKeyPath, direction, selfKeyPath) BINDViewModel(modelKeyPath, direction, selfKeyPath)
+
 
 #endif
