@@ -110,3 +110,12 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value, NSDictionary 
 - (instancetype)observe:(BNDBindingObservationBlock)observationBlock;
 
 @end
+
+@interface BNDBinding (Debug)
+
+/**
+ *  Returns debug description for all bindings.
+ */
++ (NSString *)allDebugDescription;
+
+@end

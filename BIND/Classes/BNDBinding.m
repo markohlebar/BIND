@@ -350,6 +350,10 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     return _lockedObservation;
 }
 
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"%@ . %@ -- %@ . %@ | %@", self.leftObject, self.leftKeyPath, self.rightObject, self.rightKeyPath, self.valueTransformer];
+}
+
 @end
 
 #pragma clang diagnostic pop
@@ -449,6 +453,22 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         
         [BNDBindingObject_swizzledClasses addObject:class];
     }
+}
+
+@end
+
+@implementation BNDBinding (Debug)
+
+/**
+ *  Logs all current bindings.
+ */
++ (NSString *)allDebugDescription {
+    NSMutableString *bindingsString = [NSMutableString stringWithString:@"BINDINGS {\n"];
+    [BNDBindingObject_bindings enumerateObjectsUsingBlock:^(BNDBinding *binding, BOOL *stop) {
+        [bindingsString appendFormat:@"%@\n", binding.debugDescription];
+    }];
+    [bindingsString appendString:@"}\n"];
+    return bindingsString;
 }
 
 @end
