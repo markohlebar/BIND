@@ -179,7 +179,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     
     self.leftObject = nil;
     self.rightObject = nil;
-    self.transformBlock = nil;
     
     [BNDBindingObject_bindings removeObject:self];
 }
