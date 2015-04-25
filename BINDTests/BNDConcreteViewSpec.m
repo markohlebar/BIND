@@ -92,6 +92,40 @@ describe(@"BNDTableViewCell", ^{
             [[cell.backgroundColor should] equal:[UIColor redColor]];
         });
     });
+    
+    context(@"When using a BNDTableViewCell subckass and BINDViewModel", ^{
+        it(@"Should keep transform block when assigning view model", ^{
+            TestTableViewCell *cell = [TestTableViewCell new];
+            ViewModel *viewModel = [ViewModel new];
+            
+            BNDBinding *binding = [BNDBinding bindingWithBIND:@"text -> textLabel.text"];
+            [binding transform:^id(id object, id value) {
+                return [value uppercaseString];
+            }];
+            cell.bindings = @[binding];
+            
+            viewModel.text = @"test";
+            cell.viewModel = viewModel;
+            
+            [[cell.textLabel.text should] equal:@"TEST"];
+        });
+        
+        it(@"Should keep value transformer when assigning view model", ^{
+            TestTableViewCell *cell = [TestTableViewCell new];
+            ViewModel *viewModel = [ViewModel new];
+            
+            BNDBinding *binding = [BNDBinding bindingWithBIND:@"text -> textLabel.text | UppercaseStringTransformer"];
+            [binding transform:^id(id object, id value) {
+                return [value uppercaseString];
+            }];
+            cell.bindings = @[binding];
+            
+            viewModel.text = @"test";
+            cell.viewModel = viewModel;
+            
+            [[cell.textLabel.text should] equal:@"TEST"];
+        });
+    });
 });
 
 SPEC_END

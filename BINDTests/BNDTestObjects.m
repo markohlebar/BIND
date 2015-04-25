@@ -58,6 +58,18 @@
 
 @end
 
+@implementation UppercaseStringTransformer
+
+- (id)transformedValue:(id)string {
+    return [string uppercaseString];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
+@end
+
 @implementation AsyncRPMToSpeedTransformer
 
 - (void)asyncTransformValue:(id)rpm transformBlock:(BNDAsyncValueTransformBlock)transformBlock {
