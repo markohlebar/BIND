@@ -11,8 +11,11 @@
 #import "MHReversePersonNameCommand.h"
 
 @implementation MHPersonNameViewModel
+@synthesize hexColorCode;
 BINDINGS(MHPerson,
          BINDModel(fullName, <>, name),
+         BINDModel(hexColorCode, <>, hexColorCode),
+         BINDModel(ID.stringValue, ~>, ID),
          nil);
 
 - (MHReversePersonNameCommand *)reverseNameCommand {
@@ -20,18 +23,6 @@ BINDINGS(MHPerson,
         _reverseNameCommand = [MHReversePersonNameCommand commandWithPerson:self.person];
     }
     return _reverseNameCommand;
-}
-
-- (void)setHexColorCode:(NSString *)hexColorCode {
-    self.person.hexColorCode = hexColorCode;
-}
-
-- (NSString *)hexColorCode {
-    return self.person.hexColorCode;
-}
-
-- (NSString *)ID {
-    return [self.person.ID stringValue];
 }
 
 - (NSString *)identifier {
