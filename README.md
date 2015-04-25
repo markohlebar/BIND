@@ -132,7 +132,7 @@ viewModel.name = @"Hobbit";
 @end 
 ```
 Passing `UppercaseStringTransformer` tells the binding to use the `UppercaseStringTransformer` subclass of `NSValueTransformer` to transform the values. 
-You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `BINDNT(viewModel, name, ~>, nameLabel, text, !, UppercaseStringTransformer)`.
+You can reverse the transformation direction if you need to by adding a `!` modifier before transformer name like so `BINDRT(viewModel, name, ~>, nameLabel, text, !, UppercaseStringTransformer)`.
 
 #### Asynchronous Transformers ####
 Let's say you want to grab an image from the web asynchronously by using a transformation from an `NSURL` to a `UIImage`. You can do this by creating a `BNDAsyncValueTransformer` subclass and implementing it's transform and reverse transform methods. Following is a trivial example of the implementation of such a class.
