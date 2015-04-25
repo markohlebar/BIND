@@ -10,7 +10,7 @@ Data binding and MVVM for iOS
 ## Features ##
 1. super simple [UI bindings](#ui-bindings) by using BIND DSL
 1. [data transforms](#transformers) by using subclasses of `NSValueTransformer` and `BNDAsyncValueTransformer`
-1. [automagic unbinding](#unbinding) - **no more KVO exceptions** on dealloc
+1. [automagic unbinding](#unbinding) - **no more KVO exceptions** on `dealloc`
 1. [MVVM](#mvvmc-architecture) out of the box
 
 #### UI Bindings ####
