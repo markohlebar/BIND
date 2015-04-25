@@ -36,6 +36,8 @@ Similar to this, you can also bind `viewModel` with `model`. You can do this cre
 @implementation MHPersonNameViewModel
 BINDINGS(MHPerson,
          BINDModel(fullName, <>, name),
+         BINDModel(hexColorCode, <>, hexColorCode),
+         BINDModel(ID.stringValue, ~>, ID),
          nil);
 
 ...some other code...         
