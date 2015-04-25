@@ -1,7 +1,7 @@
 BIND
 ====
 
-[![Pod](http://img.shields.io/badge/pod-1.4.2-lightgrey.svg)](http://cocoapods.org/)
+[![Pod](http://img.shields.io/badge/pod-1.5.0-lightgrey.svg)](http://cocoapods.org/)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Build Status](https://travis-ci.org/markohlebar/BIND.svg?branch=master)](https://travis-ci.org/markohlebar/BIND)
 
@@ -63,37 +63,6 @@ You can do that by using the observe action.
     //fired when viewModel changes it's name property
 }];
 ```
-
-#### Shorthands ####
-You can use shorthand operators to create most of your bindings. Shorthands were designed for brevity of expression, while still keeping the clarity of bound properties. 
-```
-UILabel *nameLabel ... //a label instance
-UITextField *nameField ... // a textfield instance
-id viewModel ... //a viewModel containing property name
-UIButton *button ... //a button instance
-
-BINDS(nameField,~>,nameLabel);
-nameField.text = @"Kim";
-//nameLabel.text says Kim at this point.
-
-BINDSR(viewModel,name,~>,nameLabel); 
-viewModel.name = @"Hobbit"; 
-//nameLabel.text says Hobbit at this point.
-
-BINDSL(nameField,~>,viewModel,name);
-nameField.text = @"Cartman"; 
-//viewModel.name says Cartman at this point. 
-
-[BINDOS(button) observe:^(id observable, id value){
-//Fired when you press the button. 
-}];
-
-```
-The shorthands are mnemonics really, so you might interpret them as
-- `BINDS` bind shorthand
-- `BINDSR` bind shorthand right
-- `BINDSL` bind shorhand left
-- `BINDOS` bind observe shorthand
 
 #### Unbinding ####
 Notice that in the examples above the binding is not assigned to any instance variable. 
@@ -205,6 +174,37 @@ name !~> textLabel.text /// left object passes values to right object with no in
 name <~! textLabel.text /// right object passes values to left object with no initial value assignment.
 name <!> textLabel.text /// binding is bidirectional with no initial value assignment. 
 ```
+
+#### Shorthands ####
+You can use shorthand operators to create most of your bindings. Shorthands were designed for brevity of expression, while still keeping the clarity of bound properties. 
+```
+UILabel *nameLabel ... //a label instance
+UITextField *nameField ... // a textfield instance
+id viewModel ... //a viewModel containing property name
+UIButton *button ... //a button instance
+
+BINDS(nameField,~>,nameLabel);
+nameField.text = @"Kim";
+//nameLabel.text says Kim at this point.
+
+BINDSR(viewModel,name,~>,nameLabel); 
+viewModel.name = @"Hobbit"; 
+//nameLabel.text says Hobbit at this point.
+
+BINDSL(nameField,~>,viewModel,name);
+nameField.text = @"Cartman"; 
+//viewModel.name says Cartman at this point. 
+
+[BINDOS(button) observe:^(id observable, id value){
+//Fired when you press the button. 
+}];
+
+```
+The shorthands are mnemonics really, so you might interpret them as
+- `BINDS` bind shorthand
+- `BINDSR` bind shorthand right
+- `BINDSL` bind shorhand left
+- `BINDOS` bind observe shorthand
 
 ## MVVMC Architecture ##
 This architecture offers an obvious distribution of responsibility and a clear split between your business logic and your presentation layer, which makes the code easier to test and maintain. 
