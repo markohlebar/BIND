@@ -27,7 +27,7 @@ NSString * const BNDTableViewCellTouchUpInsideBindingKeyPath = @"BNDTableViewCel
     [self addGestureRecognizer:tapGestureRecognizer];
     
 #elif TARGET_OS_MAC
-    NSString *BIND = @"backgroundStyle !-> onBackgroundStyle";
+    NSString *BIND = @"backgroundStyle !~> onBackgroundStyle";
     BNDBinding *binding  = [BNDBinding bindingWithBIND:BIND];
     [binding bindLeft:self withRight:self];
     

@@ -50,7 +50,7 @@
 #pragma mark - Memory management
 
 //- (void)testAAUnassignedBindingsWorkUntilObservableIsDealloced {
-//    BIND(_car, speed, ->, _engine, rpm);
+//    BIND(_car, speed, ~>, _engine, rpm);
 //    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
 //    
 //    _car = nil;
@@ -58,7 +58,7 @@
 //}
 //
 //- (void)testZZUnassignedBindingsWorkUntilObservableIsDealloced {
-//    BIND(_engine, rpm, ->, _car, speed);
+//    BIND(_engine, rpm, ~>, _car, speed);
 //    XCTAssertTrue([BNDBinding allBindings].count == 1, @"Number of bindings should be 1");
 //    
 //    _engine = nil;
@@ -70,7 +70,7 @@
 	_car.make = @"Toyota";
 	_ticket.carMake = nil;
 
-	_binding.BIND = @"make -> carMake";
+	_binding.BIND = @"make ~> carMake";
 	[_binding bindLeft:_car
 	         withRight:_ticket];
 
@@ -81,7 +81,7 @@
     _car.make = @"Toyota";
     _ticket.carMake = nil;
     
-    _binding.BIND = @"carMake <- make";
+    _binding.BIND = @"carMake <~ make";
     [_binding bindLeft:_ticket
              withRight:_car];
     
@@ -103,7 +103,7 @@
     _car.make = @"Toyota";
     _ticket.carMake = nil;
     
-    _binding.BIND = @"make !-> carMake";
+    _binding.BIND = @"make !~> carMake";
     [_binding bindLeft:_car
              withRight:_ticket];
     
@@ -114,7 +114,7 @@
     _car.make = @"Toyota";
     _ticket.carMake = nil;
     
-    _binding.BIND = @"carMake <-! make";
+    _binding.BIND = @"carMake <~! make";
     [_binding bindLeft:_ticket
              withRight:_car];
     
@@ -135,7 +135,7 @@
 - (void)testBINDLeftToRightBindingUpdates {
 	_car.speed = 100;
 	_engine.rpm = 10000;
-	_binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+	_binding.BIND = @"rpm ~> speed | RPMToSpeedTransformer";
 	[_binding bindLeft:_engine
 	         withRight:_car];
 
@@ -149,7 +149,7 @@
 - (void)testBINDRightToLeftBindingUpdates {
 	_car.speed = 100;
 	_engine.rpm = 10000;
-	_binding.BIND = @"rpm <- speed | !RPMToSpeedTransformer";
+	_binding.BIND = @"rpm <~ speed | !RPMToSpeedTransformer";
 	[_binding bindLeft:_engine
 	         withRight:_car];
 
@@ -177,7 +177,7 @@
 - (void)testBINDLeftToRightNoInitialisationBindingUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
-    _binding.BIND = @"rpm !-> speed | RPMToSpeedTransformer";
+    _binding.BIND = @"rpm !~> speed | RPMToSpeedTransformer";
     [_binding bindLeft:_engine
              withRight:_car];
     
@@ -191,7 +191,7 @@
 - (void)testBINDRightToLeftNoInitialisationBindingUpdates {
     _car.speed = 100;
     _engine.rpm = 10000;
-    _binding.BIND = @"rpm <-! speed | !RPMToSpeedTransformer";
+    _binding.BIND = @"rpm <~! speed | !RPMToSpeedTransformer";
     [_binding bindLeft:_engine
              withRight:_car];
     
@@ -221,7 +221,7 @@
 	_engine.rpm = 10000;
 	[_binding bindLeft:_engine
 	         withRight:_car];
-	_binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+	_binding.BIND = @"rpm ~> speed | RPMToSpeedTransformer";
 
 	XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
 }
@@ -229,7 +229,7 @@
 - (void)testBINDBindingNewObjectsAssignsValues {
 	_car.speed = 0;
 	_engine.rpm = 10000;
-	_binding.BIND = @"rpm -> speed | RPMToSpeedTransformer";
+	_binding.BIND = @"rpm ~> speed | RPMToSpeedTransformer";
 	[_binding bindLeft:_engine
 	         withRight:_car];
 
@@ -250,7 +250,7 @@
 - (void)testBINDTransformDirectionAssignsCorrectly {
 	_engine.rpm = 10000;
 
-	_binding.BIND = @"speed <- rpm | RPMToSpeedTransformer";
+	_binding.BIND = @"speed <~ rpm | RPMToSpeedTransformer";
 	[_binding bindLeft:_car
 	         withRight:_engine];
 
@@ -269,7 +269,7 @@
     _car.speed = 100;
     _car.engine = [Engine new];
     
-    _binding.BIND = @"speed !-> engine.rpm | !RPMToSpeedTransformer";
+    _binding.BIND = @"speed !~> engine.rpm | !RPMToSpeedTransformer";
     [_binding bindLeft:_car withRight:_car];
     
     _car.speed = 200;
@@ -297,7 +297,7 @@
     engine.rpm = 10000;
     
     __block Car *car = [Car new];
-    _binding.BIND = @"rpm -> speed | AsyncRPMToSpeedTransformer";
+    _binding.BIND = @"rpm ~> speed | AsyncRPMToSpeedTransformer";
     [_binding bindLeft:engine withRight:car];
     
     [self expectAsyncValueTransform:^{
@@ -311,7 +311,7 @@
 
     Engine *engine = [Engine new];
     
-    _binding.BIND = @"rpm <- speed | !AsyncRPMToSpeedTransformer";
+    _binding.BIND = @"rpm <~ speed | !AsyncRPMToSpeedTransformer";
     [_binding bindLeft:engine withRight:car];
     
     [self expectAsyncValueTransform:^{
@@ -324,7 +324,7 @@
     engine.rpm = 10000;
     
     __block Car *car = [Car new];
-    _binding.BIND = @"rpm -> speed | AsyncRPMToSpeedTransformer";
+    _binding.BIND = @"rpm ~> speed | AsyncRPMToSpeedTransformer";
     [_binding bindLeft:engine withRight:car];
         
     engine.rpm = 20000;
@@ -340,7 +340,7 @@
     
     Engine *engine = [Engine new];
     
-    _binding.BIND = @"rpm <- speed | !AsyncRPMToSpeedTransformer";
+    _binding.BIND = @"rpm <~ speed | !AsyncRPMToSpeedTransformer";
     [_binding bindLeft:engine withRight:car];
     
     car.speed = 200;
@@ -360,7 +360,7 @@
 	__block Engine *engine = [Engine new];
 	__block Car *car = [Car new];
 	[self measureBlock: ^{
-	    _binding.BIND = @"rpm->speed|RPMToSpeedTransformer";
+	    _binding.BIND = @"rpm~>speed|RPMToSpeedTransformer";
 	    [_binding bindLeft:engine
 	             withRight:car];
 	    [_binding unbind];
@@ -370,7 +370,7 @@
 - (void)testBINDAssignmentPerformance {
     __block Engine *engine = [Engine new];
     __block Car *car = [Car new];
-    _binding.BIND = @"rpm->speed|RPMToSpeedTransformer";
+    _binding.BIND = @"rpm~>speed|RPMToSpeedTransformer";
     [_binding bindLeft:engine
              withRight:car];
     [self measureBlock: ^{
@@ -381,7 +381,7 @@
 #pragma mark - Action Transform
 
 - (void)testTransformBlockIsCalledWhenValueChanges {
-    _binding = [BIND(_engine,rpm,->,_car,speed) transform:^id(id object, id value) {
+    _binding = [BIND(_engine,rpm,~>,_car,speed) transform:^id(id object, id value) {
         return @([value integerValue] / 100);;
     }];
         
@@ -390,7 +390,7 @@
 }
 
 - (void)testCallingTransformChangesTheValues {
-    _binding = BIND(_car, speed, ->, _engine, rpm);
+    _binding = BIND(_car, speed, ~>, _engine, rpm);
     _car.speed = 100;
     XCTAssertTrue(_engine.rpm == 100, @"Engine rpm should be equal car speed at this point");
     
@@ -401,7 +401,7 @@
 }
 
 - (void)testTransformBlockIsCalledWhenValueChangesAndTransformerIsAssigned {
-    _binding = [BINDT(_engine,rpm,->,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
+    _binding = [BINDT(_engine,rpm,~>,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
         return @([value integerValue] / 2);
     }];
     _engine.rpm = 10000;
@@ -409,7 +409,7 @@
 }
 
 - (void)testTransformBlockIsCalledWhenValueChangesAndReverseTransformerIsAssigned {
-    _binding = [BINDRT(_engine,rpm,<-,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
+    _binding = [BINDRT(_engine,rpm,<~,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
         return @([value integerValue] / 2);
     }];
     _car.speed = 100;
@@ -418,7 +418,7 @@
 
 - (void)testPassesTheCorrectTransformedObjectRight {
     __block id transformedObject = nil;
-    _binding = [BIND(_car, speed, ->, _engine, rpm)
+    _binding = [BIND(_car, speed, ~>, _engine, rpm)
                 transform:^id(id object, id value) {
                     transformedObject = object;
                     return value;
@@ -431,7 +431,7 @@
 
 - (void)testPassesTheCorrectTransformedObjectLeft {
     __block id transformedObject = nil;
-    _binding = [BIND(_car, speed, <-, _engine, rpm)
+    _binding = [BIND(_car, speed, <~, _engine, rpm)
                 transform:^id(id object, id value) {
                     transformedObject = object;
                     return value;
@@ -464,7 +464,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
 
-    [BIND(_engine,rpm,->,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
+    [BIND(_engine,rpm,~>,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
         receivedSender = observable;
         receivedValue = value;
     }];
@@ -480,7 +480,7 @@
     __block id receivedSender = nil;
     __block id receivedValue = nil;
     
-    [BIND(_engine,rpm,<-,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
+    [BIND(_engine,rpm,<~,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
         receivedSender = observable;
         receivedValue = value;
     }];
@@ -515,7 +515,7 @@
 - (void)testObservationInfo {
     __block NSDictionary *receivedObservationInfo = nil;
     
-    [BIND(_engine,rpm,->,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
+    [BIND(_engine,rpm,~>,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
         receivedObservationInfo = observationInfo;
     }];
     
@@ -526,7 +526,7 @@
 #pragma mark - Crash tests
 
 - (void)testUnbindDoesntCrashWhenObjectsAreNotSet {
-    _binding.BIND = @"rpm -> speed";
+    _binding.BIND = @"rpm ~> speed";
     XCTAssertNoThrow([_binding unbind], @"Should not throw an exception when unbinding and no objects");
 }
 
@@ -536,7 +536,7 @@
 }
 
 - (void)testUnbindingDoesntCrashWhenCalledTwice {
-    _binding.BIND = @"rpm -> speed";
+    _binding.BIND = @"rpm ~> speed";
     [_binding bindLeft:_engine withRight:_car];
     [_binding unbind];
     

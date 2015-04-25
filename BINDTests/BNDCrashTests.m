@@ -21,7 +21,7 @@
     BNDBinding *binding = nil;
     
     cell = [[TableViewCell alloc] init];
-    binding = [BNDBinding bindingWithBIND:@"viewModel.text -> textLabel.text"];
+    binding = [BNDBinding bindingWithBIND:@"viewModel.text ~> textLabel.text"];
     cell.bindings = @[binding];
     
     ViewModel *viewModel = [ViewModel new];
@@ -36,7 +36,7 @@
     BNDBinding *binding = nil;
     
     cell = [[TableViewCell alloc] init];
-    binding = [BNDBinding bindingWithBIND:@"viewModel.text -> textLabel.text"];
+    binding = [BNDBinding bindingWithBIND:@"viewModel.text ~> textLabel.text"];
     cell.bindings = @[binding];
     
     ViewModel *viewModel = [ViewModel new];

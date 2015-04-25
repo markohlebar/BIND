@@ -11,8 +11,8 @@
 
 @implementation MHNameTableCell
 BINDINGS(MHPersonNameViewModel,
-         BINDViewModel(name, ->, textLabel.text),
-         BINDViewModel(ID, ->, detailTextLabel.text),
+         BINDViewModel(name, ~>, textLabel.text),
+         BINDViewModel(ID, ~>, detailTextLabel.text),
          BINDViewModelCommand(reverseNameCommand, onTouchUpInside),
          nil
          );

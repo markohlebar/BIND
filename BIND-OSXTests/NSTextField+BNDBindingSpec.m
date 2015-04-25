@@ -51,7 +51,7 @@ describe(@"NSTextField+BNDBinding", ^{
         _textField = [NSTextField new];
         _textField.delegate = _observer;
 
-        _binding = [BNDBinding bindingWithBIND:@"text !-> text"];
+        _binding = [BNDBinding bindingWithBIND:@"text !~> text"];
         [_binding bindLeft:_textField withRight:_observer];
     });
 

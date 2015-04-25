@@ -11,12 +11,12 @@
 
 typedef NS_ENUM(NSInteger, BNDBindingDirection) {
     /**
-     *  -> left object passes values to right object.
+     *  ~> left object passes values to right object.
      */
     BNDBindingDirectionLeftToRight = 0,
     
     /**
-     *  <- right object passes values to left object.
+     *  <~ right object passes values to left object.
      */
     BNDBindingDirectionRightToLeft = 1,
     

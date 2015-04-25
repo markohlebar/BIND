@@ -36,6 +36,8 @@
 
 #define BNDLog(fmt, ...) [BNDBinding debugEnabled] ? NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__) : 0;
 
+#define BNDLogDeprecated(__DEPRECATED__, __NEW__) NSLog(@"[BIND] %@ is deprecated, use %@ instead.", __DEPRECATED__, __NEW__)
+
 static inline NSString *bndShorthandKeypathForObject(id object);
 
 static inline BNDBinding* bndBIND(id left,
@@ -67,7 +69,7 @@ static inline BNDBinding* bndBINDObserve(id left,
         leftKeypath = bndShorthandKeypathForObject(left);
     }
     
-    BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@->voidKeyPath", leftKeypath]];
+    BNDBinding *binding = [BNDBinding bindingWithBIND:[NSString stringWithFormat:@"%@~>voidKeyPath", leftKeypath]];
     [binding bindLeft:left withRight:binding];
     return binding;
 }

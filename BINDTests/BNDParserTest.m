@@ -18,28 +18,28 @@
 @implementation BNDParserTest
 
 - (void)testBINDKeyPathAssignment {
-    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1->keyPath2"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1~>keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
     XCTAssertTrue(definition.shouldSetInitialValues == YES, @"should set initial values");
 
-    definition = [BNDParser parseBIND:@"keyPath1 -> keyPath2"];
+    definition = [BNDParser parseBIND:@"keyPath1 ~> keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
     XCTAssertTrue(definition.shouldSetInitialValues == YES, @"should set initial values");
     
-    definition = [BNDParser parseBIND:@"keyPath1     ->     keyPath2"];
+    definition = [BNDParser parseBIND:@"keyPath1     ~>     keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
     XCTAssertTrue(definition.shouldSetInitialValues == YES, @"should set initial values");
     
-    definition = [BNDParser parseBIND:@"keyPath1<-keyPath2"];
+    definition = [BNDParser parseBIND:@"keyPath1<~keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionRightToLeft, @"assignment should be left");
@@ -53,14 +53,14 @@
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
     XCTAssertTrue(definition.shouldSetInitialValues == YES, @"should set initial values");
 
-    definition = [BNDParser parseBIND:@"keyPath1!->keyPath2"];
+    definition = [BNDParser parseBIND:@"keyPath1!~>keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
     XCTAssertTrue(definition.shouldSetInitialValues == NO, @"should not set initial values");
     
-    definition = [BNDParser parseBIND:@"keyPath1<-!keyPath2"];
+    definition = [BNDParser parseBIND:@"keyPath1<~!keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionRightToLeft, @"assignment should be left");
@@ -77,7 +77,7 @@
 }
 
 - (void)testBINDTransformerFromClass {
-    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1->keyPath2|RPMToSpeedTransformer"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1~>keyPath2|RPMToSpeedTransformer"];
     XCTAssertNotNil(definition.valueTransformer, @"value transformer should not be nil");
     XCTAssertTrue([definition.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be RPMToSpeedTransformer");
 }
@@ -85,24 +85,24 @@
 - (void)testBINDTransformerFromName {
     [NSValueTransformer setValueTransformer:[RPMToSpeedTransformer new]
                                     forName:@"RPMToSpeedTransformerName"];
-    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1->keyPath2|RPMToSpeedTransformerName"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"keyPath1~>keyPath2|RPMToSpeedTransformerName"];
     XCTAssertNotNil(definition.valueTransformer, @"value transformer should not be nil");
     XCTAssertTrue([definition.valueTransformer isKindOfClass:RPMToSpeedTransformer.class], @"transformer should be RPMToSpeedTransformer");
 }
 
 - (void)testBINDTransformDirectionModifierIsAssigned {
-    BNDBindingModel *definition = [BNDParser parseBIND:@"rpm -> speed | RPMToSpeedTransformer"];
+    BNDBindingModel *definition = [BNDParser parseBIND:@"rpm ~> speed | RPMToSpeedTransformer"];
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"Unmodified transform direction should be left to right.");
     
-    definition = [BNDParser parseBIND:@"rpm -> speed | !RPMToSpeedTransformer"];
+    definition = [BNDParser parseBIND:@"rpm ~> speed | !RPMToSpeedTransformer"];
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionRightToLeft, @"Modified transform direction should be right to left.");
 }
 
 - (void)testBINDErroneousInput {
-    XCTAssertThrows([BNDParser parseBIND:@"keyPath1-keyPath2"], @"should assert for no assignment symbol");
-    XCTAssertThrows([BNDParser parseBIND:@"keyPath1->"], @"should assert for no keypaths");
-    XCTAssertThrows([BNDParser parseBIND:@"->keyPath2"], @"should assert for no keypaths");
-    XCTAssertThrows([BNDParser parseBIND:@"keyPath->keyPath2|FooBar"], @"should assert for invalid transformer");
+    XCTAssertThrows([BNDParser parseBIND:@"keyPath1~keyPath2"], @"should assert for no assignment symbol");
+    XCTAssertThrows([BNDParser parseBIND:@"keyPath1~>"], @"should assert for no keypaths");
+    XCTAssertThrows([BNDParser parseBIND:@"~>keyPath2"], @"should assert for no keypaths");
+    XCTAssertThrows([BNDParser parseBIND:@"keyPath~>keyPath2|FooBar"], @"should assert for invalid transformer");
 }
 
 @end

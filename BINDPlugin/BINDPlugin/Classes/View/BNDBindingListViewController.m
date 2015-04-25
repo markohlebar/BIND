@@ -56,7 +56,7 @@ static NSPopover *_popover;
 }
 
 - (void)loadBindings {    
-    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel -> tableView.onReloadData"];
+    BNDBinding *binding = [BNDBinding bindingWithBIND:@"viewModel ~> tableView.onReloadData"];
     self.bindings = [NSArray arrayWithObject:binding];
 }
 
@@ -128,7 +128,7 @@ static NSPopover *_popover;
                                                 makeIfNecessary:NO];
         if ([cell isKindOfClass:[BNDBindingCellView class]]) {
             [cell.textField becomeFirstResponder];
-            cell.textField.placeholderString = @"modelView.text -> model.text";
+            cell.textField.placeholderString = @"modelView.text ~> model.text";
         }
     });
 }

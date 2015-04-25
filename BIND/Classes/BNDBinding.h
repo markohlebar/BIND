@@ -33,15 +33,15 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value, NSDictionary 
  *  BIND is a special syntax to bind values at keyPath for an object
  *  to another object's value at keyPath.
  *  The syntax is:
- *  leftKeyPath->rightKeyPath|Transformer
+ *  leftKeyPath~>rightKeyPath|Transformer
  *
  *  where leftKeyPath is the keyPath of bound object, rightKeyPath is the key path of other bound object.
  *  Possible assignment directions are:
- *  -> left object passes values to right object.
- *  <- right object passes values to left object.
+ *  ~> left object passes values to right object.
+ *  <~ right object passes values to left object.
  *  <> binding is bidirectional.
- *  !-> left object passes values to right object with no initial value assignment.
- *  <-! right object passes values to left object with no initial value assignment.
+ *  !~> left object passes values to right object with no initial value assignment.
+ *  <~! right object passes values to left object with no initial value assignment.
  *  <!> binding is bidirectional with no initial value assignment.
  *
  *  Define a transformer with |Transformer,

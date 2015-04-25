@@ -17,8 +17,8 @@
 
 @implementation TestTableViewCell
 BINDINGS(ViewModel,
-         BINDViewModel(text, ->, textLabel.text),
-         BINDViewModel(color, ->, backgroundColor),
+         BINDViewModel(text, ~>, textLabel.text),
+         BINDViewModel(color, ~>, backgroundColor),
          nil)
 @end
 
@@ -48,8 +48,8 @@ describe(@"BNDTableViewCell", ^{
     context(@"When using a BNDTableViewCell", ^{
         it(@"Should bind on view model update", ^{
             cell.bindings = createBindings(@[
-                                             @"viewModel.text -> textLabel.text",
-                                             @"textLabel.text <- viewModel.text"
+                                             @"viewModel.text ~> textLabel.text",
+                                             @"textLabel.text <~ viewModel.text"
                                              ]);
             
             BNDBinding *binding = cell.bindings[0];
@@ -68,7 +68,7 @@ describe(@"BNDTableViewCell", ^{
     context(@"When using a BNDTableViewCell", ^{
         it(@"Should shorthand bind on view model update", ^{
             cell.bindings = createBindings(@[
-                                             @"text -> textLabel.text"
+                                             @"text ~> textLabel.text"
                                              ]);
             
             ViewModel *viewModel = [ViewModel new];

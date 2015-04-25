@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="BNDBindingListViewController">
@@ -24,9 +24,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="b8A-WY-VcE">
+                                <rect key="frame" x="0.0" y="0.0" width="478" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn width="475" minWidth="40" maxWidth="1000" id="XLb-Jg-7LL">
@@ -91,12 +92,12 @@
         <customObject id="KCy-5L-mg9" customClass="BNDBindingListDataController"/>
         <customObject id="binding-0" customClass="BNDBinding">
             <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="BIND" value="modelView.text-&gt;text"></userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="string" keyPath="BIND" value="modelView.text~&gt;text"/>
             </userDefinedRuntimeAttributes>
         </customObject>
         <customObject id="binding-1" customClass="BNDBinding">
             <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="BIND" value="modelView.string-&gt;string"></userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="string" keyPath="BIND" value="modelView.string~&gt;string"/>
             </userDefinedRuntimeAttributes>
         </customObject>
     </objects>

@@ -18,7 +18,7 @@
 
 + (BNDCommandBinding *)bindingWithCommandKeyPath:(NSString *)commandKeyPath
                                    actionKeyPath:(NSString *)actionKeyPath {
-    NSString *BIND = [NSString stringWithFormat:@"%@<-!%@", commandKeyPath, actionKeyPath];
+    NSString *BIND = [NSString stringWithFormat:@"%@<~!%@", commandKeyPath, actionKeyPath];
     return [BNDCommandBinding bindingWithBIND:BIND];
 }
 
