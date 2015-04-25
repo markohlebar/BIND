@@ -12,6 +12,7 @@
 #import "BNDParser.h"
 #import <objc/runtime.h>
 #import "BNDAsyncValueTransformer.h"
+#import "BNDMacros.h"
 
 static NSMutableSet *BNDBindingObject_swizzledClasses = nil;
 static NSMutableSet *BNDBindingObject_bindings = nil;
@@ -53,7 +54,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 @property (nonatomic, copy) BNDBindingTransformValueBlock transformBlock;
 @property (nonatomic, copy) BNDBindingObservationBlock observationBlock;
 
-@property (nonatomic, getter=isLocked) BOOL locked;
+@property (nonatomic, copy) NSString *operator;
 
 + (NSMutableSet *)allBindings;
 @end
@@ -145,6 +146,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     self.valueTransformer = definition.valueTransformer;
     self.shouldSetInitialValues = definition.shouldSetInitialValues;
     self.asynchronousMode = [definition.valueTransformer isKindOfClass:[BNDAsyncValueTransformer class]];
+    self.operator = definition.operator;
     
     NSAssert(!(self.asynchronousMode && self.direction == BNDBindingDirectionBoth), @"Bidirectional asynchronous binding not supported");
     
@@ -172,9 +174,17 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:self];
     
     [BNDBindingObject_bindings addObject:self];
+    
+    BNDLog(@"%@", [self debugDescription]);
 }
 
 - (void)unbind {
+    if (self.leftObject == nil && self.rightObject == nil) {
+        return;
+    }
+    
+    BNDLog(@"%@", [self debugDescription]);
+    
     [self removeObservers];
     
     self.leftObject = nil;
@@ -351,7 +361,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"%@ . %@ -- %@ . %@ | %@", self.leftObject, self.leftKeyPath, self.rightObject, self.rightKeyPath, self.valueTransformer];
+    return [NSString stringWithFormat:@"%@ . %@ %@ %@ . %@ | %@", self.leftObject, self.leftKeyPath, self.operator, self.rightObject, self.rightKeyPath, self.valueTransformer];
 }
 
 @end
@@ -459,16 +469,22 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 @implementation BNDBinding (Debug)
 
-/**
- *  Logs all current bindings.
- */
 + (NSString *)allDebugDescription {
     NSMutableString *bindingsString = [NSMutableString stringWithString:@"BINDINGS {\n"];
     [BNDBindingObject_bindings enumerateObjectsUsingBlock:^(BNDBinding *binding, BOOL *stop) {
         [bindingsString appendFormat:@"%@\n", binding.debugDescription];
     }];
-    [bindingsString appendString:@"}\n"];
+    [bindingsString appendFormat:@"} (%lu bindings)\n", (unsigned long)BNDBindingObject_bindings.count];
     return bindingsString;
+}
+
+static BOOL BNDBindingDebugEnabled;
++ (void)setDebugEnabled:(BOOL)enabled {
+    BNDBindingDebugEnabled = enabled;
+}
+
++ (BOOL)debugEnabled {
+    return BNDBindingDebugEnabled;
 }
 
 @end

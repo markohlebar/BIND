@@ -10,12 +10,13 @@
 #import "BNDBindingTypes.h"
 
 @interface BNDBindingModel : NSObject
-@property (nonatomic, strong) NSString *leftKeyPath;
-@property (nonatomic, strong) NSString *rightKeyPath;
+@property (nonatomic, copy) NSString *leftKeyPath;
+@property (nonatomic, copy) NSString *rightKeyPath;
 @property (nonatomic) BNDBindingDirection direction;
 @property (nonatomic) BNDBindingTransformDirection transformDirection;
 @property (nonatomic, strong) NSValueTransformer *valueTransformer;
 @property (nonatomic) BOOL shouldSetInitialValues;
+@property (nonatomic, copy) NSString *operator;
 @end
 
 @interface BNDParser : NSObject

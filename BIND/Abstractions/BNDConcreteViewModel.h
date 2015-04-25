@@ -10,6 +10,6 @@
 #import "BNDViewModel.h"
 
 @interface BNDViewModel : NSObject <BNDViewModel>
-@property (nonatomic, strong) id model;
+@property (nonatomic, strong, readonly) id model;
 @property (nonatomic, strong) NSArray *bindings;
 @end

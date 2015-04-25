@@ -34,6 +34,8 @@
 
 #endif
 
+#define BNDLog(fmt, ...) [BNDBinding debugEnabled] ? NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__) : 0;
+
 static inline NSString *bndShorthandKeypathForObject(id object);
 
 static inline BNDBinding* bndBIND(id left,

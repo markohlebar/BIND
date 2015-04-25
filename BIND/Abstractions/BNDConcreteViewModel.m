@@ -17,17 +17,10 @@
 
 - (id)initWithModel:(id)model {
     if (self = [super init]) {
-        self.model = model;
+        _model = model;
+        [self bindings];
     }
     return self;
-}
-
-- (void)setModel:(id)model {
-    _model = model;
-    
-    for (BNDBinding *binding in self.bindings) {
-        [binding bindLeft:model withRight:self];
-    }
 }
 
 - (NSString *)identifier {

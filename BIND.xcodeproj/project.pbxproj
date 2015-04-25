@@ -520,7 +520,6 @@
 				96EF5D971AAC3B3A00F6F222 /* Macros */,
 				9680C91B19FEBBB500DFE38A /* Supporting Files */,
 				967381AA1A02C61800D1C608 /* BNDTestObjects.h */,
-				967381AB1A02C61800D1C608 /* BNDTestObjects.m */,
 				967381A81A02C56C00D1C608 /* BNDBindingTest.m */,
 				96056B821AE5A5910002E5B0 /* BNDCommandBindingTests.m */,
 				9601940C1A204C4C00059F90 /* BNDParserTest.m */,
@@ -612,6 +611,7 @@
 		969AE2EA1A331AF60058752F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				967381AB1A02C61800D1C608 /* BNDTestObjects.m */,
 				960193F11A1EB9D200059F90 /* UIButton+BNDBindingSpec.m */,
 				969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */,
 			);

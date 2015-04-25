@@ -73,6 +73,8 @@ static NSString *const BNDBindingTransformerDirectionModifier = @"!";
 	else {
 		NSAssert(NO, @"Couldn't find initial assignment direction. Check the BIND syntax manual for more info.");
 	}
+    
+    definition.operator = separator;
 
 	NSArray *keyPaths = [bind componentsSeparatedByString:separator];
 	NSAssert(keyPaths.count == 2, @"Couldn't find keyPaths. Check the BIND syntax manual for more info.");

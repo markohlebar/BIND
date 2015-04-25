@@ -118,4 +118,18 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value, NSDictionary 
  */
 + (NSString *)allDebugDescription;
 
+/**
+ *  Turns debugging on / off.
+ *
+ *  @param enabled enabled.
+ */
++ (void)setDebugEnabled:(BOOL)enabled;
+
+/**
+ *  Is debugging enabled?
+ *
+ *  @return enabled.
+ */
++ (BOOL)debugEnabled;
+
 @end
