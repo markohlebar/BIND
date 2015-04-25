@@ -15,7 +15,7 @@ Data binding and MVVM for iOS
 
 #### UI Bindings ####
 **BIND** offers a streamlined interface to create your `view` - `viewModel` and `viewModel` - `model` bindings. 
-You can utilize these bindings by subclassing from `BNDConcreteView` and `BNDViewModel`. The following example binds some properties of the `viewModel` with it's corresponding `view`. 
+You can utilize these bindings by subclassing from classes implementing `BNDView` and `BNDViewModel` protocols. The following example binds some properties of the `viewModel` with it's corresponding `view`. 
 ```
 @implementation MHNameTableCell
 BINDINGS(MHPersonNameViewModel,
