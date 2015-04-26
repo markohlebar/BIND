@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="603-zj-2OC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="603-zj-2OC">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -34,10 +34,10 @@
             </objects>
             <point key="canvasLocation" x="159" y="375"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Title-->
         <scene sceneID="65b-c7-093">
             <objects>
-                <tableViewController id="i83-8I-gDb" customClass="MHTableViewController" sceneMemberID="viewController">
+                <tableViewController id="i83-8I-gDb" customClass="MHPersonColorViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PEg-L0-vZ6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,7 +55,11 @@
                             <outlet property="delegate" destination="i83-8I-gDb" id="4jq-bH-Q4u"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="KB9-8d-V4h">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tbW-7Z-7RJ"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addBarButtonItem" destination="tbW-7Z-7RJ" id="xd0-CR-EmY"/>
                         <outlet property="dataController" destination="kPi-Ii-v1l" id="b6B-Mh-DoW"/>
                     </connections>
                 </tableViewController>

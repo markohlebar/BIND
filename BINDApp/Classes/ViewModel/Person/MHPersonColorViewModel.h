@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import "MHPersonViewModel.h"
-#import "MHColorViewModel.h"
+#import <Foundation/Foundation.h>
+#import "BIND.h"
 
-@interface MHPersonColorViewModel : MHPersonViewModel <MHColorViewModel>
-@property (nonatomic, copy) UIColor *color;
+@interface MHPersonColorViewModel : BNDViewModel
+@property (nonatomic, strong) id <BNDCommand> createPersonCommand;
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BIND.h"
 
 @protocol MHTableViewDataController;
-@interface MHTableViewController : UITableViewController
-@property (strong, nonatomic) IBOutlet NSObject *dataController;
+@interface MHTableViewController : BNDViewController
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @end

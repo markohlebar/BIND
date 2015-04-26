@@ -12,4 +12,7 @@
 @interface BNDViewModel : NSObject <BNDViewModel>
 @property (nonatomic, strong, readonly) id model;
 @property (nonatomic, strong) NSArray *bindings;
+- (void)addChild:(BNDViewModel *)child;
+- (void)removeChild:(BNDViewModel *)child;
+- (void)removeAllChildren;
 @end

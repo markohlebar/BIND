@@ -9,6 +9,7 @@ target 'BIND' do
     platform :ios, '7.0'
     xcodeproj 'BIND.xcodeproj'
 	pod 'libextobjc'
+    pod 'NODE_'
 end
 
 target 'BIND-OSX' do

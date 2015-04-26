@@ -64,6 +64,10 @@
 		96896E8F1AA1F37E0067BDE3 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 96896E8E1AA1F37E0067BDE3 /* white.png */; };
 		969AE2E71A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */; };
 		969AE2E91A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 969AE2E81A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m */; };
+		96A5D75C1AEC0B76006A6E65 /* MHPersonColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D75B1AEC0B76006A6E65 /* MHPersonColorViewController.m */; };
+		96A5D75F1AEC0DCF006A6E65 /* MHAddPersonCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D75E1AEC0DCF006A6E65 /* MHAddPersonCommand.m */; };
+		96A5D7631AEC0EBE006A6E65 /* MHPersonCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7621AEC0EBE006A6E65 /* MHPersonCreator.m */; };
+		96A5D7671AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7661AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m */; };
 		96A8117C1ADEEEC20087D078 /* MHReversePersonNameCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A8117B1ADEEEC20087D078 /* MHReversePersonNameCommand.m */; };
 		96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
 		96AE6D4A1A2B25A8004C32DC /* BNDConcreteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */; };
@@ -219,6 +223,14 @@
 		969AE2E11A32E5550058752F /* BNDMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDMacros.h; path = Macros/BNDMacros.h; sourceTree = "<group>"; };
 		969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BNDTableViewCell+BNDBindingSpec.m"; sourceTree = "<group>"; };
 		969AE2E81A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BNDTableViewCell+BNDBindingSpec.m"; sourceTree = "<group>"; };
+		96A5D75A1AEC0B76006A6E65 /* MHPersonColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonColorViewController.h; sourceTree = "<group>"; };
+		96A5D75B1AEC0B76006A6E65 /* MHPersonColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonColorViewController.m; sourceTree = "<group>"; };
+		96A5D75D1AEC0DCF006A6E65 /* MHAddPersonCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHAddPersonCommand.h; path = Commands/MHAddPersonCommand.h; sourceTree = "<group>"; };
+		96A5D75E1AEC0DCF006A6E65 /* MHAddPersonCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHAddPersonCommand.m; path = Commands/MHAddPersonCommand.m; sourceTree = "<group>"; };
+		96A5D7611AEC0EBE006A6E65 /* MHPersonCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonCreator.h; sourceTree = "<group>"; };
+		96A5D7621AEC0EBE006A6E65 /* MHPersonCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonCreator.m; sourceTree = "<group>"; };
+		96A5D7651AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BNDBinding.h"; sourceTree = "<group>"; };
+		96A5D7661AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BNDBinding.m"; sourceTree = "<group>"; };
 		96A8117A1ADEEEC20087D078 /* MHReversePersonNameCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHReversePersonNameCommand.h; path = Commands/MHReversePersonNameCommand.h; sourceTree = "<group>"; };
 		96A8117B1ADEEEC20087D078 /* MHReversePersonNameCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHReversePersonNameCommand.m; path = Commands/MHReversePersonNameCommand.m; sourceTree = "<group>"; };
 		96AE6D321A2B254E004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBIND-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,8 +264,8 @@
 		96EF5D6E1AAB9A2500F6F222 /* MHNameTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHNameTableCell.xib; sourceTree = "<group>"; };
 		96EF5D701AAB9A2500F6F222 /* MHColorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHColorViewModel.h; sourceTree = "<group>"; };
 		96EF5D711AAB9A2500F6F222 /* MHNameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNameViewModel.h; sourceTree = "<group>"; };
-		96EF5D731AAB9A2500F6F222 /* MHPersonColorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonColorViewModel.h; sourceTree = "<group>"; };
-		96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonColorViewModel.m; sourceTree = "<group>"; };
+		96EF5D731AAB9A2500F6F222 /* MHPersonColorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPersonColorViewModel.h; path = Person/MHPersonColorViewModel.h; sourceTree = "<group>"; };
+		96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPersonColorViewModel.m; path = Person/MHPersonColorViewModel.m; sourceTree = "<group>"; };
 		96EF5D751AAB9A2500F6F222 /* MHPersonNameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonNameViewModel.h; sourceTree = "<group>"; };
 		96EF5D761AAB9A2500F6F222 /* MHPersonNameViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonNameViewModel.m; sourceTree = "<group>"; };
 		96EF5D771AAB9A2500F6F222 /* MHPersonSectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonSectionViewModel.h; sourceTree = "<group>"; };
@@ -435,6 +447,8 @@
 				B59D0B7A1ADAF2F0004A7757 /* UITextField+BNDBinding.m */,
 				965128AC1A7192C9008A9547 /* UIButton+BNDBinding.h */,
 				965128AD1A7192C9008A9547 /* UIButton+BNDBinding.m */,
+				96A5D7651AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.h */,
+				96A5D7661AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -618,11 +632,35 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		96A5D7591AEC0AD4006A6E65 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				96EF5D601AAB9A2500F6F222 /* MHCollectionViewController.h */,
+				96EF5D611AAB9A2500F6F222 /* MHCollectionViewController.m */,
+				96EF5D641AAB9A2500F6F222 /* MHSectionTableViewController.h */,
+				96EF5D651AAB9A2500F6F222 /* MHSectionTableViewController.m */,
+				96EF5D661AAB9A2500F6F222 /* MHTableViewController.h */,
+				96EF5D671AAB9A2500F6F222 /* MHTableViewController.m */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
+		96A5D7641AEC1945006A6E65 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				96EF5D731AAB9A2500F6F222 /* MHPersonColorViewModel.h */,
+				96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
 		96A811791ADEEE780087D078 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
 				96A8117A1ADEEEC20087D078 /* MHReversePersonNameCommand.h */,
 				96A8117B1ADEEEC20087D078 /* MHReversePersonNameCommand.m */,
+				96A5D75D1AEC0DCF006A6E65 /* MHAddPersonCommand.h */,
+				96A5D75E1AEC0DCF006A6E65 /* MHAddPersonCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -661,6 +699,8 @@
 		96EF5D511AAB9A2500F6F222 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				96A5D7611AEC0EBE006A6E65 /* MHPersonCreator.h */,
+				96A5D7621AEC0EBE006A6E65 /* MHPersonCreator.m */,
 				96EF5D521AAB9A2500F6F222 /* MHPersonDataController.h */,
 				96EF5D531AAB9A2500F6F222 /* MHPersonDataController.m */,
 				96EF5D541AAB9A2500F6F222 /* MHPersonSectionsDataController.h */,
@@ -693,15 +733,12 @@
 		96EF5D5F1AAB9A2500F6F222 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				96EF5D601AAB9A2500F6F222 /* MHCollectionViewController.h */,
-				96EF5D611AAB9A2500F6F222 /* MHCollectionViewController.m */,
+				96A5D7591AEC0AD4006A6E65 /* Abstract */,
 				96EF5D621AAB9A2500F6F222 /* MHRootViewController.h */,
 				96EF5D631AAB9A2500F6F222 /* MHRootViewController.m */,
-				96EF5D641AAB9A2500F6F222 /* MHSectionTableViewController.h */,
-				96EF5D651AAB9A2500F6F222 /* MHSectionTableViewController.m */,
-				96EF5D661AAB9A2500F6F222 /* MHTableViewController.h */,
-				96EF5D671AAB9A2500F6F222 /* MHTableViewController.m */,
 				96EF5D681AAB9A2500F6F222 /* Table Cells */,
+				96A5D75A1AEC0B76006A6E65 /* MHPersonColorViewController.h */,
+				96A5D75B1AEC0B76006A6E65 /* MHPersonColorViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -722,6 +759,7 @@
 		96EF5D6F1AAB9A2500F6F222 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				96A5D7641AEC1945006A6E65 /* Root */,
 				96EF5D701AAB9A2500F6F222 /* MHColorViewModel.h */,
 				96347A651ABB6BF200FA2991 /* MHColorViewModel.m */,
 				96EF5D711AAB9A2500F6F222 /* MHNameViewModel.h */,
@@ -733,8 +771,6 @@
 		96EF5D721AAB9A2500F6F222 /* Person */ = {
 			isa = PBXGroup;
 			children = (
-				96EF5D731AAB9A2500F6F222 /* MHPersonColorViewModel.h */,
-				96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */,
 				96EF5D751AAB9A2500F6F222 /* MHPersonNameViewModel.h */,
 				96EF5D761AAB9A2500F6F222 /* MHPersonNameViewModel.m */,
 				96EF5D771AAB9A2500F6F222 /* MHPersonSectionViewModel.h */,
@@ -1197,8 +1233,10 @@
 				960193B81A1E6D6B00059F90 /* AppDelegate.m in Sources */,
 				96EF5D7C1AAB9A2500F6F222 /* MHPersonDataController.m in Sources */,
 				96EF5D8C1AAB9A2500F6F222 /* MHPersonViewModel.m in Sources */,
+				96A5D75C1AEC0B76006A6E65 /* MHPersonColorViewController.m in Sources */,
 				96EF5D871AAB9A2500F6F222 /* MHNameTableCell.m in Sources */,
 				96EF5D7B1AAB9A2500F6F222 /* UIColor+Hex.m in Sources */,
+				96A5D7631AEC0EBE006A6E65 /* MHPersonCreator.m in Sources */,
 				96EF5D851AAB9A2500F6F222 /* MHColorTableCell.m in Sources */,
 				96EF5D821AAB9A2500F6F222 /* MHRootViewController.m in Sources */,
 				96EF5D7F1AAB9A2500F6F222 /* MHPersonFetcher.m in Sources */,
@@ -1208,6 +1246,7 @@
 				96EF5D841AAB9A2500F6F222 /* MHTableViewController.m in Sources */,
 				96EF5D7D1AAB9A2500F6F222 /* MHPersonSectionsDataController.m in Sources */,
 				96EF5D8A1AAB9A2500F6F222 /* MHPersonNameViewModel.m in Sources */,
+				96A5D75F1AEC0DCF006A6E65 /* MHAddPersonCommand.m in Sources */,
 				960193B51A1E6D6B00059F90 /* main.m in Sources */,
 				96EF5D801AAB9A2500F6F222 /* MHHexColorTransformer.m in Sources */,
 				96347A661ABB6BF200FA2991 /* MHColorViewModel.m in Sources */,
@@ -1245,6 +1284,7 @@
 				9680C92B19FEBC2800DFE38A /* BNDBinding.m in Sources */,
 				B59D0B7B1ADAF2F0004A7757 /* UITextField+BNDBinding.m in Sources */,
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
+				96A5D7671AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m in Sources */,
 				965128B91A7192C9008A9547 /* UIButton+BNDBinding.m in Sources */,
 				96896E8C1AA1D9D90067BDE3 /* BNDURLToImageTransformer.m in Sources */,
 				96056B801AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */,

@@ -7,27 +7,17 @@
 //
 
 #import "MHTableViewController.h"
-#import "BNDViewModel.h"
+#import "BNDConcreteViewModel.h"
 #import "BNDView.h"
 #import "MHNameViewModel.h"
 
 @interface MHTableViewController ()
-@property (nonatomic, copy) NSArray *viewModels;
 @end
 
-@implementation MHTableViewController {
-    NSObject <BNDDataController> *_dataController;
-}
-@synthesize dataController = _dataController;
+@implementation MHTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    __weak typeof(self) weakSelf = self;
-    [_dataController updateWithContext:nil viewModelsHandler:^(NSArray *viewModels, NSError *error) {
-        weakSelf.viewModels = viewModels;
-        [weakSelf.tableView reloadData];
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,11 +28,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.viewModels.count;
+    return self.viewModel.children.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id <BNDViewModel> viewModel = self.viewModels[indexPath.row];
+    id <BNDViewModel> viewModel = self.viewModel.children[indexPath.row];
     
     ///I am conveniently using the identifier here as a cell identifier. Someone else might choose
     ///to use the identifier only as way to identify different viewmodel instances,
@@ -62,7 +52,7 @@
 #pragma mark - Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id <BNDTableRowViewModel> viewModel = self.viewModels[indexPath.row];
+    id <BNDTableRowViewModel> viewModel = self.viewModel.children[indexPath.row];
     return viewModel.cellHeight;
 }
 

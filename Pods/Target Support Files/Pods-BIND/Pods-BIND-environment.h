@@ -6,6 +6,12 @@
 // project.
 
 
+// NODE_
+#define COCOAPODS_POD_AVAILABLE_NODE_
+#define COCOAPODS_VERSION_MAJOR_NODE_ 0
+#define COCOAPODS_VERSION_MINOR_NODE_ 1
+#define COCOAPODS_VERSION_PATCH_NODE_ 0
+
 // libextobjc
 #define COCOAPODS_POD_AVAILABLE_libextobjc
 #define COCOAPODS_VERSION_MAJOR_libextobjc 0

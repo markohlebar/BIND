@@ -8,21 +8,19 @@
 
 #import "MHPersonColorViewModel.h"
 #import "MHPerson.h"
-#import "UIColor+Hex.h"
+#import "MHPersonCreator.h"
+#import "MHAddPersonCommand.h"
 
 @implementation MHPersonColorViewModel
+BINDINGS(MHPersonCreator,
+         BINDModel(personae, ~>, children),
+         nil)
 
-- (UIColor *)color {
-    return [UIColor colorFromHexString:self.person.hexColorCode];
-}
-
-- (NSString *)identifier {
-    static NSString *_colorIdentifier = @"MHColorTableCell";
-    return _colorIdentifier;
-}
-
-- (CGFloat)cellHeight {
-    return 80;
+- (id <BNDCommand> )createPersonCommand {
+    if (!_createPersonCommand) {
+        _createPersonCommand = [MHAddPersonCommand commandWithCreator:self.model];
+    }
+    return _createPersonCommand;
 }
 
 @end

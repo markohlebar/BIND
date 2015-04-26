@@ -8,6 +8,7 @@
 
 #import "BNDConcreteViewModel.h"
 #import "BNDBinding.h"
+#import "NSObject+NODE.h"
 
 @implementation BNDViewModel
 
@@ -25,6 +26,22 @@
 
 - (NSString *)identifier {
     return nil;
+}
+
+- (void)addChild:(BNDViewModel *)child {
+    [self node_addChild:child];
+}
+
+- (void)removeChild:(BNDViewModel *)child {
+    [self node_removeChild:child];
+}
+
+- (void)removeAllChildren {
+    [self node_removeAllChildren];
+}
+
+- (NSArray *)children {
+    return self.node_children;
 }
 
 @end

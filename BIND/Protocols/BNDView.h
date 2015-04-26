@@ -20,7 +20,7 @@
 /**
  *  View keeps a strong reference to the view model.
  */
-@property (nonatomic, strong) id <BNDViewModel> viewModel;
+@property (nonatomic, strong) IBOutlet id <BNDViewModel> viewModel;
 
 @optional
 

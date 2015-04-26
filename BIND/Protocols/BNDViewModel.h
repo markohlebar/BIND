@@ -30,6 +30,8 @@
  */
 - (NSString *)identifier;
 
+@property (nonatomic, strong, readonly) NSArray *children;
+
 @end
 
 @protocol BNDTableRowViewModel <BNDViewModel>
