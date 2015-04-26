@@ -11,26 +11,8 @@
 
 #define BND_VIEW_IMPLEMENTATION(__CLASS_NAME__) \
 @implementation __CLASS_NAME__ \
-@synthesize viewModel = _viewModel; \
-- (void)setViewModel:(id <BNDViewModel> )viewModel { \
-    for (BNDBinding *binding in self.bindings) { \
-        if ([self isShorthandBinding:binding]) { \
-            [binding bindLeft:viewModel withRight:self]; \
-        } \
-        else { \
-            [binding bindLeft:self withRight:self]; \
-        } \
-    } \
-    [self willChangeValueForKey:@"viewModel"]; \
-    _viewModel = viewModel; \
-    [self didChangeValueForKey:@"viewModel"]; \
-    [self viewDidUpdateViewModel:viewModel]; \
-} \
-- (BOOL)isShorthandBinding:(BNDBinding *)binding { \
-    return [binding.BIND rangeOfString:@"viewModel."].location == NSNotFound; \
-} \
-- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
-} \
+BND_VIEW_IMPLEMENT_SET_VIEW_MODEL \
+BND_VIEW_IMPLEMENT_VIEW_DID_UPDATE_VIEW_MODEL \
 @end
 
 BND_VIEW_IMPLEMENTATION(BNDTableViewCell)

@@ -34,9 +34,40 @@
 
 #endif
 
+#pragma mark - Debug
+
 #define BNDLog(fmt, ...) [BNDBinding debugEnabled] ? NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__) : 0;
 
 #define BNDLogDeprecated(__DEPRECATED__, __NEW__) NSLog(@"[BIND] %@ is deprecated, use %@ instead.", __DEPRECATED__, __NEW__)
+
+
+#pragma mark - BNDView
+
+#define BND_VIEW_IMPLEMENT_SET_VIEW_MODEL \
+@synthesize viewModel = _viewModel; \
+- (void)setViewModel:(id <BNDViewModel> )viewModel { \
+    for (BNDBinding *binding in self.bindings) { \
+        if ([self isShorthandBinding:binding]) { \
+            [binding bindLeft:viewModel withRight:self]; \
+        } \
+        else { \
+            [binding bindLeft:self withRight:self]; \
+        } \
+    } \
+    [self willChangeValueForKey:@"viewModel"]; \
+    _viewModel = viewModel; \
+    [self didChangeValueForKey:@"viewModel"]; \
+    [self viewDidUpdateViewModel:viewModel]; \
+} \
+- (BOOL)isShorthandBinding:(BNDBinding *)binding { \
+    return [binding.BIND rangeOfString:@"viewModel."].location == NSNotFound; \
+} \
+
+#define BND_VIEW_IMPLEMENT_VIEW_DID_UPDATE_VIEW_MODEL \
+- (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
+} \
+
+#pragma mark - BIND DSL
 
 static inline NSString *bndShorthandKeypathForObject(id object);
 
