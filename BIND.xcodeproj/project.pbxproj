@@ -64,10 +64,22 @@
 		96896E8F1AA1F37E0067BDE3 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 96896E8E1AA1F37E0067BDE3 /* white.png */; };
 		969AE2E71A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */; };
 		969AE2E91A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 969AE2E81A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m */; };
-		96A5D75C1AEC0B76006A6E65 /* MHPersonColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D75B1AEC0B76006A6E65 /* MHPersonColorViewController.m */; };
+		96A5D75C1AEC0B76006A6E65 /* MHPersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D75B1AEC0B76006A6E65 /* MHPersonListViewController.m */; };
 		96A5D75F1AEC0DCF006A6E65 /* MHAddPersonCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D75E1AEC0DCF006A6E65 /* MHAddPersonCommand.m */; };
 		96A5D7631AEC0EBE006A6E65 /* MHPersonCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7621AEC0EBE006A6E65 /* MHPersonCreator.m */; };
 		96A5D7671AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7661AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m */; };
+		96A5D7BC1AECDBDD006A6E65 /* BNDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7B71AECDBDD006A6E65 /* BNDTableView.m */; };
+		96A5D7BD1AECDBDD006A6E65 /* BNDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7B91AECDBDD006A6E65 /* BNDTableViewController.m */; };
+		96A5D7BE1AECDBDD006A6E65 /* BNDTableViewUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7BB1AECDBDD006A6E65 /* BNDTableViewUpdater.m */; };
+		96A5D7C11AECDCD0006A6E65 /* MHPersonSectionedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7C01AECDCD0006A6E65 /* MHPersonSectionedListViewController.m */; };
+		96A5D7C71AECEC4C006A6E65 /* BNDTableViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A5D7C51AECEC4C006A6E65 /* BNDTableViewModel.h */; };
+		96A5D7C81AECEC4C006A6E65 /* BNDTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7C61AECEC4C006A6E65 /* BNDTableViewModel.m */; };
+		96A5D7C91AECEC4C006A6E65 /* BNDTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7C61AECEC4C006A6E65 /* BNDTableViewModel.m */; };
+		96A5D7CC1AECEC6B006A6E65 /* BNDTableSectionViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A5D7CA1AECEC6B006A6E65 /* BNDTableSectionViewModel.h */; };
+		96A5D7CD1AECEC6B006A6E65 /* BNDTableSectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7CB1AECEC6B006A6E65 /* BNDTableSectionViewModel.m */; };
+		96A5D7CE1AECEC6B006A6E65 /* BNDTableSectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7CB1AECEC6B006A6E65 /* BNDTableSectionViewModel.m */; };
+		96A5D7D11AECEF42006A6E65 /* MHPersonListViewModelTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5D7D01AECEF42006A6E65 /* MHPersonListViewModelTransformer.m */; };
+		96A5D7D71AED42FC006A6E65 /* MHPersonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5D7D61AED42FC006A6E65 /* MHPersonListViewController.xib */; };
 		96A8117C1ADEEEC20087D078 /* MHReversePersonNameCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A8117B1ADEEEC20087D078 /* MHReversePersonNameCommand.m */; };
 		96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C92919FEBC2800DFE38A /* BNDBinding.m */; };
 		96AE6D4A1A2B25A8004C32DC /* BNDConcreteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */; };
@@ -80,15 +92,12 @@
 		96EF5D7E1AAB9A2500F6F222 /* MHPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D591AAB9A2500F6F222 /* MHPerson.m */; };
 		96EF5D7F1AAB9A2500F6F222 /* MHPersonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D5B1AAB9A2500F6F222 /* MHPersonFetcher.m */; };
 		96EF5D801AAB9A2500F6F222 /* MHHexColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D5E1AAB9A2500F6F222 /* MHHexColorTransformer.m */; };
-		96EF5D811AAB9A2500F6F222 /* MHCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D611AAB9A2500F6F222 /* MHCollectionViewController.m */; };
 		96EF5D821AAB9A2500F6F222 /* MHRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D631AAB9A2500F6F222 /* MHRootViewController.m */; };
-		96EF5D831AAB9A2500F6F222 /* MHSectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D651AAB9A2500F6F222 /* MHSectionTableViewController.m */; };
-		96EF5D841AAB9A2500F6F222 /* MHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D671AAB9A2500F6F222 /* MHTableViewController.m */; };
 		96EF5D851AAB9A2500F6F222 /* MHColorTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D6A1AAB9A2500F6F222 /* MHColorTableCell.m */; };
 		96EF5D861AAB9A2500F6F222 /* MHColorTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5D6B1AAB9A2500F6F222 /* MHColorTableCell.xib */; };
 		96EF5D871AAB9A2500F6F222 /* MHNameTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D6D1AAB9A2500F6F222 /* MHNameTableCell.m */; };
 		96EF5D881AAB9A2500F6F222 /* MHNameTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5D6E1AAB9A2500F6F222 /* MHNameTableCell.xib */; };
-		96EF5D891AAB9A2500F6F222 /* MHPersonColorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */; };
+		96EF5D891AAB9A2500F6F222 /* MHPersonListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D741AAB9A2500F6F222 /* MHPersonListViewModel.m */; };
 		96EF5D8A1AAB9A2500F6F222 /* MHPersonNameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D761AAB9A2500F6F222 /* MHPersonNameViewModel.m */; };
 		96EF5D8B1AAB9A2500F6F222 /* MHPersonSectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D781AAB9A2500F6F222 /* MHPersonSectionViewModel.m */; };
 		96EF5D8C1AAB9A2500F6F222 /* MHPersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5D7A1AAB9A2500F6F222 /* MHPersonViewModel.m */; };
@@ -223,14 +232,29 @@
 		969AE2E11A32E5550058752F /* BNDMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BNDMacros.h; path = Macros/BNDMacros.h; sourceTree = "<group>"; };
 		969AE2E61A331ACC0058752F /* BNDTableViewCell+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BNDTableViewCell+BNDBindingSpec.m"; sourceTree = "<group>"; };
 		969AE2E81A331AE90058752F /* BNDTableViewCell+BNDBindingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BNDTableViewCell+BNDBindingSpec.m"; sourceTree = "<group>"; };
-		96A5D75A1AEC0B76006A6E65 /* MHPersonColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonColorViewController.h; sourceTree = "<group>"; };
-		96A5D75B1AEC0B76006A6E65 /* MHPersonColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonColorViewController.m; sourceTree = "<group>"; };
+		96A5D75A1AEC0B76006A6E65 /* MHPersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonListViewController.h; sourceTree = "<group>"; };
+		96A5D75B1AEC0B76006A6E65 /* MHPersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonListViewController.m; sourceTree = "<group>"; };
 		96A5D75D1AEC0DCF006A6E65 /* MHAddPersonCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHAddPersonCommand.h; path = Commands/MHAddPersonCommand.h; sourceTree = "<group>"; };
 		96A5D75E1AEC0DCF006A6E65 /* MHAddPersonCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHAddPersonCommand.m; path = Commands/MHAddPersonCommand.m; sourceTree = "<group>"; };
 		96A5D7611AEC0EBE006A6E65 /* MHPersonCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonCreator.h; sourceTree = "<group>"; };
 		96A5D7621AEC0EBE006A6E65 /* MHPersonCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonCreator.m; sourceTree = "<group>"; };
 		96A5D7651AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BNDBinding.h"; sourceTree = "<group>"; };
 		96A5D7661AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BNDBinding.m"; sourceTree = "<group>"; };
+		96A5D7B61AECDBDD006A6E65 /* BNDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDTableView.h; path = Abstractions/UITableView/BNDTableView.h; sourceTree = "<group>"; };
+		96A5D7B71AECDBDD006A6E65 /* BNDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDTableView.m; path = Abstractions/UITableView/BNDTableView.m; sourceTree = "<group>"; };
+		96A5D7B81AECDBDD006A6E65 /* BNDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDTableViewController.h; path = Abstractions/UITableView/BNDTableViewController.h; sourceTree = "<group>"; };
+		96A5D7B91AECDBDD006A6E65 /* BNDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDTableViewController.m; path = Abstractions/UITableView/BNDTableViewController.m; sourceTree = "<group>"; };
+		96A5D7BA1AECDBDD006A6E65 /* BNDTableViewUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDTableViewUpdater.h; path = Abstractions/UITableView/BNDTableViewUpdater.h; sourceTree = "<group>"; };
+		96A5D7BB1AECDBDD006A6E65 /* BNDTableViewUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDTableViewUpdater.m; path = Abstractions/UITableView/BNDTableViewUpdater.m; sourceTree = "<group>"; };
+		96A5D7BF1AECDCD0006A6E65 /* MHPersonSectionedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonSectionedListViewController.h; sourceTree = "<group>"; };
+		96A5D7C01AECDCD0006A6E65 /* MHPersonSectionedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonSectionedListViewController.m; sourceTree = "<group>"; };
+		96A5D7C51AECEC4C006A6E65 /* BNDTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDTableViewModel.h; path = Abstractions/ViewModel/BNDTableViewModel/BNDTableViewModel.h; sourceTree = "<group>"; };
+		96A5D7C61AECEC4C006A6E65 /* BNDTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDTableViewModel.m; path = Abstractions/ViewModel/BNDTableViewModel/BNDTableViewModel.m; sourceTree = "<group>"; };
+		96A5D7CA1AECEC6B006A6E65 /* BNDTableSectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNDTableSectionViewModel.h; path = Abstractions/ViewModel/BNDTableViewModel/BNDTableSectionViewModel.h; sourceTree = "<group>"; };
+		96A5D7CB1AECEC6B006A6E65 /* BNDTableSectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNDTableSectionViewModel.m; path = Abstractions/ViewModel/BNDTableViewModel/BNDTableSectionViewModel.m; sourceTree = "<group>"; };
+		96A5D7CF1AECEF42006A6E65 /* MHPersonListViewModelTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonListViewModelTransformer.h; sourceTree = "<group>"; };
+		96A5D7D01AECEF42006A6E65 /* MHPersonListViewModelTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonListViewModelTransformer.m; sourceTree = "<group>"; };
+		96A5D7D61AED42FC006A6E65 /* MHPersonListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHPersonListViewController.xib; sourceTree = "<group>"; };
 		96A8117A1ADEEEC20087D078 /* MHReversePersonNameCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHReversePersonNameCommand.h; path = Commands/MHReversePersonNameCommand.h; sourceTree = "<group>"; };
 		96A8117B1ADEEEC20087D078 /* MHReversePersonNameCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHReversePersonNameCommand.m; path = Commands/MHReversePersonNameCommand.m; sourceTree = "<group>"; };
 		96AE6D321A2B254E004C32DC /* libBIND-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBIND-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,14 +272,8 @@
 		96EF5D5B1AAB9A2500F6F222 /* MHPersonFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonFetcher.m; sourceTree = "<group>"; };
 		96EF5D5D1AAB9A2500F6F222 /* MHHexColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHHexColorTransformer.h; sourceTree = "<group>"; };
 		96EF5D5E1AAB9A2500F6F222 /* MHHexColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHHexColorTransformer.m; sourceTree = "<group>"; };
-		96EF5D601AAB9A2500F6F222 /* MHCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHCollectionViewController.h; sourceTree = "<group>"; };
-		96EF5D611AAB9A2500F6F222 /* MHCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCollectionViewController.m; sourceTree = "<group>"; };
 		96EF5D621AAB9A2500F6F222 /* MHRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHRootViewController.h; sourceTree = "<group>"; };
 		96EF5D631AAB9A2500F6F222 /* MHRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHRootViewController.m; sourceTree = "<group>"; };
-		96EF5D641AAB9A2500F6F222 /* MHSectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSectionTableViewController.h; sourceTree = "<group>"; };
-		96EF5D651AAB9A2500F6F222 /* MHSectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSectionTableViewController.m; sourceTree = "<group>"; };
-		96EF5D661AAB9A2500F6F222 /* MHTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTableViewController.h; sourceTree = "<group>"; };
-		96EF5D671AAB9A2500F6F222 /* MHTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTableViewController.m; sourceTree = "<group>"; };
 		96EF5D691AAB9A2500F6F222 /* MHColorTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHColorTableCell.h; sourceTree = "<group>"; };
 		96EF5D6A1AAB9A2500F6F222 /* MHColorTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHColorTableCell.m; sourceTree = "<group>"; };
 		96EF5D6B1AAB9A2500F6F222 /* MHColorTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHColorTableCell.xib; sourceTree = "<group>"; };
@@ -264,8 +282,8 @@
 		96EF5D6E1AAB9A2500F6F222 /* MHNameTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MHNameTableCell.xib; sourceTree = "<group>"; };
 		96EF5D701AAB9A2500F6F222 /* MHColorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHColorViewModel.h; sourceTree = "<group>"; };
 		96EF5D711AAB9A2500F6F222 /* MHNameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNameViewModel.h; sourceTree = "<group>"; };
-		96EF5D731AAB9A2500F6F222 /* MHPersonColorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPersonColorViewModel.h; path = Person/MHPersonColorViewModel.h; sourceTree = "<group>"; };
-		96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPersonColorViewModel.m; path = Person/MHPersonColorViewModel.m; sourceTree = "<group>"; };
+		96EF5D731AAB9A2500F6F222 /* MHPersonListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPersonListViewModel.h; path = Person/MHPersonListViewModel.h; sourceTree = "<group>"; };
+		96EF5D741AAB9A2500F6F222 /* MHPersonListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPersonListViewModel.m; path = Person/MHPersonListViewModel.m; sourceTree = "<group>"; };
 		96EF5D751AAB9A2500F6F222 /* MHPersonNameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonNameViewModel.h; sourceTree = "<group>"; };
 		96EF5D761AAB9A2500F6F222 /* MHPersonNameViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPersonNameViewModel.m; sourceTree = "<group>"; };
 		96EF5D771AAB9A2500F6F222 /* MHPersonSectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPersonSectionViewModel.h; sourceTree = "<group>"; };
@@ -581,10 +599,8 @@
 		9680C93A19FEC9C500DFE38A /* Abstractions */ = {
 			isa = PBXGroup;
 			children = (
-				9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */,
-				9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */,
-				96056B841AE82E1D0002E5B0 /* BNDConcreteViewModel.h */,
-				96056B851AE82E1D0002E5B0 /* BNDConcreteViewModel.m */,
+				96A5D7C21AECEBE7006A6E65 /* View */,
+				96A5D7C31AECEBF2006A6E65 /* ViewModel */,
 			);
 			name = Abstractions;
 			sourceTree = "<group>";
@@ -632,26 +648,48 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		96A5D7591AEC0AD4006A6E65 /* Abstract */ = {
+		96A5D7B51AECDBA1006A6E65 /* BNDTableView */ = {
 			isa = PBXGroup;
 			children = (
-				96EF5D601AAB9A2500F6F222 /* MHCollectionViewController.h */,
-				96EF5D611AAB9A2500F6F222 /* MHCollectionViewController.m */,
-				96EF5D641AAB9A2500F6F222 /* MHSectionTableViewController.h */,
-				96EF5D651AAB9A2500F6F222 /* MHSectionTableViewController.m */,
-				96EF5D661AAB9A2500F6F222 /* MHTableViewController.h */,
-				96EF5D671AAB9A2500F6F222 /* MHTableViewController.m */,
+				96A5D7B61AECDBDD006A6E65 /* BNDTableView.h */,
+				96A5D7B71AECDBDD006A6E65 /* BNDTableView.m */,
+				96A5D7B81AECDBDD006A6E65 /* BNDTableViewController.h */,
+				96A5D7B91AECDBDD006A6E65 /* BNDTableViewController.m */,
+				96A5D7BA1AECDBDD006A6E65 /* BNDTableViewUpdater.h */,
+				96A5D7BB1AECDBDD006A6E65 /* BNDTableViewUpdater.m */,
 			);
-			name = Abstract;
+			name = BNDTableView;
 			sourceTree = "<group>";
 		};
-		96A5D7641AEC1945006A6E65 /* Root */ = {
+		96A5D7C21AECEBE7006A6E65 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				96EF5D731AAB9A2500F6F222 /* MHPersonColorViewModel.h */,
-				96EF5D741AAB9A2500F6F222 /* MHPersonColorViewModel.m */,
+				96A5D7B51AECDBA1006A6E65 /* BNDTableView */,
+				9680C93B19FEC9F500DFE38A /* BNDConcreteView.h */,
+				9680C93C19FEC9F500DFE38A /* BNDConcreteView.m */,
 			);
-			name = Root;
+			name = View;
+			sourceTree = "<group>";
+		};
+		96A5D7C31AECEBF2006A6E65 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				96A5D7C41AECEC09006A6E65 /* BNDTableViewModel */,
+				96056B841AE82E1D0002E5B0 /* BNDConcreteViewModel.h */,
+				96056B851AE82E1D0002E5B0 /* BNDConcreteViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		96A5D7C41AECEC09006A6E65 /* BNDTableViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				96A5D7CA1AECEC6B006A6E65 /* BNDTableSectionViewModel.h */,
+				96A5D7CB1AECEC6B006A6E65 /* BNDTableSectionViewModel.m */,
+				96A5D7C51AECEC4C006A6E65 /* BNDTableViewModel.h */,
+				96A5D7C61AECEC4C006A6E65 /* BNDTableViewModel.m */,
+			);
+			name = BNDTableViewModel;
 			sourceTree = "<group>";
 		};
 		96A811791ADEEE780087D078 /* Commands */ = {
@@ -726,6 +764,8 @@
 			children = (
 				96EF5D5D1AAB9A2500F6F222 /* MHHexColorTransformer.h */,
 				96EF5D5E1AAB9A2500F6F222 /* MHHexColorTransformer.m */,
+				96A5D7CF1AECEF42006A6E65 /* MHPersonListViewModelTransformer.h */,
+				96A5D7D01AECEF42006A6E65 /* MHPersonListViewModelTransformer.m */,
 			);
 			path = Transformers;
 			sourceTree = "<group>";
@@ -733,12 +773,14 @@
 		96EF5D5F1AAB9A2500F6F222 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				96A5D7591AEC0AD4006A6E65 /* Abstract */,
+				96EF5D681AAB9A2500F6F222 /* Table Cells */,
 				96EF5D621AAB9A2500F6F222 /* MHRootViewController.h */,
 				96EF5D631AAB9A2500F6F222 /* MHRootViewController.m */,
-				96EF5D681AAB9A2500F6F222 /* Table Cells */,
-				96A5D75A1AEC0B76006A6E65 /* MHPersonColorViewController.h */,
-				96A5D75B1AEC0B76006A6E65 /* MHPersonColorViewController.m */,
+				96A5D75A1AEC0B76006A6E65 /* MHPersonListViewController.h */,
+				96A5D75B1AEC0B76006A6E65 /* MHPersonListViewController.m */,
+				96A5D7D61AED42FC006A6E65 /* MHPersonListViewController.xib */,
+				96A5D7BF1AECDCD0006A6E65 /* MHPersonSectionedListViewController.h */,
+				96A5D7C01AECDCD0006A6E65 /* MHPersonSectionedListViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -759,7 +801,8 @@
 		96EF5D6F1AAB9A2500F6F222 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				96A5D7641AEC1945006A6E65 /* Root */,
+				96EF5D731AAB9A2500F6F222 /* MHPersonListViewModel.h */,
+				96EF5D741AAB9A2500F6F222 /* MHPersonListViewModel.m */,
 				96EF5D701AAB9A2500F6F222 /* MHColorViewModel.h */,
 				96347A651ABB6BF200FA2991 /* MHColorViewModel.m */,
 				96EF5D711AAB9A2500F6F222 /* MHNameViewModel.h */,
@@ -822,11 +865,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				965128C51A719303008A9547 /* BNDTableViewCell+BNDBinding.h in Headers */,
+				96A5D7C71AECEC4C006A6E65 /* BNDTableViewModel.h in Headers */,
 				965128BE1A7192C9008A9547 /* NSTableView+BNDBinding.h in Headers */,
 				965128C11A7192C9008A9547 /* NSTextField+BNDBinding.h in Headers */,
 				965128BB1A7192C9008A9547 /* NSString+BNDKeyPathHandling.h in Headers */,
 				96896E7D1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.h in Headers */,
 				9686DEF01ACD29EB00F81F81 /* BNDCommand.h in Headers */,
+				96A5D7CC1AECEC6B006A6E65 /* BNDTableSectionViewModel.h in Headers */,
 				96056B7F1AE5A3050002E5B0 /* BNDCommandBinding.h in Headers */,
 				96056B861AE82E1D0002E5B0 /* BNDConcreteViewModel.h in Headers */,
 			);
@@ -1013,6 +1058,7 @@
 			files = (
 				960193BE1A1E6D6B00059F90 /* Main.storyboard in Resources */,
 				96EF5D881AAB9A2500F6F222 /* MHNameTableCell.xib in Resources */,
+				96A5D7D71AED42FC006A6E65 /* MHPersonListViewController.xib in Resources */,
 				96EF5D8F1AAB9AAF00F6F222 /* persons.json in Resources */,
 				96EF5D861AAB9A2500F6F222 /* MHColorTableCell.xib in Resources */,
 				960193C31A1E6D6B00059F90 /* LaunchScreen.xib in Resources */,
@@ -1230,10 +1276,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96A5D7D11AECEF42006A6E65 /* MHPersonListViewModelTransformer.m in Sources */,
 				960193B81A1E6D6B00059F90 /* AppDelegate.m in Sources */,
 				96EF5D7C1AAB9A2500F6F222 /* MHPersonDataController.m in Sources */,
 				96EF5D8C1AAB9A2500F6F222 /* MHPersonViewModel.m in Sources */,
-				96A5D75C1AEC0B76006A6E65 /* MHPersonColorViewController.m in Sources */,
+				96A5D75C1AEC0B76006A6E65 /* MHPersonListViewController.m in Sources */,
 				96EF5D871AAB9A2500F6F222 /* MHNameTableCell.m in Sources */,
 				96EF5D7B1AAB9A2500F6F222 /* UIColor+Hex.m in Sources */,
 				96A5D7631AEC0EBE006A6E65 /* MHPersonCreator.m in Sources */,
@@ -1241,9 +1288,8 @@
 				96EF5D821AAB9A2500F6F222 /* MHRootViewController.m in Sources */,
 				96EF5D7F1AAB9A2500F6F222 /* MHPersonFetcher.m in Sources */,
 				96EF5D8B1AAB9A2500F6F222 /* MHPersonSectionViewModel.m in Sources */,
-				96EF5D891AAB9A2500F6F222 /* MHPersonColorViewModel.m in Sources */,
-				96EF5D831AAB9A2500F6F222 /* MHSectionTableViewController.m in Sources */,
-				96EF5D841AAB9A2500F6F222 /* MHTableViewController.m in Sources */,
+				96A5D7C11AECDCD0006A6E65 /* MHPersonSectionedListViewController.m in Sources */,
+				96EF5D891AAB9A2500F6F222 /* MHPersonListViewModel.m in Sources */,
 				96EF5D7D1AAB9A2500F6F222 /* MHPersonSectionsDataController.m in Sources */,
 				96EF5D8A1AAB9A2500F6F222 /* MHPersonNameViewModel.m in Sources */,
 				96A5D75F1AEC0DCF006A6E65 /* MHAddPersonCommand.m in Sources */,
@@ -1251,7 +1297,6 @@
 				96EF5D801AAB9A2500F6F222 /* MHHexColorTransformer.m in Sources */,
 				96347A661ABB6BF200FA2991 /* MHColorViewModel.m in Sources */,
 				96EF5D7E1AAB9A2500F6F222 /* MHPerson.m in Sources */,
-				96EF5D811AAB9A2500F6F222 /* MHCollectionViewController.m in Sources */,
 				96A8117C1ADEEEC20087D078 /* MHReversePersonNameCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1277,7 +1322,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96A5D7BD1AECDBDD006A6E65 /* BNDTableViewController.m in Sources */,
 				96056B871AE82E1D0002E5B0 /* BNDConcreteViewModel.m in Sources */,
+				96A5D7CD1AECEC6B006A6E65 /* BNDTableSectionViewModel.m in Sources */,
 				965128BC1A7192C9008A9547 /* NSString+BNDKeyPathHandling.m in Sources */,
 				960194081A2045CE00059F90 /* BNDParser.m in Sources */,
 				965128B61A7192C9008A9547 /* BNDTableViewCell+BNDBinding.m in Sources */,
@@ -1286,7 +1333,10 @@
 				9601940B1A2045E900059F90 /* BNDSpecialKeyPathHandler.m in Sources */,
 				96A5D7671AEC1E4C006A6E65 /* UIBarButtonItem+BNDBinding.m in Sources */,
 				965128B91A7192C9008A9547 /* UIButton+BNDBinding.m in Sources */,
+				96A5D7C81AECEC4C006A6E65 /* BNDTableViewModel.m in Sources */,
 				96896E8C1AA1D9D90067BDE3 /* BNDURLToImageTransformer.m in Sources */,
+				96A5D7BC1AECDBDD006A6E65 /* BNDTableView.m in Sources */,
+				96A5D7BE1AECDBDD006A6E65 /* BNDTableViewUpdater.m in Sources */,
 				96056B801AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */,
 				9680C93D19FEC9F500DFE38A /* BNDConcreteView.m in Sources */,
 				96896E7E1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m in Sources */,
@@ -1317,6 +1367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965128BD1A7192C9008A9547 /* NSString+BNDKeyPathHandling.m in Sources */,
+				96A5D7CE1AECEC6B006A6E65 /* BNDTableSectionViewModel.m in Sources */,
 				965128C01A7192C9008A9547 /* NSTableView+BNDBinding.m in Sources */,
 				96896E7F1A9FE2DE0067BDE3 /* BNDAsyncValueTransformer.m in Sources */,
 				96AE6D4D1A2B25C0004C32DC /* BNDParser.m in Sources */,
@@ -1326,6 +1377,7 @@
 				96056B811AE5A3050002E5B0 /* BNDCommandBinding.m in Sources */,
 				965128C31A7192C9008A9547 /* NSTextField+BNDBinding.m in Sources */,
 				96056B881AE82E1D0002E5B0 /* BNDConcreteViewModel.m in Sources */,
+				96A5D7C91AECEC4C006A6E65 /* BNDTableViewModel.m in Sources */,
 				96AE6D491A2B25A2004C32DC /* BNDBinding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

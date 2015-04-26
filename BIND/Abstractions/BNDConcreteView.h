@@ -56,9 +56,10 @@
  *  The user of this view controller should call setViewModel:
  *  so that the bindings get updated.
  */
-@interface BNDViewController : _BNDViewController <BNDViewController>
+@interface BNDViewController : UIViewController <BNDViewController>
 @property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
 @property (nonatomic, strong) IBOutlet id <BNDDataController> dataController;
+@property (nonatomic, strong) IBOutlet id <BNDViewModel> viewModel;
 @end
 
 

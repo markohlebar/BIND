@@ -16,9 +16,17 @@
     return [[self alloc] initWithModel:model];
 }
 
-- (id)initWithModel:(id)model {
+- (instancetype)initWithModel:(id)model {
     if (self = [super init]) {
         _model = model;
+        [self bindings];
+    }
+    return self;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
         [self bindings];
     }
     return self;
@@ -38,6 +46,11 @@
 
 - (void)removeAllChildren {
     [self node_removeAllChildren];
+}
+
+- (void)setChildren:(NSArray *)children {
+    [self node_removeAllChildren];
+    [self node_addChildren:children];
 }
 
 - (NSArray *)children {

@@ -283,6 +283,13 @@ bndBIND(object, @keypath(object,viewModelKeyPath), @metamacro_stringify(directio
 
 /**
  *  This is a shorthand to use only in couple with BINDINGS shorthand.
+ *  It assumes that the left object is a viewModel property of the BNDView.
+ */
+#define BINDViewModelT(viewModelKeyPath, direction, selfKeyPath, transformClass) \
+bndBIND(object, @keypath(object,viewModelKeyPath), @metamacro_stringify(direction), self, @keypath(self,selfKeyPath), @"", [transformClass class])
+
+/**
+ *  This is a shorthand to use only in couple with BINDINGS shorthand.
  *  Assuming that the viewModel has a property that implements BNDCommand protocol, 
  *  Whenever there is a change in the actionKeyPath, the command at commandKeyPath is executed.
  */
@@ -291,5 +298,6 @@ bndBINDViewModelCommand(object, @keypath(object, commandKeyPath), self, @keypath
 
 #define BINDModel(modelKeyPath, direction, selfKeyPath) BINDViewModel(modelKeyPath, direction, selfKeyPath)
 
+#define BINDModelT(viewModelKeyPath, direction, selfKeyPath, transformClass) BINDViewModelT(viewModelKeyPath, direction, selfKeyPath, transformClass)
 
 #endif

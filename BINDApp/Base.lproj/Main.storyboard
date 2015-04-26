@@ -26,47 +26,35 @@
                 <viewController id="BYZ-38-t0r" customClass="MHRootViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="CAW-qb-mtd"/>
                     <connections>
-                        <segue destination="i83-8I-gDb" kind="show" identifier="MHTableViewControllerSegue" id="0Wn-r4-qYo"/>
                         <segue destination="tn7-1V-Key" kind="show" identifier="MHSectionTableViewControllerSegue" id="ZFb-Zi-nt6"/>
+                        <segue destination="xQv-SD-Qfm" kind="show" identifier="MHTableViewControllerSegue" id="2jZ-bZ-zAw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="159" y="375"/>
         </scene>
-        <!--Title-->
-        <scene sceneID="65b-c7-093">
+        <!--Person List View Controller-->
+        <scene sceneID="FqO-Js-bEW">
             <objects>
-                <tableViewController id="i83-8I-gDb" customClass="MHPersonColorViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PEg-L0-vZ6">
+                <viewController storyboardIdentifier="MHPersonListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xQv-SD-Qfm" userLabel="Person List View Controller" customClass="MHPersonListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="40b-pm-JqD" customClass="BNDTableView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QwI-FH-7QO">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QwI-FH-7QO" id="Yp2-IW-Wg7">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="i83-8I-gDb" id="bmS-yD-07R"/>
-                            <outlet property="delegate" destination="i83-8I-gDb" id="4jq-bH-Q4u"/>
-                        </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="KB9-8d-V4h">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tbW-7Z-7RJ"/>
+                    <navigationItem key="navigationItem" title="Title" id="46j-Ry-oUZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8zR-yl-vwi"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBarButtonItem" destination="tbW-7Z-7RJ" id="xd0-CR-EmY"/>
-                        <outlet property="dataController" destination="kPi-Ii-v1l" id="b6B-Mh-DoW"/>
+                        <outlet property="addBarButtonItem" destination="8zR-yl-vwi" id="wK2-5L-k2Q"/>
+                        <outlet property="tableView" destination="40b-pm-JqD" id="ydG-p5-N2t"/>
+                        <outlet property="view" destination="40b-pm-JqD" id="VSZ-Jh-g2m"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lng-T9-bHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="kPi-Ii-v1l" customClass="MHPersonDataController"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lBY-nJ-7hE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="377"/>
+            <point key="canvasLocation" x="862" y="372"/>
         </scene>
         <!--Section Table View Controller-->
         <scene sceneID="4Yg-h4-M5f">

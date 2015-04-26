@@ -1,0 +1,63 @@
+//
+//  BNDTableViewUpdater.m
+//  BNDTableViewController
+//
+//  Created by Marko Hlebar on 26/04/2015.
+//  Copyright (c) 2015 Marko Hlebar. All rights reserved.
+//
+
+#import "BNDTableViewUpdater.h"
+#import "BNDTableView.h"
+
+@implementation BNDTableViewUpdater
+
++ (instancetype)updaterWithTableView:(BNDTableView *)tableView {
+    return [[self alloc] initWithTableView:tableView];
+}
+
+- (instancetype)initWithTableView:(BNDTableView *)tableView {
+    self = [super init];
+    if (self) {
+        _tableView = tableView;
+    }
+    return self;
+}
+
+- (void)updateWithViewModel:(id <BNDTableViewModel> )viewModel {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
+@end
+
+@implementation BNDTableViewReloadDataUpdater
+
+- (void)updateWithViewModel:(id<BNDTableViewModel>)viewModel {
+    [self.tableView reloadData];
+}
+
+@end
+
+@interface BNDTableViewFlowDataUpdater ()
+@property (nonatomic, strong) id <BNDTableViewModel> lastViewModel;
+@end
+
+@implementation BNDTableViewFlowDataUpdater
+
+- (void)updateWithViewModel:(id<BNDTableViewModel>)viewModel {
+    [self.tableView beginUpdates];
+    
+    
+    [self.tableView endUpdates];
+    
+    self.lastViewModel = viewModel;
+}
+
+- (NSArray *)insertIndexPathsForViewModel:(id<BNDTableViewModel>)viewModel {
+    return nil;
+}
+
+- (NSArray *)deleteIndexPathsForViewModel:(id<BNDTableViewModel>)viewModel {
+    return nil;
+}
+
+@end

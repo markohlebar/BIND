@@ -7,6 +7,9 @@
 //
 
 #import "MHRootViewController.h"
+#import "MHPersonListViewController.h"
+#import "MHPersonListViewModel.h"
+#import "MHPersonCreator.h"
 
 @interface MHRootViewController ()
 @property (nonatomic, strong, readonly) NSArray *controllerNames;
@@ -53,22 +56,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *segueIdentifier = nil;
+    UIViewController *viewController = nil;
     switch (indexPath.row) {
         case 0:
-            segueIdentifier = @"MHTableViewControllerSegue";
+            viewController = [self personListViewController];
             break;
-        case 1:
-            segueIdentifier = @"MHSectionTableViewControllerSegue";
-            break;
+            
         default:
             break;
     }
     
-    if (segueIdentifier) {
-        [self performSegueWithIdentifier:segueIdentifier
-                                  sender:self];
-    }
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (MHPersonListViewController *)personListViewController {
+    MHPersonListViewController *viewController = [[MHPersonListViewController alloc] initWithNibName:nil bundle:nil];
+    MHPersonCreator *creator = [MHPersonCreator new];
+    viewController.viewModel = [MHPersonListViewModel viewModelWithModel:creator];
+    return viewController;
 }
 
 @end

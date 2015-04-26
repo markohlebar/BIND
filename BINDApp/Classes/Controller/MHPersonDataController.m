@@ -10,7 +10,7 @@
 #import "MHPersonFetcher.h"
 #import "MHPerson.h"
 #import "MHPersonNameViewModel.h"
-#import "MHPersonColorViewModel.h"
+#import "MHPersonListViewModel.h"
 
 @implementation MHPersonDataController
 
@@ -36,7 +36,7 @@
     for (MHPerson *person in personae) {
         Class viewModelClass = (person.ID.integerValue % 2 == 0) ?
         [MHPersonNameViewModel class] :
-        [MHPersonColorViewModel class];
+        [MHPersonListViewModel class];
         
         id viewModel = [viewModelClass viewModelWithModel:person];
         [viewModels addObject:viewModel];

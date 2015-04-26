@@ -18,6 +18,7 @@
     NSUInteger _createIndex;
     NSMutableArray *_personae;
 }
+@synthesize personae = _personae;
 
 - (instancetype)init {
     self = [super init];
@@ -30,6 +31,10 @@
     return self;
 }
 
+- (NSMutableArray *)mutablePersonae {
+    return [self mutableArrayValueForKey:@"personae"];
+}
+
 - (void)loadAllPersons {
     __weak typeof(self) weakSelf = self;
     [_fetcher fetchPersonae:^(NSArray *personae) {
@@ -37,17 +42,13 @@
     }];
 }
 
-- (void)create {
-    [self insertObject:self.fetchedPersonae[_createIndex] inPersonaeAtIndex:_createIndex];
-    _createIndex++;
-}
-
-- (void)insertObject:(NSObject *)object inPersonaeAtIndex:(NSUInteger)index {
-    [_personae insertObject:object atIndex:index];
-}
-
 - (NSArray *)personae {
     return _personae;
+}
+
+- (void)create {
+    [[self mutablePersonae] insertObject:self.fetchedPersonae[_createIndex] atIndex:_createIndex];
+    _createIndex++;
 }
 
 @end

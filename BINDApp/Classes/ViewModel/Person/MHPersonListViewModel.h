@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BIND.h"
 
-@interface MHPersonColorViewModel : BNDViewModel
+@interface MHPersonListViewModel : BNDTableViewModel
 @property (nonatomic, strong) id <BNDCommand> createPersonCommand;
 @end

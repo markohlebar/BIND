@@ -6,14 +6,15 @@
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import "MHPersonColorViewModel.h"
+#import "MHPersonListViewModel.h"
 #import "MHPerson.h"
 #import "MHPersonCreator.h"
 #import "MHAddPersonCommand.h"
+#import "MHPersonListViewModelTransformer.h"
 
-@implementation MHPersonColorViewModel
+@implementation MHPersonListViewModel
 BINDINGS(MHPersonCreator,
-         BINDModel(personae, ~>, children),
+         BINDModelT(personae, ~>, children, MHPersonListViewModelTransformer),
          nil)
 
 - (id <BNDCommand> )createPersonCommand {
