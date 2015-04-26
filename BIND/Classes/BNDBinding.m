@@ -329,7 +329,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     
     [self lockObservation];
     
-    id newObject = change[NSKeyValueChangeNewKey];
+    id newObject = [object valueForKeyPath:keyPath];
     if ([newObject isKindOfClass:[NSNull class]]) {
         newObject = nil;
     }
