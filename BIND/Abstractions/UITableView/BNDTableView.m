@@ -14,7 +14,6 @@
 #import "BNDTableViewModel.h"
 
 @interface BNDTableView () <UITableViewDataSource, UITableViewDelegate>
-@property (strong) NSArray *sections;
 @end
 
 @implementation BNDTableView

@@ -40,7 +40,7 @@
 - (void)updateWithViewModel:(id<BNDTableViewModel>)viewModel {
     [self.observeBinding unbind];
     __weak typeof(self) weakSelf = self;
-    self.observeBinding = [BINDO(viewModel, children) observe:^(id observable, id value, NSDictionary *observationInfo) {
+    self.observeBinding = [BINDO(viewModel, subViewModels) observe:^(id observable, id value, NSDictionary *observationInfo) {
         [weakSelf.tableView reloadData];
     }];
 }

@@ -36,24 +36,24 @@
     return nil;
 }
 
-- (void)addChild:(BNDViewModel *)child {
+- (void)addSubViewModel:(BNDViewModel *)child {
     [self node_addChild:child];
 }
 
-- (void)removeChild:(BNDViewModel *)child {
+- (void)removeSubViewModel:(BNDViewModel *)child {
     [self node_removeChild:child];
 }
 
-- (void)removeAllChildren {
+- (void)removeAllSubViewModels {
     [self node_removeAllChildren];
 }
 
-- (void)setChildren:(NSArray *)children {
+- (void)setSubViewModels:(NSArray *)children {
     [self node_removeAllChildren];
     [self node_addChildren:children];
 }
 
-- (NSArray *)children {
+- (NSArray *)subViewModels {
     return self.node_children;
 }
 

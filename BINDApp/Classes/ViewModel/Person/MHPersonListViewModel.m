@@ -14,7 +14,7 @@
 
 @implementation MHPersonListViewModel
 BINDINGS(MHPersonCreator,
-         BINDModelT(personae, ~>, children, MHPersonListViewModelTransformer),
+         BINDModelT(personae, ~>, subViewModels, MHPersonListViewModelTransformer),
          nil)
 
 - (id <BNDCommand> )createPersonCommand {

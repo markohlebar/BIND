@@ -17,7 +17,7 @@
     BNDTableSectionViewModel *section = [BNDTableSectionViewModel new];
     for (MHPerson *person in personae) {
         id viewModel = [MHPersonNameViewModel viewModelWithModel:person];
-        [section addChild:viewModel];
+        [section addSubViewModel:viewModel];
     }
     return @[section];
 }

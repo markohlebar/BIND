@@ -11,7 +11,7 @@
 @implementation BNDTableViewModel
 
 - (NSArray *)sectionViewModels {
-    return self.children;
+    return self.subViewModels;
 }
 
 @end
