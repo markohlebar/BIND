@@ -61,7 +61,6 @@
         case 0:
             viewController = [self personListViewController];
             break;
-            
         default:
             break;
     }

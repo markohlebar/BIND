@@ -8,25 +8,20 @@
 
 #import "BNDTableViewController.h"
 #import "BNDTableView.h"
+#import "BNDConcreteViewModel.h"
 
 @interface BNDTableViewController ()
 @end
 
 @implementation BNDTableViewController
 
-//- (void)loadView {
-//    self.tableView = [BNDTableView new];
-//    self.view = self.tableView;
-//}
-
 - (void)viewDidLoad {
-    [self viewDidUpdateViewModel:self.viewModel];
+    //view and tableView properties are still nil when assigning the viewModel after init, hence this.
+    self.viewModel = self.viewModel;
 }
 
 - (void)viewDidUpdateViewModel:(id<BNDViewModel>)viewModel {
-    if (viewModel) {
-        self.tableView.viewModel = viewModel;
-    }
+    self.tableView.viewModel = viewModel;
 }
 
 @end
