@@ -34,7 +34,7 @@
 
 @end
 
-@protocol BNDTableViewModel <NSObject>
+@protocol BNDTableViewModel <BNDViewModel>
 @property (nonatomic, strong, readonly) NSArray *sectionViewModels;
 @end
 

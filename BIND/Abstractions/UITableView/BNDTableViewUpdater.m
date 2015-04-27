@@ -8,6 +8,12 @@
 
 #import "BNDTableViewUpdater.h"
 #import "BNDTableView.h"
+#import "BIND.h"
+#import "BNDViewModel.h"
+
+@interface BNDTableViewUpdater ()
+@property (nonatomic, strong) BNDBinding *observeBinding;
+@end
 
 @implementation BNDTableViewUpdater
 
@@ -32,7 +38,11 @@
 @implementation BNDTableViewReloadDataUpdater
 
 - (void)updateWithViewModel:(id<BNDTableViewModel>)viewModel {
-    [self.tableView reloadData];
+    [self.observeBinding unbind];
+    __weak typeof(self) weakSelf = self;
+    self.observeBinding = [BINDO(viewModel, children) observe:^(id observable, id value, NSDictionary *observationInfo) {
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 @end

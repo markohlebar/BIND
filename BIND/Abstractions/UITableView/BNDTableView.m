@@ -19,9 +19,7 @@
 
 @implementation BNDTableView
 BND_VIEW_IMPLEMENT_SET_VIEW_MODEL
-BINDINGS(BNDTableViewModel,
-         BINDViewModel(children, ~>, sections),
-         nil)
+@synthesize bindings;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -48,12 +46,6 @@ BINDINGS(BNDTableViewModel,
     NSAssert([viewModel conformsToProtocol:@protocol(BNDTableViewModel)], @"The view model should be the table view model");
     
     [self.updater updateWithViewModel:viewModel];
-}
-
-- (void)setSections:(NSArray *)sections {
-    if (self.viewModel) {
-        [self viewDidUpdateViewModel:self.viewModel];
-    }
 }
 
 - (BNDTableViewUpdater *)updater {
