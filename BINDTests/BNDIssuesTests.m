@@ -16,7 +16,7 @@
 
 @implementation Issue8Cell
 BINDINGS(ViewModel,
-         BINDViewModel(childViewModel, ~>, childCell.viewModel),
+         BINDProperty(childViewModel, ~>, childCell.viewModel),
          nil);
 
 @end

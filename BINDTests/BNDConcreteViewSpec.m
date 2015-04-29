@@ -17,8 +17,8 @@
 
 @implementation TestTableViewCell
 BINDINGS(ViewModel,
-         BINDViewModel(text, ~>, textLabel.text),
-         BINDViewModel(color, ~>, backgroundColor),
+         BINDProperty(text, ~>, textLabel.text),
+         BINDProperty(color, ~>, backgroundColor),
          nil)
 @end
 
@@ -80,7 +80,7 @@ describe(@"BNDTableViewCell", ^{
         });
     });
     
-    context(@"When using a BNDTableViewCell subclass and BINDViewModel", ^{
+    context(@"When using a BNDTableViewCell subclass and BINDProperty", ^{
         it(@"Should bind the view model correctly", ^{
             TestTableViewCell *cell = [TestTableViewCell new];
             ViewModel *viewModel = [ViewModel new];
@@ -93,7 +93,7 @@ describe(@"BNDTableViewCell", ^{
         });
     });
     
-    context(@"When using a BNDTableViewCell subckass and BINDViewModel", ^{
+    context(@"When using a BNDTableViewCell subckass and BINDProperty", ^{
         it(@"Should keep transform block when assigning view model", ^{
             TestTableViewCell *cell = [TestTableViewCell new];
             ViewModel *viewModel = [ViewModel new];

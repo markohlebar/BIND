@@ -13,7 +13,7 @@
 
 @implementation MHPersonColorViewModel
 BINDINGS(MHPersonCreator,
-         BINDModel(personae, ~>, children),
+         BINDProperty(personae, ~>, children),
          nil)
 
 - (id <BNDCommand> )createPersonCommand {

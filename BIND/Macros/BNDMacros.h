@@ -253,9 +253,6 @@ bndBINDObserve(observable, @keypath(observable,observableKeyPath))
 #define BINDOS(observable) \
 bndBINDObserve(observable, @"")
 
-#define BINDCommand(leftObject, leftKeyPath, command) \
-bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
-
 /**
  *  This is a shorthand for creating bindings in a BNDView environment.
  *
@@ -286,10 +283,10 @@ bndBIND(object, @keypath(object,viewModelKeyPath), @metamacro_stringify(directio
  *  Assuming that the viewModel has a property that implements BNDCommand protocol, 
  *  Whenever there is a change in the actionKeyPath, the command at commandKeyPath is executed.
  */
-#define BINDViewModelCommand(commandKeyPath, actionKeyPath) \
+#define BINDCommand(commandKeyPath, actionKeyPath) \
 bndBINDViewModelCommand(object, @keypath(object, commandKeyPath), self, @keypath(self, actionKeyPath))
 
-#define BINDModel(modelKeyPath, direction, selfKeyPath) BINDViewModel(modelKeyPath, direction, selfKeyPath)
+#define BINDProperty(propertyKeyPath, direction, selfKeyPath) BINDViewModel(propertyKeyPath, direction, selfKeyPath)
 
 
 #endif

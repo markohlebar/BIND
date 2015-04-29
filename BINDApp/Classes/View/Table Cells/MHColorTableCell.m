@@ -11,6 +11,6 @@
 
 @implementation MHColorTableCell
 BINDINGS(MHColorViewModel,
-         BINDViewModel(color, ~>, contentView.backgroundColor),
+         BINDProperty(color, ~>, contentView.backgroundColor),
          nil);
 @end

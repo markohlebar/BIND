@@ -13,9 +13,9 @@
 @implementation MHPersonNameViewModel
 @synthesize hexColorCode;
 BINDINGS(MHPerson,
-         BINDModel(fullName, <>, name),
-         BINDModel(hexColorCode, <>, hexColorCode),
-         BINDModel(ID.stringValue, ~>, ID),
+         BINDProperty(fullName, <>, name),
+         BINDProperty(hexColorCode, <>, hexColorCode),
+         BINDProperty(ID.stringValue, ~>, ID),
          nil);
 
 - (MHReversePersonNameCommand *)reverseNameCommand {

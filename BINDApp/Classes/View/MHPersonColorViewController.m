@@ -16,7 +16,7 @@
 
 @implementation MHPersonColorViewController
 BINDINGS(MHPersonColorViewModel,
-         BINDViewModelCommand(createPersonCommand, addBarButtonItem.onTouchUpInside),
+         BINDCommand(createPersonCommand, addBarButtonItem.onTouchUpInside),
          nil
 );
 
