@@ -29,7 +29,7 @@ BINDINGS(MHPersonNameViewModel,
 ```
 How does this work and what does this do? A `view` or a `viewController` implementing `BNDView` protocol, 
 exposes properties `viewModel` and `bindings`. Whenever `viewModel` gets updated (say on cell reuse), 
-the `bindings` are updated as well, which guarantees that the correct viewModel is bound to a correct view. 
+the `bindings` are updated as well, which guarantees that the correct `viewModel` is bound to a correct `view`. 
 
 Similar to this, you can also bind `viewModel` with `model`. You can do this by creating a `viewModel` subclass of `BNDViewModel`, and define your bindings like so: 
 ```
