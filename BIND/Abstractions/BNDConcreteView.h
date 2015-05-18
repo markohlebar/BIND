@@ -11,6 +11,7 @@
 
 @class BNDBinding;
 
+
 /**
  *  BNDTableViewCell is concrete table view cell subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the 
@@ -20,9 +21,7 @@
  *  in UITableViewDelegate's tableView:cellForRowAtIndexPath: method
  *  so that the bindings get updated.
  */
-@interface BNDTableViewCell : _BNDTableViewCell <BNDView>
-@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
-@end
+BND_VIEW_INTERFACE(BNDTableViewCell, _BNDTableViewCell)
 
 /**
  *  BNDView is an concrete view subclass that loads bindings
@@ -32,9 +31,7 @@
  *  The user of this view should call setViewModel:
  *  so that the bindings get updated.
  */
-@interface BNDView : _BNDView <BNDView>
-@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
-@end
+BND_VIEW_INTERFACE(BNDView, _BNDView)
 
 /**
  *  BNDButton is an concrete button subclass that loads bindings
@@ -44,9 +41,7 @@
  *  The user of this view should call setViewModel:
  *  so that the bindings get updated.
  */
-@interface BNDButton : _BNDButton <BNDView>
-@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
-@end
+BND_VIEW_INTERFACE(BNDButton, _BNDButton)
 
 /**
  *  BNDViewController is a concrete view controller subclass that loads bindings
@@ -56,11 +51,12 @@
  *  The user of this view controller should call setViewModel:
  *  so that the bindings get updated.
  */
-@interface BNDViewController : _BNDViewController <BNDViewController>
-@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
+@interface BNDViewController : _BNDViewController <BNDView> {
+    NSArray *_bindings;
+}
 @property (nonatomic, strong) IBOutlet id <BNDDataController> dataController;
+@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
 @end
-
 
 #pragma mark - Platform Specific
 
@@ -75,8 +71,6 @@
  *  in UICollectionViewDelegate's collectionView:cellForItemAtIndexPath: method
  *  so that the bindings get updated.
  */
-@interface BNDCollectionViewCell : UICollectionViewCell <BNDView>
-@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings;
-@end
+BND_VIEW_INTERFACE(BNDCollectionViewCell, UICollectionViewCell)
 
 #endif

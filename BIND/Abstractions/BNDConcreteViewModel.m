@@ -11,6 +11,7 @@
 #import "NSObject+NODE.h"
 
 @implementation BNDViewModel
+@synthesize bindings = _bindings;
 
 + (instancetype)viewModelWithModel:(id)model {
     return [[self alloc] initWithModel:model];

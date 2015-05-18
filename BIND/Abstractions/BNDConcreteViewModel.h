@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "BNDViewModel.h"
 
-@interface BNDViewModel : NSObject <BNDViewModel>
+@interface BNDViewModel : NSObject <BNDViewModel> {
+    NSArray *_bindings;
+}
 @property (nonatomic, strong, readonly) id model;
 @property (nonatomic, strong) NSArray *bindings;
 - (void)addChild:(BNDViewModel *)child;

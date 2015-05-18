@@ -43,7 +43,15 @@
 
 #pragma mark - BNDView
 
+#define BND_VIEW_INTERFACE(__CLASS__, __SUPERCLASS__) \
+@interface __CLASS__ : __SUPERCLASS__ <BNDView> { \
+NSArray *_bindings; \
+} \
+@property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings; \
+@end
+
 #define BND_VIEW_IMPLEMENT_SET_VIEW_MODEL \
+@synthesize bindings = _bindings; \
 @synthesize viewModel = _viewModel; \
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
     for (BNDBinding *binding in self.bindings) { \
@@ -263,13 +271,14 @@ bndBINDCommand(leftObject, @keypath(leftObject, leftKeyPath), command)
  *  @param ...            nil terminated list of BINDViewModel bindings
  */
 #define BINDINGS(class, ...) \
-@synthesize bindings = _bindings; \
 - (NSArray *)bindings { \
 class *object __unused = nil;\
 if ([self respondsToSelector:@selector(viewModel)]) object = [self performSelector:@selector(viewModel)]; \
 else if ([self respondsToSelector:@selector(model)]) object = [self performSelector:@selector(model)]; \
 if (!_bindings) { \
-_bindings = [NSArray arrayWithObjects:__VA_ARGS__]; \
+NSArray *selfBindings = [NSArray arrayWithObjects:__VA_ARGS__]; \
+NSArray *superBindings = [super bindings]; \
+_bindings = superBindings ? [superBindings arrayByAddingObjectsFromArray:selfBindings] : selfBindings; \
 } \
 return _bindings; \
 }

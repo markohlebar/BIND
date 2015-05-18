@@ -22,6 +22,16 @@ BINDINGS(ViewModel,
          nil)
 @end
 
+@interface SubclassTestTableViewCell : TestTableViewCell
+
+@end
+
+@implementation SubclassTestTableViewCell
+BINDINGS(ViewModel,
+         BINDViewModel(text, ~>, detailTextLabel.text),
+         nil)
+@end
+
 SPEC_BEGIN(BNDConcreteViewSpec)
 
 describe(@"BNDTableViewCell", ^{
@@ -93,7 +103,7 @@ describe(@"BNDTableViewCell", ^{
         });
     });
     
-    context(@"When using a BNDTableViewCell subckass and BINDViewModel", ^{
+    context(@"When using a BNDTableViewCell subclass and BINDViewModel", ^{
         it(@"Should keep transform block when assigning view model", ^{
             TestTableViewCell *cell = [TestTableViewCell new];
             ViewModel *viewModel = [ViewModel new];
@@ -124,6 +134,16 @@ describe(@"BNDTableViewCell", ^{
             cell.viewModel = viewModel;
             
             [[cell.textLabel.text should] equal:@"TEST"];
+        });
+    });
+    
+    context(@"When using a subclass of a subclass of BNDTableViewCell", ^{
+        it(@"Should keep the bindings specified in the superclass", ^{
+            SubclassTestTableViewCell *cell = [SubclassTestTableViewCell new];
+            ViewModel *viewModel = [ViewModel new];
+            cell.viewModel = viewModel;
+            
+            [[cell.bindings should] haveCountOf:3];
         });
     });
 });
