@@ -4,6 +4,9 @@
 //
 //  Created by Ben Clayton on 12/4/2015.
 //
+
+#if TARGET_OS_IPHONE
+
 #import "UITextField+BNDBinding.h"
 #import "BNDSpecialKeyPathHandling.h"
 
@@ -24,3 +27,5 @@
     return self.text;
 }
 @end
+
+#endif
