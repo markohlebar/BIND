@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XCGroup.h
+../../../XcodeEditor/Source/XCGroup.h

@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XcodeMemberType.h
+../../../XcodeEditor/Source/XcodeMemberType.h

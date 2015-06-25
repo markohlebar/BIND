@@ -35,8 +35,8 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - NODE_ (0.1.0)
-  - XcodeEditor (1.6)
+  - NODE_ (0.1.1)
+  - XcodeEditor (1.6.2)
 
 DEPENDENCIES:
   - Kiwi
@@ -47,7 +47,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  NODE_: ca907a2e9f289fbbd22c1cc914d6e694f3f9f1c0
-  XcodeEditor: 9533a3ef227aa4ef561f73f2242b1fa1c25d84f1
+  NODE_: 4595c1cfadbf1f1d06566c32c1c7deb387a0822f
+  XcodeEditor: 0d21967dd71a16262c7121c7723179f6ae2b11c3
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.37.2

@@ -37,6 +37,10 @@
     [self.node_mutableChildren removeAllObjects];
 }
 
+- (void)node_setMutableChildren:(NSMutableArray *)mutableChildren {
+    objc_setAssociatedObject(self, @selector(node_mutableChildren), mutableChildren, OBJC_ASSOCIATION_RETAIN);
+}
+
 - (id)node_root {
     NSObject *parent = self;
     while (parent.node_parent) {
@@ -119,7 +123,7 @@
         children = objc_getAssociatedObject(self, @selector(node_mutableChildren));
         if (!children) {
             children = [NSMutableArray new];
-            objc_setAssociatedObject(self, @selector(node_mutableChildren), children, OBJC_ASSOCIATION_RETAIN);
+            [self node_setMutableChildren:children];
         }
     }
     return children;

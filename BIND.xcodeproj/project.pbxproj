@@ -43,6 +43,7 @@
 		965128C11A7192C9008A9547 /* NSTextField+BNDBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 965128B31A7192C9008A9547 /* NSTextField+BNDBinding.h */; };
 		965128C31A7192C9008A9547 /* NSTextField+BNDBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 965128B41A7192C9008A9547 /* NSTextField+BNDBinding.m */; };
 		965128C51A719303008A9547 /* BNDTableViewCell+BNDBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 965128A91A7192C9008A9547 /* BNDTableViewCell+BNDBinding.h */; };
+		965CFD971B3BC03400D45014 /* BNDViewModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 965CFD961B3BC03400D45014 /* BNDViewModelTest.m */; };
 		967381A91A02C56C00D1C608 /* BNDBindingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381A81A02C56C00D1C608 /* BNDBindingTest.m */; };
 		967381AC1A02C61800D1C608 /* BNDTestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 967381AB1A02C61800D1C608 /* BNDTestObjects.m */; };
 		968090241A2B32CF00EE2C03 /* libBIND-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AE6D321A2B254E004C32DC /* libBIND-OSX.a */; };
@@ -197,6 +198,7 @@
 		965128B21A7192C9008A9547 /* NSTableView+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTableView+BNDBinding.m"; sourceTree = "<group>"; };
 		965128B31A7192C9008A9547 /* NSTextField+BNDBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextField+BNDBinding.h"; sourceTree = "<group>"; };
 		965128B41A7192C9008A9547 /* NSTextField+BNDBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextField+BNDBinding.m"; sourceTree = "<group>"; };
+		965CFD961B3BC03400D45014 /* BNDViewModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDViewModelTest.m; sourceTree = "<group>"; };
 		967381A81A02C56C00D1C608 /* BNDBindingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDBindingTest.m; sourceTree = "<group>"; };
 		967381AA1A02C61800D1C608 /* BNDTestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDTestObjects.h; sourceTree = "<group>"; };
 		967381AB1A02C61800D1C608 /* BNDTestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDTestObjects.m; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				960193F61A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m */,
 				96E01F981A3490D300294550 /* BNDCrashTests.m */,
 				9626B5281AC9D30600F29A9E /* BNDIssuesTests.m */,
+				965CFD961B3BC03400D45014 /* BNDViewModelTest.m */,
 			);
 			path = BINDTests;
 			sourceTree = "<group>";
@@ -1309,6 +1312,7 @@
 				9626B5291AC9D30600F29A9E /* BNDIssuesTests.m in Sources */,
 				9601940D1A204C4C00059F90 /* BNDParserTest.m in Sources */,
 				960193F71A1EBE8900059F90 /* BNDBindingSpecialKeyPathsHandlerSpec.m in Sources */,
+				965CFD971B3BC03400D45014 /* BNDViewModelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XcodeSourceFileType.h
+../../../XcodeEditor/Source/XcodeSourceFileType.h

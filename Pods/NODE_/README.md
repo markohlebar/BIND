@@ -28,11 +28,11 @@ As mentioned in the title, `NODE` lets you build that structure from any ol' obj
 Row *row0 = [Row new]; 
 Row *row1 = [Row new]; 
 Section *section0 = [Section new]; 
-[section node_addChildren:@[row, row1]];
+[section0 node_addChildren:@[row0, row1]];
 
 Row *row2 = [Row new];
 Section *section1 = [Section new]; 
-[section node_addChild:row2];
+[section1 node_addChild:row2];
 
 TableView *tableView = [TableView new];
 [tableView node_addChildren:@[section0, section1]];
@@ -56,10 +56,10 @@ NSArray *ancestors = [rows[0] node_ancestors];
 ///Returns an index path of the row 
 NSIndexPath *indexPath = [row[0] node_indexPath];
 
-///Returns row[0]
+///Returns row0
 Row *row = [section0 node_nodeAtIndexPath:indexPath];
 
-///And last but not least, you can print out the tree. 
+///And last but not least, you can print out the tree
 [tableView node_debugDescription];
 ```
 
@@ -74,6 +74,10 @@ That's up to you. This is a category on an `NSObject` adding associated objects,
 as dangerous as it gets, but if you use it properly you should be fine. A prefix `node_` 
 was added so that name collision risk with other libraries would be minimized, but you still
 need to keep an eye on that. 
+
+### Installation 
+
+`pod 'NODE_'`
 
 ### Contributing
 Pull requests, issues and comments are very welcome. 

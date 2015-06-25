@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XCSubProjectDefinition.h
+../../../XcodeEditor/Source/XCSubProjectDefinition.h

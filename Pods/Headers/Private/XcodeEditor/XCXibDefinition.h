@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XCXibDefinition.h
+../../../XcodeEditor/Source/XCXibDefinition.h

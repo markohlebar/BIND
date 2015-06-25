@@ -47,6 +47,15 @@
 - (void)node_removeAllChildren;
 
 /**
+ *  Sets the internal storage to the desired array.
+ *  This action will replace all your previously stored children.
+ *  @note This makes debugging much easier since your array property is exposed on an object.
+ *
+ *  @param mutableChildren mutable array to store children.
+ */
+- (void)node_setMutableChildren:(NSMutableArray *)mutableChildren;
+
+/**
  *  Returns the root of the tree.
  *  @discussion returns self if node is the root node.
  *

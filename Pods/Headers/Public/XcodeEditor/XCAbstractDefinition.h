@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XCAbstractDefinition.h
+../../../XcodeEditor/Source/XCAbstractDefinition.h

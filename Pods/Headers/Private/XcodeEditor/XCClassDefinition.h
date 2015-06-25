@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XCClassDefinition.h
+../../../XcodeEditor/Source/XCClassDefinition.h

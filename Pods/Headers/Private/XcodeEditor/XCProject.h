@@ -1,1 +1,1 @@
-../../../XcodeEditor/Source/Main/XCProject.h
+../../../XcodeEditor/Source/XCProject.h
