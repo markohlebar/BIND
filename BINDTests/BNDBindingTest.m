@@ -66,6 +66,8 @@
 //    XCTAssertTrue([BNDBinding allBindings].count == 0, @"Number of bindings should be 0");
 //}
 
+#pragma mark - Binding
+
 - (void)testBINDInitialValueLeftToRightAssignment {
 	_car.make = @"Toyota";
 	_ticket.carMake = nil;
@@ -274,6 +276,21 @@
     
     _car.speed = 200;
     XCTAssertTrue(_car.engine.rpm == 20000, @"should update the correct value if binding the same object");
+}
+
+- (void)testUpdatingTheParentTriggersObservation {
+    _car.engine.rpm = 100;
+
+    __block CGFloat rpm = 0;
+    [BINDO(_car, engine.rpm) observe:^(id observable, id value, NSDictionary *observationInfo) {
+        rpm = _car.engine.rpm;
+    }];
+    
+    Engine *engine = [Engine new];
+    engine.rpm = 200;
+    _car.engine = engine;
+    
+    XCTAssertTrue(rpm == 200, @"Should call update when parent object is updated");
 }
 
 #pragma mark - Async Transformer
