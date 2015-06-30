@@ -73,4 +73,15 @@ BND_VIEW_INTERFACE(BNDButton, _BNDButton)
  */
 BND_VIEW_INTERFACE(BNDCollectionViewCell, UICollectionViewCell)
 
+/**
+ *  BNDCollectionReusableView is a concrete collection reusable view subclass that loads bindings
+ *  from a XIB and then refreshes the bindings when the
+ *  cell gets updated.
+ *  It also synthesizes your viewModel property.
+ *  The user of this view should call setViewModel:
+ *  in UICollectionViewDelegate's collectionView:viewForSupplementaryElementOfKind:atIndexPath: method
+ *  so that the bindings get updated.
+ */
+BND_VIEW_INTERFACE(BNDCollectionReusableView, UICollectionReusableView)
+
 #endif

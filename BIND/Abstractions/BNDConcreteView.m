@@ -29,4 +29,6 @@ BND_VIEW_IMPLEMENTATION(BNDViewController)
 
 BND_VIEW_IMPLEMENTATION(BNDCollectionViewCell)
 
+BND_VIEW_IMPLEMENTATION(BNDCollectionReusableView)
+
 #endif
