@@ -9,9 +9,6 @@
 #import "BNDView.h"
 #import "BNDMacros.h"
 
-@class BNDBinding;
-
-
 /**
  *  BNDTableViewCell is concrete table view cell subclass that loads bindings
  *  from a XIB and then refreshes the bindings when the 

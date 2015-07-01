@@ -50,6 +50,12 @@ NSArray *_bindings; \
 @property (nonatomic, strong) IBOutletCollection(BNDBinding) NSArray *bindings; \
 @end
 
+#define BND_VIEW_IMPLEMENTATION(__CLASS_NAME__) \
+@implementation __CLASS_NAME__ \
+BND_VIEW_IMPLEMENT_SET_VIEW_MODEL \
+BND_VIEW_IMPLEMENT_VIEW_DID_UPDATE_VIEW_MODEL \
+@end
+
 #define BND_VIEW_IMPLEMENT_SET_VIEW_MODEL \
 @synthesize bindings = _bindings; \
 @synthesize viewModel = _viewModel; \
