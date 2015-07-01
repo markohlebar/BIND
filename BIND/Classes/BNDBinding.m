@@ -364,6 +364,33 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     return [NSString stringWithFormat:@"%@ . %@ %@ %@ . %@ | %@", self.leftObject, self.leftKeyPath, self.operator, self.rightObject, self.rightKeyPath, self.valueTransformer];
 }
 
+#pragma mark - Equality
+
+- (BOOL)isEqual:(BNDBinding *)binding {
+    return
+    [self.leftKeyPath isEqualToString:binding.leftKeyPath] &&
+    [self.rightKeyPath isEqualToString:binding.rightKeyPath] &&
+    [self.leftObject isEqual:binding.leftObject] &&
+    [self.rightObject isEqual:binding.rightObject];
+}
+
+- (NSUInteger)hash {
+    NSUInteger leftObjectHash = [self.leftObject isKindOfClass:[BNDBinding class]] ? 0 : [self.leftObject hash];
+    NSUInteger rightObjectHash = [self.rightObject isKindOfClass:[BNDBinding class]] ? 0 : [self.rightObject hash];
+    
+    if (self.direction != BNDBindingDirectionBoth) {
+        BOOL leftToRight = (self.direction == BNDBindingDirectionLeftToRight);
+        leftObjectHash ^= leftToRight ? 1 : 2;
+        rightObjectHash ^= leftToRight ? 2 : 1;
+    }
+    
+    return
+    self.leftKeyPath.hash ^
+    self.rightKeyPath.hash ^
+    leftObjectHash ^
+    rightObjectHash;
+}
+
 @end
 
 #pragma clang diagnostic pop

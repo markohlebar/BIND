@@ -34,6 +34,7 @@
     _ticket = ParkingTicket.new;
 	_car = Car.new;
     _car.engine = _engine;
+    _car.gasPedal = [GasPedal new];
 
 	_binding = BNDBinding.new;
 }
@@ -291,6 +292,66 @@
     _car.engine = engine;
     
     XCTAssertTrue(rpm == 200, @"Should call update when parent object is updated");
+}
+
+#pragma mark - Equality
+
+- (void)testBindingsAreEqualIfAllBoundComponentsAreEqual {
+    BNDBinding *binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    BNDBinding *binding2 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    
+    XCTAssertEqualObjects(binding1, binding2, @"Bindings are equal when all their components are equal");
+    XCTAssertTrue(binding1.hash == binding2.hash, @"Bindings should have the same hash if their components are equal");
+    
+    binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    binding2 = BIND(_engine, rpm, <~, _car, engine.rpm);
+    
+    XCTAssertEqualObjects(binding1, binding2, @"Bindings are equal when all their components are equal");
+    XCTAssertTrue(binding1.hash == binding2.hash, @"Bindings should have the same hash if their components are equal");
+    
+    binding1 = BIND(_car, engine.rpm, <>, _engine, rpm);
+    binding2 = BIND(_engine, rpm, <>, _car, engine.rpm);
+    
+    XCTAssertEqualObjects(binding1, binding2, @"Bindings are equal when all their components are equal");
+    XCTAssertTrue(binding1.hash == binding2.hash, @"Bindings should have the same hash if their components are equal");
+}
+
+- (void)testBindingsAreNotEqualIfAnyBoundComponentsAreNotEqual {
+    BNDBinding *binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    BNDBinding *binding2 = BIND(_car, gasPedal.percentPressed, ~>, _engine, rpm);
+    
+    XCTAssertNotEqualObjects(binding1, binding2, @"Bindings are not equal when all their components are not equal");
+    XCTAssertFalse(binding1.hash == binding2.hash, @"Bindings should not have the same hash if their components are not equal");
+    
+    binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    binding2 = BIND(_engine, rpm, ~>, _engine, rpm);
+    
+    XCTAssertNotEqualObjects(binding1, binding2, @"Bindings are not equal when all their components are not equal");
+    XCTAssertFalse(binding1.hash == binding2.hash, @"Bindings should not have the same hash if their components are not equal");
+    
+    binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    binding2 = BIND(_engine, rpm, ~>, _car, engine.rpm);
+    
+    XCTAssertNotEqualObjects(binding1, binding2, @"Bindings are not equal when all their components are not equal");
+    XCTAssertFalse(binding1.hash == binding2.hash, @"Bindings should not have the same hash if their components are not equal");
+    
+    binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    binding2 = BIND(_engine, rpm, ~>, _car, gasPedal.percentPressed);
+    
+    XCTAssertNotEqualObjects(binding1, binding2, @"Bindings are not equal when all their components are not equal");
+    XCTAssertFalse(binding1.hash == binding2.hash, @"Bindings should not have the same hash if their components are not equal");
+    
+    binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    binding2 = BIND(_car, engine.rpm, !~>, _engine, rpm);
+    
+    XCTAssertNotEqualObjects(binding1, binding2, @"Bindings are not equal when all their components are not equal");
+    XCTAssertFalse(binding1.hash == binding2.hash, @"Bindings should not have the same hash if their components are not equal");
+    
+    binding1 = BIND(_car, engine.rpm, ~>, _engine, rpm);
+    binding2 = BIND(_car, engine.rpm, <>, _engine, rpm);
+    
+    XCTAssertNotEqualObjects(binding1, binding2, @"Bindings are not equal when all their components are not equal");
+    XCTAssertFalse(binding1.hash == binding2.hash, @"Bindings should not have the same hash if their components are not equal");
 }
 
 #pragma mark - Async Transformer
