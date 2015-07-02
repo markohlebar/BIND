@@ -79,17 +79,6 @@
 	XCTAssertTrue([_ticket.carMake isEqual:@"Toyota"], @"Car make on the ticket should be Toyota");
 }
 
-- (void)testBINDInitialValueRightToLeftAssignment {
-    _car.make = @"Toyota";
-    _ticket.carMake = nil;
-    
-    _binding.BIND = @"carMake <~ make";
-    [_binding bindLeft:_ticket
-             withRight:_car];
-    
-    XCTAssertTrue([_ticket.carMake isEqual:@"Toyota"], @"Car make on the ticket should be Toyota");
-}
-
 - (void)testBINDInitialValueBidirectionalAssignment {
     _car.make = @"Toyota";
     _ticket.carMake = nil;
@@ -108,17 +97,6 @@
     _binding.BIND = @"make !~> carMake";
     [_binding bindLeft:_car
              withRight:_ticket];
-    
-    XCTAssertNil(_ticket.carMake, @"Car make on the ticket should be nil");
-}
-
-- (void)testBINDInitialValueRightToLeftNoAssignment {
-    _car.make = @"Toyota";
-    _ticket.carMake = nil;
-    
-    _binding.BIND = @"carMake <~! make";
-    [_binding bindLeft:_ticket
-             withRight:_car];
     
     XCTAssertNil(_ticket.carMake, @"Car make on the ticket should be nil");
 }
@@ -148,20 +126,6 @@
 	XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should remain 20000");
 }
 
-- (void)testBINDRightToLeftBindingUpdates {
-	_car.speed = 100;
-	_engine.rpm = 10000;
-	_binding.BIND = @"rpm <~ speed | !RPMToSpeedTransformer";
-	[_binding bindLeft:_engine
-	         withRight:_car];
-
-	_car.speed = 200;
-	XCTAssertTrue(_engine.rpm == 20000, @"rpm of the engine should be 20000");
-
-	_engine.rpm = 10000;
-	XCTAssertTrue(_car.speed == 200, @"car speed should remain 200");
-}
-
 - (void)testBINDBiDirectionalUpdates {
 	_car.speed = 100;
 	_engine.rpm = 10000;
@@ -188,20 +152,6 @@
     
     _car.speed = 300;
     XCTAssertTrue(_engine.rpm == 20000, @"engine rpm should remain 20000");
-}
-
-- (void)testBINDRightToLeftNoInitialisationBindingUpdates {
-    _car.speed = 100;
-    _engine.rpm = 10000;
-    _binding.BIND = @"rpm <~! speed | !RPMToSpeedTransformer";
-    [_binding bindLeft:_engine
-             withRight:_car];
-    
-    _car.speed = 200;
-    XCTAssertTrue(_engine.rpm == 20000, @"rpm of the engine should be 20000");
-    
-    _engine.rpm = 10000;
-    XCTAssertTrue(_car.speed == 200, @"car speed should remain 200");
 }
 
 - (void)testBINDBiDirectionalNoInitialisationUpdates {
@@ -247,16 +197,6 @@
 	XCTAssertTrue(car2.speed == 200, @"car2 speed should be 200");
 	XCTAssertEqual(engine2, _binding.leftObject, @"engine 2 should be the new left object");
 	XCTAssertEqual(car2, _binding.rightObject, @"car2 should be the new right object");
-}
-
-- (void)testBINDTransformDirectionAssignsCorrectly {
-	_engine.rpm = 10000;
-
-	_binding.BIND = @"speed <~ rpm | RPMToSpeedTransformer";
-	[_binding bindLeft:_car
-	         withRight:_engine];
-
-	XCTAssertTrue(_car.speed == 100, @"car speed should be 100");
 }
 
 - (void)testUnbindRemovesReferences {
@@ -322,20 +262,6 @@
     }];
 }
 
-- (void)testAsyncTransformersSetInitialValueWithReverseTransform {
-    Car *car = [Car new];
-    car.speed = 100;
-
-    Engine *engine = [Engine new];
-    
-    _binding.BIND = @"rpm <~ speed | !AsyncRPMToSpeedTransformer";
-    [_binding bindLeft:engine withRight:car];
-    
-    [self expectAsyncValueTransform:^{
-        XCTAssertTrue(engine.rpm == 10000, "Should be able to update the value asynchronously");
-    }];
-}
-
 - (void)testAssignsLeftToRightValueAsynchronously {
     Engine *engine = [Engine new];
     engine.rpm = 10000;
@@ -348,22 +274,6 @@
     
     [self expectAsyncValueTransform:^{
         XCTAssertTrue(car.speed == 200, "Should be able to update the value asynchronously");
-    }];
-}
-
-- (void)testAssignsRightToLeftValueAsynchronously {
-    Car *car = [Car new];
-    car.speed = 100;
-    
-    Engine *engine = [Engine new];
-    
-    _binding.BIND = @"rpm <~ speed | !AsyncRPMToSpeedTransformer";
-    [_binding bindLeft:engine withRight:car];
-    
-    car.speed = 200;
-    
-    [self expectAsyncValueTransform:^{
-        XCTAssertTrue(engine.rpm == 20000, "Should be able to update the value asynchronously");
     }];
 }
 
@@ -425,14 +335,6 @@
     XCTAssertTrue(_car.speed == 50, @"Car speed should reflect transformer change + transform block change");
 }
 
-- (void)testTransformBlockIsCalledWhenValueChangesAndReverseTransformerIsAssigned {
-    _binding = [BINDRT(_engine,rpm,<~,_car,speed, RPMToSpeedTransformer) transform:^id(id object, id value) {
-        return @([value integerValue] / 2);
-    }];
-    _car.speed = 100;
-    XCTAssertTrue(_engine.rpm == 5000, @"Engine rpm should reflect reverse transformer change + transform block change");
-}
-
 - (void)testPassesTheCorrectTransformedObjectRight {
     __block id transformedObject = nil;
     _binding = [BIND(_car, speed, ~>, _engine, rpm)
@@ -443,19 +345,6 @@
 
     _car.speed = 100;
     XCTAssertEqual(transformedObject, _car, @"Car should be the transformed object");
-    transformedObject = nil;
-}
-
-- (void)testPassesTheCorrectTransformedObjectLeft {
-    __block id transformedObject = nil;
-    _binding = [BIND(_car, speed, <~, _engine, rpm)
-                transform:^id(id object, id value) {
-                    transformedObject = object;
-                    return value;
-                }];
-    
-    _engine.rpm = 10000;
-    XCTAssertEqual(transformedObject, _engine, @"Engine should be the transformed object");
     transformedObject = nil;
 }
 
@@ -490,22 +379,6 @@
     XCTAssertEqual(_engine, receivedSender, @"Received observable should be the engine");
     XCTAssertEqualObjects(@(100), receivedValue, @"Received value should be 100");
 
-    receivedSender = nil;
-}
-
-- (void)testObserveGetsFiredWhenDirectionIsLeft {
-    __block id receivedSender = nil;
-    __block id receivedValue = nil;
-    
-    [BIND(_engine,rpm,<~,_car,speed) observe:^(id observable, id value, NSDictionary *observationInfo) {
-        receivedSender = observable;
-        receivedValue = value;
-    }];
-    
-    _car.speed = 100;
-    XCTAssertEqual(_car, receivedSender, @"Received observable should be the car");
-    XCTAssertEqualObjects(@(100), receivedValue, @"Received value should be 100");
-    
     receivedSender = nil;
 }
 

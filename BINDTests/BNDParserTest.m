@@ -39,13 +39,6 @@
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
     XCTAssertTrue(definition.shouldSetInitialValues == YES, @"should set initial values");
     
-    definition = [BNDParser parseBIND:@"keyPath1<~keyPath2"];
-    XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(definition.direction == BNDBindingDirectionRightToLeft, @"assignment should be left");
-    XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionRightToLeft, @"transform direction should be left");
-    XCTAssertTrue(definition.shouldSetInitialValues == YES, @"should set initial values");
-    
     definition = [BNDParser parseBIND:@"keyPath1<>keyPath2"];
     XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
@@ -58,13 +51,6 @@
     XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
     XCTAssertTrue(definition.direction == BNDBindingDirectionLeftToRight, @"assignment should be right");
     XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionLeftToRight, @"transform direction should be right");
-    XCTAssertTrue(definition.shouldSetInitialValues == NO, @"should not set initial values");
-    
-    definition = [BNDParser parseBIND:@"keyPath1<~!keyPath2"];
-    XCTAssertEqualObjects(definition.leftKeyPath, @"keyPath1", @"keypath should be keyPath1");
-    XCTAssertEqualObjects(definition.rightKeyPath, @"keyPath2", @"keypath should be keyPath2");
-    XCTAssertTrue(definition.direction == BNDBindingDirectionRightToLeft, @"assignment should be left");
-    XCTAssertTrue(definition.transformDirection == BNDBindingTransformDirectionRightToLeft, @"transform direction should be left");
     XCTAssertTrue(definition.shouldSetInitialValues == NO, @"should not set initial values");
     
     definition = [BNDParser parseBIND:@"keyPath1<!>keyPath2"];
@@ -99,6 +85,7 @@
 }
 
 - (void)testBINDErroneousInput {
+    XCTAssertThrows([BNDParser parseBIND:@"keyPath1->keyPath2"], @"should assert for deprecated symbol");
     XCTAssertThrows([BNDParser parseBIND:@"keyPath1~keyPath2"], @"should assert for no assignment symbol");
     XCTAssertThrows([BNDParser parseBIND:@"keyPath1~>"], @"should assert for no keypaths");
     XCTAssertThrows([BNDParser parseBIND:@"~>keyPath2"], @"should assert for no keypaths");

@@ -10,20 +10,12 @@
 #import "BNDMacros.h"
 
 static NSString *const BNDBindingArrowLeftToRight = @"~>";
-static NSString *const BNDBindingArrowRightToLeft = @"<~";
 static NSString *const BNDBindingArrowBidirectional = @"<>";
 static NSString *const BNDBindingArrowLeftToRightNoIntialisation = @"!~>";
-static NSString *const BNDBindingArrowRightToLeftNoIntialisation = @"<~!";
 static NSString *const BNDBindingArrowBidirectionalNoIntialisation = @"<!>";
 
 static NSString *const BNDBindingTransformerSeparator = @"|";
 static NSString *const BNDBindingTransformerDirectionModifier = @"!";
-
-#pragma mark - DEPRECATED OPERATORS
-static NSString *const BNDBindingArrowLeftToRight_DEPRECATED = @"->";
-static NSString *const BNDBindingArrowRightToLeft_DEPRECATED = @"<-";
-static NSString *const BNDBindingArrowLeftToRightNoIntialisation_DEPRECATED = @"!->";
-static NSString *const BNDBindingArrowRightToLeftNoIntialisation_DEPRECATED = @"<-!";
 
 @implementation BNDBindingModel
 
@@ -44,69 +36,21 @@ static NSString *const BNDBindingArrowRightToLeftNoIntialisation_DEPRECATED = @"
 		separator = BNDBindingArrowLeftToRightNoIntialisation;
 		definition.shouldSetInitialValues = NO;
 		definition.direction = BNDBindingDirectionLeftToRight;
-        definition.transformDirection = BNDBindingTransformDirectionLeftToRight;
 	}
-    else if ([bind rangeOfString:BNDBindingArrowLeftToRightNoIntialisation_DEPRECATED].location != NSNotFound) {
-        BNDLogDeprecated(BNDBindingArrowLeftToRightNoIntialisation_DEPRECATED, BNDBindingArrowLeftToRightNoIntialisation);
-        
-        separator = BNDBindingArrowLeftToRightNoIntialisation_DEPRECATED;
-        definition.shouldSetInitialValues = NO;
-        definition.direction = BNDBindingDirectionLeftToRight;
-        definition.transformDirection = BNDBindingTransformDirectionLeftToRight;
-    }
-	else if ([bind rangeOfString:BNDBindingArrowRightToLeftNoIntialisation].location != NSNotFound) {
-		separator = BNDBindingArrowRightToLeftNoIntialisation;
-		definition.shouldSetInitialValues = NO;
-		definition.direction = BNDBindingDirectionRightToLeft;
-        definition.transformDirection = BNDBindingTransformDirectionRightToLeft;
-	}
-    else if ([bind rangeOfString:BNDBindingArrowRightToLeftNoIntialisation_DEPRECATED].location != NSNotFound) {
-        BNDLogDeprecated(BNDBindingArrowRightToLeftNoIntialisation_DEPRECATED, BNDBindingArrowRightToLeftNoIntialisation);
-
-        separator = BNDBindingArrowRightToLeftNoIntialisation_DEPRECATED;
-        definition.shouldSetInitialValues = NO;
-        definition.direction = BNDBindingDirectionRightToLeft;
-        definition.transformDirection = BNDBindingTransformDirectionRightToLeft;
-    }
 	else if ([bind rangeOfString:BNDBindingArrowBidirectionalNoIntialisation].location != NSNotFound) {
 		separator = BNDBindingArrowBidirectionalNoIntialisation;
 		definition.shouldSetInitialValues = NO;
 		definition.direction = BNDBindingDirectionBoth;
-        definition.transformDirection = BNDBindingTransformDirectionLeftToRight;
 	}
 	else if ([bind rangeOfString:BNDBindingArrowLeftToRight].location != NSNotFound) {
 		separator = BNDBindingArrowLeftToRight;
 		definition.shouldSetInitialValues = YES;
 		definition.direction = BNDBindingDirectionLeftToRight;
-        definition.transformDirection = BNDBindingTransformDirectionLeftToRight;
 	}
-    else if ([bind rangeOfString:BNDBindingArrowLeftToRight_DEPRECATED].location != NSNotFound) {
-        BNDLogDeprecated(BNDBindingArrowLeftToRight_DEPRECATED, BNDBindingArrowLeftToRight);
-
-        separator = BNDBindingArrowLeftToRight_DEPRECATED;
-        definition.shouldSetInitialValues = YES;
-        definition.direction = BNDBindingDirectionLeftToRight;
-        definition.transformDirection = BNDBindingTransformDirectionLeftToRight;
-    }
-	else if ([bind rangeOfString:BNDBindingArrowRightToLeft].location != NSNotFound) {
-		separator = BNDBindingArrowRightToLeft;
-		definition.shouldSetInitialValues = YES;
-		definition.direction = BNDBindingDirectionRightToLeft;
-        definition.transformDirection = BNDBindingTransformDirectionRightToLeft;
-	}
-    else if ([bind rangeOfString:BNDBindingArrowRightToLeft_DEPRECATED].location != NSNotFound) {
-        BNDLogDeprecated(BNDBindingArrowRightToLeft_DEPRECATED, BNDBindingArrowRightToLeft);
-
-        separator = BNDBindingArrowRightToLeft_DEPRECATED;
-        definition.shouldSetInitialValues = YES;
-        definition.direction = BNDBindingDirectionRightToLeft;
-        definition.transformDirection = BNDBindingTransformDirectionRightToLeft;
-    }
 	else if ([bind rangeOfString:BNDBindingArrowBidirectional].location != NSNotFound) {
 		separator = BNDBindingArrowBidirectional;
 		definition.shouldSetInitialValues = YES;
 		definition.direction = BNDBindingDirectionBoth;
-        definition.transformDirection = BNDBindingTransformDirectionLeftToRight;
 	}
 	else {
 		NSAssert(NO, @"Couldn't find initial assignment direction. Check the BIND syntax manual for more info.");

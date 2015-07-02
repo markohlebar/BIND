@@ -16,14 +16,9 @@ typedef NS_ENUM(NSInteger, BNDBindingDirection) {
     BNDBindingDirectionLeftToRight = 0,
     
     /**
-     *  <~ right object passes values to left object.
-     */
-    BNDBindingDirectionRightToLeft = 1,
-    
-    /**
      *  <> binding is bidirectional.
      */
-    BNDBindingDirectionBoth = 2,
+    BNDBindingDirectionBoth = 1,
 };
 
 typedef NS_ENUM(BOOL, BNDBindingTransformDirection) {

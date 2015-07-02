@@ -202,15 +202,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)setValues {
-    if (self.direction == BNDBindingDirectionLeftToRight ||
-        self.direction == BNDBindingDirectionBoth) {
-        id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
-        [self setRightObjectValue:value];
-    }
-    else if (self.direction == BNDBindingDirectionRightToLeft) {
-        id value = [self.rightObject valueForKeyPath:self.rightKeyPath];
-        [self setLeftObjectValue:value];
-    }
+    id value = [self.leftObject valueForKeyPath:self.leftKeyPath];
+    [self setRightObjectValue:value];
 }
 
 - (void)setLeftObjectValue:(id)value {
@@ -282,8 +275,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         [self.leftObserver observe:self.leftObject];
     }
     
-    if (self.direction == BNDBindingDirectionRightToLeft ||
-        self.direction == BNDBindingDirectionBoth) {
+    if (self.direction == BNDBindingDirectionBoth) {
         self.rightObserver = [BNDBindingKVOObserver observerWithKeyPath:self.rightKeyPath
                                                                 binding:self];
         [self.rightObserver observe:self.rightObject];
@@ -301,8 +293,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
         self.leftObserver = nil;
     }
     
-    if (self.direction == BNDBindingDirectionRightToLeft ||
-        self.direction == BNDBindingDirectionBoth) {
+    if (self.direction == BNDBindingDirectionBoth) {
         [self.rightObserver unobserve:self.rightObject];
         self.rightObserver = nil;
     }

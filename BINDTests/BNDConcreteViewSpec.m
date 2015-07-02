@@ -59,7 +59,7 @@ describe(@"BNDTableViewCell", ^{
         it(@"Should bind on view model update", ^{
             cell.bindings = createBindings(@[
                                              @"viewModel.text ~> textLabel.text",
-                                             @"textLabel.text <~ viewModel.text"
+                                             @"textLabel.text ~> viewModel.text"
                                              ]);
             
             BNDBinding *binding = cell.bindings[0];
@@ -108,7 +108,7 @@ describe(@"BNDTableViewCell", ^{
             TestTableViewCell *cell = [TestTableViewCell new];
             ViewModel *viewModel = [ViewModel new];
             
-            BNDBinding *binding = [BNDBinding bindingWithBIND:@"text -> textLabel.text"];
+            BNDBinding *binding = [BNDBinding bindingWithBIND:@"text ~> textLabel.text"];
             [binding transform:^id(id object, id value) {
                 return [value uppercaseString];
             }];
@@ -124,7 +124,7 @@ describe(@"BNDTableViewCell", ^{
             TestTableViewCell *cell = [TestTableViewCell new];
             ViewModel *viewModel = [ViewModel new];
             
-            BNDBinding *binding = [BNDBinding bindingWithBIND:@"text -> textLabel.text | UppercaseStringTransformer"];
+            BNDBinding *binding = [BNDBinding bindingWithBIND:@"text ~> textLabel.text | UppercaseStringTransformer"];
             [binding transform:^id(id object, id value) {
                 return [value uppercaseString];
             }];
