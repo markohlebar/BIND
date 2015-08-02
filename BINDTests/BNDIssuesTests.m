@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "BNDTestObjects.h"
+#import "BNDConcreteViewModel.h"
+
+@interface Issue18ViewModel : BNDViewModel
+@property (nonatomic) BOOL hidden;
+@end
+
+@implementation Issue18ViewModel
+@end
 
 @interface Issue8Cell : TableViewCell
-
 @end
 
 @implementation Issue8Cell
@@ -44,5 +51,15 @@ BINDINGS(ViewModel,
     XCTAssertEqualObjects(binding.rightObject, cell, @"Right object should be the cell");
 }
 
+- (void)testIssue18 {
+    Issue18ViewModel *viewModel = [Issue18ViewModel new];
+    TableViewCell *cell = [TableViewCell new];
+    cell.hidden = NO;
+    
+    BINDT(viewModel, hidden, ~>, cell, hidden, NSNegateBooleanTransformerName);
+    viewModel.hidden = NO;
+    
+    XCTAssertTrue(cell.hidden, @"Cell should be hidden");
+}
 
 @end

@@ -81,6 +81,22 @@ BND_VIEW_IMPLEMENT_VIEW_DID_UPDATE_VIEW_MODEL \
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel { \
 } \
 
+#pragma mark - BIND DSL HELPER
+
+@interface NSObject (BNDValueTransformer)
++(id)bnd_self;
+-(id)bnd_self;
+@end
+
+@implementation NSObject (BNDValueTransformer)
++(id)bnd_self {
+    return self.class;
+}
+-(id)bnd_self {
+    return self;
+}
+@end
+
 #pragma mark - BIND DSL
 
 static inline NSString *bndShorthandKeypathForObject(id object);
@@ -91,7 +107,7 @@ static inline BNDBinding* bndBIND(id left,
                                   id right,
                                   NSString *rightKeyPath,
                                   NSString *transformDirection,
-                                  Class transformerClass) {
+                                  id transformerClass) {
     if ([leftKeypath isEqualToString:@""]) {
         leftKeypath = bndShorthandKeypathForObject(left);
     }
@@ -100,8 +116,15 @@ static inline BNDBinding* bndBIND(id left,
         rightKeyPath = bndShorthandKeypathForObject(right);
     }
     
-    NSString *format = transformerClass ? @"%@%@%@|%@%@" : @"%@%@%@%@%@";
-    NSString *transformer = transformerClass ? NSStringFromClass(transformerClass) : @"";
+    BOOL hasTransformer = (transformerClass != nil);
+    NSString *format = hasTransformer ? @"%@%@%@|%@%@" : @"%@%@%@%@%@";
+    NSString *transformer;
+    if (hasTransformer) {
+        transformer = [transformerClass isKindOfClass:NSString.class] ? transformerClass : NSStringFromClass(transformerClass);
+    }
+    else {
+        transformer = @"";
+    }
     NSString *BIND = [NSString stringWithFormat:format,leftKeypath, direction, rightKeyPath, transformDirection, transformer];
     BNDBinding *binding = [BNDBinding bindingWithBIND:BIND];
     [binding bindLeft:left withRight:right];
@@ -185,7 +208,7 @@ bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right
  *  @return a binding.
  */
 #define BINDT(left, leftKeyPath, direction, right, rightKeyPath, TransformClass) \
-bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"", [TransformClass class])
+bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"", TransformClass.bnd_self)
 
 /**
  *  BIND reverse transform.
@@ -200,7 +223,7 @@ bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right
  *  @return a binding.
  */
 #define BINDRT(left, leftKeyPath, direction, right, rightKeyPath, TransformClass) \
-bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"!", [TransformClass class])
+bndBIND(left, @keypath(left,leftKeyPath), @metamacro_stringify(direction), right, @keypath(right,rightKeyPath), @"!", TransformClass.bnd_self)
 
 #pragma mark - Shorthands
 
