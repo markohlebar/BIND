@@ -16,7 +16,7 @@ Data binding and MVVM for iOS
 #### UI Bindings ####
 **BIND** offers a streamlined interface to create your `view` - `viewModel` and `viewModel` - `model` bindings. 
 You can utilize these bindings by subclassing from classes implementing `BNDView` and `BNDViewModel` protocols. The following example binds some properties of the `viewModel` with it's corresponding `view`. 
-```
+```objc
 @implementation MHNameTableCell
 BINDINGS(MHPersonNameViewModel,
          BINDViewModel(name, ~>, textLabel.text),
@@ -32,7 +32,7 @@ exposes properties `viewModel` and `bindings`. Whenever `viewModel` gets updated
 the `bindings` are updated as well, which guarantees that the correct `viewModel` is bound to a correct `view`. 
 
 Similar to this, you can also bind `viewModel` with `model`. You can do this by creating a `viewModel` subclass of `BNDViewModel`, and define your bindings like so: 
-```
+```objc
 @implementation MHPersonNameViewModel
 BINDINGS(MHPerson,
          BINDModel(fullName, <>, name),
@@ -50,7 +50,7 @@ You can use **BIND** for the same purposes as you would use KVO.
 Let's say you have a `UILabel *nameLabel` and a `viewModel` representing the contents of the `nameLabel`. 
 When the `viewModel` changes it's `name` value for whatever reasons, this should automatically be visible
 on the label. 
-```
+```objc
 viewModel.name = @"Kim";
 BIND(viewModel, name, ~>, nameLabel, text);
 //nameLabel.text says Kim at this point. 
@@ -60,7 +60,7 @@ viewModel.name = @"Hobbit";
 ```
 Now say you just want to observe that the `name` value has changed in the `viewModel`. 
 You can do that by using the observe action. 
-```
+```objc
 [BINDO(viewModel,name) observe:^(id observable, id value, NSDictionary *observationInfo) {
     //fired when viewModel changes it's name property
 }];
@@ -72,7 +72,7 @@ The bindings are automagically broken when the observable is deallocated.
 As of version 1.1.0, **BIND** is automatically handling unbinding of bound objects. This means no more KVO exceptions like the following:
 `"NSInternalInconsistencyException", "An instance 0xF00B400 of class XYZ was deallocated while key value observers were still registered with it.`
 You can, however, unbind the binding manually by calling `unbind` method like so: 
-```
+```objc
 BNDBinding *binding = BIND(engine, rpm, ~>, car, speed);
 ...
 [binding unbind];
@@ -80,7 +80,7 @@ BNDBinding *binding = BIND(engine, rpm, ~>, car, speed);
 
 #### Transform operation ####
 You can change the way the values are transformed by using the `transform:` operation. Let's take the previous example, and assume that there is a requirement that the name should be displayed uppercase in the label.
-```
+```objc
 ...
 viewModel.name = @"Kim";
 [BIND(viewModel, name, ~>, nameLabel, text) transform:^id(id sender, id value) {
@@ -95,7 +95,7 @@ viewModel.name = @"Hobbit";
 
 #### Observe operation ####
 Observe operation was covered in earlier examples. Use observe operation to passively observe when bound values are being changed, similar to KVO. 
-```
+```objc
 [BINDSR(viewModel,name,~>,nameLabel) observe:^(id observable, id value, NSDictionary *observationInfo){
     //Fired when name changes on the viewModel. 
 }]; 
@@ -109,7 +109,7 @@ Using an `NSValueTransformer` subclass instead of a block transform is a design 
 
 You can build your subclass of `NSValueTransformer` and easily assign it to the binding. When assigning a value transformer, you can either use it's class name or transformer name. If you pass in a class name that hasn't yet been registered, **BIND** will register that `NSValueTransformer`, and use the class name as the registered transformer name on any subsequent calls, thus saving memory and processing time.  
 
-```
+```objc
 ...
 viewModel.name = @"Kim";
 //Set the transformer by using BINDT() macro 
@@ -138,7 +138,7 @@ You can reverse the transformation direction if you need to by adding a `!` modi
 
 #### Asynchronous Transformers ####
 Let's say you want to grab an image from the web asynchronously by using a transformation from an `NSURL` to a `UIImage`. You can do this by creating a `BNDAsyncValueTransformer` subclass and implementing it's transform and reverse transform methods. Following is a trivial example of the implementation of such a class.
-```
+```objc
 ...
 BINDT(self,viewModel.imageURL,~>,self,imageView.image,BNDURLToImageTransformer);
 ...
@@ -168,7 +168,7 @@ Note that bidirectional asynchronous binding is not supported and will throw an 
 Observe the symbol `~>` in the expression `name ~> textLabel.text`. 
 **BIND** syntax lets you configure the way that the binding is reflected on the bound objects values. 
 It offers six different direction and intial value assignment configurations:
-```
+```objc
 name ~> textLabel.text /// left object passes values to right object
 name <~ textLabel.text /// right object passes values to left object.
 name <> textLabel.text /// binding is bidirectional. Initial value is passed from left to right object.
@@ -179,7 +179,7 @@ name <!> textLabel.text /// binding is bidirectional with no initial value assig
 
 #### Shorthands ####
 You can use shorthand operators to create most of your bindings. Shorthands were designed for brevity of expression, while still keeping the clarity of bound properties. 
-```
+```objc
 UILabel *nameLabel ... //a label instance
 UITextField *nameField ... // a textfield instance
 id viewModel ... //a viewModel containing property name
@@ -216,7 +216,7 @@ The following graph represents a proposed MVVMC app architecture, which we will 
 #### Data Controller ####
 The Data Controller is responsible for transforming the Model from external sources; i.e. a web service to a View Model which forms a 1:1 relationship with View elements (View or View Controller). 
 **BIND** offers a protocol `BNDDataController` which exposes the following method:
-```
+```objc
 - (void)updateWithContext:(id)context
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler;
 ```
@@ -226,7 +226,7 @@ Calling this method should trigger a series of events, like fetching Model from 
 #### View Controller ####
 The View Controller holds a reference to it's Data Controller and kicks off a request for the View Model. 
 Usually the best time to refresh the View Model would be in `UIViewController`'s `viewWillAppear:` callback method.
-```
+```objc
 - (void)viewWillAppear:(BOOL)animated {
     __weak typeof(self) weakSelf = self;
     [self.dataController updateWithContext:someContext
@@ -248,7 +248,7 @@ For your convenience, **BIND** offers an abstract class `BNDViewController` whic
 
 These subclasses hold a weak reference to the `viewModel` and a strong reference to an array of `bindings`. 
 Think of a common scenario when presenting `UITableView` cells:
-```
+```objc
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id <BNDViewModel> viewModel = self.viewModels[indexPath.row];
     UITableViewCell <BNDView> *cell = [tableView dequeueReusableCellWithIdentifier:viewModel.identifier];
@@ -274,7 +274,7 @@ Assume that the `PersonViewModel` **view model** has a property `name` which you
 We will bind the cell's `textLabel.text` key path with the `name` key path of your **view model**. 
 The easiest way to do this is to use `BINDINGS` macro with `BINDViewModel` to create your `BNDView` bindings, 
 like in the following example. 
-```
+```objc
 @interface PersonTableViewCell : BNDTableViewCell
 @end
 
@@ -292,7 +292,7 @@ Any subsequent calls to setViewModel: will automatically refresh the binding by 
 
 Optionally, if you want to do some additional operations when `viewModel` is set, you can override `viewDidUpdateViewModel:` method. This method is called after each call to `setViewModel:` on the cell,
 use this instead of overriding `setViewModel:`. 
-```
+```objc
 @implementation PersonTableViewCell 
 ...
 - (void)viewDidUpdateViewModel:(id <BNDViewModel> )viewModel {
