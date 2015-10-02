@@ -270,6 +270,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)setupObservers {
+    [self removeObservers];
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
         self.leftObserver = [BNDBindingKVOObserver observerWithKeyPath:self.leftKeyPath
@@ -286,10 +287,6 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)removeObservers {
-    if (![self areKeypathsSet] || ![self areObjectsSet]) {
-        return;
-    }
-    
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
         [self.leftObserver unobserve:self.leftObject];
@@ -379,6 +376,9 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)observe:(id)observable {
+    if (!observable) {
+        return;
+    }
     [observable addObserver:self
                  forKeyPath:self.keyPath
                     options:NSKeyValueObservingOptionNew
@@ -388,6 +388,9 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 }
 
 - (void)unobserve:(id)observable {
+    if (!observable) {
+        return;
+    }
     [observable removeObserver:self
                     forKeyPath:self.keyPath
                        context:BNDBindingContext];
