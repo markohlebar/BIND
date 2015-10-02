@@ -85,7 +85,7 @@
     UITextField *textField = [UITextField new];
     UILabel *label = [UILabel new];
     
-    BINDS(textField, ~>, label);
+    _binding = BINDS(textField, ~>, label);
     textField.text = @"Kim";
     
     XCTAssertEqualObjects(textField.text, label.text, @"The objects should have equal text values");
@@ -94,7 +94,7 @@
 - (void)testBINDShorthandRightAssignsCorrectValues {
     UILabel *label = [UILabel new];
     
-    BINDSR(_car, make, ~>, label);
+    _binding = BINDSR(_car, make, ~>, label);
     _car.make = @"Toyota";
     
     XCTAssertEqualObjects(_car.make, label.text, @"The objects should have equal values");
@@ -103,7 +103,7 @@
 - (void)testBINDShorthandLeftAssignsCorrectValues {
     UITextField *textField = [UITextField new];
     
-    BINDSL(textField, ~>, _car, make);
+   _binding = BINDSL(textField, ~>, _car, make);
     textField.text = @"Toyota";
     
     XCTAssertEqualObjects(_car.make, textField.text, @"The objects should have equal values");

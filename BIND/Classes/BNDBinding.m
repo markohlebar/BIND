@@ -168,7 +168,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [self setupObservers];
     [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:self];
     
-    [BNDBindingObject_bindings addPointer:(__bridge void * _Nullable)(self)];
+    [BNDBindingObject_bindings addPointer:(__bridge void *)(self)];
     
     BNDLog(@"%@", [self debugDescription]);
 }
@@ -466,7 +466,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 + (NSString *)allDebugDescription {
     NSMutableString *bindingsString = [NSMutableString stringWithString:@"BINDINGS {\n"];
-    [BNDBindingObject_bindings.allObjects enumerateObjectsUsingBlock:^(BNDBinding *binding, NSUInteger idx, BOOL * _Nonnull stop) {
+    [BNDBindingObject_bindings.allObjects enumerateObjectsUsingBlock:^(BNDBinding *binding, NSUInteger idx, BOOL * stop) {
         [bindingsString appendFormat:@"%@\n", binding.debugDescription];
     }];
     [bindingsString appendFormat:@"} (%lu bindings)\n", (unsigned long)BNDBindingObject_bindings.count];
