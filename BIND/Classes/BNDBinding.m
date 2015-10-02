@@ -15,7 +15,7 @@
 #import "BNDMacros.h"
 
 static NSMutableSet *BNDBindingObject_swizzledClasses = nil;
-static NSMutableSet *BNDBindingObject_bindings = nil;
+static NSPointerArray *BNDBindingObject_bindings = nil;
 
 static void *BNDBindingContext = &BNDBindingContext;
 NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBindingsKey";
@@ -56,7 +56,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 @property (nonatomic, copy) NSString *operator;
 
-+ (NSMutableSet *)allBindings;
++ (NSArray *)allBindings;
 @end
 
 #pragma clang diagnostic push
@@ -70,17 +70,12 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         BNDBindingObject_swizzledClasses = [NSMutableSet new];
-        BNDBindingObject_bindings = [NSMutableSet new];
+        BNDBindingObject_bindings = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsWeakMemory];
     });
 }
 
-+ (NSMutableSet *)allBindings {
-    return BNDBindingObject_bindings;
-}
-
-- (BOOL)isValidBinding {
-    BOOL isValidBinding = [BNDBindingObject_bindings containsObject:self];
-    return isValidBinding;
++ (NSArray *)allBindings {
+    return BNDBindingObject_bindings.allObjects;
 }
 
 - (void)dealloc {
@@ -173,7 +168,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [self setupObservers];
     [BNDSpecialKeyPathHandler handleSpecialKeyPathsForBinding:self];
     
-    [BNDBindingObject_bindings addObject:self];
+    [BNDBindingObject_bindings addPointer:(__bridge void * _Nullable)(self)];
     
     BNDLog(@"%@", [self debugDescription]);
 }
@@ -190,7 +185,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     self.leftObject = nil;
     self.rightObject = nil;
     
-    [BNDBindingObject_bindings removeObject:self];
+    [BNDBindingObject_bindings compact];
 }
 
 - (void)setInitialValues {
@@ -471,7 +466,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 + (NSString *)allDebugDescription {
     NSMutableString *bindingsString = [NSMutableString stringWithString:@"BINDINGS {\n"];
-    [BNDBindingObject_bindings enumerateObjectsUsingBlock:^(BNDBinding *binding, BOOL *stop) {
+    [BNDBindingObject_bindings.allObjects enumerateObjectsUsingBlock:^(BNDBinding *binding, NSUInteger idx, BOOL * _Nonnull stop) {
         [bindingsString appendFormat:@"%@\n", binding.debugDescription];
     }];
     [bindingsString appendFormat:@"} (%lu bindings)\n", (unsigned long)BNDBindingObject_bindings.count];
