@@ -1,5 +1,5 @@
 //
-//  MHPersonColorViewModel.h
+//  MHAddPersonViewModel.h
 //  MVVM
 //
 //  Created by Marko Hlebar on 02/11/2014.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "BIND.h"
 
-@interface MHPersonColorViewModel : BNDViewModel
+@interface MHAddPersonViewModel : BNDViewModel
 @property (nonatomic, strong) id <BNDCommand> createPersonCommand;
 @end

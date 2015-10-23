@@ -10,7 +10,8 @@
 #import "MHPersonFetcher.h"
 #import "MHPerson.h"
 #import "MHPersonNameViewModel.h"
-#import "MHPersonColorViewModel.h"
+#import "MHAddPersonViewModel.h"
+#import "MHTableViewModel.h"
 
 @implementation MHPersonDataController
 
@@ -26,22 +27,24 @@
         viewModelsHandler:(BNDViewModelsBlock)viewModelsHandler {
     __weak typeof(self) weakSelf = self;
     [self.dataFetcher fetchPersonae:^(NSArray *personae) {
-        NSArray *viewModels = [weakSelf viewModelsForPersonae:personae];
-        viewModelsHandler(viewModels, nil);
+        MHTableViewModel *viewModel = [weakSelf viewModelForPersonae:personae];
+        viewModelsHandler(@[viewModel], nil);
     }];
 }
 
-- (NSArray *)viewModelsForPersonae:(NSArray *)personae {
-    NSMutableArray *viewModels = [NSMutableArray new];
+- (MHTableViewModel *)viewModelForPersonae:(NSArray *)personae {
+    NSMutableArray *rows = [NSMutableArray new];
+    
     for (MHPerson *person in personae) {
         Class viewModelClass = (person.ID.integerValue % 2 == 0) ?
         [MHPersonNameViewModel class] :
-        [MHPersonColorViewModel class];
+        [MHAddPersonViewModel class];
         
         id viewModel = [viewModelClass viewModelWithModel:person];
-        [viewModels addObject:viewModel];
+        [rows addObject:viewModel];
     }
-    return viewModels.copy;
+
+    return [MHTableViewModel tableViewModelWithRows:rows.copy];
 }
 
 @end

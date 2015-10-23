@@ -1,15 +1,14 @@
-//
+ //
 //  MHTableViewController.h
 //  MVVM
 //
-//  Created by Marko Hlebar on 25/10/2014.
+//  Created by Marko Hlebar on 02/11/2014.
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MHTableViewController.h"
 #import "BIND.h"
 
-@protocol MHTableViewDataController;
-@interface MHTableViewController : BNDViewController
+@interface MHTableViewController : BNDViewController <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @end

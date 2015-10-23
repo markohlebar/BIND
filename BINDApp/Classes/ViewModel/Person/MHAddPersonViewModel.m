@@ -1,17 +1,17 @@
 //
-//  MHPersonColorViewModel.m
+//  MHAddPersonViewModel.m
 //  MVVM
 //
 //  Created by Marko Hlebar on 02/11/2014.
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
-#import "MHPersonColorViewModel.h"
+#import "MHAddPersonViewModel.h"
 #import "MHPerson.h"
 #import "MHPersonCreator.h"
 #import "MHAddPersonCommand.h"
 
-@implementation MHPersonColorViewModel
+@implementation MHAddPersonViewModel
 BINDINGS(MHPersonCreator,
          BINDModel(personae, ~>, children),
          nil)

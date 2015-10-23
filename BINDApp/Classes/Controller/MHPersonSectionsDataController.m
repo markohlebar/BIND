@@ -10,11 +10,12 @@
 #import "MHPerson.h"
 #import "MHPersonSectionViewModel.h"
 #import "MHPersonNameViewModel.h"
+#import "MHTableViewModel.h"
 
 @implementation MHPersonSectionsDataController
 
-- (NSArray *)viewModelsForPersonae:(NSArray *)personae {
-    NSMutableArray *viewModels = [NSMutableArray new];
+- (MHTableViewModel *)viewModelForPersonae:(NSArray *)personae {
+    MHTableViewModel *tableViewModel = [[MHTableViewModel alloc] init];
     
     NSSortDescriptor *nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fullName"
                                                                          ascending:YES];
@@ -32,10 +33,9 @@
         
         MHPersonSectionViewModel *section = [MHPersonSectionViewModel viewModelWithModel:rowViewModels.copy];
         section.title = firstLetter;
-        [viewModels addObject:section];
+        [tableViewModel addChild:section];
     }
-    
-    return viewModels.copy;
+    return tableViewModel;
 }
 
 - (NSArray *)firstLettersForPersonae:(NSArray *)personae {

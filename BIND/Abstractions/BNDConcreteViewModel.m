@@ -41,12 +41,12 @@
     }
 }
 
-- (void)addChild:(BNDViewModel *)child {
-    NSParameterAssert([child isKindOfClass:[BNDViewModel class]]);
+- (void)addChild:(id <BNDViewModel> )child {
+    NSParameterAssert([child conformsToProtocol:@protocol(BNDViewModel)]);
     [self node_addChild:child];
 }
 
-- (void)removeChild:(BNDViewModel *)child {
+- (void)removeChild:(id <BNDViewModel> )child {
     [self node_removeChild:child];
 }
 

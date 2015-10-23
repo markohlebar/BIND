@@ -7,6 +7,7 @@
 //
 
 #import "MHRootViewController.h"
+#import "MHPersonSectionsDataController.h"
 
 @interface MHRootViewController ()
 @property (nonatomic, strong, readonly) NSArray *controllerNames;
@@ -51,24 +52,30 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"MHTableViewControllerSegue"
+                              sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    NSString *segueIdentifier = nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    id <BNDDataController> dataController = [self dataControllerForIndexPath:indexPath];
+    id <BNDViewController> viewController = segue.destinationViewController;
+    viewController.dataController = dataController;
+}
+
+- (id <BNDDataController> )dataControllerForIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
-            segueIdentifier = @"MHTableViewControllerSegue";
+            return [MHPersonDataController new];
             break;
         case 1:
-            segueIdentifier = @"MHSectionTableViewControllerSegue";
+            return [MHPersonSectionsDataController new];
             break;
         default:
             break;
     }
-    
-    if (segueIdentifier) {
-        [self performSegueWithIdentifier:segueIdentifier
-                                  sender:self];
-    }
+    return nil;
 }
 
 @end

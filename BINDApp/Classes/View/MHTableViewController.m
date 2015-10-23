@@ -2,22 +2,27 @@
 //  MHTableViewController.m
 //  MVVM
 //
-//  Created by Marko Hlebar on 25/10/2014.
+//  Created by Marko Hlebar on 02/11/2014.
 //  Copyright (c) 2014 Marko Hlebar. All rights reserved.
 //
 
 #import "MHTableViewController.h"
-#import "BNDConcreteViewModel.h"
-#import "BNDView.h"
-#import "MHNameViewModel.h"
-
-@interface MHTableViewController ()
-@end
 
 @implementation MHTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.tableView = (UITableView *)self.view;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    __weak typeof(self) weakSelf = self;
+    [self.dataController updateWithContext:nil viewModelsHandler:^(NSArray *viewModels, NSError *error) {
+        weakSelf.viewModel = [viewModels firstObject];
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,18 +30,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.tableViewModel.sectionViewModels.count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.viewModel.children.count;
+    id <BNDTableSectionViewModel> sectionViewModel = self.tableViewModel.sectionViewModels[section];
+    return sectionViewModel.rowViewModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id <BNDViewModel> viewModel = self.viewModel.children[indexPath.row];
+    id <BNDTableSectionViewModel> sectionViewModel = self.tableViewModel.sectionViewModels[indexPath.section];
+    id <BNDViewModel> viewModel = sectionViewModel.rowViewModels[indexPath.row];
     
-    ///I am conveniently using the identifier here as a cell identifier. Someone else might choose
-    ///to use the identifier only as way to identify different viewmodel instances,
-    ///and present table view cells accordingly.
     NSString *identifier = viewModel.identifier;
     UITableViewCell <BNDView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
@@ -49,10 +55,25 @@
     return cell;
 }
 
+- (id <BNDTableViewModel>) tableViewModel {
+    return (id <BNDTableViewModel>)self.viewModel;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    id <BNDTableSectionViewModel> sectionViewModel = self.tableViewModel.sectionViewModels[section];
+    return sectionViewModel.title;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    id <BNDTableSectionViewModel> sectionViewModel = self.tableViewModel.sectionViewModels[section];
+    return sectionViewModel.cellHeight;
+}
+
 #pragma mark - Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id <BNDTableRowViewModel> viewModel = self.viewModel.children[indexPath.row];
+    id <BNDTableSectionViewModel> sectionViewModel = self.tableViewModel.sectionViewModels[indexPath.section];
+    id <BNDTableRowViewModel> viewModel = sectionViewModel.rowViewModels[indexPath.row];
     return viewModel.cellHeight;
 }
 

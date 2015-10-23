@@ -15,7 +15,7 @@
 @property (nonatomic, strong, readonly) id model;
 @property (nonatomic, strong) NSArray *bindings;
 - (id)initWithModel:(id)model;
-- (void)addChild:(BNDViewModel *)child;
-- (void)removeChild:(BNDViewModel *)child;
+- (void)addChild:(id <BNDViewModel> )child;
+- (void)removeChild:(id <BNDViewModel> )child;
 - (void)removeAllChildren;
 @end

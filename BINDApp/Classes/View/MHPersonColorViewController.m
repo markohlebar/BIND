@@ -8,14 +8,14 @@
 
 #import "MHPersonColorViewController.h"
 #import "BIND.h"
-#import "MHPersonColorViewModel.h"
+#import "MHAddPersonViewModel.h"
 
 @interface MHPersonColorViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addBarButtonItem;
 @end
 
 @implementation MHPersonColorViewController
-BINDINGS(MHPersonColorViewModel,
+BINDINGS(MHAddPersonViewModel,
          BINDViewModelCommand(createPersonCommand, addBarButtonItem.onTouchUpInside),
          nil
 );
