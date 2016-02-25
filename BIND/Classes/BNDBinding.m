@@ -273,15 +273,17 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [self removeObservers];
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
-        self.leftObserver = [BNDBindingKVOObserver observerWithKeyPath:self.leftKeyPath
-                                                               binding:self];
+        BNDBindingKVOObserver *observer = [BNDBindingKVOObserver observerWithKeyPath:self.leftKeyPath
+		                                                             binding:self];
+	self.leftObserver = observer;
         [self.leftObserver observe:self.leftObject];
     }
     
     if (self.direction == BNDBindingDirectionRightToLeft ||
         self.direction == BNDBindingDirectionBoth) {
-        self.rightObserver = [BNDBindingKVOObserver observerWithKeyPath:self.rightKeyPath
-                                                                binding:self];
+        BNDBindingKVOObserver *observer = [BNDBindingKVOObserver observerWithKeyPath:self.rightKeyPath
+		                                                             binding:self];
+	self.rightObserver = observer;
         [self.rightObserver observe:self.rightObject];
     }
 }
