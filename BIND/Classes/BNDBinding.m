@@ -22,7 +22,7 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 @interface BNDBindingKVOObserver : NSObject
 @property (nonatomic, copy, readonly) NSString *keyPath;
-@property (nonatomic, weak, readonly) BNDBinding *binding;
+@property (nonatomic, strong, readonly) BNDBinding *binding;
 
 + (instancetype)observerWithKeyPath:(NSString *)keyPath
                             binding:(BNDBinding *)binding;
@@ -41,8 +41,8 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 @property (nonatomic, strong) NSValueTransformer *valueTransformer;
 @property (nonatomic) BOOL shouldSetInitialValues;
 
-@property (nonatomic, strong) BNDBindingKVOObserver *leftObserver;
-@property (nonatomic, strong) BNDBindingKVOObserver *rightObserver;
+@property (nonatomic, weak) BNDBindingKVOObserver *leftObserver;
+@property (nonatomic, weak) BNDBindingKVOObserver *rightObserver;
 
 @property (nonatomic) SEL transformSelector;
 @property (nonatomic) SEL reverseTransformSelector;
@@ -273,15 +273,17 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
     [self removeObservers];
     if (self.direction == BNDBindingDirectionLeftToRight ||
         self.direction == BNDBindingDirectionBoth) {
-        self.leftObserver = [BNDBindingKVOObserver observerWithKeyPath:self.leftKeyPath
-                                                               binding:self];
+        BNDBindingKVOObserver *observer = [BNDBindingKVOObserver observerWithKeyPath:self.leftKeyPath
+		                                                             binding:self];
+	self.leftObserver = observer;
         [self.leftObserver observe:self.leftObject];
     }
     
     if (self.direction == BNDBindingDirectionRightToLeft ||
         self.direction == BNDBindingDirectionBoth) {
-        self.rightObserver = [BNDBindingKVOObserver observerWithKeyPath:self.rightKeyPath
-                                                                binding:self];
+        BNDBindingKVOObserver *observer = [BNDBindingKVOObserver observerWithKeyPath:self.rightKeyPath
+		                                                             binding:self];
+	self.rightObserver = observer;
         [self.rightObserver observe:self.rightObject];
     }
 }
